@@ -87,7 +87,7 @@ public class FirstNg {
 		//testName = "one()";
 		System.out.println("\t\t\t\t@Test class FirstNg one()");
 		if (!getClass().getName().isEmpty()) {
-			throw new RuntimeException("hahaha @Test");
+			//throw new RuntimeException("hahaha @Test");
 		}
 		//isTestSuccessful = true;
 	}
