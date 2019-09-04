@@ -1,0 +1,12 @@
+OpenCart
+Main Functions of cart:
+    1)Add to cart(After/Before Log In);
+    2)Delete from cart(After/Before Log In);
+    3)Change count of orders(After/Before Log In);
+    4)Checkout(After/Before Log In):
+    -
+
+    ;
+    5)The right showing of sum and prices of each order;
+    6)The right system works with wrong symbols;
+    7)The warnings(alerts) during fail tests.

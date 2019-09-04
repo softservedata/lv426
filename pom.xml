@@ -1,106 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<modelVersion>4.0.0</modelVersion>
+    <groupId>com.softserve.opencart</groupId>
+    <artifactId>cart</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
-	<groupId>com.softserve.edu</groupId>
-	<artifactId>work426</artifactId>
-	<version>1.0</version>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.resources.plugin.version>3.1.0</maven.resources.plugin.version>
+        <org.junit.version>5.3.0</org.junit.version>
+        <maven.surefire.plugin.version>2.22.2</maven.surefire.plugin.version>
+        <org.seleniumhq.selenium.version>3.141.59</org.seleniumhq.selenium.version>
+        <org.seleniumhq.selenium.htmlunit-driver>2.33.3</org.seleniumhq.selenium.htmlunit-driver>
+    </properties>
 
-	<packaging>jar</packaging>
-	<name>${project.artifactId}</name>
-	<url>http://maven.apache.org</url>
 
-	<properties>
-		<!-- - - - - - Encoding - - - - - -->
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.resources.plugin.version>3.1.0</maven.resources.plugin.version>
-		<!-- - - - - - Java - - - - - -->
-		<jdk.source.version>1.8</jdk.source.version>
-		<jdk.compiler.version>1.8</jdk.compiler.version>
-		<maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
-		<!-- - - - - - Test - - - - - -->
-		<org.junit.version>4.12</org.junit.version>
-		<org.testng.version>7.0.0</org.testng.version>
-		<maven.surefire.plugin.version>2.22.2</maven.surefire.plugin.version>
-		<temp>null</temp>
-		<!-- - - - - - Automation - - - - - -->
-		<org.seleniumhq.selenium.version>3.141.59</org.seleniumhq.selenium.version>
-		<org.seleniumhq.selenium.htmlunit-driver>2.33.3</org.seleniumhq.selenium.htmlunit-driver>
-		<!-- - - - - - Reports - - - - - -->
-		<testng.reports.directory>target/surefire-reports/test-output</testng.reports.directory>
-	</properties>
+    <dependencies>
+       
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>5.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>5.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+ 
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.3.0</version>
+        </dependency>
+    </dependencies>
 
-	<dependencies>
-		<!-- - - - Test - - - -->
-		<!-- <dependency> -->
-		<!-- <groupId>junit</groupId> -->
-		<!-- <artifactId>junit</artifactId> -->
-		<!-- <version>${org.junit.version}</version> -->
-		<!-- <scope>test</scope> -->
-		<!-- </dependency> -->
-		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>${org.testng.version}</version>
-			<scope>test</scope>
-		</dependency>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven.resources.plugin.version}</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M3</version>
+                <configuration>
+                    <reuseForks>true</reuseForks>
+                    <properties>
+                        <configurationParameters>
+                            junit.jupiter.conditions.deactivate = *
+                            junit.jupiter.extensions.autodetection.enabled = true
+                            junit.jupiter.testinstance.lifecycle.default = per_class
+                            junit.jupiter.execution.parallel.enabled = true
+                        </configurationParameters>
+                        <includeTags>Opencart</includeTags>
+                    </properties>
+                </configuration>
 
-		<!-- - - - Automation Framework - - - -->
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-server</artifactId>
-			<version>${org.seleniumhq.selenium.version}</version>
-		</dependency>
-	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>${maven.resources.plugin.version}</version>
-				<configuration>
-					<encoding>${project.build.sourceEncoding}</encoding>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven.compiler.plugin.version}</version>
-				<configuration>
-					<source>${jdk.source.version}</source>
-					<target>${jdk.compiler.version}</target>
-					<encoding>${project.build.sourceEncoding}</encoding>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>${maven.surefire.plugin.version}</version>
-				<configuration>
-					<argLine>-Xms512m -Xmx1024m</argLine>
-					<systemPropertyVariables>
-						<surefire.reports.directory>
-							${testng.reports.directory}
-						</surefire.reports.directory>
-						<selenium.version>
-							${org.seleniumhq.selenium.version}
-						</selenium.version>
-						<temporary.variable>
-							${temp}
-						</temporary.variable>
-					</systemPropertyVariables>
-					<suiteXmlFiles>
-						<!-- <suiteXmlFile>testng.xml</suiteXmlFile> -->
-						<!-- <suiteXmlFile>testng2.xml</suiteXmlFile> -->
-						<suiteXmlFile>testng4.xml</suiteXmlFile>
-					</suiteXmlFiles>
-					<reportsDirectory>${testng.reports.directory}</reportsDirectory>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
