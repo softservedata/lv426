@@ -10,9 +10,10 @@
 		<parameter name="number" value="23145" />
 		<parameter name="implicitWait" value="30" />
 		<classes>
-			<class name="com.softserve.testng.TestNGTest6" />
-			<class name="com.softserve.testng.AppTest1" />
-			<class name="com.softserve.testng.FirstNg" />
+			<!-- <class name="com.softserve.testng.TestNGTest6" /> -->
+			<!-- <class name="com.softserve.testng.AppTest1" /> -->
+			<!-- <class name="com.softserve.testng.FirstNg" /> -->
+			<class name="com.softserve.edu.AjaxTest" />
 		</classes>
 	</test> <!-- Test -->
 

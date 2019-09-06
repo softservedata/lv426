@@ -27,6 +27,8 @@
 		<temp>null</temp>
 		<!-- - - - - - Automation - - - - - -->
 		<org.seleniumhq.selenium.version>3.141.59</org.seleniumhq.selenium.version>
+		<maven.os-maven-plugin.version>1.6.2</maven.os-maven-plugin.version>
+		<maven.webdriverextensions-maven-plugin.version>3.2.0</maven.webdriverextensions-maven-plugin.version>
 		<org.seleniumhq.selenium.htmlunit-driver>2.33.3</org.seleniumhq.selenium.htmlunit-driver>
 		<!-- - - - - - Reports - - - - - -->
 		<testng.reports.directory>target/surefire-reports/test-output</testng.reports.directory>
@@ -56,6 +58,15 @@
 	</dependencies>
 
 	<build>
+
+		<extensions>
+			<extension>
+				<groupId>kr.motd.maven</groupId>
+				<artifactId>os-maven-plugin</artifactId>
+				<version>${maven.os-maven-plugin.version}</version>
+			</extension>
+		</extensions>
+
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -65,6 +76,7 @@
 					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
 			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -75,6 +87,43 @@
 					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
 			</plugin>
+
+			<plugin>
+				<groupId>com.github.webdriverextensions</groupId>
+				<artifactId>webdriverextensions-maven-plugin</artifactId>
+				<version>${maven.webdriverextensions-maven-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>pre-test</id>
+						<goals>
+							<goal>install-drivers</goal>
+						</goals>
+						<!-- Uncomment for download automatically -->
+						<phase>test-compile</phase>
+						<!-- <phase>process-test-classes</phase> -->
+						<!-- <phase>test</phase> -->
+					</execution>
+				</executions>
+				<configuration>
+					<installationDirectory>${project.build.directory}/test-classes</installationDirectory>
+					<!-- <installationDirectory>${project.basedir}/src/test/resources</installationDirectory> -->
+					<keepDownloadedWebdrivers>true</keepDownloadedWebdrivers>
+					<drivers>
+						<driver>
+							<name>chromedriver</name>
+							<!--suppress UnresolvedMavenProperty -->
+							<platform>${os.detected.name}</platform>
+							<!-- <platform>windows</platform> -->
+							<bit>32</bit>
+							<!-- <version>74.0.3729.6</version> -->
+							<!-- <url>https://chromedriver.storage.googleapis.com/74.0.3729.6/chromedriver_win32.zip</url> -->
+							<version>76.0.3809.126</version>
+<!-- 							<url>https://chromedriver.storage.googleapis.com/76.0.3809.126/chromedriver_win32.zip</url> -->
+						</driver>
+					</drivers>
+				</configuration>
+			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
