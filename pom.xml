@@ -29,7 +29,8 @@
 		<org.seleniumhq.selenium.version>3.141.59</org.seleniumhq.selenium.version>
 		<maven.os-maven-plugin.version>1.6.2</maven.os-maven-plugin.version>
 		<maven.webdriverextensions-maven-plugin.version>3.2.0</maven.webdriverextensions-maven-plugin.version>
-		<org.seleniumhq.selenium.htmlunit-driver>2.33.3</org.seleniumhq.selenium.htmlunit-driver>
+		<org.seleniumhq.selenium.htmlunit-driver>2.36.0</org.seleniumhq.selenium.htmlunit-driver>
+		<com.codeborne.phantomjsdriver.version>1.4.4</com.codeborne.phantomjsdriver.version>
 		<!-- - - - - - Reports - - - - - -->
 		<testng.reports.directory>target/surefire-reports/test-output</testng.reports.directory>
 	</properties>
@@ -55,6 +56,19 @@
 			<artifactId>selenium-server</artifactId>
 			<version>${org.seleniumhq.selenium.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>htmlunit-driver</artifactId>
+			<version>${org.seleniumhq.selenium.htmlunit-driver}</version>
+		</dependency>
+
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>phantomjsdriver</artifactId>
+            <version>${com.codeborne.phantomjsdriver.version}</version>
+        </dependency>
+
 	</dependencies>
 
 	<build>
@@ -118,7 +132,7 @@
 							<!-- <version>74.0.3729.6</version> -->
 							<!-- <url>https://chromedriver.storage.googleapis.com/74.0.3729.6/chromedriver_win32.zip</url> -->
 							<version>76.0.3809.126</version>
-<!-- 							<url>https://chromedriver.storage.googleapis.com/76.0.3809.126/chromedriver_win32.zip</url> -->
+							<!-- <url>https://chromedriver.storage.googleapis.com/76.0.3809.126/chromedriver_win32.zip</url> -->
 						</driver>
 					</drivers>
 				</configuration>
