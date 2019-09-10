@@ -362,7 +362,7 @@ public class Browsers {
 		System.out.println("HOME_PATH getenv = " + System.getenv("HOMEPATH"));
 		// System.out.println("HOME_PATH Property = " +
 		// System.getProperty("HOMEPATH"));
-        System.setProperty("webdriver.chrome.driver",
+        System.setProperty(ChromeDriverService.CHROME_DRIVER_EXE_PROPERTY,
                 this.getClass().getResource("/chromedriver-windows-32bit.exe").getPath());
 		// String userProfile =
 		// "C:\\Users\\yharasym\\AppData\\Local\\Google\\Chrome\\User
@@ -410,6 +410,7 @@ public class Browsers {
 		//
 		options.setBinary("C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe");
 		//options.setBinary("C:\\Windows\\system32\\calc.exe");
+		//options.setBinary("C:\\Windows\\notepad.exe");
 		// DesiredCapabilities capabilities = DesiredCapabilities.chrome();
 		// capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 		// WebDriver driver = new ChromeDriver(capabilities);
@@ -455,9 +456,15 @@ public class Browsers {
 	}
 
 	// Use Selenium 2.52; Must be fixed for 3.x.x
-	// Working properly by Selenium 3.14.0;
+	// Working properly by Selenium 3.14.0; // 3.141.59
 	//@Test
 	public void testHtmlUnit() throws Exception {
+//		System.setProperty(ChromeDriverService.CHROME_DRIVER_EXE_PROPERTY,
+//                this.getClass().getResource("/chromedriver-windows-32bit.exe").getPath());
+//		ChromeOptions options = new ChromeOptions();
+//		options.addArguments("--headless"); // Chrome Without UI
+//		WebDriver driver = new ChromeDriver(options);
+		//
 		// WebDriver driver = new FirefoxDriver();
 		WebDriver driver = new HtmlUnitDriver(true);
 		((HtmlUnitDriver) driver).setJavascriptEnabled(true); // TODO Enable CSS
@@ -500,6 +507,7 @@ public class Browsers {
 				"./lib/phantomjs.exe");
 		WebDriver driver = new PhantomJSDriver();
 		//WebDriver driver = new HtmlUnitDriver(true);
+		driver.manage().window().maximize();
 		//
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.get("http://www.google.com");
