@@ -1,12 +1,12 @@
-package com.softserve.edu.opencart.pages.user.search;
+package com.softserve.edu.opencart.pages.user.common;
 
 import org.openqa.selenium.WebDriver;
 
-public class ProductsCriteriaComponent {
+public class ButtonCartEmptyComponent {
 	
 	protected WebDriver driver;
 
-	public ProductsCriteriaComponent(WebDriver driver) {
+	public ButtonCartEmptyComponent(WebDriver driver) {
 		this.driver = driver;
 		initElements();
 	}

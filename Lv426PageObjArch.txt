@@ -26,6 +26,7 @@ DropdownComponent
 MainMenuComponent
 ButtonCartProductComponent
 ButtonCartContainerComponent
+ButtonCartEmptyComponent
 //
 HomePage
 //

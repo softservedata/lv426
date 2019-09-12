@@ -1,4 +1,21 @@
 package com.softserve.edu.opencart.pages.user.account;
 
-public class AccountSidebarLoggedPart {
+import org.openqa.selenium.WebDriver;
+
+public class AccountSidebarLoggedPart extends AccountSidebarPart {
+	
+	public AccountSidebarLoggedPart(WebDriver driver) {
+		super(driver);
+		initElements();
+	}
+
+	private void initElements() {
+		// init elements
+	}
+
+	// Page Object
+
+	// Functional
+
+	// Business Logic
 }

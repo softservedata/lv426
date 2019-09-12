@@ -2,9 +2,9 @@ package com.softserve.edu.opencart.pages.user.account;
 
 import org.openqa.selenium.WebDriver;
 
-public class WishListPage extends AccountSidebarLoggedPart {
+public class UnsuccessfulLoginPage extends LoginPage {
 
-	public WishListPage(WebDriver driver) {
+	public UnsuccessfulLoginPage(WebDriver driver) {
 		super(driver);
 		initElements();
 	}

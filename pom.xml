@@ -33,6 +33,8 @@
 		<com.codeborne.phantomjsdriver.version>1.4.4</com.codeborne.phantomjsdriver.version>
 		<!-- - - - - - Reports - - - - - -->
 		<testng.reports.directory>target/surefire-reports/test-output</testng.reports.directory>
+		<!-- - - - - - Logging - - - - - -->
+		<org.slf4j.version>1.7.25</org.slf4j.version>
 	</properties>
 
 	<dependencies>
@@ -63,11 +65,25 @@
 			<version>${org.seleniumhq.selenium.htmlunit-driver}</version>
 		</dependency>
 
-        <dependency>
-            <groupId>com.codeborne</groupId>
-            <artifactId>phantomjsdriver</artifactId>
-            <version>${com.codeborne.phantomjsdriver.version}</version>
-        </dependency>
+		<dependency>
+			<groupId>com.codeborne</groupId>
+			<artifactId>phantomjsdriver</artifactId>
+			<version>${com.codeborne.phantomjsdriver.version}</version>
+		</dependency>
+
+		<!-- - - - Logger - - - -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${org.slf4j.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${org.slf4j.version}</version>
+			<scope>runtime</scope>
+		</dependency>
 
 	</dependencies>
 
