@@ -1,4 +1,4 @@
-com.softserve.edu.opencart.data
+com.softserve.edu.opencart.data 
 //com.softserve.edu.opencart.dto
 //com.softserve.edu.opencart.entity
 com.softserve.edu.opencart.pages
