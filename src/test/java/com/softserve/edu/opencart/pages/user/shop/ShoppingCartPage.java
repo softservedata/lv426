@@ -2,9 +2,9 @@ package com.softserve.edu.opencart.pages.user.shop;
 
 import org.openqa.selenium.WebDriver;
 
-import com.softserve.edu.opencart.pages.user.common.BreadCrumPart;
+import com.softserve.edu.opencart.pages.user.common.BreadCrumbPart;
 
-public class ShoppingCartPage extends BreadCrumPart {
+public class ShoppingCartPage extends BreadCrumbPart {
 	
 	public ShoppingCartPage(WebDriver driver) {
 		super(driver);

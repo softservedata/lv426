@@ -2,9 +2,9 @@ package com.softserve.edu.opencart.pages.user.search;
 
 import org.openqa.selenium.WebDriver;
 
-import com.softserve.edu.opencart.pages.user.common.BreadCrumPart;
+import com.softserve.edu.opencart.pages.user.common.BreadCrumbPart;
 
-public class ProductsSidebarPart extends BreadCrumPart {
+public class ProductsSidebarPart extends BreadCrumbPart {
 
 	public ProductsSidebarPart(WebDriver driver) {
 		super(driver);
