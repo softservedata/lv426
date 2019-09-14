@@ -77,15 +77,18 @@ public class LoginPage extends AccountSidebarGuestPart {
         setPassword(password);
     }
 
-    public void LoginAs(String email, String password) {
+    public MyAccountPage loginAs(String email, String password) {
         enterEmail(email);
         enterPassword(password);
         clickLoginButton();
+        return new MyAccountPage(driver);
     }
 
-    //??
+    //????
     public UnsuccessfulLoginPage unsuccessfulLoginPage(String email, String password) {
-        LoginAs(email, password);
+        enterEmail(email);
+        enterPassword(password);
+        clickLoginButton();
         return new UnsuccessfulLoginPage(driver);
     }
 }

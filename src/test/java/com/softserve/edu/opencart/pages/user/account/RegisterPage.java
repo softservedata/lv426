@@ -131,7 +131,7 @@ public class RegisterPage extends AccountSidebarGuestPart {
 	}
 
 	public void clickTelephoneField() {
-		getTelephone().clear();
+		getTelephone().click();
 	}
 
 	public void clickCompanyField() {
@@ -194,9 +194,7 @@ public class RegisterPage extends AccountSidebarGuestPart {
 		getCompany().clear();
 	}
 
-	public void clearAddress01Field() {
-		getAddress01().clear();
-	}
+	public void clearAddress01Field() { getAddress01().clear(); }
 
 	public void clearAddress02Field() {
 		getAddress02().clear();
@@ -366,7 +364,7 @@ public class RegisterPage extends AccountSidebarGuestPart {
 		setConfirmPassword(confirmPassword);
 	}
 
-	public void registerAs(String firstname, String lastname, String email,
+	public MyAccountPage registerAs(String firstname, String lastname, String email,
 						   String telephone, String fax, String company,
 						   String adress01, String adress02, String city,
 						   String country, String obl, String postcode,
@@ -387,6 +385,10 @@ public class RegisterPage extends AccountSidebarGuestPart {
 
 		enterPassword(password);
 		enterConfirmPassword(confirmPassword);
+		clickAgreePrivacyPolicyLink();
+		clickContinueButton();
+
+		return new MyAccountPage(driver);
 	}
 
 }
