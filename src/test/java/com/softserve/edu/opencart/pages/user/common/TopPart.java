@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.softserve.edu.opencart.data.Product;
+import com.softserve.edu.opencart.data.SearchFilter;
 import com.softserve.edu.opencart.pages.user.HomePage;
 import com.softserve.edu.opencart.pages.user.account.WishListPage;
 import com.softserve.edu.opencart.pages.user.search.SearchSuccessPage;
@@ -246,10 +248,10 @@ public abstract class TopPart {
 //    }
 
     // searchTopField
-    private void fillSearchTopField(String text) {
+    private void fillSearchTopField(String searchText) {
         clickSearchTopField();
         clearSearchTopField();
-        setSearchTopField(text);
+        setSearchTopField(searchText);
     }
 
     // Business Logic
@@ -259,8 +261,13 @@ public abstract class TopPart {
         return new HomePage(driver);
     }
 
-    public SearchSuccessPage successfulSearch(String searchItem) {
-        fillSearchTopField(searchItem);
+    public SearchSuccessPage successfulSearch(SearchFilter searchFilter) {
+    	return successfulSearch(searchFilter.getProduct());
+    }
+
+//    public SearchSuccessPage successfulSearch(String searchItem) {
+      public SearchSuccessPage successfulSearch(Product product) {
+        fillSearchTopField(product.getName());
         clickSearchTopButton();
         return new SearchSuccessPage(driver);
     }

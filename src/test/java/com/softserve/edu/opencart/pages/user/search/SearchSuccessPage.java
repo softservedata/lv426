@@ -17,7 +17,12 @@ public class SearchSuccessPage extends SearchCriteriaPart {
 	}
 
 	// Page Object
-
+	
+	// productsCriteria
+	public ProductsCriteriaComponent getProductsCriteria() {
+		return productsCriteria;
+	}
+	
 	// Functional
 
 	// Business Logic

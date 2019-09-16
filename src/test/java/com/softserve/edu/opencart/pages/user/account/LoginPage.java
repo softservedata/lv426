@@ -24,38 +24,42 @@ public class LoginPage extends AccountSidebarGuestPart {
 	// Page Object
 
 	// Functional
+	
+	// email
 	public WebElement getEmail() {
 		return email;
-	}
-
-	public WebElement getPassword() {
-		return password;
-	}
-
-	public void clickEmailField() {
-		getEmail().click();
-	}
-
-	public void clickPasswordField() {
-		getPassword().click();
 	}
 
 	public void clearEmailField() {
 		getEmail().clear();
 	}
 
-	public void clearPasswordField() {
-		getPassword().clear();
+	public void clickEmailField() {
+		getEmail().click();
 	}
 
 	public void setEmail(String email) {
 		getEmail().sendKeys(email);
 	}
 
+	// password
+	public WebElement getPassword() {
+		return password;
+	}
+
+	public void clearPasswordField() {
+		getPassword().clear();
+	}
+
+	public void clickPasswordField() {
+		getPassword().click();
+	}
+
 	public void setPassword(String password) {
 		getPassword().sendKeys(password);
 	}
 
+	// loginButton
 	public WebElement getLoginButton() {
 		return loginButton;
 	}
@@ -64,7 +68,7 @@ public class LoginPage extends AccountSidebarGuestPart {
 		getLoginButton().click();
 	}
 
-	// Business Logic
+	// Functional
 
 	private void enterEmail(String email) {
 		clickEmailField();
@@ -78,15 +82,17 @@ public class LoginPage extends AccountSidebarGuestPart {
 		setPassword(password);
 	}
 
-	public void LoginAs(String email, String password) {
+	public void loginAs(String email, String password) {
 		enterEmail(email);
 		enterPassword(password);
 		clickLoginButton();
 	}
 
+	// Business Logic
+
 	//??
 	public UnsuccessfulLoginPage unsuccessfulLoginPage(String email, String password){
-		LoginAs(email,password);
+		loginAs(email,password);
 		return new UnsuccessfulLoginPage(driver);
 	}
 }

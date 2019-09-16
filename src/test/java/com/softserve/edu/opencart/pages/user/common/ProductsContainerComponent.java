@@ -7,6 +7,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.softserve.edu.opencart.data.Product;
+
 public class ProductsContainerComponent {
 
     public final String PRODUCT_NOT_FOUND = "There is no product that matches the search criteria.";
@@ -90,6 +92,8 @@ public class ProductsContainerComponent {
         getProductComponentByName(productName).clickAddToWishButton();
     }
 
+    // Functional
+
     public int getProductComponentsCount()
     {
         return getProductComponents().size();
@@ -106,5 +110,10 @@ public class ProductsContainerComponent {
     //}
 
     // Business Logic
+
+    public ProductComponent getProductComponentByName(Product product) 
+    {
+    	return getProductComponentByName(product.getName());
+    }
 
 }

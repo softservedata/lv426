@@ -9,7 +9,7 @@ import com.softserve.edu.opencart.pages.user.common.TopPart;
 
 public class HomePage extends TopPart {
 
-	public final String IPHONE6 = "iPhone6";
+	public static final String EXPECTED_IPHONE6 = "iPhone6";
 	//
 	private WebElement slideshow0;
 	//
