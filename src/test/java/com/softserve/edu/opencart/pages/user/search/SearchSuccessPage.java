@@ -1,6 +1,9 @@
 package com.softserve.edu.opencart.pages.user.search;
 
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class SearchSuccessPage extends SearchCriteriaPart {
 
@@ -10,13 +13,16 @@ public class SearchSuccessPage extends SearchCriteriaPart {
 		super(driver);
 		initElements();
 	}
-
+    private WebElement foundedGood;
 	private void initElements() {
 		// init elements
 		productsCriteria = new ProductsCriteriaComponent(driver);
+
 	}
 
-	// Page Object
+
+
+    // Page Object
 
 	// Functional
 
