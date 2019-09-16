@@ -1,0 +1,36 @@
+package com.softserve.edu.opencart.pages.user.adminpanel;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+public class ProductComponent {
+
+    protected WebElement productChoose;
+    private WebDriver driver;
+    private WebElement actionButton;
+
+
+    ProductComponent(WebDriver driver, WebElement productLayout) {
+        this.driver = driver;
+        this.productChoose = productLayout;
+        initElements();
+    }
+
+    private void initElements() {
+        actionButton = productChoose.findElement(By.cssSelector("btn.btn-primary"));
+
+    }
+
+    private void clickActionButton() {
+        actionButton.click();
+    }
+
+
+    public EditProductPage goToEditProductPage() {
+        clickActionButton();
+        return new EditProductPage(driver);
+
+    }
+
+}

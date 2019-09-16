@@ -20,6 +20,7 @@
 		<jdk.source.version>1.8</jdk.source.version>
 		<jdk.compiler.version>1.8</jdk.compiler.version>
 		<maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
+		<org.projectlombok.version>1.18.8</org.projectlombok.version>
 		<!-- - - - - - Test - - - - - -->
 		<org.junit.version>4.12</org.junit.version>
 		<org.testng.version>7.0.0</org.testng.version>
@@ -90,6 +91,13 @@
             <version>1.7.28</version>
             <scope>test</scope>
         </dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${org.projectlombok.version}</version>
+			<scope>provided</scope>
+		</dependency>
 
     </dependencies>
 
