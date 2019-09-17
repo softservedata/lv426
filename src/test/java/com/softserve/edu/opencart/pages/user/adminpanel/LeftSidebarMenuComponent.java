@@ -15,7 +15,7 @@ public class LeftSidebarMenuComponent extends HeaderPart {
     private MenuButtonComponent menuComponent;
 
 
-    LeftSidebarMenuComponent(WebDriver driver) {
+    public LeftSidebarMenuComponent(WebDriver driver) {
         super(driver);
         initElements();
     }
