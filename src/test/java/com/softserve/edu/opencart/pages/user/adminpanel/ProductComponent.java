@@ -11,9 +11,9 @@ public class ProductComponent {
     private WebElement actionButton;
 
 
-    ProductComponent(WebDriver driver, WebElement productLayout) {
+    ProductComponent(WebDriver driver, WebElement productChoose) {
         this.driver = driver;
-        this.productChoose = productLayout;
+        this.productChoose = productChoose;
         initElements();
     }
 

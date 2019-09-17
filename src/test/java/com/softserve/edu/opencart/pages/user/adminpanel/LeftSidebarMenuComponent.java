@@ -25,40 +25,64 @@ public class LeftSidebarMenuComponent extends HeaderPart {
         dashBoard = driver.findElement(By.id("menu-dashboard"));
     }
 
-    //pageobj
-    private void clickOnSystemMenu() {
-        buttonSearching(AdminMenuButtons.menuButtonsName.SYSTEM.getValue()).button.click();
+    //
+    private MenuButtonComponent getMenuComponent(By path) {
+        return new MenuButtonComponent(driver, path);
     }
 
-    private void clickOnProductMenu() {
-        buttonSearching(AdminMenuButtons.menuButtonsName.CATALOG.getValue()).button.click();
+    private void clickSystemMenu() {
+        buttonSearching(AdminMenuButtons.SYSTEM).button.click();
     }
-    private void clickOnCustomerMenu() {
-        buttonSearching(AdminMenuButtons.menuButtonsName.CUSTOMERS.getValue()).button.click();
+
+    private void clickProductMenu() {
+        buttonSearching(AdminMenuButtons.CATALOG).button.click();
+    }
+
+    private void clickCustomerMenu() {
+        buttonSearching(AdminMenuButtons.CUSTOMERS).button.click();
     }
 
     //func
     private void clickLocalizationMenu() {
-        clickOnSystemMenu();
-        MenuButtonComponent Localization = new MenuButtonComponent();
-        Localization.button = driver.findElement(By.xpath("//a[contains(text(),'Localisation')]"));
-        Localization.button.click();
+        clickSystemMenu();
+        getMenuComponent(By.xpath("//a[contains(text(),'Localisation')]")).button.click();
     }
 
-    private void clickOnTaxesMenu() {
+    private void clickTaxesMenu() {
         clickLocalizationMenu();
-        MenuButtonComponent Taxes = new MenuButtonComponent();
-        Taxes.button = driver.findElement(By.xpath("//a[contains(text(),'Taxes')]"));
-        Taxes.button.click();
+        getMenuComponent(By.xpath("//a[contains(text(),'Taxes')]")).button.click();
 
     }
 
+    private void clickCurrencyButton() {
+        getMenuComponent(By.xpath("//a[contains(text(),'Currencies')]")).button.click();
+    }
 
-    private MenuButtonComponent buttonSearching(String name) {
+    private void clickTaxClassButton() {
+        getMenuComponent(By.xpath("//a[contains(text(),'Tax Classes')]")).button.click();
+    }
+
+    private void clickTaxRatesButton() {
+        getMenuComponent(By.xpath("//a[contains(text(),'Tax Rates')]")).button.click();
+    }
+
+    private void clickProductButton() {
+        getMenuComponent(By.xpath("//a[contains(text(),'Products')]")).button.click();
+    }
+
+    private void clickReviewButton() {
+        getMenuComponent(By.xpath("//a[contains(text(),'Reviews')]")).button.click();
+    }
+    private void clickCustomerButton() {
+        getMenuComponent(By.xpath("//a[contains(text(),'Customers')]")).button.click();
+    }
+
+
+    private MenuButtonComponent buttonSearching(AdminMenuButtons name) {
         menuButton = null;
         for (WebElement current : dropDowmMenuList) {
-            if (current.getText().equals(name)) {
-                menuComponent = new MenuButtonComponent();
+            if (current.getText().equals(name.toString())) {
+                menuComponent = new MenuButtonComponent(driver, By.id(name.toString()));
                 break;
             }
 
@@ -77,47 +101,37 @@ public class LeftSidebarMenuComponent extends HeaderPart {
 
     public CurrencyPage goToCurrencyPage() {
         clickLocalizationMenu();
-        MenuButtonComponent currency = new MenuButtonComponent();
-        currency.button = driver.findElement(By.xpath("//a[contains(text(),'Currencies')]"));
-        currency.button.click();
+        clickCurrencyButton();
         return new CurrencyPage(driver);
     }
 
     public TaxRatesPage goToTaxRatesPage() {
-        clickOnTaxesMenu();
-        MenuButtonComponent taxRate = new MenuButtonComponent();
-        taxRate.button = driver.findElement(By.xpath("//a[contains(text(),'Tax Rates')]"));
-        taxRate.button.click();
+        clickTaxesMenu();
+        clickTaxRatesButton();
         return new TaxRatesPage(driver);
     }
 
     public TaxRatesPage goToTaxClassPage() {
-        clickOnTaxesMenu();
-        MenuButtonComponent taxClass = new MenuButtonComponent();
-        taxClass.button = driver.findElement(By.xpath("//a[contains(text(),'Tax Classes')]"));
-        taxClass.button.click();
+        clickTaxesMenu();
+        clickTaxClassButton();
         return new TaxRatesPage(driver);
     }
 
     public ProductPage goToProductPage() {
-        clickOnProductMenu();
-        MenuButtonComponent products = new MenuButtonComponent();
-        products.button = driver.findElement(By.xpath("//a[contains(text(),'Products')]"));
-        products.button.click();
+        clickProductMenu();
+        clickProductButton();
         return new ProductPage(driver);
     }
 
     public ReviewPage goToReviewPage() {
-        clickOnProductMenu();
-        MenuButtonComponent review = new MenuButtonComponent();
-        review.button = driver.findElement(By.xpath("//a[contains(text(),'Reviews')]"));
+        clickProductMenu();
+        clickReviewButton();
         return new ReviewPage(driver);
     }
 
     public CustomersPage goToCustomersPage() {
-        clickOnCustomerMenu();
-        MenuButtonComponent review = new MenuButtonComponent();
-        review.button = driver.findElement(By.xpath("//a[contains(text(),'Customers')]"));
+        clickCustomerMenu();
+        clickCustomerButton();
         return new CustomersPage(driver);
     }
 

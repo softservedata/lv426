@@ -1,5 +1,6 @@
 package com.softserve.edu.opencart.pages.user.adminpanel;
 
+import com.softserve.edu.opencart.data.ProductName;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,8 +23,8 @@ public class ProductContainerComponent {
        productComponents = driver.findElement(By.cssSelector(PRODUCT_COMPONENT_CSSSELECTOR));
     }
 
-    public ProductComponent searchByName(String name){
-        return new ProductComponent(driver, productComponents.findElement(By.xpath("//tr/td[contains(text(),'" + name + ")]/..")));
+    public ProductComponent searchByName(ProductName name){
+        return new ProductComponent(driver, productComponents.findElement(By.xpath("//tr/td[contains(text(),'" + name.toString() + ")]/..")));
     }
 
 

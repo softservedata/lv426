@@ -15,7 +15,7 @@ public class ProductPage extends LeftSidebarMenuComponent {
     }
 
     private void searchIphone() {
-        productComponent = productContainerComponent.searchByName(ProductName.productName.IPHONE.getValue());
+        productComponent = productContainerComponent.searchByName(ProductName.IPHONE);
     }
     public EditProductPage goToIphoneEditPage() {
         productComponent.goToEditProductPage();

@@ -1,17 +1,20 @@
 package com.softserve.edu.opencart.data;
 
 import lombok.Getter;
+import lombok.ToString;
 
-public class AdminMenuButtons {
-    @Getter
-    public enum menuButtonsName {
-        CATALOG("menu-catalog"),
-        CUSTOMERS("menu-customer"),
-        SYSTEM("menu-system");
-        private String value;
+@Getter
+@ToString
+public enum AdminMenuButtons {
 
-        menuButtonsName(String value) {
-            this.value = value;
-        }
+    CATALOG("menu-catalog"),
+    CUSTOMERS("menu-customer"),
+    SYSTEM("menu-system");
+
+    private String value;
+
+    AdminMenuButtons(String value) {
+        this.value = value;
     }
 }
+

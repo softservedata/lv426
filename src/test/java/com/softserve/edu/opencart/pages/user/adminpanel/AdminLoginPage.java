@@ -68,18 +68,7 @@ public class AdminLoginPage {
         enterUserName();
         enterPassword();
         clickOnLoginButton();
-        return new AdminHomePage();
+        return new AdminHomePage(driver);
     }
-
-
-
-
-
-
-
-
-
-
-
 
 }
