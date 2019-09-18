@@ -27,6 +27,8 @@ MainMenuComponent
 ButtonCartProductComponent
 ButtonCartContainerComponent
 ButtonCartEmptyComponent
+DropdownGuest
+DropdownLogged
 //
 HomePage
 //

@@ -1,17 +1,22 @@
 package com.softserve.edu.opencart.data;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Product {
 
 	private String name;
 	private String description;
 	private String priceDollarExTax;
 	// TODO
-	// private HashMap<EnumCurrencies, Decimal> prices;
+	//private Map<Currencies, Decimal> prices;
+	private Map<Currencies, String> prices;
 
 	public Product(String name, String description, String priceDollarExTax) {
 		this.name = name;
 		this.description = description;
 		this.priceDollarExTax = priceDollarExTax;
+		prices = new HashMap<Currencies, String>();
 	}
 
 	// setters
@@ -28,7 +33,14 @@ public class Product {
 		this.priceDollarExTax = priceDollarExTax;
 	}
 
+	public Product addPrice(Currencies currency, String price)
+    {
+        prices.put(currency, price);
+        return this;
+    }
+	
 	// getters
+	
 	public String getName() {
 		return name;
 	}
@@ -40,5 +52,10 @@ public class Product {
 	public String getPriceDollarExTax() {
 		return priceDollarExTax;
 	}
+
+    public String getPrice(Currencies currency)
+    {
+        return prices.get(currency);
+    }
 
 }

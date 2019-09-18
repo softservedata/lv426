@@ -1,11 +1,10 @@
 package com.softserve.edu.opencart.test;
 
-import java.util.Currency;
-
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import com.softserve.edu.opencart.data.Currencies;
 import com.softserve.edu.opencart.data.SearchFilter;
 import com.softserve.edu.opencart.data.SearchFilterRepository;
 import com.softserve.edu.opencart.pages.user.HomePage;
@@ -17,17 +16,18 @@ public class SearchTest extends UserTestRunner {
 	@DataProvider
 	public Object[][] searchData() {
 		return new Object[][] {
-			{ SearchFilterRepository.searchMacBook() },
+			{ SearchFilterRepository.searchMacBook(), Currencies.EURO },
+			{ SearchFilterRepository.searchMacBook(), Currencies.POUND_STERLING },
+			{ SearchFilterRepository.searchMacBook(), Currencies.US_DOLLAR },
 		};
 	}
 
 	@Test(dataProvider = "searchData")
-	//public void checkSearch(SearchFilter searchFilter, Currency currency) throws Exception {
-	public void checkSearch(SearchFilter searchFilter) throws Exception {
+	public void checkSearch(SearchFilter searchFilter, Currencies currency) throws Exception {
 		// Steps
 		SearchSuccessPage searchSuccessPage = loadApplication()
-				.successfulSearch(searchFilter);
-				//.ChooseCurrency(currency);
+				.successfulSearch(searchFilter)
+				.chooseCurrency(currency);
 		ProductComponent actualProductComponent = searchSuccessPage
 				.getProductsCriteria()
 				.getProductComponentByName(searchFilter.getProduct());
@@ -37,9 +37,9 @@ public class SearchTest extends UserTestRunner {
 				.getPriceText()
 				.contains(searchFilter
 						.getProduct()
-						.getPriceDollarExTax()));
-						//.getPrice(currency)));
-		Thread.sleep(5000); // For Presentation ONLY
+						//.getPriceDollarExTax()));
+						.getPrice(currency)));
+		Thread.sleep(1000); // For Presentation ONLY
 		//
 		// TODO
 		// Continue Searching. Use SearchCriteria from SearchCriteriaPart
@@ -51,7 +51,7 @@ public class SearchTest extends UserTestRunner {
 		Assert.assertTrue(homePage
 				.getSlideshow0FirstImageAttributeSrcText()
 				.contains(HomePage.EXPECTED_IPHONE6));
-		Thread.sleep(5000); // For Presentation ONLY
+		Thread.sleep(1000); // For Presentation ONLY
 	}
 
 }

@@ -20,12 +20,11 @@ public class DropdownLogged {
     }
     
     private void initElements() {
-    	//TODO +++++++++++++++++++++++++++++++++++
-    	myAccount = driver.findElement(By.cssSelector(""));
-    	orderHistory = driver.findElement(By.cssSelector(""));
-    	transactions = driver.findElement(By.cssSelector(""));
-    	downloads = driver.findElement(By.cssSelector(""));
-    	logout = driver.findElement(By.cssSelector(""));
+    	myAccount = driver.findElement(By.cssSelector("//ul[@class='dropdown-menu dropdown-menu-right']//a[contains(@href,'account/account')]"));
+    	orderHistory = driver.findElement(By.cssSelector("//ul[@class='dropdown-menu dropdown-menu-right']//a[contains(@href,'account/order')]"));
+    	transactions = driver.findElement(By.cssSelector("//ul[@class='dropdown-menu dropdown-menu-right']//a[contains(@href,'account/transaction')]"));
+    	downloads = driver.findElement(By.cssSelector("//ul[@class='dropdown-menu dropdown-menu-right']//a[contains(@href,'account/download')]"));
+    	logout = driver.findElement(By.cssSelector("//ul[@class='dropdown-menu dropdown-menu-right']//a[contains(@href,'account/logout')]"));
     }
 
 	// Page Object
