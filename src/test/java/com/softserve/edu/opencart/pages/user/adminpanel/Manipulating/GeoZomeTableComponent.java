@@ -14,10 +14,11 @@ public class GeoZomeTableComponent {
     private WebElement tableElement;
     private Select component;
 
-    GeoZomeTableComponent(WebDriver driver) {
+    public GeoZomeTableComponent(WebDriver driver) {
         this.driver = driver;
         tableElement = driver.findElement(By.xpath(LAST_ROW_IN_TABLE));
-        component = new Select(tableElement.findElement(By.xpath("some xpath"))); ///TODO
+        component = new Select(tableElement.findElement(By
+                .xpath("//table[@id='zone-to-geo-zone']/tbody/tr[last()]//select[contains(@name, 'country')]")));
     }
 
     public void choseGeoZone(GeoZone geoZone) {

@@ -5,8 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import static com.softserve.edu.opencart.pages.user.adminpanel.Manipulating.EditProductPage.LAST_ROW_IN_TABLE;
-
 public class DiscountTableComponent {
     private WebDriver driver;
     private WebElement tableElement;
@@ -24,7 +22,7 @@ public class DiscountTableComponent {
     }
 
     private void initElements() {
-        tableElement = driver.findElement(By.xpath(LAST_ROW_IN_TABLE));
+        tableElement = driver.findElement(By.xpath("//table[@id='discount']/tbody/tr[last()]"));
         deleteButton = driver.findElement(By.xpath("//button[@class='btn btn-danger']"));
         quantity = tableElement.findElement(By.xpath("//input[@placeholder='Quantity']"));
         priority = tableElement.findElement(By.xpath("//input[@placeholder='Priority']"));
@@ -42,8 +40,8 @@ public class DiscountTableComponent {
     private void clearQuantity() {
         quantity.clear();
     }
-    private void setQuantity(Discount discount) {
-        quantity.sendKeys(String.valueOf(discount.getQuantity()));
+    private void setQuantity(int countOfProduct) {
+        quantity.sendKeys(String.valueOf(countOfProduct));
     }
 
     private void clickPriority() {
@@ -52,8 +50,8 @@ public class DiscountTableComponent {
     private void clearPriority() {
         priority.clear();
     }
-    private void setPriority(Discount discount) {
-        priority.sendKeys(String.valueOf(discount.getPriority()));
+    private void setPriority(int  productPriority) {
+        priority.sendKeys(String.valueOf(productPriority));
     }
 
     private void clickPrice() {
@@ -64,8 +62,8 @@ public class DiscountTableComponent {
         price.clear();
     }
 
-    private void setPrice(Discount discount) {
-        price.sendKeys(String.valueOf(discount.getPrice()));
+    private void setPrice(double priceOfProduct) {
+        price.sendKeys(String.valueOf(priceOfProduct));
     }
 
     private void clickStartDate() {
@@ -76,8 +74,8 @@ public class DiscountTableComponent {
         startDate.clear();
     }
 
-    private void setStartDate(Discount discount) {
-        startDate.sendKeys(String.valueOf(discount.getEndData()));
+    private void setStartDate(String startDateOfDiscount) {
+        startDate.sendKeys(startDateOfDiscount);
     }
 
     private void clickEndDate() {
@@ -88,37 +86,37 @@ public class DiscountTableComponent {
         startDate.clear();
     }
 
-    private void setEndDate(Discount discount) {
-        endData.sendKeys(String.valueOf(discount.getStartDate()));
+    private void setEndDate(String endDateOfDiscount) {
+        endData.sendKeys(endDateOfDiscount);
     }
 
 
     private void enterQuantity(Discount discount) {
         clickQuantity();
         clearQuantity();
-        setQuantity(discount);
+        setQuantity(discount.getQuantity());
     }
 
     private void enterPriority(Discount discount) {
         clickPriority();
         clearPriority();
-        setPriority(discount);
+        setPriority(discount.getPriority());
     }
 
     private void enterPrice(Discount discount) {
         clickPrice();
         clearPrice();
-        setPrice(discount);
+        setPrice(discount.getPrice());
     }
     private void enterStartDate(Discount discount) {
         clickStartDate();
         clearStartDate();
-        setStartDate(discount);
+        setStartDate(discount.getStartDate());
     }
     private void enterEndDate(Discount discount) {
         clickEndDate();
         clearEndDate();
-        setEndDate(discount);
+        setEndDate(discount.getEndData());
     }
 
 

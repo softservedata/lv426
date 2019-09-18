@@ -1,6 +1,7 @@
 package com.softserve.edu.opencart.pages.user.adminpanel;
 
 import com.softserve.edu.opencart.data.AdminMenuButtons;
+import com.softserve.edu.opencart.pages.user.adminpanel.Manipulating.CurrencyPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,7 +10,7 @@ import java.util.List;
 
 public class LeftSidebarMenuComponent extends HeaderPart {
 
-
+private WebDriver driver;
     private WebElement dashBoard;
     private List<WebElement> dropDowmMenuList;
     private MenuButtonComponent menuComponent;
@@ -17,6 +18,7 @@ public class LeftSidebarMenuComponent extends HeaderPart {
 
     public LeftSidebarMenuComponent(WebDriver driver) {
         super(driver);
+        this.driver = driver;
         initElements();
     }
 

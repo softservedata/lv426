@@ -8,55 +8,77 @@ import org.openqa.selenium.WebElement;
 
 import static com.softserve.edu.opencart.pages.user.adminpanel.Manipulating.EditProductPage.ADD_NEW_ROW_INTO_TABLE;
 
-public class GeoZomeManagePage extends LeftSidebarMenuComponent {
+public class AddGeoZomeManagePage extends LeftSidebarMenuComponent {
     private WebDriver driver;
     private WebElement name;
     private WebElement description;
     private WebElement addGeoZoneButton;
-    private GeoZomeTableComponent tableComponent;
+    private WebElement saveButton;
 
-    public GeoZomeManagePage(WebDriver driver) {
+
+
+
+    public AddGeoZomeManagePage(WebDriver driver) {
         super(driver);
         this.driver = driver;
+        initElements();
+
+
+    }
+
+    private void initElements() {
+        saveButton = driver.findElement(By.cssSelector(".pull-right > .btn.btn-primary"));
         addGeoZoneButton = driver.findElement(By.cssSelector(ADD_NEW_ROW_INTO_TABLE));
+        name = driver.findElement(By.cssSelector(".col-sm-10 #input-name"));
+        description = driver.findElement(By.cssSelector(".col-sm-10 #input-description"));
+
+
+    }
+
+
+    private void clickSaveButton() {
+        saveButton.click();
     }
 
     private void clickGeoZoneButton() {
         addGeoZoneButton.click();
     }
+
     private void clickNameField() {
         name.click();
     }
+
     private void clearNameField() {
         name.clear();
     }
-    private void setNameField(GeoZone geoZone) {
-        name.sendKeys(geoZone.getName());
+
+    private void setNameField(String geoZoneName) {
+        name.sendKeys(geoZoneName);
     }
 
     private void clickDescriptionField() {
         description.click();
     }
+
     private void clearDescriptionField() {
         description.clear();
     }
-    private void setDescriptionField(GeoZone geoZone) {
-        description.sendKeys(geoZone.getDescription());       //TODO
+
+    private void setDescriptionField(String geoZoneDescription) {
+        description.sendKeys(geoZoneDescription);
     }
 
     private void enterName(GeoZone geoZone) {
         clickNameField();
         clearNameField();
-        setNameField(geoZone);
+        setNameField(geoZone.getName());
     }
 
     private void enterDescription(GeoZone geoZone) {
         clickDescriptionField();
         clearDescriptionField();
-        setDescriptionField(geoZone);
+        setDescriptionField(geoZone.getDescription());
     }
-
-
 
 
     private GeoZomeTableComponent addTableComponent() {
@@ -65,17 +87,17 @@ public class GeoZomeManagePage extends LeftSidebarMenuComponent {
     }
 
 
-    public void addNewGeoZone(GeoZone geoZone) {
+    private void enterAllFields(GeoZone geoZone) {
         enterName(geoZone);
         enterDescription(geoZone);
         addTableComponent().choseGeoZone(geoZone);
     }
 
-
-    //TODO
-    public void deleteGeoZone(GeoZone geoZone) {
+    public GeoZonePage addNewGeoZone(GeoZone geoZone) {
+        enterAllFields(geoZone);
+        clickSaveButton();
+        return new GeoZonePage(driver);
 
     }
-
 
 }

@@ -1,20 +1,17 @@
 package com.softserve.edu.opencart.pages.user.adminpanel.Manipulating;
 
-import com.softserve.edu.opencart.data.SpecialRepository;
-import com.softserve.edu.opencart.pages.user.adminpanel.Manipulating.EditProductPage;
+import com.softserve.edu.opencart.data.Special;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.util.ArrayList;
-import java.util.List;
+import static com.softserve.edu.opencart.data.SpecialRepository.getNewSpecialPrice;
 
 public class SpecialEditProductPage extends EditProductPage {
     private WebDriver driver;
     private WebElement addNewSpecialButton;
     //private List<SpecialTableComponent> allrowsOfTable = new ArrayList<>();;
     private SpecialTableComponent specialTableComponent;
-    private SpecialRepository specialRepository;
 
     SpecialEditProductPage(WebDriver driver) {
         super(driver);
@@ -41,10 +38,9 @@ public class SpecialEditProductPage extends EditProductPage {
     }
 
 
-    public void addNewSpecialPrice() {
+    public void addNewSpecialPrice(Special special) {
         specialTableComponent = addSpecialTableComponent();
-        specialTableComponent.fillInAllFields(specialRepository.getNewSpecialPrice());//??
-        //  allrowsOfTable.add(specialTableComponent);
+        specialTableComponent.fillInAllFields(special);//??
         clickSaveButton();
     }
 

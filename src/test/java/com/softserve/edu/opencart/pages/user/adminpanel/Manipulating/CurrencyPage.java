@@ -1,26 +1,26 @@
 package com.softserve.edu.opencart.pages.user.adminpanel.Manipulating;
 
-import com.softserve.edu.opencart.data.GeoZone;
+import com.softserve.edu.opencart.data.Currency;
 import com.softserve.edu.opencart.pages.user.adminpanel.LeftSidebarMenuComponent;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class GeoZonePage extends LeftSidebarMenuComponent {
+public class CurrencyPage extends LeftSidebarMenuComponent {
     private WebDriver driver;
     private WebElement addButton;
     private WebElement deleteButton;
-    private GeoZoneListContainerComponent geoZoneListContainerComponent;
 
-    public GeoZonePage(WebDriver driver) {
+    private CurrencyListContainerComponent currencyListContainerComponent;
+
+    public CurrencyPage(WebDriver driver) {
         super(driver);
         this.driver = driver;
-        initElements();
-
     }
 
     private void initElements() {
-        geoZoneListContainerComponent = new GeoZoneListContainerComponent(driver); // ??
+        //geoZoneListContainerComponent = new GeoZoneListContainerComponent(driver); // ??
+        currencyListContainerComponent = new CurrencyListContainerComponent(driver);
         addButton = driver.findElement(By.cssSelector(".pull-right a.btn.btn-primary"));
         deleteButton = driver.findElement(By.cssSelector(".pull-right button.btn.btn-danger"));
     }
@@ -29,31 +29,24 @@ public class GeoZonePage extends LeftSidebarMenuComponent {
     private void clickAddButton() {
         addButton.click();
     }
+
     private void clickDeleteButton() {
         deleteButton.click();
     }
 
-
-    public AddGeoZomeManagePage goToAddGeoZomeManagePage() {
+    public AddNewCurrencyPage goToAddNewCurrencyPage() {
         clickAddButton();
-        return new AddGeoZomeManagePage(driver);
+        return new AddNewCurrencyPage(driver);
     }
 
 
-
-    public void deleteGeoZone(GeoZone geoZone) {
-        geoZoneListContainerComponent.selectGeoZoneByName(geoZone.getName());
+    public void deleteCurrency(Currency currency) {
+        currencyListContainerComponent.selectCurrencyByName(currency.getTitle());
         clickDeleteButton();
         //work with alert TODO
         driver.switchTo().alert().accept();
 
     }
-
-
-    //TODO
-    //chose some geozone for deleting;
-
-
 
 
 }

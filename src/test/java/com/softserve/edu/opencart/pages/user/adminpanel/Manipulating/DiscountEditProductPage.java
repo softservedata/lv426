@@ -1,25 +1,19 @@
 package com.softserve.edu.opencart.pages.user.adminpanel.Manipulating;
 
-import com.softserve.edu.opencart.data.DiscountRepository;
+import com.softserve.edu.opencart.data.Discount;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class DiscountEditProductPage extends EditProductPage {
     private WebDriver driver;
     private WebElement addNewDiscauntButton;
-    private List<DiscountTableComponent> allRowOfTable; // ??
-    private DiscountTableComponent discountTableComponent;
-    private DiscountRepository discountRepository;
+
+
 
     public DiscountEditProductPage(WebDriver driver) {
         super(driver);
         this.driver = driver;
-        discountRepository = new DiscountRepository();
-        allRowOfTable = new ArrayList<>();
         initElement();
     }
 
@@ -27,12 +21,12 @@ public class DiscountEditProductPage extends EditProductPage {
         addNewDiscauntButton =  driver.findElement(By.cssSelector(ADD_NEW_ROW_INTO_TABLE));
     }
 
-    private void clickAddNewDiscauntButton() {
+    private void clickAddNewDiscountButton() {
         addNewDiscauntButton.click();
     }
 
     private DiscountTableComponent addDiscountTableComponent() {
-        clickAddNewDiscauntButton();
+        clickAddNewDiscountButton();
         return new DiscountTableComponent(driver);
     }
 
@@ -40,10 +34,8 @@ public class DiscountEditProductPage extends EditProductPage {
         return new DiscountTableComponent(driver);
     }
 
-    public void addNewDiscount() {
-        discountTableComponent = addDiscountTableComponent();
-        discountTableComponent.fillInAllFields(discountRepository.getNewDiscount());//??
-       // allRowOfTable.add(discountTableComponent);
+    public void addNewDiscount(Discount discount) {
+        addDiscountTableComponent().fillInAllFields(discount);
         clickSaveButton();
     }
 

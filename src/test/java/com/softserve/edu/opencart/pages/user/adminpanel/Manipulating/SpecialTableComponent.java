@@ -5,8 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import static com.softserve.edu.opencart.pages.user.adminpanel.Manipulating.EditProductPage.LAST_ROW_IN_TABLE;
-
 public class SpecialTableComponent {
     private WebDriver driver;
     private WebElement tableElement;
@@ -19,11 +17,12 @@ public class SpecialTableComponent {
 
     SpecialTableComponent(WebDriver driver) {
         this.driver = driver;
+        initElements();
     }
 
 
     private void initElements() {
-        tableElement = driver.findElement(By.xpath(LAST_ROW_IN_TABLE));
+        tableElement = driver.findElement(By.xpath("//table[@id='special']/tbody/tr[last()]"));
         deleteButton = driver.findElement(By.xpath("//button[@class='btn btn-danger']"));
         priority = tableElement.findElement(By.xpath("//input[@placeholder='Priority']"));
         price = tableElement.findElement(By.xpath("//input[@placeholder='Price']"));
@@ -42,8 +41,8 @@ public class SpecialTableComponent {
     private void clearPriority() {
         priority.clear();
     }
-    private void setPriority(Special special) {
-        priority.sendKeys(String.valueOf(special.getPriority()));
+    private void setPriority(int specialPriority) {
+        priority.sendKeys(String.valueOf(specialPriority));
     }
 
     private void clickPrice() {
@@ -54,8 +53,8 @@ public class SpecialTableComponent {
         price.clear();
     }
 
-    private void setPrice(Special special) {
-        price.sendKeys(String.valueOf(special.getPrice()));
+    private void setPrice(double specialPrice) {
+        price.sendKeys(String.valueOf(specialPrice));
     }
 
     private void clickStartDate() {
@@ -66,8 +65,8 @@ public class SpecialTableComponent {
         startDate.clear();
     }
 
-    private void setStartDate(Special special) {
-        startDate.sendKeys(String.valueOf(special.getEndData()));
+    private void setStartDate(String specialStartDay) {
+        startDate.sendKeys(specialStartDay);
     }
 
     private void clickEndDate() {
@@ -78,31 +77,31 @@ public class SpecialTableComponent {
         startDate.clear();
     }
 
-    private void setEndDate(Special special) {
-        endData.sendKeys(String.valueOf(special.getStartDate()));
+    private void setEndDate(String specialEndDay) {
+        endData.sendKeys(specialEndDay);
     }
 
 
     private void enterPriority(Special special) {
         clickPriority();
         clearPriority();
-        setPriority(special);
+        setPriority(special.getPriority());
     }
 
     private void enterPrice(Special special) {
         clickPrice();
         clearPrice();
-        setPrice(special);
+        setPrice(special.getPrice());
     }
     private void enterStartDate(Special special) {
         clickStartDate();
         clearStartDate();
-        setStartDate(special);
+        setStartDate(special.getStartDate());
     }
     private void enterEndDate(Special special) {
         clickEndDate();
         clearEndDate();
-        setEndDate(special);
+        setEndDate(special.getEndData());
     }
 
     protected void fillInAllFields(Special special) {
