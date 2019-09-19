@@ -17,7 +17,6 @@ public class AccountSidebarLoggedPart extends AccountSidebarPart {
 
 	private void initElements() {
 		// init elements
-		// TODO +++++++++
 		EditAccountRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/edit')]"));
 		PasswordRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/password')]"));
 		LogoutRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/logout')]"));
