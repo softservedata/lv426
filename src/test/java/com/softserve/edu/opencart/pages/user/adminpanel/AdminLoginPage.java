@@ -64,12 +64,15 @@ public class AdminLoginPage {
     }
 
     //BL
+    /*
     public AdminHomePage goToAdminHomePage() {
         enterUserName();
         enterPassword();
         clickOnLoginButton();
         return new AdminHomePage();
     }
+
+     */
 
 
 
