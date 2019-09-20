@@ -1,5 +1,6 @@
 package com.softserve.edu.opencart.pages.user.adminpanel;
 
+import com.softserve.edu.opencart.pages.user.adminpanel.Manipulating.EditProductPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,9 +12,9 @@ public class ProductComponent {
     private WebElement actionButton;
 
 
-    ProductComponent(WebDriver driver, WebElement productLayout) {
+    ProductComponent(WebDriver driver, WebElement productChoose) {
         this.driver = driver;
-        this.productChoose = productLayout;
+        this.productChoose = productChoose;
         initElements();
     }
 

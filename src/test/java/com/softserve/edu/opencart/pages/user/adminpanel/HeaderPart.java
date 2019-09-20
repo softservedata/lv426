@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public abstract class HeaderPart {
-    WebDriver driver;
+    private WebDriver driver;
 
     protected WebElement menuButton;
     private WebElement logOutButton;

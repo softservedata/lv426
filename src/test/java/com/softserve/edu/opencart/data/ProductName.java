@@ -1,16 +1,19 @@
 package com.softserve.edu.opencart.data;
 
 import lombok.Getter;
+import lombok.ToString;
 
-public class ProductName {
-    @Getter
-    public enum productName {
-        IPHONE("Iphone");
+@Getter
+@ToString
+public enum ProductName {
 
-        private String value;
 
-        productName(String value) {
-            this.value = value;
-        }
+    IPHONE("Iphone");
+
+    private String value;
+
+    ProductName(String value) {
+        this.value = value;
     }
 }
+
