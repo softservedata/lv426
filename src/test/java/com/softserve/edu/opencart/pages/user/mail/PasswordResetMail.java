@@ -14,7 +14,7 @@ public class PasswordResetMail extends MailSidebarPart {
     }
 
     private void initElements() {
-        passwordResetLink = driver.findElement(By.cssSelector("a[href*='http://192.168.238.129/opencart/upload/']"));
+        passwordResetLink = driver.findElement(By.cssSelector("a[href*='http://192.168.238.129/opencart/upload/']"));//todo
     }
 
     // Page Object
