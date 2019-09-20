@@ -8,7 +8,9 @@ import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.softserve.edu.opencart.data.ApplicationStatus;
 import com.softserve.edu.opencart.data.Currencies;
+import com.softserve.edu.opencart.data.IUser;
 import com.softserve.edu.opencart.data.Product;
 import com.softserve.edu.opencart.data.SearchFilter;
 import com.softserve.edu.opencart.pages.user.HomePage;
@@ -356,6 +358,13 @@ public abstract class TopPart {
         setSearchTopField(searchText);
     }
 
+    protected void defaultLogin(IUser user) {
+    	if (!ApplicationStatus.get().isLogged()) {
+        	new LoginPage(driver)
+    		.fillLogin(user);
+    	}
+    }
+
     // Business Logic
 
     public HomePage gotoHomePage() {
@@ -382,9 +391,9 @@ public abstract class TopPart {
     }
 
     // TODO ++++++++++++
-    public WishListPage gotoWishListPage() {
-    	// TODO if loggined
+    public WishListPage gotoWishListPage(IUser user) {
     	clickWishList();
+    	defaultLogin(user);
         return new WishListPage(driver);
     }
 

@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.softserve.edu.opencart.data.IUser;
+
 public class LoginPage extends AccountSidebarGuestPart {
 
 	private WebElement email;
@@ -30,7 +32,11 @@ public class LoginPage extends AccountSidebarGuestPart {
 		return email;
 	}
 
-	public void clearEmailField() {
+    public String getEmailText() {
+        return getEmail().getAttribute(TAG_ATTRIBUTE_VALUE);
+    }
+
+    public void clearEmailField() {
 		getEmail().clear();
 	}
 
@@ -46,6 +52,10 @@ public class LoginPage extends AccountSidebarGuestPart {
 	public WebElement getPassword() {
 		return password;
 	}
+
+    public String getPasswordText() {
+        return getPassword().getAttribute(TAG_ATTRIBUTE_VALUE);
+    }
 
 	public void clearPasswordField() {
 		getPassword().clear();
@@ -63,6 +73,10 @@ public class LoginPage extends AccountSidebarGuestPart {
 	public WebElement getLoginButton() {
 		return loginButton;
 	}
+
+    public String getLoginButtonText() {
+        return getLoginButton().getAttribute(TAG_ATTRIBUTE_VALUE);
+    }
 
 	public void clickLoginButton() {
 		getLoginButton().click();
@@ -82,17 +96,21 @@ public class LoginPage extends AccountSidebarGuestPart {
 		setPassword(password);
 	}
 
-	public void loginAs(String email, String password) {
-		enterEmail(email);
-		enterPassword(password);
+	public void fillLogin(IUser user) {
+		enterEmail(user.geteMail());
+		enterPassword(user.getPassword());
 		clickLoginButton();
 	}
 
 	// Business Logic
 
-	//??
-	public UnsuccessfulLoginPage unsuccessfulLoginPage(String email, String password){
-		loginAs(email,password);
+	public MyAccountPage successfulLogin(IUser user){
+		fillLogin(user);
+		return new MyAccountPage(driver);
+	}
+
+	public UnsuccessfulLoginPage unsuccessfulLoginPage(IUser invalidUser){
+		fillLogin(invalidUser);
 		return new UnsuccessfulLoginPage(driver);
 	}
 }
