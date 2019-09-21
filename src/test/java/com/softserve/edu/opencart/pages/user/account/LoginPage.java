@@ -1,5 +1,6 @@
 package com.softserve.edu.opencart.pages.user.account;
 
+import com.softserve.edu.opencart.data.IUser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -27,44 +28,57 @@ public class LoginPage extends AccountSidebarGuestPart {
         return email;
     }
 
-    public WebElement getPassword() {
-        return password;
-    }
-    // Functional
-
-    public void clickEmailField() {
-        getEmail().click();
-    }
-
-    public void clickPasswordField() {
-        getPassword().click();
+    public String getEmailText() {
+        return getEmail().getAttribute(TAG_ATTRIBUTE_VALUE);
     }
 
     public void clearEmailField() {
         getEmail().clear();
     }
 
-    public void clearPasswordField() {
-        getPassword().clear();
+    public void clickEmailField() {
+        getEmail().click();
     }
 
     public void setEmail(String email) {
         getEmail().sendKeys(email);
     }
 
+    // password
+    public WebElement getPassword() {
+        return password;
+    }
+
+    public String getPasswordText() {
+        return getPassword().getAttribute(TAG_ATTRIBUTE_VALUE);
+    }
+
+    public void clearPasswordField() {
+        getPassword().clear();
+    }
+
+    public void clickPasswordField() {
+        getPassword().click();
+    }
+
     public void setPassword(String password) {
         getPassword().sendKeys(password);
     }
 
+    // loginButton
     public WebElement getLoginButton() {
         return loginButton;
+    }
+
+    public String getLoginButtonText() {
+        return getLoginButton().getAttribute(TAG_ATTRIBUTE_VALUE);
     }
 
     public void clickLoginButton() {
         getLoginButton().click();
     }
 
-    // Business Logic
+    // Functional
 
     private void enterEmail(String email) {
         clickEmailField();
@@ -78,18 +92,23 @@ public class LoginPage extends AccountSidebarGuestPart {
         setPassword(password);
     }
 
-    public MyAccountPage loginAs(String email, String password) {
-        enterEmail(email);
-        enterPassword(password);
+    // Business Logic
+
+    public void fillLogin(IUser user) {
+        enterEmail(user.geteMail());
+        enterPassword(user.getPassword());
         clickLoginButton();
+    }
+
+    // Business Logic
+
+    public MyAccountPage successfulLogin(IUser user){
+        fillLogin(user);
         return new MyAccountPage(driver);
     }
 
-    //????
-    public UnsuccessfulLoginPage unsuccessfulLoginPage(String email, String password) {
-        enterEmail(email);
-        enterPassword(password);
-        clickLoginButton();
+    public UnsuccessfulLoginPage unsuccessfulLoginPage(IUser invalidUser){
+        fillLogin(invalidUser);
         return new UnsuccessfulLoginPage(driver);
     }
 }
