@@ -30,7 +30,7 @@ public abstract class AccountSidebarGuestPart extends AccountSidebarPart {
         return loginRight;
     }
 
-    public String LoginRight() {
+    public String getLoginRightText() {
         return getLoginRight().getText();
     }
 
