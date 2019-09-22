@@ -5,8 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-<<<<<<< HEAD
-
 public class LoginPage extends AccountSidebarGuestPart {
 
     private WebElement email;
@@ -28,42 +26,13 @@ public class LoginPage extends AccountSidebarGuestPart {
     public WebElement getEmail() {
         return email;
     }
-=======
-import com.softserve.edu.opencart.data.IUser;
-
-public class LoginPage extends AccountSidebarGuestPart {
-
-	private WebElement email;
-	private WebElement password;
-	private WebElement loginButton;
-
-	public LoginPage(WebDriver driver) {
-		super(driver);
-		initElements();
-	}
-
-	private void initElements() {
-		email = driver.findElement(By.name("email"));
-		password = driver.findElement(By.name("password"));
-		loginButton = driver.findElement(By.cssSelector("input.btn.btn-primary"));
-	}
-
-	// Page Object
-
-	// Functional
-	
-	// email
-	public WebElement getEmail() {
-		return email;
-	}
->>>>>>> 40c679a4d7b258b0d93712d093a711e40eed356b
 
     public String getEmailText() {
         return getEmail().getAttribute(TAG_ATTRIBUTE_VALUE);
     }
 
     public void clearEmailField() {
-<<<<<<< HEAD
+
         getEmail().clear();
     }
 
@@ -79,29 +48,11 @@ public class LoginPage extends AccountSidebarGuestPart {
     public WebElement getPassword() {
         return password;
     }
-=======
-		getEmail().clear();
-	}
-
-	public void clickEmailField() {
-		getEmail().click();
-	}
-
-	public void setEmail(String email) {
-		getEmail().sendKeys(email);
-	}
-
-	// password
-	public WebElement getPassword() {
-		return password;
-	}
->>>>>>> 40c679a4d7b258b0d93712d093a711e40eed356b
 
     public String getPasswordText() {
         return getPassword().getAttribute(TAG_ATTRIBUTE_VALUE);
     }
 
-<<<<<<< HEAD
     public void clearPasswordField() {
         getPassword().clear();
     }
@@ -118,30 +69,13 @@ public class LoginPage extends AccountSidebarGuestPart {
     public WebElement getLoginButton() {
         return loginButton;
     }
-=======
-	public void clearPasswordField() {
-		getPassword().clear();
-	}
 
-	public void clickPasswordField() {
-		getPassword().click();
-	}
-
-	public void setPassword(String password) {
-		getPassword().sendKeys(password);
-	}
-
-	// loginButton
-	public WebElement getLoginButton() {
-		return loginButton;
-	}
->>>>>>> 40c679a4d7b258b0d93712d093a711e40eed356b
 
     public String getLoginButtonText() {
         return getLoginButton().getAttribute(TAG_ATTRIBUTE_VALUE);
     }
 
-<<<<<<< HEAD
+
     public void clickLoginButton() {
         getLoginButton().click();
     }
@@ -179,41 +113,4 @@ public class LoginPage extends AccountSidebarGuestPart {
         fillLogin(invalidUser);
         return new UnsuccessfulLoginPage(driver);
     }
-=======
-	public void clickLoginButton() {
-		getLoginButton().click();
-	}
-
-	// Functional
-
-	private void enterEmail(String email) {
-		clickEmailField();
-		clearEmailField();
-		setEmail(email);
-	}
-
-	private void enterPassword(String password) {
-		clickPasswordField();
-		clearPasswordField();
-		setPassword(password);
-	}
-
-	public void fillLogin(IUser user) {
-		enterEmail(user.geteMail());
-		enterPassword(user.getPassword());
-		clickLoginButton();
-	}
-
-	// Business Logic
-
-	public MyAccountPage successfulLogin(IUser user){
-		fillLogin(user);
-		return new MyAccountPage(driver);
-	}
-
-	public UnsuccessfulLoginPage unsuccessfulLoginPage(IUser invalidUser){
-		fillLogin(invalidUser);
-		return new UnsuccessfulLoginPage(driver);
-	}
->>>>>>> 40c679a4d7b258b0d93712d093a711e40eed356b
 }
