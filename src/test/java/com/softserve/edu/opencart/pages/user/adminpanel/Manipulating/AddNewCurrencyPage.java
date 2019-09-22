@@ -1,11 +1,13 @@
 package com.softserve.edu.opencart.pages.user.adminpanel.Manipulating;
 
 import com.softserve.edu.opencart.data.Currency;
+import com.softserve.edu.opencart.data.ICurrency;
 import com.softserve.edu.opencart.pages.user.adminpanel.CurrencyPage;
 import com.softserve.edu.opencart.pages.user.adminpanel.LeftSidebarMenuComponent;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 public class AddNewCurrencyPage extends LeftSidebarMenuComponent {
     private WebDriver driver;
@@ -16,7 +18,7 @@ public class AddNewCurrencyPage extends LeftSidebarMenuComponent {
     private WebElement symbolLeft;
     private WebElement decimalPlaces;
     private WebElement value;
-    private WebElement status;
+    private Select status;
 
     public AddNewCurrencyPage(WebDriver driver) {
         super(driver);
@@ -30,7 +32,7 @@ public class AddNewCurrencyPage extends LeftSidebarMenuComponent {
         symbolLeft = driver.findElement(By.cssSelector(".col-sm-10 #input-symbol-left"));
         decimalPlaces = driver.findElement(By.cssSelector(".col-sm-10 #input-decimal-place"));
         value = driver.findElement(By.cssSelector(".col-sm-10 #input-value"));
-        status = driver.findElement(By.cssSelector(".col-sm-10 #input-status"));
+        status = new Select(driver.findElement(By.cssSelector(".col-sm-10 #input-status")));
         saveButton = driver.findElement(By.cssSelector(".pull-right > .btn.btn-primary"));
     }
 
@@ -98,55 +100,51 @@ public class AddNewCurrencyPage extends LeftSidebarMenuComponent {
         value.sendKeys(String.valueOf(valueField));
     }
 
-    private void clickStatus() {
-        status.click();
-    }
+//    private void clickStatus() {
+//        status.click();
+//    }
 
-    private void clearStatus() {
-        status.clear();
-    }
+
 
     private void setStatus(String statusField) {
-        status.sendKeys(statusField);
+        status.selectByVisibleText(statusField);
     }
 
-    private void enterTitle(Currency currency) {
+    private void enterTitle(ICurrency currency) {
         clickTitle();
         clearTitle();
         setTitle(currency.getTitle());
     }
 
-    private void enterCode(Currency currency) {
+    private void enterCode(ICurrency currency) {
         clickCode();
         clearCode();
         setCode(currency.getCode());
     }
 
-    private void enterSymbolLeft(Currency currency) {
+    private void enterSymbolLeft(ICurrency currency) {
         clickSymbolLeft();
         clearSymbolLeft();
         setSymbolLeft(currency.getSymbolLeft());
     }
 
-    private void enterDecimalPlace(Currency currency) {
+    private void enterDecimalPlace(ICurrency currency) {
         clickDecimalPlace();
         clearDecimalPlace();
         setDecimalPlace(currency.getDecimalPlaces());
     }
 
-    private void enterValue(Currency currency) {
+    private void enterValue(ICurrency currency) {
         clickValue();
         clearValue();
         setValue(currency.getValue());
     }
 
-    private void enterStatus(Currency currency) {
-        clickStatus();
-        clearStatus();
+    private void enterStatus(ICurrency currency) {
         setStatus(currency.getStatus());
     }
 
-    private void fillInAllFields(Currency currency) {
+    private void fillInAllFields(ICurrency currency) {
         enterTitle(currency);
         enterCode(currency);
         enterSymbolLeft(currency);
@@ -156,7 +154,7 @@ public class AddNewCurrencyPage extends LeftSidebarMenuComponent {
 
     }
 
-    public CurrencyPage addNewCurrency(Currency currency) {
+    public CurrencyPage addNewCurrency(ICurrency currency) {
         fillInAllFields(currency);
         clickSaveButton();
         return new CurrencyPage(driver);

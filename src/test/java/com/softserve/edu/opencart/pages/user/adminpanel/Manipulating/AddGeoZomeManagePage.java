@@ -29,7 +29,7 @@ public class AddGeoZomeManagePage extends LeftSidebarMenuComponent {
 
     private void initElements() {
         saveButton = driver.findElement(By.cssSelector(".pull-right > .btn.btn-primary"));
-        addGeoZoneButton = driver.findElement(By.cssSelector(ADD_NEW_ROW_INTO_TABLE));
+        addGeoZoneButton = driver.findElement(By.xpath("//table[@id='zone-to-geo-zone']//tfoot//button[@class='btn btn-primary']"));
         name = driver.findElement(By.cssSelector(".col-sm-10 #input-name"));
         description = driver.findElement(By.cssSelector(".col-sm-10 #input-description"));
 

@@ -303,21 +303,21 @@ public abstract class TopPart {
         getDropdownLogged().clickLogout();
         dropdownLogged = null;
     }
-
-    private void closeDropdownLogged() {
-        clickSearchTopField();
-        dropdownLogged = null;
-    }
-
-    private void clickDropdownLoggedLogout() {
-    	getDropdownLogged().clickLogout();
-    	dropdownLogged= null;
-    }
-
-    private void closeDropdownLogged() {
-        clickSearchTopField();
-        dropdownLogged= null;
-    }
+//
+//    private void closeDropdownLogged() {
+//        clickSearchTopField();
+//        dropdownLogged = null;
+//    }
+//
+//    private void clickDropdownLoggedLogout() {
+//    	getDropdownLogged().clickLogout();
+//    	dropdownLogged= null;
+//    }
+//
+//    private void closeDropdownLogged() {
+//        clickSearchTopField();
+//        dropdownLogged= null;
+//    }
     
     // Functional
 
@@ -451,40 +451,33 @@ public abstract class TopPart {
 //    	clickDropdownLoggedOrderHistory();
 //        return new OrderHistoryPage(driver);
 //    }
-
+//
 //    public TransactionsPage gotoTransactions() {
 //    	openMyAccountDropdown();
 //    	createDropdownLogged();
 //    	clickDropdownLoggedTransactions();
 //        return new TransactionsPage(driver);
 //    }
-
+//
 //    public DownloadsPage gotoDownloads() {
 //    	openMyAccountDropdown();
 //    	createDropdownLogged();
 //    	clickDropdownLoggedDownloads();
 //        return new DownloadsPage(driver);
-
+//
 //    }
-    
+//
 //    public DownloadsPage gotoDownloads() {
 //    	openMyAccountDropdown();
 //    	createDropdownLogged();
 //    	clickDropdownLoggedDownloads();
 //        return new DownloadsPage(driver);
 //    }
-    
+//
     public AccountLogoutPage logout() {
     	openMyAccountDropdown();
     	createDropdownLogged();
     	clickDropdownLoggedLogout();
-        return new AccountLogoutPage(driver);
-    }
-
-    public AccountLogoutPage logout() {
-        openMyAccountDropdown();
-        createDropdownLogged();
-        clickDropdownLoggedLogout();
         return new AccountLogoutPage(driver);
     }
 

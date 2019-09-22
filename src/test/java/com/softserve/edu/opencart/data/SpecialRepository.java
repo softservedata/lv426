@@ -12,7 +12,12 @@ public class SpecialRepository {
         return getNewSpecialPrice();
 
     }
-    public static Special getNewSpecialPrice() {
-        return new Special(1, 50.5, LocalDate.now().toString(), LocalDate.now().plusDays(1).toString());
+    private static Special getNewSpecialPrice() {
+        return Special.builder()
+        .priority(1)
+                .price(50.5)
+                .startDate(LocalDate.now().toString())
+                .endData(LocalDate.now().plusDays(1).toString())
+                .build();
     }
 }

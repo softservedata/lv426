@@ -16,12 +16,12 @@ public class ProductPage extends LeftSidebarMenuComponent {
 
     }
 
-    private void searchIphone() {
-        productComponent = productContainerComponent.searchByName(ProductName.IPHONE);
+    private ProductComponent searchIphone() {
+        return productContainerComponent.searchByName(ProductName.IPHONE);
     }
 
     public EditProductPage goToIphoneEditPage() {
-        productComponent.goToEditProductPage();
+        searchIphone().goToEditProductPage();
         return new EditProductPage(driver);
     }
 

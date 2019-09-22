@@ -28,15 +28,15 @@ public abstract class HeaderPart {
     }
 
 
-    public WebElement getMenuButton() {
+    private WebElement getMenuButton() {
         return menuButton;
     }
 
-    public WebElement getLogOutButton() {
+    private WebElement getLogOutButton() {
         return logOutButton;
     }
 
-    public WebElement getLogo() {
+    private WebElement getLogo() {
         return logo;
     }
 }
