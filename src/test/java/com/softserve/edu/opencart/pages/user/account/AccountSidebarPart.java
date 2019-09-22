@@ -2,29 +2,22 @@ package com.softserve.edu.opencart.pages.user.account;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.opencart.pages.user.common.BreadCrumbPart;
-import org.openqa.selenium.WebElement;
 
 public abstract class AccountSidebarPart extends BreadCrumbPart {
 
-    protected WebElement myAccount;
-    protected WebElement login;
-    protected WebElement register;
-    protected WebElement forgottenPassword;
-    protected WebElement editAccount;
-    protected WebElement changePassword;
-    protected WebElement addressBook;
-    protected WebElement wishList;
-    protected WebElement orderHistory;
-    protected WebElement downloads;
-    protected WebElement recurringPayments;
-    protected WebElement rewardPoints;
-    protected WebElement returns;
-    protected WebElement transactions;
-    protected WebElement newsletter;
-    protected WebElement logOut;
-
+    private WebElement myAccountRight;
+    private WebElement addressBookRight;
+    private WebElement wishListRight;
+    private WebElement orderHistoryRight;
+    private WebElement downloadsRight;
+    private WebElement recurringPaymentsRight;
+    private WebElement rewardPointsRight;
+    private WebElement returnsRight;
+    private WebElement transactionsRight;
+    private WebElement newsLetterRight;
 
     public AccountSidebarPart(WebDriver driver) {
         super(driver);
@@ -32,25 +25,150 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
     }
 
     private void initElements() {
-        login = driver.findElement(By.xpath("//div[contains(@class,'list-group')]/a[contains(text(), 'Login')]"));
-        register = driver.findElement(By.xpath("//div[contains(@class,'list-group')]/a[contains(text(), 'Register')]"));
-        forgottenPassword = driver.findElement(By.xpath("//div[contains(@class,'list-group')]/a[contains(text(), 'Forgotten Password')]"));
-        myAccount = driver.findElement(By.xpath("//div[contains(@class,'list-group')]/a[contains(text(), 'My Account')]"));
-        editAccount = driver.findElement(By.xpath("//div[contains(@class,'list-group')]/a[contains(text(), 'Edit Account')]"));
-        changePassword = driver.findElement(By.xpath("//div[contains(@class,'list-group')]/a[contains(text(), 'Password')]"));
-        addressBook = driver.findElement(By.xpath("//div[contains(@class,'list-group')]/a[contains(text(), 'Address Book')]"));
-        wishList = driver.findElement(By.xpath("//div[contains(@class,'list-group')]/a[contains(text(), 'Wish List')]"));
-        orderHistory = driver.findElement(By.xpath("//div[contains(@class,'list-group')]/a[contains(text(), 'Order History')]"));
-        downloads = driver.findElement(By.xpath("//div[contains(@class,'list-group')]/a[contains(text(), 'Downloads')]"));
-        recurringPayments = driver.findElement(By.xpath("//div[contains(@class,'list-group')]/a[contains(text(), 'Recurring payments')]"));
-        rewardPoints = driver.findElement(By.xpath("//div[contains(@class,'list-group')]/a[contains(text(), 'Reward Points')]"));
-        returns = driver.findElement(By.xpath("//div[contains(@class,'list-group')]/a[contains(text(), 'Returns')]"));
-        transactions = driver.findElement(By.xpath("//div[contains(@class,'list-group')]/a[contains(text(), 'Transactions')]"));
-        newsletter = driver.findElement(By.xpath("//div[contains(@class,'list-group')]/a[contains(text(), 'Newsletter')]"));
-        logOut = driver.findElement(By.xpath("//div[contains(@class,'list-group')]/a[contains(text(), 'Logout')]"));
+        // init elements
+        myAccountRight= driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/account')]"));
+        addressBookRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/address')]"));
+        wishListRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/wishlist')]"));
+        orderHistoryRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/order')]"));
+        downloadsRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/download')]"));
+        recurringPaymentsRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/recurring')]"));
+        rewardPointsRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/reward')]"));
+        returnsRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/return')]"));
+        transactionsRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/transaction')]"));
+        newsLetterRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/newsletter')]"));
     }
 
     // Page Object
+
+    // myAccountRight
+    public WebElement getMyAccountRight() {
+        return myAccountRight;
+    }
+
+    public String getMyAccountRightText() {
+        return getMyAccountRight().getText();
+    }
+
+    public void clickMyAccountRight() {
+        getMyAccountRight().click();
+    }
+
+    // addressBookRight
+    public WebElement getAddressBookRight() {
+        return addressBookRight;
+    }
+
+    public String getAddressBookRightText() {
+        return getAddressBookRight().getText();
+    }
+
+    public void clickAddressBookRight() {
+        getAddressBookRight().click();
+    }
+
+    // wishListRight
+    public WebElement getWishListRight() {
+        return wishListRight;
+    }
+
+    public String getWishListRightText() {
+        return getWishListRight().getText();
+    }
+
+    public void clickWishListRight() {
+        getWishListRight().click();
+    }
+
+    // orderHistoryRight
+    public WebElement getOrderHistoryRight() {
+        return orderHistoryRight;
+    }
+
+    public String getOrderHistoryRightText() {
+        return getOrderHistoryRight().getText();
+    }
+
+    public void clickOrderHistoryRight() {
+        getOrderHistoryRight().click();
+    }
+
+    // downloadsRight
+    public WebElement getDownloadsRight() {
+        return downloadsRight;
+    }
+
+    public String getDownloadsRightText() {
+        return getDownloadsRight().getText();
+    }
+
+    public void clickDownloadsRight() {
+        getDownloadsRight().click();
+    }
+
+    // recurringpaymentsRight
+    public WebElement getRecurringPaymentsRight() {
+        return recurringPaymentsRight;
+    }
+
+    public String getRecurringPaymentsRightText() {
+        return getRecurringPaymentsRight().getText();
+    }
+
+    public void clickRecurringPaymentsRight() {
+        getRecurringPaymentsRight().click();
+    }
+
+    // rewardPointsRight
+    public WebElement getRewardPointsRight() {
+        return rewardPointsRight;
+    }
+
+    public String getRewardPointsRightText() {
+        return getRewardPointsRight().getText();
+    }
+
+    public void clickRewardPointsRight() {
+        getRewardPointsRight().click();
+    }
+
+    // returnsRight
+    public WebElement getReturnsRight() {
+        return returnsRight;
+    }
+
+    public String getReturnsRightText() {
+        return getReturnsRight().getText();
+    }
+
+    public void clickReturnsRight() {
+        getReturnsRight().click();
+    }
+
+    // transactionsRight
+    public WebElement getTransactionsRight() {
+        return transactionsRight;
+    }
+
+    public String getTransactionsRightText() {
+        return getTransactionsRight().getText();
+    }
+
+    public void clickTransactionsRight() {
+        getTransactionsRight().click();
+    }
+
+    // newsletterRight
+    public WebElement getNewsLetterRight() {
+        return newsLetterRight;
+    }
+
+    public String getNewsLetterRightText() {
+        return getNewsLetterRight().getText();
+    }
+
+    public void clickNewsLetterRight() {
+        getNewsLetterRight().click();
+    }
 
     // Functional
 
