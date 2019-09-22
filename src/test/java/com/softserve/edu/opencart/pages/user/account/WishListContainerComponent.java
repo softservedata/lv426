@@ -11,7 +11,7 @@ import java.util.List;
 public class WishListContainerComponent {
 
 	protected WebDriver driver;
-	private final String PRODUCT_COMPONENT_CSSSELECTOR = ".product-layout";
+	private final String WISHLIST_COMPONENT_CSSSELECTOR = "table.table.table-bordered.table-hover tbody tr";
 	private List<WishListComponent> wishListComponents;
 	public WishListContainerComponent(WebDriver driver) {
 		this.driver = driver;
@@ -20,7 +20,7 @@ public class WishListContainerComponent {
 
 	private void initElements() {
 		wishListComponents = new ArrayList<>();
-		for (WebElement current : driver.findElements(By.cssSelector(PRODUCT_COMPONENT_CSSSELECTOR)))
+		for (WebElement current : driver.findElements(By.cssSelector(WISHLIST_COMPONENT_CSSSELECTOR)))
 		{
 			wishListComponents.add(new WishListComponent(current));
 		}
@@ -32,7 +32,7 @@ public class WishListContainerComponent {
 	// Page Object
 
 	// Functional
-	public List<String> getProductComponentNames()
+	public List<String> getWishListComponentNames()
 	{
 		List<String> wishListComponentNames = new ArrayList<>();
 		for (WishListComponent current : getWishListComponents())
@@ -62,15 +62,29 @@ public class WishListContainerComponent {
 		return result;
 	}
 
-	public String getProductComponentPriceByName(String productName)
+	public String getWishListComponentPriceByName(String productName)
 	{
 		return getWishListComponentByName(productName).getPriceText();
 	}
 
+	public String getWishListComponentModelByName(String productName)
+	{
+		return getWishListComponentByName(productName).getModelText();
+	}
 
-	public void clickProductComponentAddToCartButtonByName(String productName)
+	public String getWishListComponentStockStatusByName(String productName)
+	{
+		return getWishListComponentByName(productName).getStockStatusText();
+	}
+
+	public void clickOnWishListComponentAddToCartButton(String productName)
 	{
 		getWishListComponentByName(productName).clickAddToCartButton();
+	}
+
+	public void clickOnWishListComponentDeleteButton(String productName)
+	{
+		getWishListComponentByName(productName).clickDeleteFromWishListButton();
 	}
 
 
