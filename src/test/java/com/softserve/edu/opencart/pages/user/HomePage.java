@@ -4,8 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.softserve.edu.opencart.data.Currencies;
+<<<<<<< HEAD
 
+=======
+import com.softserve.edu.opencart.data.Currencies;
+>>>>>>> 40c679a4d7b258b0d93712d093a711e40eed356b
 import com.softserve.edu.opencart.pages.user.common.ProductsContainerComponent;
 import com.softserve.edu.opencart.pages.user.common.TopPart;
 
