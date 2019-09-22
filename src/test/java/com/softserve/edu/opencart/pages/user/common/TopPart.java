@@ -309,16 +309,6 @@ public abstract class TopPart {
         dropdownLogged = null;
     }
 
-    private void clickDropdownLoggedLogout() {
-    	getDropdownLogged().clickLogout();
-    	dropdownLogged= null;
-    }
-
-    private void closeDropdownLogged() {
-        clickSearchTopField();
-        dropdownLogged= null;
-    }
-    
     // Functional
 
     // currency
@@ -478,13 +468,6 @@ public abstract class TopPart {
     	openMyAccountDropdown();
     	createDropdownLogged();
     	clickDropdownLoggedLogout();
-        return new AccountLogoutPage(driver);
-    }
-
-    public AccountLogoutPage logout() {
-        openMyAccountDropdown();
-        createDropdownLogged();
-        clickDropdownLoggedLogout();
         return new AccountLogoutPage(driver);
     }
 
