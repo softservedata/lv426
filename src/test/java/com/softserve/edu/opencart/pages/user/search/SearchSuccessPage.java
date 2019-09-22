@@ -22,12 +22,10 @@ public class SearchSuccessPage extends SearchCriteriaPart {
 
 	}
 
-<<<<<<< HEAD
 
 
-    // Page Object
 
-=======
+
 	// Page Object
 	
 	// productsCriteria
@@ -35,7 +33,6 @@ public class SearchSuccessPage extends SearchCriteriaPart {
 		return productsCriteria;
 	}
 	
->>>>>>> 40c679a4d7b258b0d93712d093a711e40eed356b
 	// Functional
 
 	// Business Logic
