@@ -2,6 +2,7 @@ package com.softserve.edu.opencart.pages.user.adminpanel.Manipulating;
 
 import com.softserve.edu.opencart.data.GeoZone;
 import com.softserve.edu.opencart.data.TaxClass;
+import com.softserve.edu.opencart.data.TaxRate;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,7 +22,7 @@ public class TaxClassTableComponenet {
 
     }
     private void initElements() {
-        tableElement = driver.findElement(By.xpath(LAST_ROW_IN_TABLE));
+        tableElement = driver.findElement(By.xpath("//table[@id='tax-rule']/tbody/tr[last()]"));
         deleteButton = driver.findElement(By.xpath("//button[@class='btn btn-danger']"));
         component = new Select(tableElement.findElement(By
                 .xpath("//table[@id='tax-rule']/tbody/tr[last()]//select[contains(@name, 'tax_rate_id')]")));
@@ -30,7 +31,7 @@ public class TaxClassTableComponenet {
     private void clickDeleteButton() {
         deleteButton.click();
     }
-    public void choseTaxClass(TaxClass tax) {
+    public void choseTaxClass(TaxRate tax) {
         component.selectByVisibleText(tax.getName());
     }
 

@@ -12,7 +12,7 @@ public class AdminListElementComponent {
     public AdminListElementComponent(WebDriver driver, WebElement component) {
         this.driver = driver;
         this.component = component;
-        selectButton = component.findElement(By.xpath("/td/input"));
+        selectButton = component.findElement(By.cssSelector(".text-center input"));
     }
 
     private void clickSelectButton() {
@@ -20,7 +20,7 @@ public class AdminListElementComponent {
     }
 
     public boolean hasName(String name) {
-        return component.findElement(By.xpath("//td[contains(text(),'" + name + "')]")) != null;//TODO
+        return component.findElement(By.cssSelector("td.text-left")).getText().equals(name);//TODO
     }
 
     public void select() {

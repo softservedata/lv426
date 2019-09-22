@@ -1,14 +1,10 @@
 package com.softserve.edu.opencart.pages.user.account;
 
-
 import com.softserve.edu.opencart.pages.user.common.Alerts;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 
 public class WishListPage extends AccountSidebarLoggedPart {
@@ -21,13 +17,14 @@ public class WishListPage extends AccountSidebarLoggedPart {
 	private WebElement successfulDeletingFromWishListAlert;
 	private WishListContainerComponent wishListContainer;
 	private WishListComponent wishListComponent;
-	//private ProductDescriptionComponent productDescription;
-	//public ProductReviewComponent productReview;
 
 	public WishListPage(WebDriver driver) {
 		super(driver);
 		initElements();
 	}
+	private WebElement deleteFromWishListButton;
+	private WebElement addToCartFromWishListButton;
+
 
 	public void initElements(){
 		wishListContainer = new WishListContainerComponent(driver);
@@ -43,18 +40,16 @@ public class WishListPage extends AccountSidebarLoggedPart {
 
 
 
-
-
 	// Page Object
-
-
 
 	// Functional
 
 
 	// Business Logic
+
 	public WishListPage deleteItemFromWishList(String productName){
-		getProductComponentsContainer().clickOnWishListComponentDeleteButton(productName);
+		getProductComponentsContainer().
+				clickOnWishListComponentDeleteButton(productName);
 		return new WishListPage(driver);
 	}
 	public WebElement successfulDeletingFromWishList(){
@@ -80,6 +75,7 @@ public class WishListPage extends AccountSidebarLoggedPart {
 
 	}
 	*/
+
 
 
 }

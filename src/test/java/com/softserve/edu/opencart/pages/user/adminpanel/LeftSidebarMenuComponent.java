@@ -9,7 +9,7 @@ import java.util.List;
 
 public class LeftSidebarMenuComponent extends HeaderPart {
 
-    private WebDriver driver;
+    public WebDriver driver; // made public
     private WebElement dashBoard;
     private List<WebElement> dropDowmMenuList;
     private MenuButtonComponent menuComponent;
@@ -22,7 +22,7 @@ public class LeftSidebarMenuComponent extends HeaderPart {
     }
 
     private void initElements() {
-        dropDowmMenuList = driver.findElements(By.id("menu"));
+        dropDowmMenuList = driver.findElements(By.cssSelector("#menu > li"));
         dashBoard = driver.findElement(By.id("menu-dashboard"));
     }
 
@@ -31,21 +31,26 @@ public class LeftSidebarMenuComponent extends HeaderPart {
         return new MenuButtonComponent(driver, path);
     }
 
-    private void clickSystemMenu() {
-        buttonSearching(AdminMenuButtons.SYSTEM).button.click();
-    }
-
-    private void clickProductMenu() {
-        buttonSearching(AdminMenuButtons.CATALOG).button.click();
-    }
-
-    private void clickCustomerMenu() {
-        buttonSearching(AdminMenuButtons.CUSTOMERS).button.click();
+    private void clickMenuButton(AdminMenuButtons name) {
+        getMenuComponent(By.cssSelector("#" + name.getValue() + " > a")).button.click();
     }
 
     //func
+
+    private void clickGeoZoneButton() {
+        getMenuComponent(By.xpath("//a[contains(text(),'Geo Zones')]")).button.click();
+    }
+<<<<<<< HEAD
+=======
+
+    private void clickSalesMenu() {
+        buttonSearching(AdminMenuButtons.SALES).button.click();
+    }
+
+    //func
+>>>>>>> 17b0ba8a33654a5872c2086cd0844147a8a94678
     private void clickLocalizationMenu() {
-        clickSystemMenu();
+        clickMenuButton(AdminMenuButtons.SYSTEM);
         getMenuComponent(By.xpath("//a[contains(text(),'Localisation')]")).button.click();
     }
 
@@ -78,24 +83,24 @@ public class LeftSidebarMenuComponent extends HeaderPart {
     private void clickCustomerButton() {
         getMenuComponent(By.xpath("//a[contains(text(),'Customers')]")).button.click();
     }
-
-
-    private MenuButtonComponent buttonSearching(AdminMenuButtons name) {
-        menuButton = null;
-        for (WebElement current : dropDowmMenuList) {
-            if (current.getText().equals(name.toString())) {
-                menuComponent = new MenuButtonComponent(driver, By.id(name.toString()));
-                break;
-            }
-
-        }
-        if (menuComponent == null) {
-            throw new RuntimeException();
-        }
-        return menuComponent;
+    private void clickReturnsButton() {
+        getMenuComponent(By.xpath("//li[@id = 'menu-sale']/ul/li/a[contains(text(),'Returns')]")).button.click();
     }
 
+
+
     //bl
+    public LeftSidebarMenuComponent closeLocalizationMenu() {
+        clickLocalizationMenu();
+        return new LeftSidebarMenuComponent(driver);
+    }
+
+    public LeftSidebarMenuComponent closeTaxesMenu() {
+        clickLocalizationMenu();
+        clickTaxesMenu();
+        return new LeftSidebarMenuComponent(driver);
+    }
+
     public AdminHomePage goToAdminHomePage() {
         dashBoard.click();
         return new AdminHomePage(driver);
@@ -113,29 +118,43 @@ public class LeftSidebarMenuComponent extends HeaderPart {
         return new TaxRatesPage(driver);
     }
 
-    public TaxRatesPage goToTaxClassPage() {
+    public TaxClassPage goToTaxClassPage() {
+        clickLocalizationMenu();
         clickTaxesMenu();
         clickTaxClassButton();
-        return new TaxRatesPage(driver);
+        return new TaxClassPage(driver);
     }
 
     public ProductPage goToProductPage() {
-        clickProductMenu();
+        clickMenuButton(AdminMenuButtons.CATALOG);
         clickProductButton();
         return new ProductPage(driver);
     }
 
     public ReviewPage goToReviewPage() {
-        clickProductMenu();
+        clickMenuButton(AdminMenuButtons.CATALOG);
         clickReviewButton();
         return new ReviewPage(driver);
     }
 
+    public GeoZonePage goToGeoZonePage() {
+        clickLocalizationMenu();
+        clickGeoZoneButton();
+        return new GeoZonePage(driver);
+    }
+
     public CustomersPage goToCustomersPage() {
-        clickCustomerMenu();
+        clickMenuButton(AdminMenuButtons.CUSTOMERS);
         clickCustomerButton();
         return new CustomersPage(driver);
     }
+
+    public ReturnsPage goToReturnsPage() {
+        clickSalesMenu();
+        clickReturnsButton();
+        return  new  ReturnsPage(driver);
+    }
+
 
 
 }

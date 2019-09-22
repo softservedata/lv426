@@ -24,11 +24,11 @@ public class DiscountTableComponent {
     private void initElements() {
         tableElement = driver.findElement(By.xpath("//table[@id='discount']/tbody/tr[last()]"));
         deleteButton = driver.findElement(By.xpath("//button[@class='btn btn-danger']"));
-        quantity = tableElement.findElement(By.xpath("//input[@placeholder='Quantity']"));
-        priority = tableElement.findElement(By.xpath("//input[@placeholder='Priority']"));
-        price = tableElement.findElement(By.xpath("//input[@placeholder='Price']"));
-        startDate = tableElement.findElement(By.xpath("//input[@placeholder='Date Start']"));
-        endData = tableElement.findElement(By.xpath("//input[@placeholder='Date End']"));
+        quantity = tableElement.findElement(By.xpath("//td/input[@placeholder='Quantity']"));
+        priority = tableElement.findElement(By.xpath("//td/input[@placeholder='Priority']"));
+        price = tableElement.findElement(By.xpath("//td/input[@placeholder='Price']"));
+        startDate = tableElement.findElement(By.xpath("//td/div/input[@placeholder='Date Start']"));
+        endData = tableElement.findElement(By.xpath("//td/div/input[@placeholder='Date End']"));
     }
 
     private void clickDeleteButton() {
@@ -79,11 +79,11 @@ public class DiscountTableComponent {
     }
 
     private void clickEndDate() {
-        startDate.click();
+        endData.click();
     }
 
     private void clearEndDate() {
-        startDate.clear();
+        endData.clear();
     }
 
     private void setEndDate(String endDateOfDiscount) {
