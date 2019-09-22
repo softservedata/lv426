@@ -1,5 +1,6 @@
 package com.softserve.edu.opencart.pages.user.account;
 
+<<<<<<< HEAD
 import com.softserve.edu.opencart.data.IUser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -15,7 +16,6 @@ public abstract class AccountSidebarGuestPart extends AccountSidebarPart {
         super(driver);
         initElements();
     }
-
     private void initElements() {
         // init elements
         loginRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/login')]"));
@@ -51,6 +51,7 @@ public abstract class AccountSidebarGuestPart extends AccountSidebarPart {
         getRegisterRight().click();
     }
 
+
     // forgottenPasswordRight
     public WebElement getForgottenPasswordRight() {
         return forgottenPasswordRight;
@@ -64,12 +65,15 @@ public abstract class AccountSidebarGuestPart extends AccountSidebarPart {
         getForgottenPasswordRight().click();
     }
 
+
     // Functional
+
 
 //    protected void defaultLogin(IUser user) {
 //    	new LoginPage(driver)
 //    		.fillLogin(user);
 //    }
+
 
     // Business Logic
 
@@ -106,6 +110,7 @@ public abstract class AccountSidebarGuestPart extends AccountSidebarPart {
         clickWishListRight();
         defaultLogin(user);
         return new WishListPage(driver);
+
     }
 
 //    public OrderHistoryPage gotoOrderHistoryRight(IUser user) {}
@@ -115,4 +120,5 @@ public abstract class AccountSidebarGuestPart extends AccountSidebarPart {
 //    public ReturnsPage gotoReturnsRight(IUser user) {}
 //    public TransactionsPage gotoTransactionsRight(IUser user) {}
 //    public NewsletterPage gotoNewsletterRight(IUser user) {}
+
 }

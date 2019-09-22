@@ -1,7 +1,8 @@
-package com.softserve.edu.opencart.pages.user.adminpanel.Manipulating;
+package com.softserve.edu.opencart.pages.user.adminpanel;
 
 import com.softserve.edu.opencart.data.GeoZone;
-import com.softserve.edu.opencart.pages.user.adminpanel.LeftSidebarMenuComponent;
+import com.softserve.edu.opencart.pages.user.adminpanel.Manipulating.AddGeoZomeManagePage;
+import com.softserve.edu.opencart.pages.user.adminpanel.Manipulating.AdminListContainerComponent;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,7 +11,7 @@ public class GeoZonePage extends LeftSidebarMenuComponent {
     private WebDriver driver;
     private WebElement addButton;
     private WebElement deleteButton;
-    private GeoZoneListContainerComponent geoZoneListContainerComponent;
+    private AdminListContainerComponent listContainerComponent;
 
     public GeoZonePage(WebDriver driver) {
         super(driver);
@@ -20,12 +21,14 @@ public class GeoZonePage extends LeftSidebarMenuComponent {
     }
 
     private void initElements() {
-        geoZoneListContainerComponent = new GeoZoneListContainerComponent(driver); // ??
+        listContainerComponent = new AdminListContainerComponent(driver); // ??
         addButton = driver.findElement(By.cssSelector(".pull-right a.btn.btn-primary"));
         deleteButton = driver.findElement(By.cssSelector(".pull-right button.btn.btn-danger"));
     }
 
-
+    private void asseptAlert() {
+        driver.switchTo().alert().accept();
+    }
     private void clickAddButton() {
         addButton.click();
     }
@@ -41,12 +44,11 @@ public class GeoZonePage extends LeftSidebarMenuComponent {
 
 
 
-    public void deleteGeoZone(GeoZone geoZone) {
-        geoZoneListContainerComponent.selectGeoZoneByName(geoZone.getName());
+    public GeoZonePage deleteGeoZone(GeoZone geoZone) {
+        listContainerComponent.selectByName(geoZone.getName());
         clickDeleteButton();
-        //work with alert TODO
-        driver.switchTo().alert().accept();
-
+        asseptAlert();
+        return new GeoZonePage(driver);
     }
 
 

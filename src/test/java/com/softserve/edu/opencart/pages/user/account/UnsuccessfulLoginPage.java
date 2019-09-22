@@ -1,6 +1,5 @@
 package com.softserve.edu.opencart.pages.user.account;
 
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,7 +20,7 @@ public class UnsuccessfulLoginPage extends LoginPage {
 	}
 
 	// Page Object
-
+	
 	// alertWarning
 	public WebElement getAlertWarning() {
 		return alertWarning;
@@ -30,6 +29,8 @@ public class UnsuccessfulLoginPage extends LoginPage {
 	public String getAlertWarningText() {
 		return getAlertWarning().getText();
 	}
+
+    
 
 	// Functional
 

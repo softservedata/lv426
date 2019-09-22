@@ -16,6 +16,7 @@ public class AccountLogoutPage extends AccountSidebarGuestPart {
         ApplicationStatus.get().setLogged(false);
     }
 
+
     private void initElements() {
         continueButton = driver.findElement(By.cssSelector("a.btn.btn-primary[href*='common/home']"));
     }

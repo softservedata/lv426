@@ -4,12 +4,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class CurrencyListComponent {
+public class AdminListElementComponent {
     private WebDriver driver;
     private WebElement component;
     private WebElement selectButton;
 
-    public CurrencyListComponent(WebDriver driver, WebElement component) {
+    public AdminListElementComponent(WebDriver driver, WebElement component) {
         this.driver = driver;
         this.component = component;
         selectButton = component.findElement(By.xpath("/td/input"));
@@ -19,11 +19,11 @@ public class CurrencyListComponent {
         selectButton.click();
     }
 
-    public boolean hasCurrencyName(String name) {
+    public boolean hasName(String name) {
         return component.findElement(By.xpath("//td[contains(text(),'" + name + "')]")) != null;//TODO
     }
 
-    public void selectCurrency() {
+    public void select() {
         clickSelectButton();
     }
 }

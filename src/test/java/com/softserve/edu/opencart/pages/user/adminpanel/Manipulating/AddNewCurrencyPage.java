@@ -1,6 +1,7 @@
 package com.softserve.edu.opencart.pages.user.adminpanel.Manipulating;
 
 import com.softserve.edu.opencart.data.Currency;
+import com.softserve.edu.opencart.pages.user.adminpanel.CurrencyPage;
 import com.softserve.edu.opencart.pages.user.adminpanel.LeftSidebarMenuComponent;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

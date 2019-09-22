@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-
 public class LoginPage extends AccountSidebarGuestPart {
 
     private WebElement email;
@@ -33,6 +32,7 @@ public class LoginPage extends AccountSidebarGuestPart {
     }
 
     public void clearEmailField() {
+
         getEmail().clear();
     }
 
@@ -70,9 +70,11 @@ public class LoginPage extends AccountSidebarGuestPart {
         return loginButton;
     }
 
+
     public String getLoginButtonText() {
         return getLoginButton().getAttribute(TAG_ATTRIBUTE_VALUE);
     }
+
 
     public void clickLoginButton() {
         getLoginButton().click();

@@ -2,12 +2,12 @@ package com.softserve.edu.opencart.pages.user.shop;
 
 import org.openqa.selenium.WebDriver;
 
-public class ShoppingCartProductComponent {
+public class ShoppingCartProductComponent extends ShoppingCartContainerComponent {
 
 	protected WebDriver driver;
 
 	public ShoppingCartProductComponent(WebDriver driver) {
-		this.driver = driver;
+		super(driver);
 		initElements();
 	}
 

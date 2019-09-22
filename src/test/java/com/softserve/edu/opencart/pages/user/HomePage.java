@@ -4,13 +4,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.softserve.edu.opencart.data.Currencies;
 
 import com.softserve.edu.opencart.pages.user.common.ProductsContainerComponent;
 import com.softserve.edu.opencart.pages.user.common.TopPart;
 
 public class HomePage extends TopPart {
 
-	public final String IPHONE6 = "iPhone6";
+	public static final String EXPECTED_IPHONE6 = "iPhone6";
 	//
 	private WebElement slideshow0;
 	//
@@ -57,9 +58,9 @@ public class HomePage extends TopPart {
 	// Functional
 
 	// Business Logic
-//    public HomePage chooseCurrency(Currency currency)
-//    {
-//        clickCurrencyByPartialName(currency);
-//        return new HomePage(driver);
-//    }
+    public HomePage chooseCurrency(Currencies currency)
+    {
+        clickCurrencyByPartialName(currency);
+        return new HomePage(driver);
+    }
 }

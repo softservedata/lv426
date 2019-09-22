@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import com.softserve.edu.opencart.pages.user.common.BreadCrumbPart;
 
 public abstract class AccountSidebarPart extends BreadCrumbPart {
+<<<<<<< HEAD
 
     private WebElement myAccountRight;
     private WebElement addressBookRight;
@@ -23,7 +24,6 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
         super(driver);
         initElements();
     }
-
     private void initElements() {
         // init elements
         myAccountRight= driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/account')]"));
@@ -37,10 +37,8 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
         transactionsRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/transaction')]"));
         newsLetterRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/newsletter')]"));
     }
-
-    // Page Object
-
-    // myAccountRight
+=======
+	// myAccountRight
     public WebElement getMyAccountRight() {
         return myAccountRight;
     }
@@ -53,7 +51,7 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
         getMyAccountRight().click();
     }
 
-    // addressBookRight
+	// addressBookRight
     public WebElement getAddressBookRight() {
         return addressBookRight;
     }
@@ -106,16 +104,16 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
     }
 
     // recurringpaymentsRight
-    public WebElement getRecurringPaymentsRight() {
-        return recurringPaymentsRight;
+    public WebElement getRecurringpaymentsRight() {
+        return recurringpaymentsRight;
     }
 
-    public String getRecurringPaymentsRightText() {
-        return getRecurringPaymentsRight().getText();
+    public String getRecurringpaymentsRightText() {
+        return getRecurringpaymentsRight().getText();
     }
 
-    public void clickRecurringPaymentsRight() {
-        getRecurringPaymentsRight().click();
+    public void clickRecurringpaymentsRight() {
+        getRecurringpaymentsRight().click();
     }
 
     // rewardPointsRight
@@ -158,16 +156,16 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
     }
 
     // newsletterRight
-    public WebElement getNewsLetterRight() {
-        return newsLetterRight;
+    public WebElement getNewsletterRight() {
+        return newsletterRight;
     }
 
-    public String getNewsLetterRightText() {
-        return getNewsLetterRight().getText();
+    public String getNewsletterRightText() {
+        return getNewsletterRight().getText();
     }
 
-    public void clickNewsLetterRight() {
-        getNewsLetterRight().click();
+    public void clickNewsletterRight() {
+        getNewsletterRight().click();
     }
 
     // Functional

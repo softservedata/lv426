@@ -7,26 +7,26 @@ import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CurrencyListContainerComponent{
+public class AdminListContainerComponent {
     private WebDriver driver;
 
-    public CurrencyListContainerComponent(WebDriver driver) {
+    public AdminListContainerComponent(WebDriver driver) {
         this.driver = driver;
     }
 
-    private List<CurrencyListComponent> getListOfCurrency() {
-        List<CurrencyListComponent> listOfCurrency = new ArrayList<>();///can be exception TODO (maybe)
+    private List<AdminListElementComponent> getListOfCurrency() {
+        List<AdminListElementComponent> listOfCurrency = new ArrayList<>();///can be exception TODO (maybe)
         for (WebElement current : driver.findElements(By.xpath("//table[@class='table table-bordered table-hover']/tbody/tr"))) {
-            listOfCurrency.add(new CurrencyListComponent(driver, current));
+            listOfCurrency.add(new AdminListElementComponent(driver, current));
         }
 
         return listOfCurrency;
     }
 
-    private CurrencyListComponent searchByNameOfCurrency(String name) {
-        CurrencyListComponent rezult = null;
-        for (CurrencyListComponent current : getListOfCurrency()) {
-            if (current.hasCurrencyName(name)) {
+    private AdminListElementComponent searchByName(String name) {
+        AdminListElementComponent rezult = null;
+        for (AdminListElementComponent current : getListOfCurrency()) {
+            if (current.hasName(name)) {
                 rezult = current;
                 break;
             }
@@ -39,7 +39,7 @@ public class CurrencyListContainerComponent{
         return rezult;
     }
 
-    public void selectCurrencyByName(String geoZoneName) {
-        searchByNameOfCurrency(geoZoneName).selectCurrency();
+    public void selectByName(String name) {
+        searchByName(name).select();
     }
 }

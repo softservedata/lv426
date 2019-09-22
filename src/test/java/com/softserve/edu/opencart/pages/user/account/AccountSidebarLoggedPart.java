@@ -1,5 +1,6 @@
 package com.softserve.edu.opencart.pages.user.account;
 
+<<<<<<< HEAD
 import com.softserve.edu.opencart.data.ApplicationStatus;
 import com.softserve.edu.opencart.data.IUser;
 import org.openqa.selenium.By;
@@ -17,7 +18,6 @@ public abstract class AccountSidebarLoggedPart extends AccountSidebarPart {
         initElements();
         ApplicationStatus.get().setLogged(true);
     }
-
     private void initElements() {
         // init elements
         editAccountRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/edit')]"));
@@ -113,4 +113,5 @@ public abstract class AccountSidebarLoggedPart extends AccountSidebarPart {
 //    public ReturnsPage gotoReturnsRight() {}
 //    public TransactionsPage gotoTransactionsRight() {}
 //    public NewsletterPage gotoNewsletterRight() {}
+
 }

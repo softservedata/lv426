@@ -13,14 +13,23 @@ public class GeoZomeTableComponent {
     private WebDriver driver;
     private WebElement tableElement;
     private Select component;
+    private WebElement deleteButton;
 
     public GeoZomeTableComponent(WebDriver driver) {
         this.driver = driver;
+        initElements();
+
+    }
+    private void initElements() {
         tableElement = driver.findElement(By.xpath(LAST_ROW_IN_TABLE));
+        deleteButton = driver.findElement(By.xpath("//button[@class='btn btn-danger']"));
         component = new Select(tableElement.findElement(By
                 .xpath("//table[@id='zone-to-geo-zone']/tbody/tr[last()]//select[contains(@name, 'country')]")));
-    }
 
+    }
+    private void clickDeleteButton() {
+        deleteButton.click();
+    }
     public void choseGeoZone(GeoZone geoZone) {
         component.selectByVisibleText(geoZone.getCountry());
     }

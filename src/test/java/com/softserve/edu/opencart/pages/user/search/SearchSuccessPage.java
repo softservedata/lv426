@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.softserve.edu.opencart.data.Currencies;
+
 public class SearchSuccessPage extends SearchCriteriaPart {
 
 	private ProductsCriteriaComponent productsCriteria;
@@ -22,18 +24,25 @@ public class SearchSuccessPage extends SearchCriteriaPart {
 
 
 
-    // Page Object
 
+
+	// Page Object
+	
+	// productsCriteria
+	public ProductsCriteriaComponent getProductsCriteria() {
+		return productsCriteria;
+	}
+	
 	// Functional
 
 	// Business Logic
-//    public SearchSuccessPage chooseCurrency(Currency currency)
-//    {
-//        clickCurrencyByPartialName(currency);
-//        return new SearchSuccessPage(driver);
-//    }
+    public SearchSuccessPage chooseCurrency(Currencies currency)
+    {
+        clickCurrencyByPartialName(currency);
+        return new SearchSuccessPage(driver);
+    }
 
-	 // TODO Use Enum
+	// TODO Use Enum
     public SearchSuccessPage sortProductsByCriteria(String text)
     {
         productsCriteria.setInputSort(text);
