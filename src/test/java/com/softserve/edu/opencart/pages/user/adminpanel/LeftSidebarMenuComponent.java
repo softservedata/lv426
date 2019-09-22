@@ -9,7 +9,7 @@ import java.util.List;
 
 public class LeftSidebarMenuComponent extends HeaderPart {
 
-    private WebDriver driver;
+    public WebDriver driver; // made public
     private WebElement dashBoard;
     private List<WebElement> dropDowmMenuList;
     private MenuButtonComponent menuComponent;
@@ -40,6 +40,15 @@ public class LeftSidebarMenuComponent extends HeaderPart {
     private void clickGeoZoneButton() {
         getMenuComponent(By.xpath("//a[contains(text(),'Geo Zones')]")).button.click();
     }
+<<<<<<< HEAD
+=======
+
+    private void clickSalesMenu() {
+        buttonSearching(AdminMenuButtons.SALES).button.click();
+    }
+
+    //func
+>>>>>>> 17b0ba8a33654a5872c2086cd0844147a8a94678
     private void clickLocalizationMenu() {
         clickMenuButton(AdminMenuButtons.SYSTEM);
         getMenuComponent(By.xpath("//a[contains(text(),'Localisation')]")).button.click();
@@ -74,7 +83,9 @@ public class LeftSidebarMenuComponent extends HeaderPart {
     private void clickCustomerButton() {
         getMenuComponent(By.xpath("//a[contains(text(),'Customers')]")).button.click();
     }
-
+    private void clickReturnsButton() {
+        getMenuComponent(By.xpath("//li[@id = 'menu-sale']/ul/li/a[contains(text(),'Returns')]")).button.click();
+    }
 
 
 
@@ -136,6 +147,12 @@ public class LeftSidebarMenuComponent extends HeaderPart {
         clickMenuButton(AdminMenuButtons.CUSTOMERS);
         clickCustomerButton();
         return new CustomersPage(driver);
+    }
+
+    public ReturnsPage goToReturnsPage() {
+        clickSalesMenu();
+        clickReturnsButton();
+        return  new  ReturnsPage(driver);
     }
 
 

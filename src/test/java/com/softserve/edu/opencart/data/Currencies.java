@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 17b0ba8a33654a5872c2086cd0844147a8a94678
 package com.softserve.edu.opencart.data;
 
 public enum Currencies {
