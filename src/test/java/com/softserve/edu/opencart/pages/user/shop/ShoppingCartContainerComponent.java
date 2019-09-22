@@ -1,7 +1,7 @@
 package com.softserve.edu.opencart.pages.user.shop;
 
-import com.softserve.edu.opencart.data.CartTableFullOrderInfo;
-import com.softserve.edu.opencart.data.ShoppingCartTableElements;
+import com.softserve.edu.opencart.data.shop.CartTableFullOrderInfo;
+import com.softserve.edu.opencart.data.shop.ShoppingCartTableElements;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,7 +18,6 @@ public class ShoppingCartContainerComponent extends ShoppingCartPage {
 			"/table[contains(@class,'table table-bordered')]/tbody/tr";
 
 	private List<CartTableFullOrderInfo> ordersInfo ;
-	private List<ShoppingCartTableElements> fullOrder;
 
 	public ShoppingCartContainerComponent(WebDriver driver) {
 		super(driver);
@@ -31,10 +30,14 @@ public class ShoppingCartContainerComponent extends ShoppingCartPage {
 		ordersInfo = new ArrayList<>();
 		for(WebElement productTable : driver.findElements(By.xpath(SHOPPINGCART_COMPONENTS_CSSSELECTOR))){
 			ordersInfo.add(new CartTableFullOrderInfo(productTable));
+			listOfCartOrders();
 		}
 	}
 
 	// Page Object
+	public ShoppingCartTableElements listOfCartOrders(){
+		return new ShoppingCartTableElements(ordersInfo);
+	}
 
 	public WebElement elementToChangeACountOfOrderingByName(String orderName){
 		return driver.findElement(By.xpath("//td/a[contains(text(),'"+ orderName
@@ -65,6 +68,16 @@ public class ShoppingCartContainerComponent extends ShoppingCartPage {
 		return driver.findElement(By.xpath("//div[contains(@class,'table-responsive')]" +
 				"/table[contains(@class,'table table-bordered')]" +
 				"//tbody/tr/td/a[contains(text(),'"+orderName+"')]/../following-sibling::td[4]")).getText();
+	}
+
+	public ShoppingCartPage deleteSomeOrderBuName(String orderName){
+		elementToDeleteSomeOrderByName(orderName);
+		return new ShoppingCartPage(driver);
+	}
+
+	public ShoppingCartPage changeCountOfSomeOrderBuName(String orderName){
+		elementToChangeACountOfOrderingByName(orderName);
+		return new ShoppingCartPage(driver);
 	}
 
 	// Functional

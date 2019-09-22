@@ -1,24 +1,17 @@
-package com.softserve.edu.opencart.data;
+package com.softserve.edu.opencart.data.shop;
 
 import java.util.List;
 
 public class ShoppingCartTableElements {
-    private CartTableFullOrderInfo elements;
     private List<CartTableFullOrderInfo> cartOrders;
 
     public ShoppingCartTableElements(List<CartTableFullOrderInfo> cartOrders) {
         this.cartOrders = cartOrders;
     }
 
-    public ShoppingCartTableElements(CartTableFullOrderInfo elements) {
-        this.elements = elements;
-    }
 
     public List<CartTableFullOrderInfo> getCartTableElement() {
         return cartOrders;
     }
 
-    public CartTableFullOrderInfo getElements() {
-        return elements;
-    }
 }

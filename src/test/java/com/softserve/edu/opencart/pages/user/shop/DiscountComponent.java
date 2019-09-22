@@ -1,6 +1,6 @@
 package com.softserve.edu.opencart.pages.user.shop;
 
-import com.softserve.edu.opencart.data.DiscountUsageCode;
+import com.softserve.edu.opencart.data.shop.DiscountUsageCode;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

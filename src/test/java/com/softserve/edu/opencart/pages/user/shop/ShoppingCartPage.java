@@ -1,6 +1,6 @@
 package com.softserve.edu.opencart.pages.user.shop;
 
-import com.softserve.edu.opencart.data.FinalPriceTable;
+import com.softserve.edu.opencart.data.shop.FinalPriceTable;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
