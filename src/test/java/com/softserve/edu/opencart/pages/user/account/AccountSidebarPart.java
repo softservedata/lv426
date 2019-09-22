@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import com.softserve.edu.opencart.pages.user.common.BreadCrumbPart;
 
 public abstract class AccountSidebarPart extends BreadCrumbPart {
-<<<<<<< HEAD
 
     private WebElement myAccountRight;
     private WebElement addressBookRight;
@@ -37,7 +36,6 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
         transactionsRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/transaction')]"));
         newsLetterRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/newsletter')]"));
     }
-=======
 	// myAccountRight
     public WebElement getMyAccountRight() {
         return myAccountRight;
@@ -105,7 +103,7 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
 
     // recurringpaymentsRight
     public WebElement getRecurringpaymentsRight() {
-        return recurringpaymentsRight;
+        return recurringPaymentsRight;
     }
 
     public String getRecurringpaymentsRightText() {
@@ -157,7 +155,7 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
 
     // newsletterRight
     public WebElement getNewsletterRight() {
-        return newsletterRight;
+        return newsLetterRight;
     }
 
     public String getNewsletterRightText() {

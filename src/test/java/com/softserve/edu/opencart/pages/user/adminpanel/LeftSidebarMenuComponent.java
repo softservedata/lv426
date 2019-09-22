@@ -9,7 +9,7 @@ import java.util.List;
 
 public class LeftSidebarMenuComponent extends HeaderPart {
 
-    private WebDriver driver;
+    public WebDriver driver; // made public
     private WebElement dashBoard;
     private List<WebElement> dropDowmMenuList;
     private MenuButtonComponent menuComponent;
