@@ -24,13 +24,10 @@ import com.softserve.edu.opencart.pages.user.search.SearchUnsuccessPage;
 import com.softserve.edu.opencart.pages.user.shop.ShoppingCartPage;
 
 public abstract class TopPart {
-<<<<<<< HEAD
+
 
     protected final Logger log = LoggerFactory.getLogger(this.getClass().getName());
-=======
-	
-	protected final Logger log = LoggerFactory.getLogger(this.getClass().getName());
->>>>>>> 40c679a4d7b258b0d93712d093a711e40eed356b
+
     protected final String OPTION_NULL_MESSAGE = "DropdownComponent is null";
     protected final String OPTION_NOT_FOUND_MESSAGE = "Option %s not found in %s";
     protected final String PAGE_DO_NOT_EXIST = "Page do not exist!!!";
@@ -53,11 +50,9 @@ public abstract class TopPart {
     private WebElement searchTopButton;
     private WebElement cartButton;
     //
-<<<<<<< HEAD
+
     // private MainMenuComponent MainMenuComponent;
-=======
-    // private MainMenuComponent MainMenuComponent; 
->>>>>>> 40c679a4d7b258b0d93712d093a711e40eed356b
+
     private DropdownComponent dropdownComponent;
     private DropdownGuest dropdownGuest;
     private DropdownLogged dropdownLogged;
@@ -204,7 +199,7 @@ public abstract class TopPart {
     }
 
     // TODO getCartButtonNumber()
-<<<<<<< HEAD
+
 
     // dropdownComponent
     protected DropdownComponent getDropdownComponent() {
@@ -260,86 +255,19 @@ public abstract class TopPart {
     private void clickDropdownGuestLogin() {
         getDropdownGuest().clickLogin();
         dropdownGuest = null;
-=======
-    
-    // dropdownComponent
-    protected DropdownComponent getDropdownComponent() {
-        //LeaveUtils.castExceptionByCondition(dropdownOptions == null, OPTION_NULL_MESSAGE);
-    	if (dropdownComponent == null)
-        {
-            // TODO Develop Custom Exception 
-            throw new RuntimeException(OPTION_NULL_MESSAGE);
-        }
-        return dropdownComponent;
-    }
 
-    private DropdownComponent createDropdownComponent(By searchLocator) {
-        dropdownComponent = new DropdownComponent(driver, searchLocator);
-        return getDropdownComponent();
-    }
-
-    private void clickDropdownComponentByPartialName(String optionName) {
-        //LeaveUtils.castExceptionByCondition(!getDropdownOptions().isExistDropdownOptionByPartialName(optionName),
-        //        String.format(OPTION_NOT_FOUND_MESSAGE, optionName, dropdownOptions.getListOptionsText().toString()));
-    	if (!getDropdownComponent().isExistDropdownOptionByPartialName(optionName))
-        {
-            // TODO Develop Custom Exception 
-            throw new RuntimeException(String.format(OPTION_NOT_FOUND_MESSAGE, optionName, getDropdownComponent().getListOptionsText().toString()));
-        }
-    	getDropdownComponent().clickDropdownOptionByPartialName(optionName);
-    	dropdownComponent = null;
-    	//closeDropdownComponent();
-    }
-
-    private void closeDropdownComponent() {
-        clickSearchTopField();
-        dropdownComponent = null;
-    }
-
-    // dropdownGuest
-    protected DropdownGuest getDropdownGuest() {
-    	if (dropdownGuest == null)
-        {
-            // TODO Develop Custom Exception 
-            throw new RuntimeException(OPTION_NULL_MESSAGE);
-        }
-        return dropdownGuest;
-    }
-
-    private DropdownGuest createDropdownGuest() {
-        dropdownGuest = new DropdownGuest(driver);
-        return getDropdownGuest();
-    }
-
-    private void clickDropdownGuestRegister() {
-    	getDropdownGuest().clickRegister();
-    	dropdownGuest = null;
-    }
-    
-    private void clickDropdownGuestLogin() {
-    	getDropdownGuest().clickLogin();
-    	dropdownGuest = null;
->>>>>>> 40c679a4d7b258b0d93712d093a711e40eed356b
     }
 
     private void closeDropdownGuest() {
         clickSearchTopField();
         dropdownGuest = null;
     }
-<<<<<<< HEAD
+
 
     // dropdownLogged
     protected DropdownLogged getDropdownLogged() {
         if (dropdownLogged == null) {
             // TODO Develop Custom Exception
-=======
-    
-    // dropdownLogged
-    protected DropdownLogged getDropdownLogged() {
-    	if (dropdownLogged == null)
-        {
-            // TODO Develop Custom Exception 
->>>>>>> 40c679a4d7b258b0d93712d093a711e40eed356b
             throw new RuntimeException(OPTION_NULL_MESSAGE);
         }
         return dropdownLogged;
@@ -351,7 +279,7 @@ public abstract class TopPart {
     }
 
     private void clickDropdownLoggedMyAccount() {
-<<<<<<< HEAD
+
         getDropdownLogged().clickMyAccount();
         dropdownLogged = null;
     }
@@ -379,41 +307,12 @@ public abstract class TopPart {
     private void closeDropdownLogged() {
         clickSearchTopField();
         dropdownLogged = null;
-=======
-    	getDropdownLogged().clickMyAccount();
-    	dropdownLogged= null;
     }
 
-    private void clickDropdownLoggedOrderHistory() {
-    	getDropdownLogged().clickOrderHistory();
-    	dropdownLogged= null;
-    }
-
-    private void clickDropdownLoggedTransactions() {
-    	getDropdownLogged().clickTransactions();
-    	dropdownLogged= null;
-    }
-
-    private void clickDropdownLoggedDownloads() {
-    	getDropdownLogged().clickDownloads();
-    	dropdownLogged= null;
->>>>>>> 40c679a4d7b258b0d93712d093a711e40eed356b
-    }
-
-    private void clickDropdownLoggedLogout() {
-    	getDropdownLogged().clickLogout();
-    	dropdownLogged= null;
-    }
-
-    private void closeDropdownLogged() {
-        clickSearchTopField();
-        dropdownLogged= null;
-    }
-    
     // Functional
 
     // currency
-<<<<<<< HEAD
+
     private void openCurrencyDropdownComponent() {
         clickSearchTopField();
         clickCurrency();
@@ -438,32 +337,6 @@ public abstract class TopPart {
         clickSearchTopField();
         clickMyAccount();
     }
-=======
-	private void openCurrencyDropdownComponent() {
-		clickSearchTopField();
-		clickCurrency();
-		createDropdownComponent(By.cssSelector(LIST_CURRENCIES_CSSSELECTOR));
-	}
-
-    //protected void clickCurrencyByPartialName(String currencyName) { // Code Smell
-    protected void clickCurrencyByPartialName(Currencies optionName) {
-    	openCurrencyDropdownComponent();
-    	clickDropdownComponentByPartialName(optionName.toString());
-    }
-
-    public List<String> getListCurrencyNames() {
-    	openCurrencyDropdownComponent();
-        List<String> result = getDropdownComponent().getListOptionsText();
-        closeDropdownComponent();
-        return result;
-    }
-
-    // myAccount
-    protected void openMyAccountDropdown() {
-		clickSearchTopField();
-		clickMyAccount();
-	}
->>>>>>> 40c679a4d7b258b0d93712d093a711e40eed356b
 
     // myAccount
 //    private void clickDropdownMyAccountByPartialName(String componentName) {
@@ -491,17 +364,12 @@ public abstract class TopPart {
     }
 
     protected void defaultLogin(IUser user) {
-<<<<<<< HEAD
+
         if (!ApplicationStatus.get().isLogged()) {
             new LoginPage(driver)
                     .fillLogin(user);
         }
-=======
-    	if (!ApplicationStatus.get().isLogged()) {
-        	new LoginPage(driver)
-    		.fillLogin(user);
-    	}
->>>>>>> 40c679a4d7b258b0d93712d093a711e40eed356b
+
     }
 
     // Business Logic
@@ -512,30 +380,21 @@ public abstract class TopPart {
     }
 
     public SearchSuccessPage successfulSearch(SearchFilter searchFilter) {
-<<<<<<< HEAD
+
         return successfulSearch(searchFilter.getProduct());
     }
 
     //    public SearchSuccessPage successfulSearch(String searchItem) {
     public SearchSuccessPage successfulSearch(Product product) {
-=======
-    	return successfulSearch(searchFilter.getProduct());
-    }
-
-//    public SearchSuccessPage successfulSearch(String searchItem) {
-      public SearchSuccessPage successfulSearch(Product product) {
->>>>>>> 40c679a4d7b258b0d93712d093a711e40eed356b
         fillSearchTopField(product.getName());
         clickSearchTopButton();
         return new SearchSuccessPage(driver);
     }
 
     //public SearchUnsuccessPage unsuccessfulSearch(String searchItem){
-<<<<<<< HEAD
+
     public SearchUnsuccessPage unsuccessfulSearch(Product product) {
-=======
-    public SearchUnsuccessPage unsuccessfulSearch(Product product){
->>>>>>> 40c679a4d7b258b0d93712d093a711e40eed356b
+
         fillSearchTopField(product.getName());
         clickSearchTopButton();
         return new SearchUnsuccessPage(driver);
@@ -543,13 +402,10 @@ public abstract class TopPart {
 
     // TODO ++++++++++++
     public WishListPage gotoWishListPage(IUser user) {
-<<<<<<< HEAD
+
         clickWishList();
         defaultLogin(user);
-=======
-    	clickWishList();
-    	defaultLogin(user);
->>>>>>> 40c679a4d7b258b0d93712d093a711e40eed356b
+
         return new WishListPage(driver);
     }
 
@@ -559,7 +415,6 @@ public abstract class TopPart {
     }
 
     public LoginPage gotoLoginPage() {
-<<<<<<< HEAD
         openMyAccountDropdown();
         createDropdownGuest();
         clickDropdownGuestLogin();
@@ -599,55 +454,15 @@ public abstract class TopPart {
 //    	createDropdownLogged();
 //    	clickDropdownLoggedDownloads();
 //        return new DownloadsPage(driver);
-=======
-    	openMyAccountDropdown();
-    	createDropdownGuest();
-    	clickDropdownGuestLogin();
-        return new LoginPage(driver);
-    }
 
-    public RegisterPage gotoRegisterPage() {
-    	openMyAccountDropdown();
-    	createDropdownGuest();
-    	clickDropdownGuestRegister();
-        return new RegisterPage(driver);
-    }
+//    }
 
-    public MyAccountPage gotoMyAccount() {
-    	openMyAccountDropdown();
-    	createDropdownLogged();
-    	clickDropdownLoggedMyAccount();
-        return new MyAccountPage(driver);
-    }
-    
-//    public OrderHistoryPage gotoOrderHistory() {
-//    	openMyAccountDropdown();
-//    	createDropdownLogged();
-//    	clickDropdownLoggedOrderHistory();
-//        return new OrderHistoryPage(driver);
-//    }
-    
-//    public TransactionsPage gotoTransactions() {
-//    	openMyAccountDropdown();
-//    	createDropdownLogged();
-//    	clickDropdownLoggedTransactions();
-//        return new TransactionsPage(driver);
->>>>>>> 40c679a4d7b258b0d93712d093a711e40eed356b
-//    }
-    
 //    public DownloadsPage gotoDownloads() {
 //    	openMyAccountDropdown();
 //    	createDropdownLogged();
 //    	clickDropdownLoggedDownloads();
 //        return new DownloadsPage(driver);
 //    }
-    
-    public AccountLogoutPage logout() {
-    	openMyAccountDropdown();
-    	createDropdownLogged();
-    	clickDropdownLoggedLogout();
-        return new AccountLogoutPage(driver);
-    }
 
     public AccountLogoutPage logout() {
         openMyAccountDropdown();

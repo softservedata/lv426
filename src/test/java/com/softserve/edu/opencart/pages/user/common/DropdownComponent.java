@@ -20,10 +20,8 @@ public class DropdownComponent {
 
 	private void initElements(By searchLocator) {
 		// init elements
-
 		listOptions = driver.findElements(searchLocator);
 		// listOptions = search.getWebElements(searchLocator); // for Strategy
-
 	}
 
 	// Page Object
@@ -36,7 +34,6 @@ public class DropdownComponent {
 	// Functional
 
 	// listOptions
-<<<<<<< HEAD
 	public WebElement getDropdownOptionByPartialName(String optionName)
 	{
 		WebElement result = null;
@@ -92,5 +89,3 @@ public class DropdownComponent {
 	// Business Logic
 
 }
-
-  
