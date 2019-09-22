@@ -14,7 +14,9 @@ public abstract class HeaderPart {
     private DropdownComponent helpMenu;
     private DropdownComponent NotificationsMenu;
     private DropdownComponent storesMenu;
-    HeaderPart(WebDriver driver) {
+
+
+    public HeaderPart(WebDriver driver) {
         this.driver = driver;
         initElements();
     }
@@ -24,6 +26,7 @@ public abstract class HeaderPart {
         logOutButton = driver.findElement(By.xpath("//a/i[@class='fa fa-sign-out fa-lg']//ancestor::a"));
         logo = driver.findElement(By.cssSelector("a.navbar-brand"));
     }
+
 
     public WebElement getMenuButton() {
         return menuButton;

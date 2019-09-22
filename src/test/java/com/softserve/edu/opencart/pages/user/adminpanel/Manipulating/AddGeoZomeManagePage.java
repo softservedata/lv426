@@ -1,6 +1,7 @@
 package com.softserve.edu.opencart.pages.user.adminpanel.Manipulating;
 
 import com.softserve.edu.opencart.data.GeoZone;
+import com.softserve.edu.opencart.pages.user.adminpanel.GeoZonePage;
 import com.softserve.edu.opencart.pages.user.adminpanel.LeftSidebarMenuComponent;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

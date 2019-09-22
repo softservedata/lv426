@@ -1,22 +1,23 @@
 package com.softserve.edu.opencart.pages.user.adminpanel;
 
-import com.softserve.edu.opencart.data.TaxRate;
+import com.softserve.edu.opencart.data.TaxClass;
 import com.softserve.edu.opencart.pages.user.adminpanel.Manipulating.AddTaxRatePage;
 import com.softserve.edu.opencart.pages.user.adminpanel.Manipulating.AdminListContainerComponent;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class TaxRatesPage extends LeftSidebarMenuComponent {
+public class TaxClassPage extends LeftSidebarMenuComponent {
     private WebDriver driver;
     private WebElement addButton;
     private WebElement deleteButton;
     private AdminListContainerComponent listContainerComponent;
-    public TaxRatesPage(WebDriver driver) {
+
+    public TaxClassPage(WebDriver driver) {
         super(driver);
+        this.driver = driver;
         initElements();
     }
-
 
     private void initElements() {
         listContainerComponent = new AdminListContainerComponent(driver); // ??
@@ -34,19 +35,19 @@ public class TaxRatesPage extends LeftSidebarMenuComponent {
         deleteButton.click();
     }
 
-
-    public AddTaxRatePage goToAddTaxRatePage() {
+    public AddTaxRatePage goToAddTaxClassPage() {
         clickAddButton();
         return new AddTaxRatePage(driver);
     }
 
 
-//return new TaxRatePage or this ?
-    public TaxRatesPage deleteTaxRate(TaxRate taxRate) {
-        listContainerComponent.selectByName(taxRate.getName());
+    //return new TaxRatePage or this ?
+    public TaxClassPage deleteTaxClass(TaxClass tax) {
+        listContainerComponent.selectByName(tax.getName());
         clickDeleteButton();
         asseptAlert();
-        return new TaxRatesPage(driver);
+        return new TaxClassPage(driver);
     }
+
 
 }
