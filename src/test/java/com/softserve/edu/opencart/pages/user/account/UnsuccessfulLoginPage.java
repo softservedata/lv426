@@ -7,7 +7,9 @@ import org.openqa.selenium.WebElement;
 
 public class UnsuccessfulLoginPage extends LoginPage {
 
-	private WebElement unsuccessfulLogin;
+	public static final String EXPECTED_LOGIN_MESSAGE = "Warning: No match for E-Mail Address and/or Password.";
+	//
+	private WebElement alertWarning;
 
 	public UnsuccessfulLoginPage(WebDriver driver) {
 		super(driver);
@@ -15,20 +17,21 @@ public class UnsuccessfulLoginPage extends LoginPage {
 	}
 
 	private void initElements() {
-		unsuccessfulLogin = driver.findElement(By.cssSelector("div.alert.alert-danger"));
+		alertWarning = driver.findElement(By.cssSelector(".alert.alert-danger"));
 	}
 
 	// Page Object
 
-	public WebElement getUnsuccessfulLogin() {
-		return unsuccessfulLogin;
+	// alertWarning
+	public WebElement getAlertWarning() {
+		return alertWarning;
+	}
+
+	public String getAlertWarningText() {
+		return getAlertWarning().getText();
 	}
 
 	// Functional
-
-	public String getUnsuccessfulLoginText() {
-		return getUnsuccessfulLogin().getText();
-	}
 
 	// Business Logic
 }

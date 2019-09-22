@@ -14,9 +14,15 @@ public class ProductComponent {
 	public WebElement addToWishButton;
 	public WebElement addToCompareButton;
 
+	public ProductPage productPage;
+
 	public ProductComponent(WebElement productLayout) {
 		this.productLayout = productLayout;
 		initElements();
+	}
+
+	public ProductComponent() {
+
 	}
 
 	private void initElements() {
@@ -27,6 +33,7 @@ public class ProductComponent {
 		addToCartButton = productLayout.findElement(By.cssSelector(".fa.fa-shopping-cart"));
 		addToWishButton = productLayout.findElement(By.cssSelector(".fa.fa-heart"));
 		addToCompareButton = productLayout.findElement(By.cssSelector(".fa.fa-exchange"));
+
 	}
 
 	// Page Object
@@ -93,6 +100,8 @@ public class ProductComponent {
 	public void clickAddToCompareButton() {
 		getAddToCompareButton().click();
 	}
+
+
 
 	// Functional
 
