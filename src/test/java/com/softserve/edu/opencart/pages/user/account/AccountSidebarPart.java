@@ -13,7 +13,7 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
     private WebElement wishListRight;
     private WebElement orderHistoryRight;
     private WebElement downloadsRight;
-    private WebElement recurringPaymentsRight;
+    private WebElement recurringpaymentsRight;
     private WebElement rewardPointsRight;
     private WebElement returnsRight;
     private WebElement transactionsRight;
@@ -31,7 +31,7 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
         wishListRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/wishlist')]"));
         orderHistoryRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/order')]"));
         downloadsRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/download')]"));
-        recurringPaymentsRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/recurring')]"));
+        recurringpaymentsRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/recurring')]"));
         rewardPointsRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/reward')]"));
         returnsRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/return')]"));
         transactionsRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/transaction')]"));
@@ -106,16 +106,16 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
     }
 
     // recurringpaymentsRight
-    public WebElement getRecurringPaymentsRight() {
-        return recurringPaymentsRight;
+    public WebElement getRecurringpaymentsRight() {
+        return recurringpaymentsRight;
     }
 
-    public String getRecurringPaymentsRightText() {
-        return getRecurringPaymentsRight().getText();
+    public String getRecurringpaymentsRightText() {
+        return getRecurringpaymentsRight().getText();
     }
 
-    public void clickRecurringPaymentsRight() {
-        getRecurringPaymentsRight().click();
+    public void clickRecurringpaymentsRight() {
+        getRecurringpaymentsRight().click();
     }
 
     // rewardPointsRight
