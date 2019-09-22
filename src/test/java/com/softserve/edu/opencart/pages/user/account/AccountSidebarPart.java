@@ -19,45 +19,11 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
     private WebElement returnsRight;
     private WebElement transactionsRight;
     private WebElement newsLetterRight;
-=======
-
-	private WebElement myAccountRight;
-	private WebElement addressBookRight;
-	private WebElement wishListRight;
-	private WebElement orderHistoryRight;
-	private WebElement downloadsRight;
-	private WebElement recurringpaymentsRight;
-	private WebElement rewardPointsRight;
-	private WebElement returnsRight;
-	private WebElement transactionsRight;
-	private WebElement newsletterRight;
-
-	public AccountSidebarPart(WebDriver driver) {
-		super(driver);
-		initElements();
-	}
-
-	private void initElements() {
-		// init elements
-		myAccountRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/account')]"));
-		addressBookRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/address')]"));
-		wishListRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/wishlist')]"));
-		orderHistoryRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/order')]"));
-		downloadsRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/download')]"));
-		recurringpaymentsRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/recurring')]"));
-		rewardPointsRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/reward')]"));
-		returnsRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/return')]"));
-		transactionsRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/transaction')]"));
-		newsletterRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/newsletter')]"));
-	}
->>>>>>> 40c679a4d7b258b0d93712d093a711e40eed356b
 
     public AccountSidebarPart(WebDriver driver) {
         super(driver);
         initElements();
     }
-
-<<<<<<< HEAD
     private void initElements() {
         // init elements
         myAccountRight= driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/account')]"));
@@ -200,141 +166,6 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
 
     public void clickNewsletterRight() {
         getNewsletterRight().click();
-    }
-
-	// Functional
->>>>>>> 40c679a4d7b258b0d93712d093a711e40eed356b
-
-    // Page Object
-
-    // myAccountRight
-    public WebElement getMyAccountRight() {
-        return myAccountRight;
-    }
-
-    public String getMyAccountRightText() {
-        return getMyAccountRight().getText();
-    }
-
-    public void clickMyAccountRight() {
-        getMyAccountRight().click();
-    }
-
-    // addressBookRight
-    public WebElement getAddressBookRight() {
-        return addressBookRight;
-    }
-
-    public String getAddressBookRightText() {
-        return getAddressBookRight().getText();
-    }
-
-    public void clickAddressBookRight() {
-        getAddressBookRight().click();
-    }
-
-    // wishListRight
-    public WebElement getWishListRight() {
-        return wishListRight;
-    }
-
-    public String getWishListRightText() {
-        return getWishListRight().getText();
-    }
-
-    public void clickWishListRight() {
-        getWishListRight().click();
-    }
-
-    // orderHistoryRight
-    public WebElement getOrderHistoryRight() {
-        return orderHistoryRight;
-    }
-
-    public String getOrderHistoryRightText() {
-        return getOrderHistoryRight().getText();
-    }
-
-    public void clickOrderHistoryRight() {
-        getOrderHistoryRight().click();
-    }
-
-    // downloadsRight
-    public WebElement getDownloadsRight() {
-        return downloadsRight;
-    }
-
-    public String getDownloadsRightText() {
-        return getDownloadsRight().getText();
-    }
-
-    public void clickDownloadsRight() {
-        getDownloadsRight().click();
-    }
-
-    // recurringpaymentsRight
-    public WebElement getRecurringPaymentsRight() {
-        return recurringPaymentsRight;
-    }
-
-    public String getRecurringPaymentsRightText() {
-        return getRecurringPaymentsRight().getText();
-    }
-
-    public void clickRecurringPaymentsRight() {
-        getRecurringPaymentsRight().click();
-    }
-
-    // rewardPointsRight
-    public WebElement getRewardPointsRight() {
-        return rewardPointsRight;
-    }
-
-    public String getRewardPointsRightText() {
-        return getRewardPointsRight().getText();
-    }
-
-    public void clickRewardPointsRight() {
-        getRewardPointsRight().click();
-    }
-
-    // returnsRight
-    public WebElement getReturnsRight() {
-        return returnsRight;
-    }
-
-    public String getReturnsRightText() {
-        return getReturnsRight().getText();
-    }
-
-    public void clickReturnsRight() {
-        getReturnsRight().click();
-    }
-
-    // transactionsRight
-    public WebElement getTransactionsRight() {
-        return transactionsRight;
-    }
-
-    public String getTransactionsRightText() {
-        return getTransactionsRight().getText();
-    }
-
-    public void clickTransactionsRight() {
-        getTransactionsRight().click();
-    }
-
-    // newsletterRight
-    public WebElement getNewsLetterRight() {
-        return newsLetterRight;
-    }
-
-    public String getNewsLetterRightText() {
-        return getNewsLetterRight().getText();
-    }
-
-    public void clickNewsLetterRight() {
-        getNewsLetterRight().click();
     }
 
     // Functional
