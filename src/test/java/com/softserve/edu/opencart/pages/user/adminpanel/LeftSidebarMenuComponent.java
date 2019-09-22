@@ -43,6 +43,10 @@ public class LeftSidebarMenuComponent extends HeaderPart {
         buttonSearching(AdminMenuButtons.CUSTOMERS).button.click();
     }
 
+    private void clickSalesMenu() {
+        buttonSearching(AdminMenuButtons.SALES).button.click();
+    }
+
     //func
     private void clickLocalizationMenu() {
         clickSystemMenu();
@@ -78,7 +82,9 @@ public class LeftSidebarMenuComponent extends HeaderPart {
     private void clickCustomerButton() {
         getMenuComponent(By.xpath("//a[contains(text(),'Customers')]")).button.click();
     }
-
+    private void clickReturnsButton() {
+        getMenuComponent(By.xpath("//li[@id = 'menu-sale']/ul/li/a[contains(text(),'Returns')]")).button.click();
+    }
 
     private MenuButtonComponent buttonSearching(AdminMenuButtons name) {
         menuButton = null;
@@ -135,6 +141,12 @@ public class LeftSidebarMenuComponent extends HeaderPart {
         clickCustomerMenu();
         clickCustomerButton();
         return new CustomersPage(driver);
+    }
+
+    public ReturnsPage goToReturnsPage() {
+        clickSalesMenu();
+        clickReturnsButton();
+        return  new  ReturnsPage(driver);
     }
 
 
