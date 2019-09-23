@@ -12,7 +12,7 @@ public class NewAddressForCheckOut {
     private WebElement element;
     private WebDriver driver;
     public static String NEW_BILLING_ADRESS = "#input-payment-";
-    private static String NEW_SHIPPING_ADRESS = "#input-shipping-";
+    public static String NEW_SHIPPING_ADRESS = "#input-shipping-";
 
     private WebElement firstNameBilling;
     private WebElement lastNameBilling;
