@@ -10,6 +10,7 @@ public class ProductPage extends ProductComponent{
 
 
     private ProductsContainerComponent productsContainer;
+    private ProductComponent productComponent;
     private ProductDescriptionComponent productDescription;
     public ProductReviewComponent productReview;
 
@@ -40,6 +41,9 @@ public class ProductPage extends ProductComponent{
 
     public ProductsContainerComponent getProductComponentsContainer() {
         return productsContainer;
+    }
+    public void addProductToWishList(){
+        getProductComponentsContainer().clickProductComponentAddToWishButtonByName(productComponent.getNameText());
     }
 
 
