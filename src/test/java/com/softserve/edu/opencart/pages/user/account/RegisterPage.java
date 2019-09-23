@@ -296,9 +296,11 @@ public class RegisterPage extends AccountSidebarGuestPart {
     }
 
     public void clickSubscribeLink(Boolean subscribe) {
-        if(subscribe)
-            getSubscribeLink().click(); }
+        if(subscribe){
+            getSubscribeLink().click();}
+    }
 
+    public void defaultLogin(IUser user) {}
 
     // Functional
 
@@ -384,8 +386,6 @@ public class RegisterPage extends AccountSidebarGuestPart {
         setConfirmPassword(confirmPassword);
     }
 
-    // Business Logic
-
     public void fillRegister(IUser user) {
 
         enterFirstName(user.getFirstName());
@@ -405,22 +405,36 @@ public class RegisterPage extends AccountSidebarGuestPart {
         enterPassword(user.getPassword());
         enterConfirmPassword(user.getPassword());
         clickSubscribeLink(user.isSubscribe());
+    }
 
+    public void fillRegisterAgreePrivacyPolicy(IUser user){
+        fillRegister(user);
         clickAgreePrivacyPolicyLink();
         clickContinueButton();
     }
 
-    public SuccessfulRegisterPage successfulRegister(IUser user){
+    public void fillRegisterNotAgreePrivacyPolicy(IUser user){
         fillRegister(user);
+        clickContinueButton();
+    }
+
+    // Business Logic
+    public SuccessfulRegisterPage successfulRegisterUser(IUser user){
+
+        fillRegisterAgreePrivacyPolicy(user);
         return new SuccessfulRegisterPage(driver);
     }
 
-    public UnsuccessfulRegisterPage unsuccessfulRegisterPage(IUser invalidUser){
-        fillRegister(invalidUser);
+    public UnsuccessfulRegisterPage unsuccessfulRegisterNotAgreePrivacyPolicy(IUser user){
+
+        fillRegisterNotAgreePrivacyPolicy(user);
         return new UnsuccessfulRegisterPage(driver);
     }
 
-    public void defaultLogin(IUser user)
-    {}
+    public UnsuccessfulRegisterPage unsuccessfulRegisterUser(IUser invalidUser){
+
+        fillRegisterAgreePrivacyPolicy(invalidUser);
+        return new UnsuccessfulRegisterPage(driver);
+    }
 
 }
