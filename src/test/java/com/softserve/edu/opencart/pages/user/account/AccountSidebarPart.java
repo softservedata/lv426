@@ -1,5 +1,6 @@
 package com.softserve.edu.opencart.pages.user.account;
 
+import com.softserve.edu.opencart.data.IUser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -36,6 +37,7 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
         transactionsRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/transaction')]"));
         newsLetterRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/newsletter')]"));
     }
+
 	// myAccountRight
     public WebElement getMyAccountRight() {
         return myAccountRight;
@@ -165,6 +167,8 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
     public void clickNewsletterRight() {
         getNewsletterRight().click();
     }
+
+    protected abstract void defaultLogin(IUser user);
 
     // Functional
 

@@ -1,6 +1,7 @@
 
 package com.softserve.edu.opencart.pages.user.common;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -8,38 +9,40 @@ import org.openqa.selenium.WebElement;
 public class ProductPage extends ProductComponent{
     protected WebDriver productLayout;
 
-
+    private WebElement successfulAddingToWishListAlert;
+    private Alerts alerts;
     private ProductsContainerComponent productsContainer;
+    private ProductComponent productComponent;
     private ProductDescriptionComponent productDescription;
     public ProductReviewComponent productReview;
 
-    public ProductPage(WebElement productLayout) {
-        super(productLayout);
+    public ProductPage (WebElement driver) {
+        super(driver);
+        initElements();
+    }
+
+    public void initElements(){
+        productsContainer = new ProductsContainerComponent(productLayout);
+        productComponent = new ProductComponent();
+        successfulAddingToWishListAlert = productLayout.findElement(By.cssSelector("div .alert.alert-success.alert-dismissible"));
+
+        alerts = new Alerts(successfulAddingToWishListAlert);
     }
 
     public ProductPage() {
         super();
     }
 
-    /*public ProductPage(WebDriver productLayout){
-        this.productLayout=productLayout;
-        initElements();
-    }
+    //Page Object
 
-    public ProductPage() {
 
-    }
-
-    public void initElements(){
-        productsContainer = new ProductsContainerComponent(productLayout);
-
-    }
-
-     */
 
 
     public ProductsContainerComponent getProductComponentsContainer() {
         return productsContainer;
+    }
+    public void addProductToWishList(){
+        getProductComponentsContainer().clickProductComponentAddToWishButtonByName(productComponent.getNameText());
     }
 
 
@@ -54,6 +57,11 @@ public class ProductPage extends ProductComponent{
         productReview.clickRating5();
         productReview.clickContinueReviewButton();
 
+    }
+    //business logic
+    public WebElement successfulAddingToWishList(){
+        addProductToWishList();
+        return alerts.getAlert();
     }
 }
 

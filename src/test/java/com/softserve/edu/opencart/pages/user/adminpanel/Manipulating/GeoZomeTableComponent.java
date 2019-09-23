@@ -21,7 +21,7 @@ public class GeoZomeTableComponent {
 
     }
     private void initElements() {
-        tableElement = driver.findElement(By.xpath(LAST_ROW_IN_TABLE));
+        tableElement = driver.findElement(By.xpath("//table[@id='zone-to-geo-zone']/tbody/tr[last()]"));
         deleteButton = driver.findElement(By.xpath("//button[@class='btn btn-danger']"));
         component = new Select(tableElement.findElement(By
                 .xpath("//table[@id='zone-to-geo-zone']/tbody/tr[last()]//select[contains(@name, 'country')]")));

@@ -1,36 +1,37 @@
 package com.softserve.edu.opencart.pages.user.account;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class WishListComponent {
 
-	private WebElement productLayout;
+	private WebElement wishListLayout;
 	private WebElement price;
 	private WebElement addToCartButton;
 	private WebElement name;
 	private WebElement deleteFromWishListButton;
 	private WebElement model;
+	private WebElement stock;
 
-	public WishListComponent(WebElement productLayout) {
-		this.productLayout = productLayout;
+	public WishListComponent(WebElement wishListLayout) {
+		this.wishListLayout = wishListLayout;
 		initElements();
 	}
 
 	private void initElements() {
-		name = productLayout.findElement(By.cssSelector("h4 a"));
-		model=productLayout.findElement(By.xpath("//div[@class='table-responsive']//td/a[text()='MacBook']/../following-sibling::td[text()='Product 16']"));
-		price = productLayout.findElement(By.cssSelector(".price"));
-		addToCartButton = productLayout.findElement(By.cssSelector(".fa.fa-shopping-cart"));
-		deleteFromWishListButton = productLayout.findElement(By.xpath(".fa.fa-times"));
+		name = wishListLayout.findElement(By.xpath("//tbody/tr/td[2]/a"));
+		model= wishListLayout.findElement(By.xpath("//tbody/tr/td[3]"));
+		stock = wishListLayout.findElement(By.xpath("//tbody/tr/td[4]"));
+		price = wishListLayout.findElement(By.cssSelector(".price"));
+		addToCartButton = wishListLayout.findElement(By.cssSelector("td button .fa.fa-shopping-cart"));
+		deleteFromWishListButton = wishListLayout.findElement(By.xpath("td a .fa.fa-times"));
 
 	}
 
 	// Page Object
 	// product
-	public WebElement getProductLayout() {
-		return productLayout;
+	public WebElement getWishListLayout() {
+		return wishListLayout;
 	}
 
 	// name
@@ -44,6 +45,24 @@ public class WishListComponent {
 
 	public void clickName() {
 		getName().click();
+	}
+
+	//model
+	public WebElement getModel() {
+		return model;
+	}
+
+	public String getModelText() {
+		return getModel().getText();
+	}
+
+	//amount in stock
+	public WebElement getStockStatus() {
+		return stock;
+	}
+
+	public String getStockStatusText() {
+		return getStockStatus().getText();
 	}
 
 	// price

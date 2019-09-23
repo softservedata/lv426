@@ -19,7 +19,7 @@ public class ProductComponent {
     }
 
     private void initElements() {
-        actionButton = productChoose.findElement(By.cssSelector("btn.btn-primary"));
+        actionButton = productChoose.findElement(By.cssSelector("a.btn.btn-primary"));
 
     }
 

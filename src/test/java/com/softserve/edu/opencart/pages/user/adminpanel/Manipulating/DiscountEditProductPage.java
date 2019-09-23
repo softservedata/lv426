@@ -18,7 +18,7 @@ public class DiscountEditProductPage extends EditProductPage {
     }
 
     private void initElement() {
-        addNewDiscauntButton =  driver.findElement(By.cssSelector(ADD_NEW_ROW_INTO_TABLE));
+        addNewDiscauntButton =  driver.findElement(By.xpath(ADD_NEW_ROW_INTO_TABLE));
     }
 
     private void clickAddNewDiscountButton() {
@@ -30,7 +30,7 @@ public class DiscountEditProductPage extends EditProductPage {
         return new DiscountTableComponent(driver);
     }
 
-    private DiscountTableComponent getDiscountTableComponent() {
+    private DiscountTableComponent getLastDiscountTableComponent() {
         return new DiscountTableComponent(driver);
     }
 
@@ -39,7 +39,8 @@ public class DiscountEditProductPage extends EditProductPage {
         clickSaveButton();
     }
 
-    public void deleteDiscountTableComponent() {
-        getDiscountTableComponent().deleteComponent();
+    public void deleteLastDiscountTableComponent() {
+        getLastDiscountTableComponent().deleteComponent();
+        clickSaveButton();
     }
 }

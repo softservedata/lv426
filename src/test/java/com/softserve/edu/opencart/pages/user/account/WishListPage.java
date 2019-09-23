@@ -1,12 +1,22 @@
 package com.softserve.edu.opencart.pages.user.account;
 
-import com.softserve.edu.opencart.pages.user.common.ProductComponent;
-import com.softserve.edu.opencart.pages.user.common.TopPart;
+import com.softserve.edu.opencart.pages.user.common.Alerts;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+
 public class WishListPage extends AccountSidebarLoggedPart {
+
+	protected WebDriver driver;
+	protected WebElement wishListLayout;
+
+	private Alerts alerts;
+	private WebElement successfulAddingToShoppingCartFromWishListAlert;
+	private WebElement successfulDeletingFromWishListAlert;
+	private WishListContainerComponent wishListContainer;
+	private WishListComponent wishListComponent;
 
 	public WishListPage(WebDriver driver) {
 		super(driver);
@@ -15,23 +25,57 @@ public class WishListPage extends AccountSidebarLoggedPart {
 	private WebElement deleteFromWishListButton;
 	private WebElement addToCartFromWishListButton;
 
-	private void initElements() {
-		deleteFromWishListButton = driver.findElement(By.xpath("//td[contains(text(),'Product 16')]/following-sibling::td/a[contains(@class,'btn btn-danger')]"));
 
-		addToCartFromWishListButton = driver.findElement(By.xpath("//ul[@class='list-inline']/li/a/i[@class='fa fa-shopping-cart']"));
+	public void initElements(){
+		wishListContainer = new WishListContainerComponent(driver);
+		wishListComponent = new WishListComponent(wishListLayout);
 
+		successfulDeletingFromWishListAlert = wishListLayout.findElement(By.cssSelector(".alert.alert-success.alert-dismissible"));
+		successfulAddingToShoppingCartFromWishListAlert = wishListLayout.findElement(By.cssSelector(".alert.alert-success.alert-dismissible"));
+
+    }
+	public WishListContainerComponent getProductComponentsContainer() {
+		return wishListContainer;
 	}
+
+
 
 	// Page Object
 
 	// Functional
-	public void clickDeleteFromWishListButton() {
-		deleteFromWishListButton.click();
-	}
-	public void clickAddToCartFromWishListButton() {
-		addToCartFromWishListButton.click();
-	}
+
 
 	// Business Logic
+
+	public WishListPage deleteItemFromWishList(String productName){
+		getProductComponentsContainer().
+				clickOnWishListComponentDeleteButton(productName);
+		return new WishListPage(driver);
+	}
+	public WebElement successfulDeletingFromWishList(){
+		deleteItemFromWishList(wishListComponent.getNameText());
+		alerts = new Alerts(successfulDeletingFromWishListAlert);
+		return alerts.getAlert();
+	}
+
+	public void addItemFromWishListToShoppingCart(String productName){
+		getProductComponentsContainer().clickOnWishListComponentAddToCartButton(productName);
+	}
+
+	public WebElement successfulAddingToShoppingCartFromWishList(){
+
+		addItemFromWishListToShoppingCart(wishListComponent.getNameText());
+		alerts = new Alerts(successfulAddingToShoppingCartFromWishListAlert);
+		return alerts.getAlert();
+	}
+	/*
+	public WishListContainerComponent getWishListContainer(){
+		List<Object> wishListProducts = new ArrayList<Object>();
+		wishListProducts = Collections.singletonList(wishListContainer.getWishListComponents());
+
+	}
+	*/
+
+
 
 }

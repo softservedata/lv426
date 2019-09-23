@@ -30,7 +30,7 @@ public class CurrencyRepository {
                 .setSymbolLeft("₴")
                 .setDecimalPlaces(2)
                 .setValue(25.1730)
-                .setStatus("Enable")
+                .setStatus("Enabled")
                 .build();
     }
 }

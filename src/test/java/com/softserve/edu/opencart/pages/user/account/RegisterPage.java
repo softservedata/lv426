@@ -420,4 +420,7 @@ public class RegisterPage extends AccountSidebarGuestPart {
         return new UnsuccessfulRegisterPage(driver);
     }
 
+    public void defaultLogin(IUser user)
+    {}
+
 }

@@ -9,7 +9,11 @@ public class GeoZoneRepository {
         return getGeoZone();
 
     }
-    public static GeoZone getGeoZone() {
-        return new GeoZone("Australia ShippingZone", "New Shiping Zone", "Australia");
+    private static GeoZone getGeoZone() {
+        return GeoZone.builder()
+                .name("Australia ShippingZone")
+                .description("New Shipping Zone")
+                .country("Australia")
+                .build();
     }
 }
