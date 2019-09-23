@@ -4,11 +4,13 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import com.softserve.edu.opencart.data.ApplicationStatus;
 import com.softserve.edu.opencart.data.IUser;
 import com.softserve.edu.opencart.data.UserRepository;
 import com.softserve.edu.opencart.pages.user.HomePage;
-import com.softserve.edu.opencart.pages.user.common.ProductComponent;
-import com.softserve.edu.opencart.pages.user.search.SearchSuccessPage;
+import com.softserve.edu.opencart.pages.user.account.EditAccountPage;
+import com.softserve.edu.opencart.pages.user.account.MyAccountPage;
+import com.softserve.edu.opencart.pages.user.account.UnsuccessfulLoginPage;
 
 public class LoginTest extends UserTestRunner {
 
@@ -19,38 +21,82 @@ public class LoginTest extends UserTestRunner {
 		};
 	}
 
-	@Test(dataProvider = "validUser")
+	//@Test(dataProvider = "validUser")
 	public void checkSuccessful(IUser validUser) throws Exception {
 		// Steps
-		/*
-		SearchSuccessPage searchSuccessPage = loadApplication()
-				.successfulSearch(searchFilter)
-				.chooseCurrency(currency);
-		ProductComponent actualProductComponent = searchSuccessPage
-				.getProductsCriteria()
-				.getProductComponentByName(searchFilter.getProduct());
-		//
-		// Check
-		Assert.assertTrue(actualProductComponent
-				.getPriceText()
-				.contains(searchFilter
-						.getProduct()
-						//.getPriceDollarExTax()));
-						.getPrice(currency)));
+		MyAccountPage myAccountPage = loadApplication()
+				.gotoLoginPage()
+				.successfulLogin(validUser);
 		Thread.sleep(1000); // For Presentation ONLY
 		//
-		// TODO
-		// Continue Searching. Use SearchCriteria from SearchCriteriaPart
+		// Check
+		Assert.assertTrue(ApplicationStatus.get().isLogged());
+		Thread.sleep(1000); // For Presentation ONLY
+		//
+		// Steps
+		// GOTO EditAccountPage + Message
+		EditAccountPage editAccountPage = myAccountPage
+				.gotoEditAccountRight();
+		Thread.sleep(1000); // For Presentation ONLY
+		//
+		// Check
+		Assert.assertEquals(editAccountPage.getFirstNameFieldText(),
+				validUser.getFirstName());
 		//
 		// Return to Previous State
-		HomePage homePage = searchSuccessPage.gotoHomePage();
+		
+		HomePage homePage = editAccountPage
+				.gotoContinue()  		// optional
+				.gotoLogoutRight()
+				.gotoContinue();
+		//
+		// Check (optional)
+		Assert.assertFalse(ApplicationStatus.get().isLogged());
+		Assert.assertTrue(homePage
+				.getSlideshow0FirstImageAttributeSrcText()
+				.contains(HomePage.EXPECTED_IPHONE6));
+		Thread.sleep(1000); // For Presentation ONLY
+	}
+
+	@DataProvider
+	public Object[][] invalidUser() {
+		return new Object[][] {
+			{ UserRepository.get().getInvalidUser() },
+		};
+	}
+
+	@Test(dataProvider = "invalidUser")
+	public void checkUnsuccessful(IUser invalidUser) throws Exception {
+		// Steps
+		UnsuccessfulLoginPage unsuccessfulLoginPage = loadApplication()
+				.gotoLoginPage()
+				.unsuccessfulLoginPage(invalidUser);
+		Thread.sleep(1000); // For Presentation ONLY
+		//
+		// Check
+		Assert.assertFalse(ApplicationStatus.get().isLogged());
+		Thread.sleep(1000); // For Presentation ONLY
+		//
+		// Check
+		Assert.assertTrue(unsuccessfulLoginPage
+				.getAlertWarningText()
+				.toLowerCase()
+				.trim()
+				.contains(UnsuccessfulLoginPage
+						.EXPECTED_LOGIN_MESSAGE
+						.toLowerCase()
+						.trim()));
+		//
+		// Return to Previous State
+		HomePage homePage = unsuccessfulLoginPage
+				.gotoHomePage();
+		Thread.sleep(1000); // For Presentation ONLY
 		//
 		// Check (optional)
 		Assert.assertTrue(homePage
 				.getSlideshow0FirstImageAttributeSrcText()
 				.contains(HomePage.EXPECTED_IPHONE6));
 		Thread.sleep(1000); // For Presentation ONLY
-		*/
 	}
 
 }
