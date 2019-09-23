@@ -43,6 +43,9 @@ public class ProductPage extends ProductComponent{
     public ProductsContainerComponent getProductComponentsContainer() {
         return productsContainer;
     }
+    public void addProductToWishList(){
+        getProductComponentsContainer().clickProductComponentAddToWishButtonByName(productComponent.getNameText());
+    }
 
 
     public void sendReview(){

@@ -59,4 +59,19 @@ public final class UserRepository {
                 .setAddress2("7address2")
                 .build();
     }
+    public IUser getChangePasswordUser() {
+        return User.get()
+                .setFirstName("Test1")
+                .setLastName("Test1")
+                .seteMail(System.getenv().get("EMAIL_ADDRESS"))
+                .setTelephone("123456")
+                .setAddress1("111")
+                .setCity("111")
+                .setPostCode("111")
+                .setCountry("Ukraine")
+                .setRegionState("Kyiv")
+                .setPassword(System.getenv().get("OPENCART_PASSWORD"))
+                .setSubscribe(true)
+                .build();
+    }
 }

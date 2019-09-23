@@ -40,15 +40,12 @@ public class LeftSidebarMenuComponent extends HeaderPart {
     private void clickGeoZoneButton() {
         getMenuComponent(By.xpath("//a[contains(text(),'Geo Zones')]")).button.click();
     }
-<<<<<<< HEAD
-=======
 
     private void clickSalesMenu() {
-        buttonSearching(AdminMenuButtons.SALES).button.click();
+        clickMenuButton(AdminMenuButtons.SALES);
     }
 
     //func
->>>>>>> 17b0ba8a33654a5872c2086cd0844147a8a94678
     private void clickLocalizationMenu() {
         clickMenuButton(AdminMenuButtons.SYSTEM);
         getMenuComponent(By.xpath("//a[contains(text(),'Localisation')]")).button.click();

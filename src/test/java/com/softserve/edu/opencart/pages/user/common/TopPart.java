@@ -297,7 +297,7 @@ public abstract class TopPart {
 
     private void clickDropdownLoggedLogout() {
         getDropdownLogged().clickLogout();
-<<<<<<< HEAD
+
         dropdownLogged = null;
     }
 //
@@ -316,16 +316,13 @@ public abstract class TopPart {
 //        dropdownLogged= null;
 //    }
     
-=======
-        dropdownLogged= null;
-    }
+
 
     private void closeDropdownLogged() {
         clickSearchTopField();
         dropdownLogged= null;
     }
 
->>>>>>> 17b0ba8a33654a5872c2086cd0844147a8a94678
     // Functional
 
     // currency
@@ -463,7 +460,7 @@ public abstract class TopPart {
 //    	createDropdownLogged();
 //    	clickDropdownLoggedDownloads();
 //        return new DownloadsPage(driver);
-<<<<<<< HEAD
+
 //
 //    }
 //
@@ -480,9 +477,8 @@ public abstract class TopPart {
     	clickDropdownLoggedLogout();
         return new AccountLogoutPage(driver);
     }
-=======
+
 //    }
->>>>>>> 17b0ba8a33654a5872c2086cd0844147a8a94678
 
     public ButtonCartProductComponent openButtonCartProductComponent() {
         clickCartButton();

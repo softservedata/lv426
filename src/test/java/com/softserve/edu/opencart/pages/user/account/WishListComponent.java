@@ -1,96 +1,97 @@
 package com.softserve.edu.opencart.pages.user.account;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class WishListComponent {
 
-	private WebElement productLayout;
+	private WebElement wishListLayout;
 	private WebElement price;
 	private WebElement addToCartButton;
 	private WebElement name;
 	private WebElement deleteFromWishListButton;
 	private WebElement model;
-	private WebElement stock;
+    private WebElement stock;
 
-	public WishListComponent(WebElement productLayout) {
-		this.productLayout = productLayout;
+	public WishListComponent(WebElement wishListLayout) {
+		this.wishListLayout = wishListLayout;
 		initElements();
 	}
 
-	private void initElements() {
-		name = productLayout.findElement(By.xpath("//tbody/td/a"));
-		model=productLayout.findElement(By.xpath("//tbody/td[2]]"));
-		stock=productLayout.findElement(By.xpath("//tbody/td[3]]"));
-		price = productLayout.findElement(By.cssSelector(".price"));
-		addToCartButton = productLayout.findElement(By.cssSelector(".fa.fa-shopping-cart"));
-		deleteFromWishListButton = productLayout.findElement(By.xpath(".fa.fa-times"));
+    private void initElements() {
+        name = wishListLayout.findElement(By.xpath("//tbody/tr/td[2]/a"));
+        model= wishListLayout.findElement(By.xpath("//tbody/tr/td[3]"));
+        stock = wishListLayout.findElement(By.xpath("//tbody/tr/td[4]"));
+        price = wishListLayout.findElement(By.cssSelector(".price"));
+        addToCartButton = wishListLayout.findElement(By.cssSelector("td button .fa.fa-shopping-cart"));
+        deleteFromWishListButton = wishListLayout.findElement(By.xpath("td a .fa.fa-times"));
 
-	}
+    }
 
-	// Page Object
-	// product
-	public WebElement getProductLayout() {
-		return productLayout;
-	}
+    // Page Object
+    // product
+    public WebElement getWishListLayout() {
+        return wishListLayout;
+    }
 
-	// name
-	public WebElement getName() {
-		return name;
-	}
+    // name
+    public WebElement getName() {
+        return name;
+    }
 
-	public String getNameText() {
-		return getName().getText();
-	}
+    public String getNameText() {
+        return getName().getText();
+    }
 
-	public void clickName() {
-		getName().click();
-	}
-	// model
-	public WebElement getModel() {
-		return model;
-	}
+    public void clickName() {
+        getName().click();
+    }
 
-	public String getModelText() {
-		return getModel().getText();
-	}
-	// presents in stock
-	public WebElement getPresentsInStock() {
-		return stock;
-	}
+    //model
+    public WebElement getModel() {
+        return model;
+    }
 
-	public String getStockText() {
-		return getPresentsInStock().getText();
-	}
+    public String getModelText() {
+        return getModel().getText();
+    }
 
-	// price
-	public WebElement getPrice() {
-		return price;
-	}
+    //amount in stock
+    public WebElement getStockStatus() {
+        return stock;
+    }
 
-	public String getPriceText() {
-		return getPrice().getText();
-	}
+    public String getStockStatusText() {
+        return getStockStatus().getText();
+    }
 
-	// addToCartButton
-	public WebElement getAddToCartButton() {
-		return addToCartButton;
-	}
+    // price
+    public WebElement getPrice() {
+        return price;
+    }
 
-	public void clickAddToCartButton() {
-		getAddToCartButton().click();
-	}
+    public String getPriceText() {
+        return getPrice().getText();
+    }
 
-	// deleteFromWishListButton
-	public WebElement getDeleteFromWishListButton() {
-		return deleteFromWishListButton;
-	}
+    // addToCartButton
+    public WebElement getAddToCartButton() {
+        return addToCartButton;
+    }
 
-	public void clickDeleteFromWishListButton() {
-		getDeleteFromWishListButton().click();
-	}
+    public void clickAddToCartButton() {
+        getAddToCartButton().click();
+    }
 
+    // deleteFromWishListButton
+    public WebElement getDeleteFromWishListButton() {
+        return deleteFromWishListButton;
+    }
 
+    public void clickDeleteFromWishListButton() {
+        getDeleteFromWishListButton().click();
+    }
 	// Functional
 
 	// Business Logic
