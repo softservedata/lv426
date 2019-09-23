@@ -100,7 +100,7 @@ public class WishListTest {
     }
     @Test
     public void addItemToWishList(){
-        ProductPage productPage = new ProductPage();
+        ProductPage productPage = new ProductPage(driver);
         WishListPage wishListPage = new WishListPage(driver);
         WishListContainerComponent wishListContainerComponent = new WishListContainerComponent(driver);
         List<Object> wishListElements = new ArrayList<Object>();

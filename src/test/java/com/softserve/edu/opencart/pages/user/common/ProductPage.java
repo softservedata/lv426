@@ -1,39 +1,31 @@
 
 package com.softserve.edu.opencart.pages.user.common;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 
-public class ProductPage extends ProductComponent{
-    protected WebDriver productLayout;
+public class ProductPage {
+   protected WebDriver productLayout;
 
-    private WebElement successfulAddingToWishListAlert;
-    private Alerts alerts;
+
     private ProductsContainerComponent productsContainer;
     private ProductComponent productComponent;
     private ProductDescriptionComponent productDescription;
     public ProductReviewComponent productReview;
 
-    public ProductPage (WebElement driver) {
-        super(driver);
+    public ProductPage (WebDriver driver) {
+
+        this.productLayout=driver;
         initElements();
     }
 
     public void initElements(){
         productsContainer = new ProductsContainerComponent(productLayout);
         productComponent = new ProductComponent();
-        successfulAddingToWishListAlert = productLayout.findElement(By.cssSelector("div .alert.alert-success.alert-dismissible"));
 
-        alerts = new Alerts(successfulAddingToWishListAlert);
     }
-
-    public ProductPage() {
-        super();
-    }
-
-    //Page Object
+        //Page Object
 
 
     public void addProductToWishList(){
@@ -43,9 +35,11 @@ public class ProductPage extends ProductComponent{
     public ProductsContainerComponent getProductComponentsContainer() {
         return productsContainer;
     }
-    public void addProductToWishList(){
+   /* public void addProductToWishList(){
         getProductComponentsContainer().clickProductComponentAddToWishButtonByName(productComponent.getNameText());
     }
+    */
+
 
 
     public void sendReview(){
@@ -61,9 +55,9 @@ public class ProductPage extends ProductComponent{
 
     }
     //business logic
-    public WebElement successfulAddingToWishList(){
+    public ProductPageWithAlert successfulAddingToWishList(){
         addProductToWishList();
-        return alerts.getAlert();
+        return new ProductPageWithAlert(productLayout);
     }
 }
 
