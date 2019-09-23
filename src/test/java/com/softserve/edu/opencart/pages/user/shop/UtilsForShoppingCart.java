@@ -174,9 +174,4 @@ public class UtilsForShoppingCart {
         }
     }
 
-
-
-
-
-
 }

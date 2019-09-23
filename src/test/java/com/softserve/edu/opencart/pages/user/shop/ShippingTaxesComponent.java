@@ -45,8 +45,8 @@ public class ShippingTaxesComponent extends ShoppingCartPage {
     }
 
     public void selectRegionForEstimation(String regionName) {
-        regionForShippingAndTaxes = new Select(driver.findElement(By.cssSelector("#input-country")));
-        driver.findElement(By.cssSelector("#input-country")).click();
+        regionForShippingAndTaxes = new Select(driver.findElement(By.cssSelector("#input-zone")));
+        driver.findElement(By.cssSelector("#input-zone")).click();
         regionForShippingAndTaxes.selectByVisibleText(regionName);
     }
 

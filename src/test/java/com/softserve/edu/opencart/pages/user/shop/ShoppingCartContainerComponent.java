@@ -34,11 +34,12 @@ public class ShoppingCartContainerComponent extends ShoppingCartPage {
 		}
 	}
 
-	// Page Object
+
 	public ShoppingCartTableElements listOfCartOrders(){
 		return new ShoppingCartTableElements(ordersInfo);
 	}
 
+	// Page Object
 	public WebElement elementToChangeACountOfOrderingByName(String orderName){
 		return driver.findElement(By.xpath("//td/a[contains(text(),'"+ orderName
 				+"')]/../following-sibling::td/div/input"));

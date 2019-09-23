@@ -2,17 +2,13 @@ package com.softserve.edu.opencart.pages.user.common;
 
 import java.util.List;
 
+import com.softserve.edu.opencart.data.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.softserve.edu.opencart.data.ApplicationStatus;
-import com.softserve.edu.opencart.data.Currencies;
-import com.softserve.edu.opencart.data.IUser;
-import com.softserve.edu.opencart.data.Product;
-import com.softserve.edu.opencart.data.SearchFilter;
 import com.softserve.edu.opencart.pages.user.HomePage;
 import com.softserve.edu.opencart.pages.user.account.AccountLogoutPage;
 import com.softserve.edu.opencart.pages.user.account.LoginPage;
@@ -309,15 +305,6 @@ public abstract class TopPart {
         dropdownLogged = null;
     }
 
-    private void clickDropdownLoggedLogout() {
-    	getDropdownLogged().clickLogout();
-    	dropdownLogged= null;
-    }
-
-    private void closeDropdownLogged() {
-        clickSearchTopField();
-        dropdownLogged= null;
-    }
     
     // Functional
 
@@ -478,13 +465,6 @@ public abstract class TopPart {
     	openMyAccountDropdown();
     	createDropdownLogged();
     	clickDropdownLoggedLogout();
-        return new AccountLogoutPage(driver);
-    }
-
-    public AccountLogoutPage logout() {
-        openMyAccountDropdown();
-        createDropdownLogged();
-        clickDropdownLoggedLogout();
         return new AccountLogoutPage(driver);
     }
 

@@ -6,24 +6,25 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-public class PersonalDetailsForCheckoutRegistration {
+public abstract class PersonalDetailsForCheckoutRegistration {
     private WebElement element;
     private WebDriver driver;
 
-    private WebElement firstName;
-    private WebElement lastName;
-    private WebElement email;
-    private WebElement telephone;
-    private WebElement fax;
-    private WebElement company;
-    private WebElement address01;
-    private WebElement address02;
-    private WebElement city;
-    private WebElement postcode;
-    private WebElement country;
-    private Select countrySelect;
-    private WebElement state;
-    private Select stateSelect;
+    protected WebElement firstName;
+    protected WebElement lastName;
+    protected WebElement email;
+    protected WebElement telephone;
+    protected WebElement fax;
+    protected WebElement company;
+    protected WebElement address01;
+    protected WebElement address02;
+    protected WebElement city;
+    protected WebElement postcode;
+    protected WebElement country;
+    protected Select countrySelect;
+    protected WebElement state;
+    protected Select stateSelect;
+    protected WebElement continueCheckoutButton;
 
     public PersonalDetailsForCheckoutRegistration(WebDriver driver){
         this.driver = driver;
@@ -31,7 +32,7 @@ public class PersonalDetailsForCheckoutRegistration {
     }
 
 
-    private void initElements() {
+    protected void initElements() {
         firstName = driver.findElement(By.name("firstname"));
         lastName = driver.findElement(By.name("lastname"));
         email = driver.findElement(By.name("email"));
@@ -44,6 +45,7 @@ public class PersonalDetailsForCheckoutRegistration {
         postcode = driver.findElement(By.name("postcode"));
         state = driver.findElement(By.cssSelector("select#input-payment-zone"));
         country = driver.findElement(By.cssSelector("select#input-payment-country"));
+        continueCheckoutButton = driver.findElement(By.cssSelector("input#button-account"));
     }
 
     // Page Object
@@ -101,6 +103,10 @@ public class PersonalDetailsForCheckoutRegistration {
 
 
     // Functional
+
+    public void clickContinueCheckoutButton(){
+        continueCheckoutButton.click();
+    }
 
     public void clickFirstNameField() {
         firstName.click();
