@@ -1,7 +1,6 @@
 package com.softserve.edu.opencart.pages.user.account;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class WishListComponent {
@@ -12,6 +11,7 @@ public class WishListComponent {
 	private WebElement name;
 	private WebElement deleteFromWishListButton;
 	private WebElement model;
+	private WebElement stock;
 
 	public WishListComponent(WebElement productLayout) {
 		this.productLayout = productLayout;
@@ -19,8 +19,9 @@ public class WishListComponent {
 	}
 
 	private void initElements() {
-		name = productLayout.findElement(By.cssSelector("h4 a"));
-		model=productLayout.findElement(By.xpath("//div[@class='table-responsive']//td/a[text()='MacBook']/../following-sibling::td[text()='Product 16']"));
+		name = productLayout.findElement(By.xpath("//tbody/td/a"));
+		model=productLayout.findElement(By.xpath("//tbody/td[2]]"));
+		stock=productLayout.findElement(By.xpath("//tbody/td[3]]"));
 		price = productLayout.findElement(By.cssSelector(".price"));
 		addToCartButton = productLayout.findElement(By.cssSelector(".fa.fa-shopping-cart"));
 		deleteFromWishListButton = productLayout.findElement(By.xpath(".fa.fa-times"));
@@ -44,6 +45,22 @@ public class WishListComponent {
 
 	public void clickName() {
 		getName().click();
+	}
+	// model
+	public WebElement getModel() {
+		return model;
+	}
+
+	public String getModelText() {
+		return getModel().getText();
+	}
+	// presents in stock
+	public WebElement getPresentsInStock() {
+		return stock;
+	}
+
+	public String getStockText() {
+		return getPresentsInStock().getText();
 	}
 
 	// price

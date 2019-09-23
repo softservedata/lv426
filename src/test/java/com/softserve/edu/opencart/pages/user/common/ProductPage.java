@@ -12,6 +12,7 @@ public class ProductPage extends ProductComponent{
     private WebElement successfulAddingToWishListAlert;
     private Alerts alerts;
     private ProductsContainerComponent productsContainer;
+    private ProductComponent productComponent;
     private ProductDescriptionComponent productDescription;
     public ProductReviewComponent productReview;
 
@@ -35,7 +36,9 @@ public class ProductPage extends ProductComponent{
     //Page Object
 
 
-
+    public void addProductToWishList(){
+        productsContainer.clickProductComponentAddToWishButtonByName(productComponent.getNameText());
+    }
 
     public ProductsContainerComponent getProductComponentsContainer() {
         return productsContainer;
