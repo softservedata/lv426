@@ -1,5 +1,6 @@
 package com.softserve.edu.opencart.pages.user.account;
 
+import com.softserve.edu.opencart.data.IUser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,34 +14,31 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
     private WebElement wishListRight;
     private WebElement orderHistoryRight;
     private WebElement downloadsRight;
-    private WebElement recurringpaymentsRight;
+    private WebElement recurringPaymentsRight;
     private WebElement rewardPointsRight;
     private WebElement returnsRight;
     private WebElement transactionsRight;
-    private WebElement newsletterRight;
+    private WebElement newsLetterRight;
 
     public AccountSidebarPart(WebDriver driver) {
         super(driver);
         initElements();
     }
-
     private void initElements() {
         // init elements
-        myAccountRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/account')]"));
+        myAccountRight= driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/account')]"));
         addressBookRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/address')]"));
         wishListRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/wishlist')]"));
         orderHistoryRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/order')]"));
         downloadsRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/download')]"));
-        recurringpaymentsRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/recurring')]"));
+        recurringPaymentsRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/recurring')]"));
         rewardPointsRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/reward')]"));
         returnsRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/return')]"));
         transactionsRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/transaction')]"));
-        newsletterRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/newsletter')]"));
+        newsLetterRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/newsletter')]"));
     }
 
-    // Page Object
-
-    // myAccountRight
+	// myAccountRight
     public WebElement getMyAccountRight() {
         return myAccountRight;
     }
@@ -53,7 +51,7 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
         getMyAccountRight().click();
     }
 
-    // addressBookRight
+	// addressBookRight
     public WebElement getAddressBookRight() {
         return addressBookRight;
     }
@@ -107,7 +105,7 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
 
     // recurringpaymentsRight
     public WebElement getRecurringpaymentsRight() {
-        return recurringpaymentsRight;
+        return recurringPaymentsRight;
     }
 
     public String getRecurringpaymentsRightText() {
@@ -159,7 +157,7 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
 
     // newsletterRight
     public WebElement getNewsletterRight() {
-        return newsletterRight;
+        return newsLetterRight;
     }
 
     public String getNewsletterRightText() {
@@ -169,6 +167,8 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
     public void clickNewsletterRight() {
         getNewsletterRight().click();
     }
+
+    protected abstract void defaultLogin(IUser user);
 
     // Functional
 

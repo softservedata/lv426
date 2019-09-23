@@ -10,6 +10,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import com.softserve.edu.opencart.pages.user.adminpanel.AdminLoginPage;
+import com.softserve.edu.opencart.pages.user.mail.LoginPage;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -29,8 +31,9 @@ public abstract class UserTestRunner {
 
 	// TODO
 	private final String DRIVER_ERROR = "ERROR: Chromedriver not Found";
-	private final String SERVER_URL = "http://taqc-opencart.epizy.com";
-	//private final String SERVER_URL = "http://192.168.239.128/opencart/upload/";
+	//private final String SERVER_URL = "http://taqc-opencart.epizy.com";
+	private final String ADMIN_URL = "http://192.168.68.137/opencart/upload/admin";
+	private final String SERVER_URL = "http://192.168.68.137/opencart/upload";
 	private final String TIME_TEMPLATE = "yyyy-MM-dd_HH-mm-ss";
 	//
 	protected final Logger log = LoggerFactory.getLogger(this.getClass().getName());
@@ -39,8 +42,7 @@ public abstract class UserTestRunner {
 	@BeforeClass
 	public void beforeClass() {
 		log.info("Test suite start");
-		System.setProperty("webdriver.chrome.driver",
-			this.getClass().getResource("/chromedriver-windows-32bit.exe").getPath());
+		System.setProperty("webdriver.chrome.driver", "D:\\ChromeDriver\\chromedriver.exe");
 		driver = new ChromeDriver();
 		log.info("ChromeDriver loaded");
 		driver.manage().window().maximize();
@@ -55,7 +57,7 @@ public abstract class UserTestRunner {
 		log.info("ChromeDriver quite");
 	}
 
-	@BeforeMethod
+//	@BeforeMethod
 	public void beforeMethod() {
 		driver.get(SERVER_URL);
 		log.info("Web Application loaded");
@@ -72,14 +74,21 @@ public abstract class UserTestRunner {
 				e.printStackTrace();
 			}
 			// TODO Clear Cache or Logout
-			log.info("Web Application reloaded");
-			driver.get(SERVER_URL);
+		//	log.info("Web Application reloaded");
+		//	driver.get(SERVER_URL);
 		}
 	}
 
 	public HomePage loadApplication() {
+		driver.get(SERVER_URL);
 		log.debug("loadApplication start");
 		return new HomePage(driver);
+	}
+
+	public AdminLoginPage loadAdminLoginPage() {
+		driver.get(ADMIN_URL);
+		log.debug("loadAdminPanel start");
+		return new AdminLoginPage(driver);
 	}
 
 	//@Step("Save attached screenshot")

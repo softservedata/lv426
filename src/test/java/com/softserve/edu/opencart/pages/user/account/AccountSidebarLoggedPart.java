@@ -1,11 +1,11 @@
 package com.softserve.edu.opencart.pages.user.account;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.opencart.data.ApplicationStatus;
 import com.softserve.edu.opencart.data.IUser;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public abstract class AccountSidebarLoggedPart extends AccountSidebarPart {
 
@@ -18,13 +18,11 @@ public abstract class AccountSidebarLoggedPart extends AccountSidebarPart {
         initElements();
         ApplicationStatus.get().setLogged(true);
     }
-
     private void initElements() {
         // init elements
         editAccountRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/edit')]"));
         passwordRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/password')]"));
         logoutRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/logout')]"));
-
     }
 
     // Page Object

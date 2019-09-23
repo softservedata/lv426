@@ -16,7 +16,7 @@ public class AdminLoginPage {
     private WebElement loginButton;
 
 
-    AdminLoginPage (WebDriver driver) {
+    public AdminLoginPage(WebDriver driver) {
         this.driver = driver;
         initElements();
 

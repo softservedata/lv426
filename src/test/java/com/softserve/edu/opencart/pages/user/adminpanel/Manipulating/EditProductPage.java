@@ -51,4 +51,15 @@ public class EditProductPage extends LeftSidebarMenuComponent {
         return new DiscountEditProductPage(driver);
     }
 
+    public SpecialEditProductPage goToSpecialEditProductPage() {
+        clickSpecialButton();
+        return new SpecialEditProductPage(driver);
+    }
+
+    public DataEditProductPage goToDataEditProductPage() {
+        clickDataButton();
+        return new DataEditProductPage(driver);
+    }
+
+
 }

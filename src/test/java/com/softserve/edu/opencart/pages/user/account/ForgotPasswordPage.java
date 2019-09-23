@@ -1,5 +1,6 @@
 package com.softserve.edu.opencart.pages.user.account;
 
+import com.softserve.edu.opencart.data.IUser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -56,4 +57,7 @@ public class ForgotPasswordPage extends AccountSidebarGuestPart {
         clickContinueButton();
         return  new LoginPage(driver);
     }
+    public void defaultLogin(IUser user)
+    {}
+
 }

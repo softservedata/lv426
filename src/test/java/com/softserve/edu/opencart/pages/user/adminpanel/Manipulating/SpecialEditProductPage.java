@@ -5,8 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import static com.softserve.edu.opencart.data.SpecialRepository.getNewSpecialPrice;
-
 public class SpecialEditProductPage extends EditProductPage {
     private WebDriver driver;
     private WebElement addNewSpecialButton;
@@ -21,7 +19,7 @@ public class SpecialEditProductPage extends EditProductPage {
     }
 
     private void initElements() {
-        addNewSpecialButton = driver.findElement(By.cssSelector(ADD_NEW_ROW_INTO_TABLE));
+        addNewSpecialButton = driver.findElement(By.xpath("//table[@id='special']//tfoot//button[@class='btn btn-primary']"));
     }
 
     private void clickaddNewSpecialButton() {
@@ -33,7 +31,7 @@ public class SpecialEditProductPage extends EditProductPage {
         return new SpecialTableComponent(driver);
     }
 
-    private SpecialTableComponent getLastInTableComponent() {
+    private SpecialTableComponent getLastSpecialTableComponent() {
         return new SpecialTableComponent(driver);
     }
 
@@ -44,9 +42,10 @@ public class SpecialEditProductPage extends EditProductPage {
         clickSaveButton();
     }
 
-    public void deleteAllDiscountTableComponent() {
+    public void deleteLastSpecialTableComponent() {
 
-        getLastInTableComponent().deleteSpecialTableComponent();
+        getLastSpecialTableComponent().deleteSpecialTableComponent();
+        clickSaveButton();
 
     }
 }
