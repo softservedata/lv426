@@ -1,10 +1,12 @@
 package com.softserve.edu.opencart.pages.user.account;
 
-import com.softserve.edu.opencart.data.ApplicationStatus;
-import com.softserve.edu.opencart.pages.user.HomePage;
+import com.softserve.edu.opencart.data.IUser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import com.softserve.edu.opencart.data.ApplicationStatus;
+import com.softserve.edu.opencart.pages.user.HomePage;
 
 public class AccountLogoutPage extends AccountSidebarGuestPart {
 
@@ -15,7 +17,6 @@ public class AccountLogoutPage extends AccountSidebarGuestPart {
         initElements();
         ApplicationStatus.get().setLogged(false);
     }
-
 
     private void initElements() {
         continueButton = driver.findElement(By.cssSelector("a.btn.btn-primary[href*='common/home']"));
@@ -44,4 +45,8 @@ public class AccountLogoutPage extends AccountSidebarGuestPart {
         clickContinueButton();
         return new HomePage(driver);
     }
+
+    public void defaultLogin(IUser user)
+    {}
+
 }

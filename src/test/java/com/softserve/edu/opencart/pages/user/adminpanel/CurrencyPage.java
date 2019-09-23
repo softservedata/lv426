@@ -1,6 +1,7 @@
 package com.softserve.edu.opencart.pages.user.adminpanel;
 
 import com.softserve.edu.opencart.data.Currency;
+import com.softserve.edu.opencart.data.ICurrency;
 import com.softserve.edu.opencart.pages.user.adminpanel.LeftSidebarMenuComponent;
 import com.softserve.edu.opencart.pages.user.adminpanel.Manipulating.AddNewCurrencyPage;
 import com.softserve.edu.opencart.pages.user.adminpanel.Manipulating.AdminListContainerComponent;
@@ -18,6 +19,7 @@ public class CurrencyPage extends LeftSidebarMenuComponent {
     public CurrencyPage(WebDriver driver) {
         super(driver);
         this.driver = driver;
+        initElements();
     }
 
     private void initElements() {
@@ -45,7 +47,7 @@ public class CurrencyPage extends LeftSidebarMenuComponent {
     }
 
 
-    public CurrencyPage deleteCurrency(Currency currency) {
+    public CurrencyPage deleteCurrency(ICurrency currency) {
         listContainerComponent.selectByName(currency.getTitle());
         clickDeleteButton();
         asseptAlert();

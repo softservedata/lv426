@@ -9,7 +9,8 @@ public enum AdminMenuButtons {
 
     CATALOG("menu-catalog"),
     CUSTOMERS("menu-customer"),
-    SYSTEM("menu-system");
+    SYSTEM("menu-system"),
+    SALES("menu-sale");
 
     private String value;
 

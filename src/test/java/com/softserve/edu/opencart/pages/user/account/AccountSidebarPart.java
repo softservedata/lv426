@@ -1,5 +1,6 @@
 package com.softserve.edu.opencart.pages.user.account;
 
+import com.softserve.edu.opencart.data.IUser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,7 +8,6 @@ import org.openqa.selenium.WebElement;
 import com.softserve.edu.opencart.pages.user.common.BreadCrumbPart;
 
 public abstract class AccountSidebarPart extends BreadCrumbPart {
-
 
     private WebElement myAccountRight;
     private WebElement addressBookRight;
@@ -167,6 +167,8 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
     public void clickNewsletterRight() {
         getNewsletterRight().click();
     }
+
+    protected abstract void defaultLogin(IUser user);
 
     // Functional
 

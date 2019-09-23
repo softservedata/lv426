@@ -1,5 +1,9 @@
 package com.softserve.edu.opencart.pages.user.account;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 10080706ba59f3dc327d698be6b5366a3a0c38d2
 import com.softserve.edu.opencart.data.ApplicationStatus;
 import com.softserve.edu.opencart.data.IUser;
 import org.openqa.selenium.By;

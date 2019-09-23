@@ -25,7 +25,7 @@ protected WebDriver productLayout;
     public WebElement continueReviewButton;
 
     public ProductReviewComponent(WebDriver productLayout){
-        super();
+        super(productLayout);
         this.productLayout=productLayout;
         initElements();
     }

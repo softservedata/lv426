@@ -21,12 +21,10 @@ import com.softserve.edu.opencart.pages.user.shop.ShoppingCartPage;
 
 public abstract class TopPart {
 
-
     protected final Logger log = LoggerFactory.getLogger(this.getClass().getName());
-
     protected final String OPTION_NULL_MESSAGE = "DropdownComponent is null";
     protected final String OPTION_NOT_FOUND_MESSAGE = "Option %s not found in %s";
-    protected final String PAGE_DO_NOT_EXIST = "Page do not exist!!!";
+    protected final String PAGE_DO_NOT_EXIST="Page do not exist!!!";
     //
     protected final String TAG_ATTRIBUTE_VALUE = "value";
     protected final String TAG_ATTRIBUTE_SRC = "src";
@@ -46,9 +44,7 @@ public abstract class TopPart {
     private WebElement searchTopButton;
     private WebElement cartButton;
     //
-
     // private MainMenuComponent MainMenuComponent;
-
     private DropdownComponent dropdownComponent;
     private DropdownGuest dropdownGuest;
     private DropdownLogged dropdownLogged;
@@ -196,11 +192,11 @@ public abstract class TopPart {
 
     // TODO getCartButtonNumber()
 
-
     // dropdownComponent
     protected DropdownComponent getDropdownComponent() {
         //LeaveUtils.castExceptionByCondition(dropdownOptions == null, OPTION_NULL_MESSAGE);
-        if (dropdownComponent == null) {
+        if (dropdownComponent == null)
+        {
             // TODO Develop Custom Exception
             throw new RuntimeException(OPTION_NULL_MESSAGE);
         }
@@ -215,7 +211,8 @@ public abstract class TopPart {
     private void clickDropdownComponentByPartialName(String optionName) {
         //LeaveUtils.castExceptionByCondition(!getDropdownOptions().isExistDropdownOptionByPartialName(optionName),
         //        String.format(OPTION_NOT_FOUND_MESSAGE, optionName, dropdownOptions.getListOptionsText().toString()));
-        if (!getDropdownComponent().isExistDropdownOptionByPartialName(optionName)) {
+        if (!getDropdownComponent().isExistDropdownOptionByPartialName(optionName))
+        {
             // TODO Develop Custom Exception
             throw new RuntimeException(String.format(OPTION_NOT_FOUND_MESSAGE, optionName, getDropdownComponent().getListOptionsText().toString()));
         }
@@ -231,7 +228,8 @@ public abstract class TopPart {
 
     // dropdownGuest
     protected DropdownGuest getDropdownGuest() {
-        if (dropdownGuest == null) {
+        if (dropdownGuest == null)
+        {
             // TODO Develop Custom Exception
             throw new RuntimeException(OPTION_NULL_MESSAGE);
         }
@@ -251,7 +249,6 @@ public abstract class TopPart {
     private void clickDropdownGuestLogin() {
         getDropdownGuest().clickLogin();
         dropdownGuest = null;
-
     }
 
     private void closeDropdownGuest() {
@@ -259,10 +256,10 @@ public abstract class TopPart {
         dropdownGuest = null;
     }
 
-
     // dropdownLogged
     protected DropdownLogged getDropdownLogged() {
-        if (dropdownLogged == null) {
+        if (dropdownLogged == null)
+        {
             // TODO Develop Custom Exception
             throw new RuntimeException(OPTION_NULL_MESSAGE);
         }
@@ -275,41 +272,56 @@ public abstract class TopPart {
     }
 
     private void clickDropdownLoggedMyAccount() {
-
         getDropdownLogged().clickMyAccount();
-        dropdownLogged = null;
+        dropdownLogged= null;
     }
 
     private void clickDropdownLoggedOrderHistory() {
         getDropdownLogged().clickOrderHistory();
-        dropdownLogged = null;
+        dropdownLogged= null;
     }
 
     private void clickDropdownLoggedTransactions() {
         getDropdownLogged().clickTransactions();
-        dropdownLogged = null;
+        dropdownLogged= null;
     }
 
     private void clickDropdownLoggedDownloads() {
         getDropdownLogged().clickDownloads();
-        dropdownLogged = null;
+        dropdownLogged= null;
     }
 
     private void clickDropdownLoggedLogout() {
         getDropdownLogged().clickLogout();
+
         dropdownLogged = null;
     }
+//
+//    private void closeDropdownLogged() {
+//        clickSearchTopField();
+//        dropdownLogged = null;
+//    }
+//
+//    private void clickDropdownLoggedLogout() {
+//    	getDropdownLogged().clickLogout();
+//    	dropdownLogged= null;
+//    }
+//
+//    private void closeDropdownLogged() {
+//        clickSearchTopField();
+//        dropdownLogged= null;
+//    }
+    
+
 
     private void closeDropdownLogged() {
         clickSearchTopField();
-        dropdownLogged = null;
+        dropdownLogged= null;
     }
 
-    
     // Functional
 
     // currency
-
     private void openCurrencyDropdownComponent() {
         clickSearchTopField();
         clickCurrency();
@@ -334,7 +346,7 @@ public abstract class TopPart {
         clickSearchTopField();
         clickMyAccount();
     }
-	
+
     // myAccount
 //    private void clickDropdownMyAccountByPartialName(String componentName) {
 //        clickSearchTopField();
@@ -361,12 +373,10 @@ public abstract class TopPart {
     }
 
     protected void defaultLogin(IUser user) {
-
         if (!ApplicationStatus.get().isLogged()) {
             new LoginPage(driver)
                     .fillLogin(user);
         }
-
     }
 
     // Business Logic
@@ -377,7 +387,6 @@ public abstract class TopPart {
     }
 
     public SearchSuccessPage successfulSearch(SearchFilter searchFilter) {
-
         return successfulSearch(searchFilter.getProduct());
     }
 
@@ -389,9 +398,7 @@ public abstract class TopPart {
     }
 
     //public SearchUnsuccessPage unsuccessfulSearch(String searchItem){
-
-    public SearchUnsuccessPage unsuccessfulSearch(Product product) {
-
+    public SearchUnsuccessPage unsuccessfulSearch(Product product){
         fillSearchTopField(product.getName());
         clickSearchTopButton();
         return new SearchUnsuccessPage(driver);
@@ -399,10 +406,8 @@ public abstract class TopPart {
 
     // TODO ++++++++++++
     public WishListPage gotoWishListPage(IUser user) {
-
         clickWishList();
         defaultLogin(user);
-
         return new WishListPage(driver);
     }
 
@@ -438,29 +443,30 @@ public abstract class TopPart {
 //    	clickDropdownLoggedOrderHistory();
 //        return new OrderHistoryPage(driver);
 //    }
-
+//
 //    public TransactionsPage gotoTransactions() {
 //    	openMyAccountDropdown();
 //    	createDropdownLogged();
 //    	clickDropdownLoggedTransactions();
 //        return new TransactionsPage(driver);
 //    }
-
+//
 //    public DownloadsPage gotoDownloads() {
 //    	openMyAccountDropdown();
 //    	createDropdownLogged();
 //    	clickDropdownLoggedDownloads();
 //        return new DownloadsPage(driver);
 
+//
 //    }
-    
+//
 //    public DownloadsPage gotoDownloads() {
 //    	openMyAccountDropdown();
 //    	createDropdownLogged();
 //    	clickDropdownLoggedDownloads();
 //        return new DownloadsPage(driver);
 //    }
-    
+//
     public AccountLogoutPage logout() {
     	openMyAccountDropdown();
     	createDropdownLogged();

@@ -12,13 +12,24 @@ public class TaxClassRepository {
     }
 
     public static TaxClass getPercentage() {
-        return getPercentageClass();
-    }
-    public static TaxClass getFixedAmountClass() {
-        return new TaxClass("Test Class", "New Test Class", "Fixed TestTax");
+        return  getPercentageClass();
     }
 
-    public static TaxClass getPercentageClass() {
-        return new TaxClass("Test Class", "new Test Class", "Percentage TestTax");
+    private static TaxClass getFixedAmountClass() {
+        return TaxClass.builder()
+                .name("Test Class")
+                .description("New Test Class")
+                .taxRate("Fixed TestTax")
+                .build();
+
+    }
+
+    private static TaxClass getPercentageClass() {
+        return TaxClass.builder()
+                .name("Test Class")
+                .description("New Test Class")
+                .taxRate("Percentage TestTax")
+                .build();
+
     }
 }

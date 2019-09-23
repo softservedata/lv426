@@ -31,7 +31,7 @@ public class ConfirmOrder extends CheckOutPage{
             listOrderInfo();
         }
     }
-    
+
     public ConfirmOrderTableContainer listOrderInfo(){
         return new ConfirmOrderTableContainer(listWithInfo);
     }
