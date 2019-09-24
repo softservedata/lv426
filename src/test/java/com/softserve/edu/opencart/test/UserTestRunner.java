@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import com.softserve.edu.opencart.pages.user.account.WishListPage;
 import com.softserve.edu.opencart.pages.user.adminpanel.AdminLoginPage;
 import com.softserve.edu.opencart.pages.user.mail.LoginPage;
 import org.apache.commons.io.FileUtils;
