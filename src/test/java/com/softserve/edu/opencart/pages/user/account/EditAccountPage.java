@@ -13,6 +13,7 @@ public class EditAccountPage extends AccountSidebarLoggedPart {
     private WebElement telephone;
     private WebElement fax;
     private WebElement continueButton;
+    private WebElement backButton;
 
     public EditAccountPage(WebDriver driver) {
         super(driver);
@@ -25,7 +26,8 @@ public class EditAccountPage extends AccountSidebarLoggedPart {
         email = driver.findElement(By.name("email"));
         telephone = driver.findElement(By.name("telephone"));
         fax = driver.findElement(By.name("fax"));
-        continueButton = driver.findElement(By.cssSelector("div.buttons.clearfix div.pull-right input"));
+        continueButton = driver.findElement(By.cssSelector("input.btn.btn-primary"));
+        backButton = driver.findElement(By.cssSelector("a.btn.btn-default"));
     }
 
     // Page Object
@@ -124,6 +126,15 @@ public class EditAccountPage extends AccountSidebarLoggedPart {
         getContinueButton().click();
     }
 
+    //backButton
+    public WebElement getBackButton() {
+        return backButton;
+    }
+
+    public void clickBackButtonn() {
+        getBackButton().click();
+    }
+
     // Functional
 
     private void enterFirstName(String firstname) {
@@ -156,15 +167,24 @@ public class EditAccountPage extends AccountSidebarLoggedPart {
         setFax(fax);
     }
 
-    // Business Logic
-    public MyAccountPage fillEditAccount(IUser user) {
+    public void fillEditAccount(IUser user) {
         enterFirstName(user.getFirstName());
         enterLastName(user.getLastName());
         enterEmail(user.geteMail());
         enterTelephone(user.getTelephone());
         enterFax(user.getFax());
+    }
 
+    // Business Logic
+    public SuccessfulAccountEditPage successEditAccount(IUser user) {
+        fillEditAccount(user);
         clickContinueButtonn();
+        return new SuccessfulAccountEditPage(driver);
+    }
+
+    public MyAccountPage withoutSavingEditAccount(IUser user) {
+        fillEditAccount(user);
+        clickBackButtonn();
         return new MyAccountPage(driver);
     }
 }
