@@ -74,4 +74,9 @@ public final class UserRepository {
                 .setSubscribe(true)
                 .build();
     }
+
+//    public IUser getShopValidUser(){
+//        return User.get()
+//                .setFirstName()
+//    }
 }

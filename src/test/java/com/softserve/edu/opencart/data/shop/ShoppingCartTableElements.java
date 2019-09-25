@@ -21,7 +21,7 @@ public class ShoppingCartTableElements {
     public CartTableFullOrderInfo getOrderFromTableByName(String orderName) {
         CartTableFullOrderInfo order = null;
         for (CartTableFullOrderInfo current : getAllOrderFromTable()) {
-            if (current.getProductName()
+            if (current.getProductNameWeb()
                     .equals(orderName)) {
                 order = current;
                 break;
@@ -34,19 +34,19 @@ public class ShoppingCartTableElements {
     }
 
     public String getOrderUnitPriceByName(String orderName){
-        return  getOrderFromTableByName(orderName).getUnitPrice().getText();
+        return  getOrderFromTableByName(orderName).getUnitPriceWeb().getText();
     }
 
     public String getOrderTotalPriceByName(String orderName){
-        return getOrderFromTableByName(orderName).getTotal().getText();
+        return getOrderFromTableByName(orderName).getTotalWeb().getText();
     }
 
     public String getOrderModelByName(String orderName){
-        return getOrderFromTableByName(orderName).getModel().getText();
+        return getOrderFromTableByName(orderName).getModelWeb().getText();
     }
 
     public String getOrderQuantityByName(String orderName){
-        return getOrderFromTableByName(orderName).getQuantity().getText();
+        return getOrderFromTableByName(orderName).getQuantityWeb().getText();
     }
 
 

@@ -1,5 +1,11 @@
 package com.softserve.edu.opencart.data.shop;
 
+import lombok.*;
+
+
+@Setter
+@NoArgsConstructor
+@Builder
 public class CountryForEstimation {
         private String countryName;
         private String regionName;

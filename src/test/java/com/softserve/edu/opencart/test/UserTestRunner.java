@@ -34,6 +34,8 @@ public abstract class UserTestRunner {
 	//private final String SERVER_URL = "http://taqc-opencart.epizy.com";
 	private final String ADMIN_URL = "http://192.168.68.137/opencart/upload/admin";
 	private final String SERVER_URL = "http://192.168.68.137/opencart/upload";
+	private final String SERVER_URL_BY_MAX = "http://192.168.163.136/opencart/upload";
+	private final String ADMIN_URL_BY_MAX = "http://192.168.163.136/opencart/upload/admin";
 	private final String TIME_TEMPLATE = "yyyy-MM-dd_HH-mm-ss";
 	//
 	protected final Logger log = LoggerFactory.getLogger(this.getClass().getName());
@@ -42,7 +44,9 @@ public abstract class UserTestRunner {
 	@BeforeClass
 	public void beforeClass() {
 		log.info("Test suite start");
-		System.setProperty("webdriver.chrome.driver", "D:\\ChromeDriver\\chromedriver.exe");
+		//System.setProperty("webdriver.chrome.driver", "D:\\ChromeDriver\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe");//Maksym
 		driver = new ChromeDriver();
 		log.info("ChromeDriver loaded");
 		driver.manage().window().maximize();
@@ -57,9 +61,9 @@ public abstract class UserTestRunner {
 		log.info("ChromeDriver quite");
 	}
 
-//	@BeforeMethod
+	//@BeforeMethod
 	public void beforeMethod() {
-		driver.get(SERVER_URL);
+		driver.get(SERVER_URL_BY_MAX);
 		log.info("Web Application loaded");
 	}
 
@@ -80,7 +84,8 @@ public abstract class UserTestRunner {
 	}
 
 	public HomePage loadApplication() {
-		driver.get(SERVER_URL);
+		//driver.get(SERVER_URL);
+		driver.get(SERVER_URL_BY_MAX);
 		log.debug("loadApplication start");
 		return new HomePage(driver);
 	}

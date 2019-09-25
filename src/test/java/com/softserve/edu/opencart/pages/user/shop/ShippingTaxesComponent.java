@@ -4,11 +4,15 @@ import com.softserve.edu.opencart.data.shop.CountryForEstimation;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ShippingTaxesComponent extends ShoppingCartPage {
 
     protected WebDriver driver;
+    private WebDriverWait explicitWait;
+
     private Select countryForShippingAndTaxes;
     private Select regionForShippingAndTaxes;
     private WebElement postcodeForShippingAndTaxes;
@@ -21,6 +25,7 @@ public class ShippingTaxesComponent extends ShoppingCartPage {
 
     public ShippingTaxesComponent(WebDriver driver) {
         super(driver);
+        this.driver = driver;
         initElements();
     }
 
@@ -28,10 +33,14 @@ public class ShippingTaxesComponent extends ShoppingCartPage {
         // init elements
         postcodeForShippingAndTaxes = driver.findElement(By.cssSelector("#input-postcode"));
         getQuotesButton = driver.findElement(By.cssSelector("button[id=\"button-quote\"]"));
-        taxConfirmAlert = driver.findElement(By.cssSelector("div.modal-content label input"));
-        cancelButtonTaxAlert = driver.findElement(By.cssSelector("div.modal-footer  button"));
-        applyButtonTaxAlert = driver.findElement(By.cssSelector("div.modal-footer  input"));
-        flatRateInAlert = driver.findElement(By.cssSelector("div.modal-content label"));
+//        taxConfirmAlert = explicitWait.until(ExpectedConditions.visibilityOfElementLocated(
+//                (By.cssSelector("div.modal-content label input"))));
+//        cancelButtonTaxAlert = explicitWait.until(ExpectedConditions
+//                .visibilityOfElementLocated((By.cssSelector("div.modal-footer  button"))));
+//        applyButtonTaxAlert = explicitWait.until(ExpectedConditions
+//                .visibilityOfElementLocated((By.cssSelector("div.modal-footer  input"))));
+//        flatRateInAlert = explicitWait.until(ExpectedConditions
+//                .visibilityOfElementLocated((By.cssSelector("div.modal-content label"))));
     }
 
     // Page Object
@@ -70,18 +79,23 @@ public class ShippingTaxesComponent extends ShoppingCartPage {
 
     //Tax alert
     public String getFlatRateFromAlert() {
+        flatRateInAlert = driver.findElement(By.cssSelector("div.modal-content label"));
         return flatRateInAlert.getText();
     }
 
     public void applyTaxRateInAlert() {
+        applyButtonTaxAlert = driver.findElement(By.cssSelector("div.modal-footer  input"));
         applyButtonTaxAlert.click();
     }
 
-    public void taxConfirmInAlertClick() {
+    public ShoppingCartPage taxConfirmInAlertClick() {
+        taxConfirmAlert = driver.findElement(By.cssSelector("div.modal-content label input"));
         taxConfirmAlert.click();
+        return new ShoppingCartPage(driver);
     }
 
     public void cancelEstimationAlertClick() {
+        cancelButtonTaxAlert = driver.findElement(By.cssSelector("div.modal-footer  button"));
         cancelButtonTaxAlert.click();
     }
 
@@ -93,21 +107,22 @@ public class ShippingTaxesComponent extends ShoppingCartPage {
     }
 
     // In this case, there is not any taxes
-    public void estimationShoppingCartPageFals(CountryForEstimation countryForEstimation) {
+    public ShoppingCartPage estimationShoppingCartPageFals(CountryForEstimation countryForEstimation) {
         selectCountryForEstimation(countryForEstimation.getCountryName());
         selectRegionForEstimation(countryForEstimation.getRegionName());
         inputPostCodeForEstimation(countryForEstimation.getPostCode());
         getQuotesClick();
+        return new ShoppingCartPage(driver);
     }
 
     // In this case, there is a tax
-    public void estimationShoppingCartPageTrue(CountryForEstimation countryForEstimation) {
+    public ShoppingCartPage estimationShoppingCartPageTrue(CountryForEstimation countryForEstimation) {
         selectCountryForEstimation(countryForEstimation.getCountryName());
         selectRegionForEstimation(countryForEstimation.getRegionName());
         inputPostCodeForEstimation(countryForEstimation.getPostCode());
         getQuotesClick();
         taxConfirmInAlertClick();
         applyTaxRateInAlert();
-
+        return new ShoppingCartPage(driver);
     }
 }
