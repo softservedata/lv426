@@ -10,24 +10,20 @@ public class UnsuccessfulRegisterPage extends AccountSidebarGuestPart {
 
     public UnsuccessfulRegisterPage(WebDriver driver) {
         super(driver);
-        initElements();
     }
 
-    private void initElements() {
-
+    protected void defaultLogin(IUser user) {
     }
-    public void defaultLogin(IUser user)
-    {}
 
     // Page Object
 
-    // currency
-    private WebElement getWarningWithoutAgreePrivacyPolicy() {
+    // wsrningBox
+    private WebElement getWarningBox() {
         return driver.findElement(By.cssSelector("div.alert.alert-danger"));
     }
 
-    public String getWarningWithoutAgreePrivacyPolicyText() {
-        return getWarningWithoutAgreePrivacyPolicy().getText();
+    public String getWarningBoxText() {
+        return getWarningBox().getText();
     }
 
     //firstName

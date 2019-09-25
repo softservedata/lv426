@@ -47,7 +47,7 @@ public class RegisterPage extends AccountSidebarGuestPart {
         agreePrivacyPolicyLink = driver.findElement(By.name("agree"));
         regionState = driver.findElement(By.id("input-zone"));
         country = driver.findElement(By.id("input-country"));
-        subscribe = driver.findElement(By.xpath("label.radio-inline input"));
+        subscribe = driver.findElement(By.cssSelector("label.radio-inline input"));
     }
 
     // Page Object

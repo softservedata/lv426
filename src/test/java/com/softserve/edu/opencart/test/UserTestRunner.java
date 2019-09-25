@@ -37,6 +37,7 @@ public abstract class UserTestRunner {
 	private final String SERVER_URL = "http://192.168.68.137/opencart/upload";
 	private final String SERVER_URL_BY_MAX = "http://192.168.163.136/opencart/upload";
 	private final String ADMIN_URL_BY_MAX = "http://192.168.163.136/opencart/upload/admin";
+    private final String SERVER_URL_BY_OLESIA = "http://192.168.45.131/opencart/upload";
 	private final String TIME_TEMPLATE = "yyyy-MM-dd_HH-mm-ss";
 	//
 	protected final Logger log = LoggerFactory.getLogger(this.getClass().getName());
@@ -90,6 +91,12 @@ public abstract class UserTestRunner {
 		log.debug("loadApplication start");
 		return new HomePage(driver);
 	}
+
+    public HomePage loadOlesiaApplication() {
+        driver.get(SERVER_URL_BY_OLESIA);
+        log.debug("loadApplication start");
+        return new HomePage(driver);
+    }
 
 	public AdminLoginPage loadAdminLoginPage() {
 		driver.get(ADMIN_URL);
