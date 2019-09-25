@@ -11,6 +11,7 @@ import com.softserve.edu.opencart.pages.user.HomePage;
 import com.softserve.edu.opencart.pages.user.account.EditAccountPage;
 import com.softserve.edu.opencart.pages.user.account.MyAccountPage;
 import com.softserve.edu.opencart.pages.user.account.UnsuccessfulLoginPage;
+import com.softserve.edu.opencart.tools.ListUtils;
 
 public class LoginTest extends UserTestRunner {
 
@@ -21,7 +22,14 @@ public class LoginTest extends UserTestRunner {
 		};
 	}
 
+	@DataProvider
+	public Object[][] validUsers() {
+		//return ListUtils.toMultiArray(UserRepository.get().fromCsv());
+		return ListUtils.toMultiArray(UserRepository.get().fromExcel());
+	}
+
 	//@Test(dataProvider = "validUser")
+	@Test(dataProvider = "validUsers")
 	public void checkSuccessful(IUser validUser) throws Exception {
 		// Steps
 		MyAccountPage myAccountPage = loadApplication()
@@ -65,7 +73,7 @@ public class LoginTest extends UserTestRunner {
 		};
 	}
 
-	@Test(dataProvider = "invalidUser")
+	//@Test(dataProvider = "invalidUser")
 	public void checkUnsuccessful(IUser invalidUser) throws Exception {
 		// Steps
 		UnsuccessfulLoginPage unsuccessfulLoginPage = loadApplication()

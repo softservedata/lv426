@@ -1,5 +1,11 @@
 package com.softserve.edu.opencart.data;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 interface IFirstName {
 	ILastName setFirstName(String firstName);
 }
@@ -58,6 +64,39 @@ public class User implements IFirstName, ILastName,
 			IEMail, ITelephone, IAddress1, ICity,
 			IPostCode, ICountry, IRegionState,
 			IPassword, ISubscribe, IUserBuild, IUser {
+
+    public static enum UserColumns {
+        FIRST_NAME(0),
+        LAST_NAME(1),
+        EMAIL(2),
+        TELEPHONE(3),
+        ADDRESS1(4),
+        CITY(5),
+        POST_CODE(6),
+        COUNTRY(7),
+        REGION_STATE(8),
+        PASSWORD(9),
+        SUBSCRIBE(10),
+        FAX(11),
+        COMPANY(12),
+        ADDRESS2(13);
+        //
+        private int index;
+
+        private UserColumns(int index) {
+            this.index = index;
+        }
+
+        public int getIndex() {
+            return index;
+        }
+    }
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    private static final String EMAIL_SEPARATOR = "@";
+    private static final String EMPTY_STRING = new String();
+    private static final Logger logger = LoggerFactory.getLogger(User.class);
 
 	private String firstName;
 	private String lastName;
@@ -290,4 +329,64 @@ public class User implements IFirstName, ILastName,
 		return subscribe;
 	}
 
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    public static IUser getByList(List<String> row) {
+        //logger.trace("row.size() = " + row.size() + " UserColumns.values().length = " + UserColumns.values().length);
+        List<String> userData = new ArrayList<>(row);
+        for (int i = userData.size(); i < UserColumns.values().length; i++) {
+            userData.add(EMPTY_STRING);
+        }
+        return User.get()
+                .setFirstName(userData.get(UserColumns.FIRST_NAME.getIndex()))
+                .setLastName(userData.get(UserColumns.LAST_NAME.getIndex()))
+                .seteMail(userData.get(UserColumns.EMAIL.getIndex()))
+                .setTelephone(userData.get(UserColumns.TELEPHONE.getIndex()))
+                .setAddress1(userData.get(UserColumns.ADDRESS1.getIndex()))
+                .setCity(userData.get(UserColumns.CITY.getIndex()))
+                .setPostCode(userData.get(UserColumns.POST_CODE.getIndex()))
+                .setCountry(userData.get(UserColumns.COUNTRY.getIndex()))
+                .setRegionState(userData.get(UserColumns.REGION_STATE.getIndex()))
+                .setPassword(userData.get(UserColumns.PASSWORD.getIndex()))
+                .setSubscribe(Boolean.parseBoolean(userData
+                		.get(UserColumns.SUBSCRIBE.getIndex()).toLowerCase()))
+                .setFax(userData.get(UserColumns.FAX.getIndex()) != null ? userData.get(UserColumns.FAX.getIndex()) : EMPTY_STRING)
+                //.setFax( userData.get(UserColumns.FAX.getIndex()) == null
+                //            || userData.get(UserColumns.FAX.getIndex()).isEmpty()
+                //        ? EMPTY_STRING : userData.get(UserColumns.FAX.getIndex()))
+                .setCompany(userData.get(UserColumns.COMPANY.getIndex()) != null ? userData.get(UserColumns.COMPANY.getIndex()) : EMPTY_STRING)
+                .setAddress2(userData.get(UserColumns.ADDRESS2.getIndex()) != null ? userData.get(UserColumns.ADDRESS2.getIndex()) : EMPTY_STRING)
+                .build();
+    }
+	
+    public static List<IUser> getByLists(List<List<String>> rows) {
+        List<IUser> result = new ArrayList<>();
+        // TODO Verify Test Data as Valid
+        if (!rows.get(0).get(UserColumns.EMAIL.getIndex())
+                .contains(EMAIL_SEPARATOR)) {
+            rows.remove(0);
+        }
+        for (List<String> currentRow : rows) {
+            result.add(getByList(currentRow));
+        }
+        return result;
+    }
+
+	@Override
+	public String toString() {
+		return "\n\tFirstname: " + getFirstName()
+			+ "\tLastname: " + getLastName()
+			+ "\tEmail: " + geteMail()
+			+ "\tTelephone: " + getTelephone()
+			+ "\tFax: " + getFax()
+			+ "\tCompany: " + getCompany()
+			+ "\tAddress1: " + getAddress1()
+			+ "\tAddress2: " + getAddress2()
+			+ "\tCity: " + getCity()
+			+ "\tPostcode: " + getPostCode()
+			+ "\tCountry: " + getCountry()
+			+ "\tRegion: " + getRegionState()
+			+ "\tPassword: " + getPassword();
+	}
+	
 }
