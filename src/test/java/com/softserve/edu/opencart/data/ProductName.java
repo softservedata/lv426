@@ -10,6 +10,10 @@ public enum ProductName {
 
     IPHONE("iPhone");
 
+    public String getValue() {
+        return value;
+    }
+
     private String value;
 
     ProductName(String value) {
