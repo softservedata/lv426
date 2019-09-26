@@ -7,6 +7,18 @@ import org.openqa.selenium.WebElement;
 
 public class UnsuccessfulRegisterPage extends AccountSidebarGuestPart {
 
+    public static final String EXPECTED_EXISTING_EMAIL = "Warning: E-Mail Address is already registered!";
+    public static final String EXPECTED_NOT_AGREE_PRIVACY_POLICY = "Warning: You must agree to the Privacy Policy!";
+    public static final String EXPECTED_WRONG_FIRSTNAME = "First Name must be between 1 and 32 characters!";
+    public static final String EXPECTED_WRONG_LASTNAME = "Last Name must be between 1 and 32 characters!";
+    public static final String EXPECTED_WRONG_EMAIL = "E-Mail Address does not appear to be valid!";
+    public static final String EXPECTED_WRONG_TELEPHONE = "Telephone must be between 3 and 32 characters!";
+    public static final String EXPECTED_WRONG_ADDRESS = "Address 1 must be between 3 and 128 characters!";
+    public static final String EXPECTED_WRONG_CITY = "City must be between 2 and 128 characters!";
+    public static final String EXPECTED_WRONG_POSTCODE = "Postcode must be between 2 and 10 characters!";
+    public static final String EXPECTED_WRONG_REGIONSTATE = "Please select a region / state!";
+    public static final String EXPECTED_WRONG_PASSWORD = "Password must be between 4 and 20 characters!";
+    public static final String EXPECTED_WRONG_CONFIRM_PASSWORD = "Password confirmation does not match password!";
 
     public UnsuccessfulRegisterPage(WebDriver driver) {
         super(driver);
@@ -17,7 +29,7 @@ public class UnsuccessfulRegisterPage extends AccountSidebarGuestPart {
 
     // Page Object
 
-    // wsrningBox
+    // warningBox
     private WebElement getWarningBox() {
         return driver.findElement(By.cssSelector("div.alert.alert-danger"));
     }
@@ -46,7 +58,7 @@ public class UnsuccessfulRegisterPage extends AccountSidebarGuestPart {
 
     //email
     private WebElement getWarningEmail() {
-        return driver.findElement(By.xpath("//div[contains(text(),E-Mail Address does not appear to be valid!')]"));
+        return driver.findElement(By.xpath("//div[contains(text(),'E-Mail Address does not appear to be valid!')]"));
     }
 
     public String getWarningEmailText() {
