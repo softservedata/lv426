@@ -3,6 +3,7 @@ package com.softserve.edu.opencart.pages.user.search;
 
 import com.softserve.edu.opencart.data.Product;
 
+import com.softserve.edu.opencart.data.SearchFilter;
 import com.softserve.edu.opencart.pages.user.common.ProductComponent;
 import com.softserve.edu.opencart.pages.user.common.ProductPage;
 
@@ -28,9 +29,6 @@ public class SearchSuccessPage extends SearchCriteriaPart {
 		productsCriteria = new ProductsCriteriaComponent(driver);
 
 	}
-
-
-
 
 
 	// Page Object
@@ -69,6 +67,11 @@ public class SearchSuccessPage extends SearchCriteriaPart {
     public SearchSuccessAlertPage addToWishButtonByName(Product product) {
     	productsCriteria.addToWishButtonByName(product);
    	    return new SearchSuccessAlertPage(driver);
+    }
+
+    public SearchSuccessPage addProductToCartByProductCriteriaComponent(SearchFilter searchFilter){
+	    productsCriteria.clickProductComponentAddToCartButtonByName(searchFilter.getProduct());
+	    return new SearchSuccessPage(driver);
     }
 
 

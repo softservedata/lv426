@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-import static com.softserve.edu.opencart.data.checkout.NewAddressForCheckOut.NEW_SHIPPING_ADRESS;
+import static com.softserve.edu.opencart.data.checkout.CheckOutRepository.NEW_SHIPPING_ADDRESS_CSSSELECTOR;
 
 public class DeliveryDetails extends CheckOutPage{
     private WebDriver driver;
@@ -32,13 +32,19 @@ public class DeliveryDetails extends CheckOutPage{
         newAddressCheckBox = driver
                 .findElement(By.cssSelector("input[name=\"shipping_address\"][value=\"new\"]"));
         deliveryAccount = driver.findElement(By.cssSelector("#shipping-existing select.form-control"));
-        fillForm = new DeliveryDetailsNewAddress(driver, NEW_SHIPPING_ADRESS);
+        fillForm = new DeliveryDetailsNewAddress(driver, NEW_SHIPPING_ADDRESS_CSSSELECTOR);
     }
 
-    public void setChooseDeliveryAccount(String fullAcc){
+    /**
+     * The method which choose already created account to delivery
+     * @param fullAcc the delivery account that has been already created
+     * @return the next class
+     */
+    public DeliveryMethod setChooseDeliveryAccount(String fullAcc){
         chooseDeliveryAccount = new Select(deliveryAccount);
         deliveryAccount.click();
         chooseDeliveryAccount.selectByVisibleText(fullAcc);
+        return new DeliveryMethod(driver);
     }
 
     public void clickContinueDeliveryButton(){
@@ -57,10 +63,11 @@ public class DeliveryDetails extends CheckOutPage{
      * This method fully complete a delivery part
      * of checkout
      */
-    public void chooseAndDoneNewAddressInDeliveryDetails(){
+    public DeliveryMethod chooseAndDoneNewAddressInDeliveryDetails(){
         chooseNewAddressInDelivery();
         fillForm.methods.fullIputs(CheckOutRepository.get().validAdress());
         clickContinueDeliveryButton();
+        return new DeliveryMethod(driver);
     }
 
 
@@ -69,7 +76,7 @@ public class DeliveryDetails extends CheckOutPage{
 
         private WebDriver driver;
         private WebElement element;
-        private String path = NEW_SHIPPING_ADRESS;
+        private String path = NEW_SHIPPING_ADDRESS_CSSSELECTOR;
         private NewAddressForCheckOut methods;
 
         DeliveryDetailsNewAddress(WebDriver driver, String path){

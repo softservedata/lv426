@@ -5,7 +5,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 public class ShopRepository {
     private static CountryForEstimation countryForEstimation;
     private static DiscountUsageCode discountUsageCode;
-    private static FinalPriceTable finalPriceTable;
+    private static FinalPriceTableComponent finalPriceTableComponent;
 
     public static CountryForEstimation builderCountryForEstimation() {
 
@@ -23,8 +23,8 @@ public class ShopRepository {
                 .build();
     }
 
-//    public static FinalPriceTable builderFinalPriceTableForIPhones(){
-//        return finalPriceTable.builder()
+//    public static FinalPriceTableComponent builderFinalPriceTableForIPhones(){
+//        return finalPriceTableComponent.builder()
 //                .
 //    }
 }

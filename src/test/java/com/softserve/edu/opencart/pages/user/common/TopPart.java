@@ -3,6 +3,7 @@ package com.softserve.edu.opencart.pages.user.common;
 import com.softserve.edu.opencart.data.*;
 import com.softserve.edu.opencart.pages.user.HomePage;
 import com.softserve.edu.opencart.pages.user.account.*;
+import com.softserve.edu.opencart.pages.user.checkout.CheckOutPage;
 import com.softserve.edu.opencart.pages.user.search.SearchSuccessPage;
 import com.softserve.edu.opencart.pages.user.search.SearchUnsuccessPage;
 import com.softserve.edu.opencart.pages.user.shop.ShoppingCartPage;
@@ -62,7 +63,6 @@ public abstract class TopPart {
         currency = driver.findElement(By.cssSelector(".btn.btn-link.dropdown-toggle"));
         myAccount = driver.findElement(By.cssSelector(".list-inline > li > a.dropdown-toggle"));
         wishList = driver.findElement(By.id("wishlist-total"));
-        shoppingCart = driver.findElement(By.cssSelector("a[title='Shopping Cart']"));
         checkout = driver.findElement(By.cssSelector("a[title='Checkout']"));
         logo = driver.findElement(By.cssSelector("#logo a"));
         searchTopField = driver.findElement(By.name("search"));
@@ -118,7 +118,7 @@ public abstract class TopPart {
 
     // shoppingCart
     public WebElement getShoppingCart() {
-        return shoppingCart;
+        return driver.findElement(By.cssSelector("a[title='Shopping Cart']"));
     }
 
     public String getShoppingCartText() {
@@ -126,19 +126,6 @@ public abstract class TopPart {
     }
 
     public void clickShoppingCart() {
-        //webDriverWait.until(ExpectedConditions.elementToBeClickable((By.cssSelector("#cart > button"))));
-//        try{
-//            js.executeAsyncScript("arguments[0].click();",shoppingCart);
-//        }
-//        catch (ElementClickInterceptedException e){
-//            getShoppingCart().click();
-//        }
-        //driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         getShoppingCart().click();
 
     }
@@ -455,6 +442,11 @@ public abstract class TopPart {
         createDropdownLogged();
         clickDropdownLoggedMyAccount();
         return new MyAccountPage(driver);
+    }
+
+    public CheckOutPage gotoCheckOutPage(){
+        clickCheckout();
+        return new CheckOutPage(driver);
     }
 
 //    public OrderHistoryPage gotoOrderHistory() {

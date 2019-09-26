@@ -1,6 +1,7 @@
 package com.softserve.edu.opencart.pages.user.shop;
 
-import com.softserve.edu.opencart.data.shop.FinalPriceTable;
+import com.softserve.edu.opencart.data.shop.FinalPriceComponentContainer;
+import com.softserve.edu.opencart.data.shop.FinalPriceTableComponent;
 import com.softserve.edu.opencart.pages.user.HomePage;
 import com.softserve.edu.opencart.pages.user.checkout.CheckOutPage;
 import org.openqa.selenium.By;
@@ -8,12 +9,13 @@ import org.openqa.selenium.WebDriver;
 
 import com.softserve.edu.opencart.pages.user.common.BreadCrumbPart;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ShoppingCartPage extends BreadCrumbPart {
     private WebElement productTable;
-    private FinalPriceTable finalPriceTable;
+    private FinalPriceTableComponent finalPriceTableComponent;
     //
     private WebElement closeFatalAlertButton;
     private WebElement closeSuccessAlertButton;
@@ -30,7 +32,10 @@ public class ShoppingCartPage extends BreadCrumbPart {
     private WebElement fatalAlert;
     private WebElement successAlert;
     //price table
-    private String FINAL_PRICE_TABLE_CSSSELECTOR = "div[class=\"col-sm-4 col-sm-offset-8\"] table tbody";
+    private String FINAL_PRICE_TABLE_CSSSELECTOR = "div[class=\"col-sm-4 col-sm-offset-8\"] table tbody tr";
+    private List<FinalPriceTableComponent> finalPriceTableComponentElements;
+   // private String FINAL_PRICE_TABLE_FOR_CASH_CSSSELECTOR = "//div[@class='col-sm-4 col-sm-offset-8']/table/tbody/tr/td[contains(text(),'.')]";
+   // private Map<FinalPriceTableComponent,FinalPriceTableComponent> finalPriceTableFinalPriceTableMap;
 
     public ShoppingCartPage(WebDriver driver) {
         super(driver);
@@ -49,14 +54,22 @@ public class ShoppingCartPage extends BreadCrumbPart {
         update = driver.findElement(By.cssSelector("button[type=submit]"));
         delete = driver.findElement(By.xpath("//table[contains(@class,'table table-bordered')]" +
                 "//tbody//td/div/span/button[contains(@class,'btn btn-danger')]"));
+        finalPriceTableComponentElements = new ArrayList<>();
         for (WebElement elements : driver.findElements(By.cssSelector(FINAL_PRICE_TABLE_CSSSELECTOR))) {
-            finalPriceTable = new FinalPriceTable(elements,driver);
+            finalPriceTableComponentElements.add(new FinalPriceTableComponent(elements,driver));
         }
     }
 
     // Page Object
 
     // Functional
+    public List<FinalPriceTableComponent> getFinalPriceTableComponentElements(){
+        return finalPriceTableComponentElements;
+    }
+
+    public FinalPriceComponentContainer getFinalPricaContainer(){
+        return new FinalPriceComponentContainer(getFinalPriceTableComponentElements());
+    }
 
     //returns with hooks
     public String getWeightOfOrdering() {
@@ -112,8 +125,8 @@ public class ShoppingCartPage extends BreadCrumbPart {
         return new ShoppingCartContainerComponent(driver);
     }
 
-    public FinalPriceTable getFinalPriceTable(){
-        return finalPriceTable;
+    public FinalPriceTableComponent getFinalPriceTableComponent(){
+        return finalPriceTableComponent;
     }
 
     // Business Logic

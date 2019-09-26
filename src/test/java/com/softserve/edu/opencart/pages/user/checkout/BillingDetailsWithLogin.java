@@ -7,9 +7,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-import static com.softserve.edu.opencart.data.checkout.NewAddressForCheckOut.NEW_BILLING_ADRESS;
+import static com.softserve.edu.opencart.data.checkout.CheckOutRepository.NEW_BILLING_ADDRESS_CSSSELECTOR;
 
-public class BillingDetailsWithLogin extends CheckOutPage {
+
+public class BillingDetailsWithLogin extends CheckOutOptions {
 
     private WebDriver driver;
     private WebElement element;
@@ -29,7 +30,7 @@ public class BillingDetailsWithLogin extends CheckOutPage {
 
     private void initElements(){
         continueBillingButton = driver.findElement(By.cssSelector("input#button-payment-address"));
-        formInputs = new FillingNewAddressBillingDeatails(driver,NEW_BILLING_ADRESS);
+        formInputs = new FillingNewAddressBillingDeatails(driver,NEW_BILLING_ADDRESS_CSSSELECTOR);
         existingAddressCheckBox = driver
                 .findElement(By.cssSelector("input[name=\"payment_address\"][value=\"existing\"]"));
         newAddressCheckBox = driver
@@ -41,11 +42,11 @@ public class BillingDetailsWithLogin extends CheckOutPage {
      * Method fully input a billing part
      * with log in user
      */
-    public void billingDetailsFullyDone(){
+    public DeliveryDetails billingDetailsFullyDone(){
         chooseNewAddressCreationBillingDetails();
-        //wait
         formInputs.method.fullIputs(CheckOutRepository.get().validAdress());
         continueBillingButtonClick();
+        return new DeliveryDetails(driver);
     }
 
     public void chooseNewAddressCreationBillingDetails(){
@@ -68,7 +69,7 @@ public class BillingDetailsWithLogin extends CheckOutPage {
 
     class FillingNewAddressBillingDeatails extends NewAddressForCheckOut {
         private WebDriver driver;
-        private String path = NEW_BILLING_ADRESS;
+        private String path = NEW_BILLING_ADDRESS_CSSSELECTOR;
         private NewAddressForCheckOut method;
 
         FillingNewAddressBillingDeatails(WebDriver driver, String path ){

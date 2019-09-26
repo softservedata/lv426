@@ -249,7 +249,7 @@ public abstract class PersonalDetailsForCheckoutRegistration {
     }
 
 
-    public void personalInfoAndAdressFilling(IUser user){
+    public void personalInfoAndAddressFilling(IUser user){
         firstNameFill(user.getFirstName());
         lastNameFill(user.getLastName());
         eMailFill(user.geteMail());

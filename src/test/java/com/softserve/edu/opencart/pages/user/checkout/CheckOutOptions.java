@@ -1,6 +1,5 @@
 package com.softserve.edu.opencart.pages.user.checkout;
 
-import com.softserve.edu.opencart.data.IUser;
 import com.softserve.edu.opencart.data.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -84,7 +83,7 @@ public class CheckOutOptions extends CheckOutPage {
 
 //business logic
 
-    public void loginAsUser(User user){
+    public BillingDetailsWithLogin loginAsUser(User user){
         eMailInputClick();
         eMailInputClear();
         setEMailInput(user.geteMail());
@@ -92,16 +91,19 @@ public class CheckOutOptions extends CheckOutPage {
         passwordInputClear();
         setPasswordInput(user.getPassword());
         loginCheckOutOptionsButtonClick();
+        return new BillingDetailsWithLogin(driver);
     }
 
-    public void continueCheckoutAsGuest(){
+    public BillingDetailsAsGuest continueCheckoutAsGuest(){
         chooseGuestCheckBox();
         continueCheckOutOptionsButtonClick();
+        return new BillingDetailsAsGuest(driver);
     }
 
-    public void continueCheckoutWithRegistration(){
+    public BillingDetailsWithRegistration continueCheckoutWithRegistration(){
         chooseRegisterCheckBox();
         continueCheckOutOptionsButtonClick();
+        return new BillingDetailsWithRegistration(driver);
     }
 
 
