@@ -11,11 +11,23 @@ public class TaxRateRepository {
         return getTaxWithPercentageType();
     }
 
-    public static TaxRate getTaxWithFixedAmountType() {
-        return new TaxRate("Fixed TestTax", 20, "Fixed Amount", "Australia ShippingZone");
+    private static TaxRate getTaxWithFixedAmountType() {
+        return TaxRate.builder()
+                .name("Fixed TestTax")
+                .rate(20)
+                .type("Fixed Amount")
+                .geoZone("Australia ShippingZone")
+                .build();
+
     }
 
-    public static TaxRate getTaxWithPercentageType() {
-        return new TaxRate("Percentage TestTax", 5, "Percentage", "Australia ShippingZone");
+    private static TaxRate getTaxWithPercentageType() {
+        return TaxRate.builder()
+                .name("Percentage TestTax")
+                .rate(5)
+                .type("Percentage")
+                .geoZone("Australia ShippingZone")
+                .build();
+
     }
 }

@@ -1,6 +1,7 @@
 package com.softserve.edu.opencart.pages.user.adminpanel.Manipulating;
 
 import com.softserve.edu.opencart.data.TaxClass;
+import com.softserve.edu.opencart.data.TaxRate;
 import com.softserve.edu.opencart.pages.user.adminpanel.LeftSidebarMenuComponent;
 import com.softserve.edu.opencart.pages.user.adminpanel.TaxClassPage;
 import org.openqa.selenium.By;
@@ -16,7 +17,7 @@ public class AddTaxClassPage extends LeftSidebarMenuComponent {
     private WebElement description;
     private WebElement addTaxClassButton;
 
-    AddTaxClassPage(WebDriver driver) {
+    public AddTaxClassPage(WebDriver driver) {
         super(driver);
         this.driver = driver;
         initElements();
@@ -24,7 +25,7 @@ public class AddTaxClassPage extends LeftSidebarMenuComponent {
 
     private void initElements() {
         saveButton = driver.findElement(By.cssSelector(".pull-right > .btn.btn-primary"));
-        addTaxClassButton = driver.findElement(By.cssSelector(ADD_NEW_ROW_INTO_TABLE));
+        addTaxClassButton = driver.findElement(By.xpath("//table[@id='tax-rule']//tfoot//button[@class='btn btn-primary']"));
         taxClassName = driver.findElement(By.cssSelector(".col-sm-10 #input-title"));
         description = driver.findElement(By.cssSelector(".col-sm-10 #input-description"));
 
@@ -79,14 +80,14 @@ public class AddTaxClassPage extends LeftSidebarMenuComponent {
         setDescriptionField(tax.getDescription());
     }
 
-    private void fillInAllFields(TaxClass tax) {
+    private void fillInAllFields(TaxClass tax, TaxRate taxRate) {
         enterTaxClassName(tax);
         enterTaxClassDescription(tax);
-        addTaxRateToClass().choseTaxClass(tax);
+        addTaxRateToClass().choseTaxClass(taxRate);
     }
 
-    public TaxClassPage addTaxClass(TaxClass tax) {
-        fillInAllFields(tax);
+    public TaxClassPage addTaxClass(TaxClass tax, TaxRate taxRate) {
+        fillInAllFields(tax, taxRate);
         clickSaveButton();
         return new TaxClassPage(driver);
     }

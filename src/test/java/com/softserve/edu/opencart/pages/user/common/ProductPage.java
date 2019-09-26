@@ -1,19 +1,26 @@
 
 package com.softserve.edu.opencart.pages.user.common;
+import com.softserve.edu.opencart.data.Reviews;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 
-public class ProductPage extends BreadCrumbPart{
 
-    protected WebDriver productLayout;
+public class ProductPage extends BreadCrumbPart{
+    public ProductPage(WebDriver productLayout) {
+    }
+
+
+
+        protected WebDriver productLayout;
     public WebElement reviewButton;
     private WebElement productDescription;
     private ProductsContainerComponent productsContainer;
     private ProductComponent productComponent;
 
     public ProductReviewComponent productReview;
+
 
 
 
@@ -29,44 +36,55 @@ public class ProductPage extends BreadCrumbPart{
         reviewButton = productLayout.findElement(By.xpath("//li[contains(@class,'' )]//a[contains(text(),'Reviews')]"));
         productDescription=productLayout.findElement(By.xpath("//ul[contains(@class, \"nav nav-tabs\")]//a[contains(text(), 'Description')]"));
     }
+
+
     public WebElement getReviewButton () {
 
         return reviewButton;
         }
 
-    public ProductsContainerComponent getProductComponentsContainer() {
 
+
+    public ProductsContainerComponent getProductComponentsContainer() {
         return productsContainer;
     }
+        //Page Object
+
 
     public WebElement getProductDescription() {
         return productDescription;
     }
 
 
+
+
     public void clickReview(){
         getReviewButton().click();
     }
-    public void addProductToWishList(){
+   /* public void addProductToWishList(){
         getProductComponentsContainer().clickProductComponentAddToWishButtonByName(productComponent.getNameText());
     }
+    */
+
 
     public void productDescriptionclick(){
         getProductDescription().click();
     }
 
-    public void sendReview(){
+    public void sendReview(Reviews review ){
         productReview.clickReview();
         productReview.clickInputNameBox();
         productReview.clearInputNameBox();
-        productReview.setInputNameBox("name");
+        productReview.setInputNameBox(review.getName());
         productReview.clickInputReviewBox();
         productReview.clearInputReviewBox();
-        productReview.setInputReviewBox("I'm absolutely satisfied and will buy one more as a present");
-        productReview.clickRatingButton();
+        productReview.setInputReviewBox(review.getReview());
+        productReview.clickRatingButton(review.getRating());
         productReview.clickContinueReviewButton();
 
     }
+    //business logic
+
 }
 
 

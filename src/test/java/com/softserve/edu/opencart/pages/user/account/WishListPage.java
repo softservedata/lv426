@@ -1,6 +1,8 @@
 package com.softserve.edu.opencart.pages.user.account;
 
+import com.softserve.edu.opencart.pages.user.common.ProductPageWithAlert;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -9,11 +11,9 @@ public class WishListPage extends AccountSidebarLoggedPart {
 
 	protected WebDriver driver;
 	protected WebElement wishListLayout;
-
+	
 	private WishListContainerComponent wishListContainer;
-	private WishListComponent wishListComponent;
-	//private ProductDescriptionComponent productDescription;
-	//public ProductReviewComponent productReview;
+
 
 	public WishListPage(WebDriver driver) {
 		super(driver);
@@ -22,27 +22,28 @@ public class WishListPage extends AccountSidebarLoggedPart {
 
 	public void initElements(){
 		wishListContainer = new WishListContainerComponent(driver);
-		wishListComponent = new WishListComponent(wishListLayout);
-    }
+	}
 	public WishListContainerComponent getProductComponentsContainer() {
 		return wishListContainer;
 	}
 
 
-
-
-
-	// Page Object
-
-
-
-	// Functional
-
-
 	// Business Logic
-	public WishListPage deleteItemFromWishList(String productName){
-		getProductComponentsContainer().clickOnWishListComponentDeleteButton(productName);
-		return new WishListPage(driver);
+
+	public WishListPageModifiedByAlert deleteItemFromWishList(String productName){
+		getProductComponentsContainer().
+				clickOnWishListComponentDeleteButton(productName);
+		return new WishListPageModifiedByAlert(driver);
 	}
+
+
+	public WishListPageModifiedByAlert addItemFromWishListToShoppingCart(String productName){
+		getProductComponentsContainer().clickOnWishListComponentAddToCartButton(productName);
+		return new WishListPageModifiedByAlert(driver);
+	}
+
+
+
+
 
 }

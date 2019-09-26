@@ -39,11 +39,15 @@ public class DataEditProductPage extends EditProductPage {
         return getPriceField().getAttribute("value");
     }
 
-    public void selectClassTax(TaxClass tax) {
+    public DataEditProductPage selectClassTax(TaxClass tax) {
         selectTaxClassByName(tax);
+        clickSaveButton();
+        return this;
     }
 
-    public void selectDefaultTax() {
+    public DataEditProductPage selectDefaultTax() {
         selectDefaultTaxClass();
+        clickSaveButton();
+        return this;
     }
 }

@@ -7,7 +7,7 @@ interface IReview {
     IRating setReview(String review);
 }
 interface IRating {
-    IReviewsBuild setRating(String rating);
+    IReviewsBuild setRating(Rating rating);
 }
 
 interface IReviewsBuild {
@@ -18,7 +18,7 @@ public class Reviews implements IName, IReview, IRating,IReviewsBuild {
 
     private String name;
     private String review;
-    private String rating;
+    private Rating rating;
 
 
     private Reviews() {
@@ -40,7 +40,7 @@ public class Reviews implements IName, IReview, IRating,IReviewsBuild {
     }
 
 
-    public IReviewsBuild setRating(String rating){
+    public IReviewsBuild setRating(Rating rating){
         this.rating = rating;
         return this;
     }
@@ -55,7 +55,7 @@ public class Reviews implements IName, IReview, IRating,IReviewsBuild {
         return review;
     }
 
-    public String getRating() {
+    public Rating getRating() {
         return rating;
     }
 

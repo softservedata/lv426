@@ -8,7 +8,11 @@ import lombok.ToString;
 public enum ProductName {
 
 
-    IPHONE("Iphone");
+    IPHONE("iPhone");
+
+    public String getValue() {
+        return value;
+    }
 
     private String value;
 

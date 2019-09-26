@@ -14,6 +14,7 @@ public class TaxRatesPage extends LeftSidebarMenuComponent {
     private AdminListContainerComponent listContainerComponent;
     public TaxRatesPage(WebDriver driver) {
         super(driver);
+        this.driver = driver;
         initElements();
     }
 

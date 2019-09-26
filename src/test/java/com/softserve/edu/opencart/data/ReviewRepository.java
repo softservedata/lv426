@@ -28,7 +28,7 @@ public class ReviewRepository {
         return Reviews.get()
                 .setName("iva qwerty")
                 .setReview("Very good product! I'll recommend it to all of my friends")
-                .setRating("5")
+                .setRating(Rating.AMAZING)
                 .build();
     }
 }

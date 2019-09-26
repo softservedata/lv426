@@ -84,6 +84,10 @@ public class ProductComponent {
 	public void clickAddToCartButton() {
 		getAddToCartButton().click();
 	}
+	//	public SearchSuccessPage clickAddToCartButton() {
+//		getAddToCartButton().click();
+//		return new SearchSuccessPage();
+//	}
 
 	// addToWishButton
 	public WebElement getAddToWishButton() {

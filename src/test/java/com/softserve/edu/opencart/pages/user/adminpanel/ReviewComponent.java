@@ -7,20 +7,19 @@ import org.openqa.selenium.WebElement;
 
 public class ReviewComponent {
 
-    protected WebElement reviewChoose;
+
     private WebDriver driver;
     private WebElement actionButton;
 
 
-    ReviewComponent(WebDriver driver, WebElement productChoose) {
+    ReviewComponent(WebDriver driver) {
         this.driver = driver;
-        this.reviewChoose = reviewChoose;
         initElements();
     }
 
     private void initElements(){
 
-        actionButton = reviewChoose.findElement(By.cssSelector("tr a.btn.btn-primary"));
+        actionButton = driver.findElement(By.cssSelector("tr a.btn.btn-primary"));
     }
 
     private void clickActionButton() {

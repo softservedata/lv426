@@ -1,8 +1,6 @@
 package com.softserve.edu.opencart.test;
 
 import com.softserve.edu.opencart.data.*;
-import com.softserve.edu.opencart.pages.user.common.ProductComponent;
-import com.softserve.edu.opencart.pages.user.common.ProductPage;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -11,7 +9,8 @@ public class ReviewTest extends UserTestRunner {
     @DataProvider
     public Object[][] reviewData(){
         return new Object[][]{
-                { ReviewRepository.getDefault(), UserRepository.get().getHahahaUser(), ProductRepository.getMacBook(), ReviewRepository.getNewReview() }
+                { ReviewRepository.getDefault(), UserRepository.get().getHahahaUser(),
+                        ProductRepository.getIMac(), ReviewRepository.getNewReview() }
         };
     }
 
@@ -19,13 +18,20 @@ public class ReviewTest extends UserTestRunner {
 
     @Test (dataProvider = "reviewData")
     public void checkReviewEnabling (Reviews review, User user, Product product){
-    loadApplication()
+    loadMartaApplication()
             .gotoLoginPage()
             .successfulLogin(user)
             .successfulSearch(product)
-            .getProductsCriteria()
-            .getProductComponentByName(product)
-            .
+            .gotoProductInfo(product)
+            .sendReview(review);
+
+    loadMartaAdminLoginPage()
+            .goToAdminHomePage()
+            .goToReviewPage()
+            .gotoEditReview()
+            .enableReview();
+
     }
+
 
 }

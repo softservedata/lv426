@@ -58,7 +58,7 @@ public class ProductsContainerComponent {
         for (ProductComponent current : getProductComponents())
         {
             if (current.getNameText().toLowerCase()
-                    .equals(productName.getName().toLowerCase()))
+                    .equals(product.getName().toLowerCase()))
             {
                 result = current;
                 break;
@@ -67,7 +67,7 @@ public class ProductsContainerComponent {
         if (result == null)
         {
             // TODO Develop Custom Exception
-            throw new RuntimeException("ProductName: " + productName + " not Found.");
+            throw new RuntimeException("ProductName: " + product + " not Found.");
         }
         return result;
     }

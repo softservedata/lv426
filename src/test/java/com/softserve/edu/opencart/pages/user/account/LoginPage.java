@@ -75,6 +75,8 @@ public class LoginPage extends AccountSidebarGuestPart {
         return getLoginButton().getAttribute(TAG_ATTRIBUTE_VALUE);
     }
 
+    public void defaultLogin(IUser user)
+    {}
 
     public void clickLoginButton() {
         getLoginButton().click();

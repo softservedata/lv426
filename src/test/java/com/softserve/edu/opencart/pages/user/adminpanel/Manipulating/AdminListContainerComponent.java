@@ -15,7 +15,7 @@ public class AdminListContainerComponent {
     }
 
     private List<AdminListElementComponent> getListOfCurrency() {
-        List<AdminListElementComponent> listOfCurrency = new ArrayList<>();///can be exception TODO (maybe)
+        List<AdminListElementComponent> listOfCurrency = new ArrayList<AdminListElementComponent>();///can be exception TODO (maybe)
         for (WebElement current : driver.findElements(By.xpath("//table[@class='table table-bordered table-hover']/tbody/tr"))) {
             listOfCurrency.add(new AdminListElementComponent(driver, current));
         }

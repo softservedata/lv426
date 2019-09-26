@@ -23,9 +23,11 @@ public class ProductReviewComponent extends ProductPage {
     //public WebElement rating5;
     public WebElement continueReviewButton;
 
-    public ProductReviewComponent(WebDriver productLayout) {
-        super();
-        this.productLayout = productLayout;
+
+
+    public ProductReviewComponent(WebDriver productLayout){
+        super(productLayout);
+        this.productLayout=productLayout;
         initElements();
     }
 
@@ -55,7 +57,7 @@ public class ProductReviewComponent extends ProductPage {
     }
 
     public WebElement getRateButton(Rating rating){
-        return driver.findElement(By.xpath(String.format(RATING_LOCATER_XPATH, rating.toString())));
+        return driver.findElement(By.xpath(String.format(RATING_LOCATER_XPATH, rating.getValue())));
     }
     //getReviewButton
 
@@ -81,7 +83,7 @@ public class ProductReviewComponent extends ProductPage {
         getInputNameBox().clear();
     }
 
-    public void clickRatingButton(){
+    public void clickRatingButton(Rating rating){
         getRateButton(rating).click();
     }
 

@@ -24,10 +24,10 @@ public class SpecialTableComponent {
     private void initElements() {
         tableElement = driver.findElement(By.xpath("//table[@id='special']/tbody/tr[last()]"));
         deleteButton = driver.findElement(By.xpath("//button[@class='btn btn-danger']"));
-        priority = tableElement.findElement(By.xpath("//input[@placeholder='Priority']"));
-        price = tableElement.findElement(By.xpath("//input[@placeholder='Price']"));
-        startDate = tableElement.findElement(By.xpath("//input[@placeholder='Date Start']"));
-        endData = tableElement.findElement(By.xpath("//input[@placeholder='Date End']"));
+        priority = tableElement.findElement(By.xpath("//td/input[@placeholder='Priority']"));
+        price = tableElement.findElement(By.xpath("//td/input[@placeholder='Price']"));
+        startDate = tableElement.findElement(By.xpath("//td/div/input[@placeholder='Date Start']"));
+        endData = tableElement.findElement(By.xpath("//td/div/input[@placeholder='Date End']"));
     }
 
 
@@ -70,11 +70,11 @@ public class SpecialTableComponent {
     }
 
     private void clickEndDate() {
-        startDate.click();
+        endData.click();
     }
 
     private void clearEndDate() {
-        startDate.clear();
+        endData.clear();
     }
 
     private void setEndDate(String specialEndDay) {
@@ -97,6 +97,7 @@ public class SpecialTableComponent {
         clickStartDate();
         clearStartDate();
         setStartDate(special.getStartDate());
+
     }
     private void enterEndDate(Special special) {
         clickEndDate();

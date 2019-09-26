@@ -24,7 +24,7 @@ public class ProductContainerComponent {
     }
 
     public ProductComponent searchByName(ProductName name){
-        return new ProductComponent(driver, productComponents.findElement(By.xpath("//tr/td[contains(text(),'" + name.toString() + ")]/..")));
+        return new ProductComponent(driver, productComponents.findElement(By.xpath("//tr/td[contains(text(),'" + name.getValue() + "')]/..")));
     }
 
 

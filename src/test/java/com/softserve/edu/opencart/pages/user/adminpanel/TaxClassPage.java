@@ -1,6 +1,7 @@
 package com.softserve.edu.opencart.pages.user.adminpanel;
 
 import com.softserve.edu.opencart.data.TaxClass;
+import com.softserve.edu.opencart.pages.user.adminpanel.Manipulating.AddTaxClassPage;
 import com.softserve.edu.opencart.pages.user.adminpanel.Manipulating.AddTaxRatePage;
 import com.softserve.edu.opencart.pages.user.adminpanel.Manipulating.AdminListContainerComponent;
 import org.openqa.selenium.By;
@@ -35,9 +36,9 @@ public class TaxClassPage extends LeftSidebarMenuComponent {
         deleteButton.click();
     }
 
-    public AddTaxRatePage goToAddTaxClassPage() {
+    public AddTaxClassPage goToAddTaxClassPage() {
         clickAddButton();
-        return new AddTaxRatePage(driver);
+        return new AddTaxClassPage(driver);
     }
 
 

@@ -11,11 +11,7 @@ public enum Rating {
     GOOD("4"),
     AMAZING("5");
 
-    //VERYBAD("//input[@name='rating' and @value='1']"),
-    //BAD("//input[@name='rating' and @value='2']"),
-    //NORMAL("//input[@name='rating' and @value='3']"),
-    //GOOD("//input[@name='rating' and @value='4']"),
-    //AMAZING("//input[@name='rating' and @value='5']");
+
 
     private  String value;
 
