@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ShoppingCartPage extends BreadCrumbPart {
     private WebElement productTable;
+    private FinalPriceTable finalPriceTable;
     //
     private WebElement closeFatalAlertButton;
     private WebElement closeSuccessAlertButton;
@@ -49,7 +50,7 @@ public class ShoppingCartPage extends BreadCrumbPart {
         delete = driver.findElement(By.xpath("//table[contains(@class,'table table-bordered')]" +
                 "//tbody//td/div/span/button[contains(@class,'btn btn-danger')]"));
         for (WebElement elements : driver.findElements(By.cssSelector(FINAL_PRICE_TABLE_CSSSELECTOR))) {
-            new FinalPriceTable(elements,driver);
+            finalPriceTable = new FinalPriceTable(elements,driver);
         }
     }
 
@@ -109,6 +110,10 @@ public class ShoppingCartPage extends BreadCrumbPart {
     }
     public ShoppingCartContainerComponent tryToChangeSomething(){
         return new ShoppingCartContainerComponent(driver);
+    }
+
+    public FinalPriceTable getFinalPriceTable(){
+        return finalPriceTable;
     }
 
     // Business Logic
