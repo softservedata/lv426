@@ -87,9 +87,9 @@ public class ProductsContainerComponent {
         getProductComponentByName(productName).clickAddToCartButton();
     }
 
-    public void clickProductComponentAddToWishButtonByName(String productName)
+    public void addToWishButtonByName(Product product)
     {
-        getProductComponentByName(productName).clickAddToWishButton();
+        getProductComponentByName(product.getName()).clickAddToWishButton();
     }
 
     // Functional

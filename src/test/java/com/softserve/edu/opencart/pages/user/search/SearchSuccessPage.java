@@ -1,6 +1,7 @@
 package com.softserve.edu.opencart.pages.user.search;
 
 
+import com.softserve.edu.opencart.data.Product;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -55,5 +56,12 @@ public class SearchSuccessPage extends SearchCriteriaPart {
         productsCriteria.setInputLimit(text);
         return new SearchSuccessPage(driver);
     }
+
+    public SearchSuccessAlertPage addToWishButtonByName(Product product) {
+    	productsCriteria.addToWishButtonByName(product);
+   	    return new SearchSuccessAlertPage(driver);
+    }
+
+
 
 }

@@ -25,20 +25,11 @@ public class ProductPage {
         productComponent = new ProductComponent();
 
     }
-        //Page Object
 
-
-    public void addProductToWishList(){
-        productsContainer.clickProductComponentAddToWishButtonByName(productComponent.getNameText());
-    }
 
     public ProductsContainerComponent getProductComponentsContainer() {
         return productsContainer;
     }
-   /* public void addProductToWishList(){
-        getProductComponentsContainer().clickProductComponentAddToWishButtonByName(productComponent.getNameText());
-    }
-    */
 
 
 
@@ -54,11 +45,7 @@ public class ProductPage {
         productReview.clickContinueReviewButton();
 
     }
-    //business logic
-    public ProductPageWithAlert successfulAddingToWishList(){
-        addProductToWishList();
-        return new ProductPageWithAlert(productLayout);
-    }
+
 }
 
 

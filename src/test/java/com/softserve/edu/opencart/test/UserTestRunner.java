@@ -34,7 +34,8 @@ public abstract class UserTestRunner {
 	private final String DRIVER_ERROR = "ERROR: Chromedriver not Found";
 	//private final String SERVER_URL = "http://taqc-opencart.epizy.com";
 	private final String ADMIN_URL = "http://192.168.68.137/opencart/upload/admin";
-	private final String SERVER_URL = "http://192.168.68.137/opencart/upload";
+	//private final String SERVER_URL = "http://192.168.68.137/opencart/upload";
+	private final String SERVER_URL = "https://demo.opencart.com/index.php?route=common/home";
 	private final String TIME_TEMPLATE = "yyyy-MM-dd_HH-mm-ss";
 	//
 	protected final Logger log = LoggerFactory.getLogger(this.getClass().getName());
