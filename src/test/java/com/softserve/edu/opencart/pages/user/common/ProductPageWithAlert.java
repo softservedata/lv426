@@ -15,7 +15,7 @@ public class ProductPageWithAlert extends ProductPage{
 
 
     public void initElements() {
-        successfulAddingToWishListAlert = productLayout.findElement(By.cssSelector("div .alert.alert-success.alert-dismissible"));
+        successfulAddingToWishListAlert = driver.findElement(By.cssSelector("div .alert.alert-success.alert-dismissible"));
     }
 
     public WebElement getSuccessfulAddingToWishListAlert() {

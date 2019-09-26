@@ -1,9 +1,9 @@
 package com.softserve.edu.opencart.data;
 
 interface IName {
-    IReview setName(String name);
+    IFeedback setName(String name);
 }
-interface IReview {
+interface IFeedback {
     IRating setReview(String review);
 }
 interface IRating {
@@ -14,10 +14,10 @@ interface IReviewsBuild {
     IReviews build();
 }
 
-public class Reviews implements IName, IReview, IRating,IReviewsBuild {
+public class Reviews implements IName, IFeedback, IRating,IReviewsBuild, IReviews {
 
     private String name;
-    private String review;
+    private String feedback;
     private Rating rating;
 
 
@@ -29,13 +29,13 @@ public class Reviews implements IName, IReview, IRating,IReviewsBuild {
     }
     //setters
 
-    public IReview setName(String name) {
+    public IFeedback setName(String name) {
         this.name = name;
         return this;
     }
 
     public IRating setReview (String review){
-        this.review = review;
+        this.feedback = review;
         return this;
     }
 
@@ -51,8 +51,8 @@ public class Reviews implements IName, IReview, IRating,IReviewsBuild {
         return name;
     }
 
-    public String getReview() {
-        return review;
+    public String getFeedback() {
+        return feedback;
     }
 
     public Rating getRating() {
@@ -62,7 +62,7 @@ public class Reviews implements IName, IReview, IRating,IReviewsBuild {
 
 
     public IReviews build() {
-        return (IReviews) this;
+        return  this;
     }
 }
 

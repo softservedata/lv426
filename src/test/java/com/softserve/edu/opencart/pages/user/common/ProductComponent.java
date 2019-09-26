@@ -114,11 +114,6 @@ public class ProductComponent {
 
 	// Business Logic
 
-	public ProductPage goToProductPage(){
-		clickName();
-		return new ProductPage();
-	}
-
 
 
 }

@@ -1,19 +1,17 @@
 
 package com.softserve.edu.opencart.pages.user.common;
+
 import com.softserve.edu.opencart.data.Reviews;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 
-
-public class ProductPage extends BreadCrumbPart{
-    public ProductPage(WebDriver productLayout) {
-    }
+public class ProductPage extends BreadCrumbPart {
+    //public ProductPage(WebDriver productLayout) { }
 
 
-
-        protected WebDriver productLayout;
+    //protected WebDriver productLayout;
     public WebElement reviewButton;
     private WebElement productDescription;
     private ProductsContainerComponent productsContainer;
@@ -22,33 +20,32 @@ public class ProductPage extends BreadCrumbPart{
     public ProductReviewComponent productReview;
 
 
-
-
-    public ProductPage() {
-
-        super();
-        this.productLayout= productLayout;
+    public ProductPage(WebDriver driver) {
+        super(driver);
+        //this.productLayout = productLayout;
         initElements();
     }
 
 
     public void initElements() {
-        reviewButton = productLayout.findElement(By.xpath("//li[contains(@class,'' )]//a[contains(text(),'Reviews')]"));
-        productDescription=productLayout.findElement(By.xpath("//ul[contains(@class, \"nav nav-tabs\")]//a[contains(text(), 'Description')]"));
+        reviewButton = driver.findElement(By.xpath("//li[contains(@class,'' )]//a[contains(text(),'Reviews')]"));
+        productDescription = driver.findElement(By.xpath("//ul[contains(@class, 'nav nav-tabs')]//a[contains(text(), 'Description')]"));
     }
 
 
-    public WebElement getReviewButton () {
-
+    public WebElement getReviewButton() {
         return reviewButton;
-        }
+    }
 
-
+    public void clickReview() {
+        getReviewButton().click();
+        //return new ProductReviewComponent(driver);
+    }
 
     public ProductsContainerComponent getProductComponentsContainer() {
         return productsContainer;
     }
-        //Page Object
+    //Page Object
 
 
     public WebElement getProductDescription() {
@@ -56,35 +53,23 @@ public class ProductPage extends BreadCrumbPart{
     }
 
 
-
-
-    public void clickReview(){
-        getReviewButton().click();
-    }
    /* public void addProductToWishList(){
         getProductComponentsContainer().clickProductComponentAddToWishButtonByName(productComponent.getNameText());
     }
     */
 
 
-    public void productDescriptionclick(){
+    public void productDescriptionclick() {
         getProductDescription().click();
     }
 
-    public void sendReview(Reviews review ){
-        productReview.clickReview();
-        productReview.clickInputNameBox();
-        productReview.clearInputNameBox();
-        productReview.setInputNameBox(review.getName());
-        productReview.clickInputReviewBox();
-        productReview.clearInputReviewBox();
-        productReview.setInputReviewBox(review.getReview());
-        productReview.clickRatingButton(review.getRating());
-        productReview.clickContinueReviewButton();
 
-    }
     //business logic
 
+    public ProductReviewComponent gotoReview() {
+        clickReview();
+        return new ProductReviewComponent(driver);
+    }
 }
 
 

@@ -109,6 +109,26 @@ public final class UserRepository {
                 .build();
     }
 
+    public IUser getMartaUser() {
+        return User.get()
+                .setFirstName("Olena")
+                .setLastName("Kook")
+                .seteMail("ivaqwerty@gmail.com")
+                .setTelephone("0987654321")
+                .setAddress1("Zalizniaka 12")
+                .setCity("Lviv")
+                .setPostCode("88888")
+                .setCountry("Ukraine")
+                .setRegionState("L'vivs'ka Oblast'")
+                .setPassword("root")
+                .setSubscribe(true)
+                .setFax("12341")
+                .setCompany("SoftServe")
+                .build();
+    }
+
+
+
     public IUser getWrongPasswordUser() {
         return User.get()
                 .setFirstName("Danylo")

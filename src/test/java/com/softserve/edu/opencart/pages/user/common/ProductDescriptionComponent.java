@@ -16,8 +16,8 @@ public class ProductDescriptionComponent extends ProductPage {
     public WebElement DescriptionButton;
 
     public ProductDescriptionComponent(WebDriver productLayout){
-        super();
-        this.productLayout=productLayout;
+        super(productLayout);
+        //this.productLayout=productLayout;
         initElements();
     }
 
