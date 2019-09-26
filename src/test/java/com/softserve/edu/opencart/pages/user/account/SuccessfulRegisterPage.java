@@ -1,19 +1,16 @@
 package com.softserve.edu.opencart.pages.user.account;
 
-import com.softserve.edu.opencart.data.ApplicationStatus;
-import com.softserve.edu.opencart.pages.user.HomePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class SuccessfulRegisterPage extends AccountSidebarLoggedPart{
+public class SuccessfulRegisterPage extends AccountSidebarLoggedPart {
 
     private WebElement continueButton;
 
     public SuccessfulRegisterPage(WebDriver driver) {
         super(driver);
         initElements();
-        ApplicationStatus.get().setLogged(true);
     }
 
     private void initElements() {
@@ -39,7 +36,7 @@ public class SuccessfulRegisterPage extends AccountSidebarLoggedPart{
 
     // Business Logic
 
-    public MyAccountPage gotoContinue(){
+    public MyAccountPage gotoContinue() {
         clickContinueButton();
         return new MyAccountPage(driver);
     }

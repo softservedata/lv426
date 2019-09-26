@@ -1,22 +1,34 @@
 package com.softserve.edu.opencart.test;
 
 import com.softserve.edu.opencart.data.*;
+import com.softserve.edu.opencart.data.shop.CountryForEstimation;
+import com.softserve.edu.opencart.data.shop.ShopRepository;
+import com.softserve.edu.opencart.pages.user.search.SearchSuccessPage;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class TaxTest extends UserTestRunner{
+public class TaxTest extends UserTestRunner {
+    private GeoZone geoZone;
+    private TaxRate taxRate;
+    private TaxClass taxClass;
 
     @DataProvider
     public Object[][] searchData() {
-        return new Object[][] {
-                {GeoZoneRepository.getDefault(), TaxRateRepository.getFixed(), TaxClassRepository.getFixed()}
+        return new Object[][]{
+                {ProductRepository.getIphone(), ShopRepository.builderCountryForEstimation()}
         };
     }
 
 
-    @Test(dataProvider = "searchData")
-    public void checTax(GeoZone geoZone, TaxRate taxRate, TaxClass taxClass) {
-        loadAdminLoginPage()
+    @BeforeClass
+    public void checTax() {
+        geoZone = GeoZoneRepository.getDefault();
+        taxRate = TaxRateRepository.getFixed();
+        taxClass = TaxClassRepository.getFixed();
+
+        loadArsenAdminLoginPage()
                 .goToAdminHomePage()
                 .goToGeoZonePage()
                 .goToAddGeoZomeManagePage()
@@ -43,9 +55,27 @@ public class TaxTest extends UserTestRunner{
 
     }
 
+
+
     @Test(dataProvider = "searchData")
-    public void tearDown(GeoZone geoZone, TaxRate taxRate, TaxClass taxClass) {
-        loadAdminLoginPage()
+    public void taxTestWithFixedAmountTax(Product product, CountryForEstimation country) {
+        loadArsenApplication()
+                .successfulSearch(product)
+                .addProductToCartByProductCriteriaComponent(product.getName())
+                .gotoShoppingCartPage()
+                .shippingAndTaxesClick()
+                .estimationShoppingCartPageTrue(country);
+
+    }
+
+    @AfterClass()
+    public void tearDown() {
+
+        geoZone = GeoZoneRepository.getDefault();
+        taxRate = TaxRateRepository.getFixed();
+        taxClass = TaxClassRepository.getFixed();
+
+        loadArsenAdminLoginPage()
                 .goToAdminHomePage()
                 .goToProductPage()
                 .goToIphoneEditPage()

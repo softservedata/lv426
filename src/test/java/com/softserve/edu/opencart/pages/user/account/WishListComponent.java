@@ -6,74 +6,92 @@ import org.openqa.selenium.WebElement;
 
 public class WishListComponent {
 
-	private WebElement productLayout;
+	private WebElement wishListLayout;
 	private WebElement price;
 	private WebElement addToCartButton;
 	private WebElement name;
 	private WebElement deleteFromWishListButton;
 	private WebElement model;
+    private WebElement stock;
 
-	public WishListComponent(WebElement productLayout) {
-		this.productLayout = productLayout;
+	public WishListComponent(WebElement wishListLayout) {
+		this.wishListLayout = wishListLayout;
 		initElements();
 	}
 
-	private void initElements() {
-		name = productLayout.findElement(By.cssSelector("h4 a"));
-		model=productLayout.findElement(By.xpath("//div[@class='table-responsive']//td/a[text()='MacBook']/../following-sibling::td[text()='Product 16']"));
-		price = productLayout.findElement(By.cssSelector(".price"));
-		addToCartButton = productLayout.findElement(By.cssSelector(".fa.fa-shopping-cart"));
-		deleteFromWishListButton = productLayout.findElement(By.xpath(".fa.fa-times"));
+    private void initElements() {
+        name = wishListLayout.findElement(By.xpath("//tbody/tr/td[2]/a"));
+        model= wishListLayout.findElement(By.xpath("//tbody/tr/td[3]"));
+        stock = wishListLayout.findElement(By.xpath("//tbody/tr/td[4]"));
+        price = wishListLayout.findElement(By.cssSelector(".price"));
+        addToCartButton = wishListLayout.findElement(By.cssSelector("td button .fa.fa-shopping-cart"));
+        deleteFromWishListButton = wishListLayout.findElement(By.xpath("td a .fa.fa-times"));
 
-	}
+    }
 
-	// Page Object
-	// product
-	public WebElement getProductLayout() {
-		return productLayout;
-	}
+    // Page Object
+    // product
+    public WebElement getWishListLayout() {
+        return wishListLayout;
+    }
 
-	// name
-	public WebElement getName() {
-		return name;
-	}
+    // name
+    public WebElement getName() {
+        return name;
+    }
 
-	public String getNameText() {
-		return getName().getText();
-	}
+    public String getNameText() {
+        return getName().getText();
+    }
 
-	public void clickName() {
-		getName().click();
-	}
+    public void clickName() {
+        getName().click();
+    }
 
-	// price
-	public WebElement getPrice() {
-		return price;
-	}
+    //model
+    public WebElement getModel() {
+        return model;
+    }
 
-	public String getPriceText() {
-		return getPrice().getText();
-	}
+    public String getModelText() {
+        return getModel().getText();
+    }
 
-	// addToCartButton
-	public WebElement getAddToCartButton() {
-		return addToCartButton;
-	}
+    //amount in stock
+    public WebElement getStockStatus() {
+        return stock;
+    }
 
-	public void clickAddToCartButton() {
-		getAddToCartButton().click();
-	}
+    public String getStockStatusText() {
+        return getStockStatus().getText();
+    }
 
-	// deleteFromWishListButton
-	public WebElement getDeleteFromWishListButton() {
-		return deleteFromWishListButton;
-	}
+    // price
+    public WebElement getPrice() {
+        return price;
+    }
 
-	public void clickDeleteFromWishListButton() {
-		getDeleteFromWishListButton().click();
-	}
+    public String getPriceText() {
+        return getPrice().getText();
+    }
 
+    // addToCartButton
+    public WebElement getAddToCartButton() {
+        return addToCartButton;
+    }
 
+    public void clickAddToCartButton() {
+        getAddToCartButton().click();
+    }
+
+    // deleteFromWishListButton
+    public WebElement getDeleteFromWishListButton() {
+        return deleteFromWishListButton;
+    }
+
+    public void clickDeleteFromWishListButton() {
+        getDeleteFromWishListButton().click();
+    }
 	// Functional
 
 	// Business Logic

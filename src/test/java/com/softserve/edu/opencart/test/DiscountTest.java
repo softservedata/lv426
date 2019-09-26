@@ -17,7 +17,7 @@ public class DiscountTest extends UserTestRunner {
     @Test(dataProvider = "discountData")
     public void setUp(Discount discount) {
 
-        loadAdminLoginPage()
+        loadArsenAdminLoginPage()
                 .goToAdminHomePage()
                 .goToProductPage()
                 .goToIphoneEditPage()
@@ -28,7 +28,7 @@ public class DiscountTest extends UserTestRunner {
     @Test(dataProvider = "discountData")
     public void tearDown(Discount discount) {
 
-        loadAdminLoginPage()
+        loadArsenAdminLoginPage()
                 .goToAdminHomePage()
                 .goToProductPage()
                 .goToIphoneEditPage()

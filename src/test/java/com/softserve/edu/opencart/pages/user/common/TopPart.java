@@ -7,12 +7,15 @@ import com.softserve.edu.opencart.pages.user.search.SearchSuccessPage;
 import com.softserve.edu.opencart.pages.user.search.SearchUnsuccessPage;
 import com.softserve.edu.opencart.pages.user.shop.ShoppingCartPage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+
+
 
 public abstract class TopPart {
 
@@ -28,6 +31,8 @@ public abstract class TopPart {
     protected final String DROPDOWN_MYACCOUNT_CSSSELECTOR = ".dropdown-menu-right li";
     //
     protected WebDriver driver;
+    //protected WebDriverWait webDriverWait;
+    protected JavascriptExecutor js;
     //
     private WebElement currency;
     private WebElement myAccount;
@@ -45,11 +50,14 @@ public abstract class TopPart {
     private DropdownLogged dropdownLogged;
 
     protected TopPart(WebDriver driver) {
+        //this.webDriverWait = new WebDriverWait(driver, 2);
         this.driver = driver;
         initElements();
     }
 
     private void initElements() {
+
+        js = (JavascriptExecutor) driver;
 
         myAccount = driver.findElement(By.cssSelector(".list-inline > li > a.dropdown-toggle"));
         wishList = driver.findElement(By.id("wishlist-total"));
@@ -117,7 +125,21 @@ public abstract class TopPart {
     }
 
     public void clickShoppingCart() {
+        //webDriverWait.until(ExpectedConditions.elementToBeClickable((By.cssSelector("#cart > button"))));
+//        try{
+//            js.executeAsyncScript("arguments[0].click();",shoppingCart);
+//        }
+//        catch (ElementClickInterceptedException e){
+//            getShoppingCart().click();
+//        }
+        //driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         getShoppingCart().click();
+
     }
 
     // checkout

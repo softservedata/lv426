@@ -24,5 +24,12 @@ public final class ProductRepository {
         return new Product("Bok", "Intel", "100");
     }
 
+    public static Product getIPhone(){
+        return new Product("iPhone",
+                "iPhone is a revolutionary new mobile phone that allows you to make a call by simply tapping a nam..",
+                "123.20")
+                .addPrice(Currencies.US_DOLLAR, "100");
+    }
+
 }
 

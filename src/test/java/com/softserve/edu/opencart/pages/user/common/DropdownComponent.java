@@ -36,7 +36,6 @@ public class DropdownComponent {
 	// Functional
 
 	// listOptions
-
 	public WebElement getDropdownOptionByPartialName(String optionName)
 	{
 		WebElement result = null;

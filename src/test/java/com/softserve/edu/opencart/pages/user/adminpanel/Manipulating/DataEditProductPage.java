@@ -45,6 +45,10 @@ public class DataEditProductPage extends EditProductPage {
         return this;
     }
 
+    public double getPriceOfProduct() {
+        return Double.parseDouble(getSubPrice());
+    }
+
     public DataEditProductPage selectDefaultTax() {
         selectDefaultTaxClass();
         clickSaveButton();

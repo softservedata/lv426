@@ -23,6 +23,15 @@ public final class PriceUtils {
         return Double.parseDouble(result.get(0));
     }
 
+    public static double getSpecialCurrency(String str) {
+        String str1 = str.replaceAll("[,]", "");
+        Pattern pattern = Pattern.compile("[0-9]*[.][0-9]*");
+        Matcher matcher = pattern.matcher(str1);
+        matcher.find();
+        return Double.parseDouble(matcher.group());
+
+    }
+
     public static double getMultiply(double num1, double num2) {
         DecimalFormat df = new DecimalFormat("#.##");
         double rezult = num1 * num2;

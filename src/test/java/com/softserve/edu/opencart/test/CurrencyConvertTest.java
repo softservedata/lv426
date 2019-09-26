@@ -30,11 +30,12 @@ public class CurrencyConvertTest extends UserTestRunner {
     @BeforeClass
     public void addNewCurrency() {
 
-        CurrencyPage currencyPage = loadAdminLoginPage()
+        CurrencyPage currencyPage = loadArsenAdminLoginPage()
                 .goToAdminHomePage()
                 .goToCurrencyPage();
 
         map = currencyPage.getConvertValue();
+
 
         currencyPage
                 .goToAddNewCurrencyPage()
@@ -44,7 +45,7 @@ public class CurrencyConvertTest extends UserTestRunner {
 
     @Test(dataProvider = "currencyData")
     public void checkIfOldCurrencyWasConventedCorrectly(Product product, ICurrency currency) {
-        SearchSuccessPage searchSuccessPage = loadApplication()
+        SearchSuccessPage searchSuccessPage = loadArsenApplication()
                 .successfulSearch(product);
 
         priceInDolar = searchSuccessPage
@@ -74,7 +75,7 @@ public class CurrencyConvertTest extends UserTestRunner {
 
     @Test(dataProvider = "currencyData")
     public void checkIfUACurrencyIsVisibleInDropdownList(Product product, ICurrency currency) {
-        SearchSuccessPage searchSuccessPage = loadApplication()
+        SearchSuccessPage searchSuccessPage = loadArsenApplication()
                 .successfulSearch(product);
 
 
@@ -98,7 +99,7 @@ public class CurrencyConvertTest extends UserTestRunner {
     @AfterClass
     public void tearDown() {
 
-        loadAdminLoginPage()
+        loadArsenAdminLoginPage()
                 .goToAdminHomePage()
                 .goToCurrencyPage()
                 .deleteCurrency(currency);

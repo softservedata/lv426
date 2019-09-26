@@ -5,6 +5,8 @@ import com.softserve.edu.opencart.data.shop.ShoppingCartTableElements;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +14,7 @@ import java.util.List;
 public class ShoppingCartContainerComponent extends ShoppingCartPage {
 	
 	protected WebDriver driver;
-	private WebElement countOfOrderToChangeField;
+	private WebDriverWait explicitWait;
 	private WebElement submitOrderChangesButton;
 	private final String SHOPPINGCART_COMPONENTS_CSSSELECTOR="//div[contains(@class,'table-responsive')]" +
 			"/table[contains(@class,'table table-bordered')]/tbody/tr";
@@ -21,24 +23,24 @@ public class ShoppingCartContainerComponent extends ShoppingCartPage {
 
 	public ShoppingCartContainerComponent(WebDriver driver) {
 		super(driver);
+		this.driver = driver;
 		initElements();
 	}
 
 	private void initElements() {
-		submitOrderChangesButton = driver.findElement(By.xpath("button[type=submit]"));
-//		countOfOrderToChange = elementToChangeACount();
 		ordersInfo = new ArrayList<>();
 		for(WebElement productTable : driver.findElements(By.xpath(SHOPPINGCART_COMPONENTS_CSSSELECTOR))){
-			ordersInfo.add(new CartTableFullOrderInfo(productTable));
+			ordersInfo.add(new CartTableFullOrderInfo(productTable, driver));
 			listOfCartOrders();
 		}
 	}
 
-	// Page Object
+
 	public ShoppingCartTableElements listOfCartOrders(){
 		return new ShoppingCartTableElements(ordersInfo);
 	}
 
+	// Page Object
 	public WebElement elementToChangeACountOfOrderingByName(String orderName){
 		return driver.findElement(By.xpath("//td/a[contains(text(),'"+ orderName
 				+"')]/../following-sibling::td/div/input"));
@@ -70,17 +72,38 @@ public class ShoppingCartContainerComponent extends ShoppingCartPage {
 				"//tbody/tr/td/a[contains(text(),'"+orderName+"')]/../following-sibling::td[4]")).getText();
 	}
 
-	public ShoppingCartPage deleteSomeOrderBuName(String orderName){
+	public ShoppingCartPage deleteSomeOrderByName(String orderName){
 		elementToDeleteSomeOrderByName(orderName);
 		return new ShoppingCartPage(driver);
 	}
 
-	public ShoppingCartPage changeCountOfSomeOrderBuName(String orderName){
-		elementToChangeACountOfOrderingByName(orderName);
+	public ShoppingCartPage changeCountOfSomeOrderByName(String orderName, String count){
+		clickInputACountOfOrderByName(orderName);
+		clearInputACountOfOrderByName(orderName);
+		setInputACountOfOrderByName(orderName,count);
+		clickToSubmitChangesInCartTable();
 		return new ShoppingCartPage(driver);
 	}
 
 	// Functional
+
+	public void clickInputACountOfOrderByName(String orderName){
+		elementToChangeACountOfOrderingByName(orderName).click();
+	}
+
+	public void clearInputACountOfOrderByName(String orderName){
+		elementToChangeACountOfOrderingByName(orderName).clear();
+	}
+
+	public void setInputACountOfOrderByName(String orderName, String count){
+		elementToChangeACountOfOrderingByName(orderName).sendKeys(count);
+	}
+
+	public ShoppingCartPage clickToSubmitChangesInCartTable(){
+		submitOrderChangesButton = driver.findElement(By.cssSelector("button[type=submit]"));
+		submitOrderChangesButton.click();
+		return new ShoppingCartPage(driver);
+	}
 
 	// Business Logic
 }

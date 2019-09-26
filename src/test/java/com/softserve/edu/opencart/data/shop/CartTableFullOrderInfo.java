@@ -14,8 +14,9 @@ public class CartTableFullOrderInfo {
     private WebElement unitPrice;
     private WebElement total;
 
-    public CartTableFullOrderInfo(WebElement element){
+    public CartTableFullOrderInfo(WebElement element, WebDriver driver){
         this.element = element;
+        this.driver = driver;
         initElements();
     }
 
@@ -34,23 +35,40 @@ public class CartTableFullOrderInfo {
                 "//../following-sibling::td[contains(@class,'text-right')]"));
     }
 
-    public WebElement getProductName() {
+    public WebElement getProductNameWeb() {
         return productName;
     }
 
-    public WebElement getModel() {
+    public WebElement getModelWeb() {
         return model;
     }
 
-    public WebElement getQuantity() {
+    public WebElement getQuantityWeb() {
         return quantity;
     }
 
-    public WebElement getUnitPrice() {
+    public WebElement getUnitPriceWeb() {
         return unitPrice;
     }
 
-    public WebElement getTotal() {
+    public WebElement getTotalWeb() {
         return total;
+    }
+
+    //Functional
+    public String getProductName(){
+        return getProductNameWeb().getText();
+    }
+
+    public String getModel(){
+        return getModelWeb().getText();
+    }
+
+    public String getQuantity(){
+        return getQuantityWeb().getText();
+    }
+
+    public String getTotal(){
+        return getTotalWeb().getText();
     }
 }

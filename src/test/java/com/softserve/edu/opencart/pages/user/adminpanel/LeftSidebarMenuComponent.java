@@ -42,9 +42,13 @@ public class LeftSidebarMenuComponent extends HeaderPart {
     }
 
 
-//  //  private void clickSalesMenu() {
-//        buttonSearching(AdminMenuButtons.SALES).button.click();
-//    }
+
+
+
+
+    private void clickSalesMenu() {
+        clickMenuButton(AdminMenuButtons.SALES);
+    }
 
     //func
 

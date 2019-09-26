@@ -56,4 +56,9 @@ public class SearchSuccessPage extends SearchCriteriaPart {
         return new SearchSuccessPage(driver);
     }
 
+    public SearchSuccessPage addProductToCartByProductCriteriaComponent(String orderName){
+	    productsCriteria.clickProductComponentAddToCartButtonByName(orderName);
+	    return new SearchSuccessPage(driver);
+    }
+
 }

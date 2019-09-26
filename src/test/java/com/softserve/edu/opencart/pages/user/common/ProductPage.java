@@ -5,42 +5,41 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 
-public class ProductPage extends ProductComponent{
-    protected WebDriver productLayout;
+public class ProductPage {
+   protected WebDriver productLayout;
 
 
     private ProductsContainerComponent productsContainer;
+    private ProductComponent productComponent;
     private ProductDescriptionComponent productDescription;
     public ProductReviewComponent productReview;
 
-    public ProductPage(WebElement productLayout) {
-        super(productLayout);
-    }
+    public ProductPage (WebDriver driver) {
 
-    public ProductPage() {
-        super();
-    }
-
-    /*public ProductPage(WebDriver productLayout){
-        this.productLayout=productLayout;
+        this.productLayout=driver;
         initElements();
-    }
-
-    public ProductPage() {
-
     }
 
     public void initElements(){
         productsContainer = new ProductsContainerComponent(productLayout);
+        productComponent = new ProductComponent();
 
     }
+        //Page Object
 
-     */
 
+    public void addProductToWishList(){
+        productsContainer.clickProductComponentAddToWishButtonByName(productComponent.getNameText());
+    }
 
     public ProductsContainerComponent getProductComponentsContainer() {
         return productsContainer;
     }
+   /* public void addProductToWishList(){
+        getProductComponentsContainer().clickProductComponentAddToWishButtonByName(productComponent.getNameText());
+    }
+    */
+
 
 
     public void sendReview(){
@@ -54,6 +53,11 @@ public class ProductPage extends ProductComponent{
         productReview.clickRating5();
         productReview.clickContinueReviewButton();
 
+    }
+    //business logic
+    public ProductPageWithAlert successfulAddingToWishList(){
+        addProductToWishList();
+        return new ProductPageWithAlert(productLayout);
     }
 }
 
