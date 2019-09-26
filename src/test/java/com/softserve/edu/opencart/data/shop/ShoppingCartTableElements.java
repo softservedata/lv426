@@ -21,7 +21,7 @@ public class ShoppingCartTableElements {
     public CartTableFullOrderInfo getOrderFromTableByName(String orderName) {
         CartTableFullOrderInfo order = null;
         for (CartTableFullOrderInfo current : getAllOrderFromTable()) {
-            if (current.getProductNameWeb()
+            if (current.getProductName()
                     .equals(orderName)) {
                 order = current;
                 break;

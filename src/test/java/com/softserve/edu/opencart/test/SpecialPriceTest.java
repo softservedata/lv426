@@ -56,7 +56,7 @@ public class SpecialPriceTest extends UserTestRunner {
         ProductComponent component = loadArsenApplication()
                 .successfulSearch(product)
                 .getProductsCriteria()
-                .getProductComponentByName(product.getName());
+                .getProductComponentByName(product);
 
 
         newPrice = component.getNewPrices();

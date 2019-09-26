@@ -20,6 +20,10 @@ public final class ProductRepository {
         return new Product("iPhone", "iPhone is a revolutionary new mobile phone that allows you to make a call by simply tapping a nam..", "100.00");
     }
 
+    public static Product getNikon() {
+        return new Product("Nikon D300", "Engineered with pro-level features and performance, the 12.3-effective-megapixel D300 combine..", "122.00");
+    }
+
     public static Product getInvalid() {
         return new Product("Bok", "Intel", "100");
     }
@@ -29,6 +33,13 @@ public final class ProductRepository {
                 "iPhone is a revolutionary new mobile phone that allows you to make a call by simply tapping a nam..",
                 "123.20")
                 .addPrice(Currencies.US_DOLLAR, "100");
+    }
+
+    public static Product getIMac()
+    {
+        return new Product("iMac",
+                "Just when you thought iMac had everything, now there´s even more. More powerful Intel Core 2 Duo ..",
+                "122.00");
     }
 
 }

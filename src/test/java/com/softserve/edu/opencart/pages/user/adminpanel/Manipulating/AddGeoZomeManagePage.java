@@ -97,6 +97,11 @@ public class AddGeoZomeManagePage extends LeftSidebarMenuComponent {
     public GeoZonePage addNewGeoZone(GeoZone geoZone) {
         enterAllFields(geoZone);
         clickSaveButton();
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return new GeoZonePage(driver);
 
     }

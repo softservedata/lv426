@@ -1,6 +1,12 @@
 package com.softserve.edu.opencart.pages.user.search;
 
 
+import com.softserve.edu.opencart.data.Product;
+
+import com.softserve.edu.opencart.data.SearchFilter;
+import com.softserve.edu.opencart.pages.user.common.ProductComponent;
+import com.softserve.edu.opencart.pages.user.common.ProductPage;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,6 +16,8 @@ import com.softserve.edu.opencart.data.Currencies;
 public class SearchSuccessPage extends SearchCriteriaPart {
 
 	private ProductsCriteriaComponent productsCriteria;
+
+	//private ProductComponent productComponent;
 	
 	public SearchSuccessPage(WebDriver driver) {
 		super(driver);
@@ -32,6 +40,8 @@ public class SearchSuccessPage extends SearchCriteriaPart {
 	public ProductsCriteriaComponent getProductsCriteria() {
 		return productsCriteria;
 	}
+
+
 	
 	// Functional
 
@@ -56,9 +66,22 @@ public class SearchSuccessPage extends SearchCriteriaPart {
         return new SearchSuccessPage(driver);
     }
 
-    public SearchSuccessPage addProductToCartByProductCriteriaComponent(String orderName){
-	    productsCriteria.clickProductComponentAddToCartButtonByName(orderName);
-	    return new SearchSuccessPage(driver);
+
+    public SearchSuccessAlertPage addToWishButtonByName(Product product) {
+    	productsCriteria.addToWishButtonByName(product);
+   	    return new SearchSuccessAlertPage(driver);
     }
+    public SearchSuccessPage addProductToCartByProductCriteriaComponent(SearchFilter searchFilter){
+        productsCriteria.clickProductComponentAddToCartButtonByName(searchFilter.getProduct());
+        return new SearchSuccessPage(driver);
+    }
+
+    public ProductPage gotoProductInfo(Product product) {
+    	getProductsCriteria()
+    	.getProductComponentByName(product)
+    	.clickName();
+    	return new ProductPage(driver);
+    }
+
 
 }

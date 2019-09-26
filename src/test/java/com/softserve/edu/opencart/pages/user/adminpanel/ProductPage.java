@@ -20,10 +20,21 @@ public class ProductPage extends LeftSidebarMenuComponent {
         return productContainerComponent.searchByName(ProductName.IPHONE);
     }
 
+    private ProductComponent searchNikon() {
+        return productContainerComponent.searchByName(ProductName.NIKON);
+    }
+
     public EditProductPage goToIphoneEditPage() {
          return searchIphone().goToEditProductPage();
-        //return new EditProductPage(driver);
+
     }
+
+    public EditProductPage goToNikonEditPage() {
+        return searchIphone().goToEditProductPage();
+
+    }
+
+
 
 
 }

@@ -43,24 +43,22 @@ public class AdminListContainerComponent {
                 rezult = current;
                 break;
             }
-
-
         }
-        if (rezult == null) {
-            throw new RuntimeException("Can't search Component by [" + name + "] name");
-        }
+//        if (rezult == null) {
+//            throw new RuntimeException("Can't search Component by [" + name + "] name");
+//        }
         return rezult;
     }
 
     public void selectByName(String name) {
         searchByName(name).select();
-    }
 
+    }
 
 
     public Map<String, Double> getMapOfConventValue() {
         Map<String, Double> rezult = new HashMap<>();
-        for  (CurrencyListElementComponent current : getListOfCurrency()) {
+        for (CurrencyListElementComponent current : getListOfCurrency()) {
             rezult.put(current.getName().getText(), current.getValue());
 
         }

@@ -55,6 +55,10 @@ public abstract class TopPart {
         initElements();
     }
 
+    public TopPart() {
+
+    }
+
     private void initElements() {
 
         js = (JavascriptExecutor) driver;
@@ -331,6 +335,7 @@ public abstract class TopPart {
     
 
 
+
     private void closeDropdownLogged() {
         clickSearchTopField();
         dropdownLogged= null;
@@ -385,10 +390,10 @@ public abstract class TopPart {
 //    }
 
     // searchTopField
-    private void fillSearchTopField(String searchText) {
+    private void fillSearchTopField(Product searchText) {
         clickSearchTopField();
         clearSearchTopField();
-        setSearchTopField(searchText);
+        setSearchTopField(searchText.getName());
     }
 
     protected void defaultLogin(IUser user) {
@@ -411,14 +416,14 @@ public abstract class TopPart {
 
     //    public SearchSuccessPage successfulSearch(String searchItem) {
     public SearchSuccessPage successfulSearch(Product product) {
-        fillSearchTopField(product.getName());
+        fillSearchTopField(product);
         clickSearchTopButton();
         return new SearchSuccessPage(driver);
     }
 
     //public SearchUnsuccessPage unsuccessfulSearch(String searchItem){
     public SearchUnsuccessPage unsuccessfulSearch(Product product){
-        fillSearchTopField(product.getName());
+        fillSearchTopField(product);
         clickSearchTopButton();
         return new SearchUnsuccessPage(driver);
     }
@@ -485,6 +490,7 @@ public abstract class TopPart {
 //    	clickDropdownLoggedDownloads();
 //        return new DownloadsPage(driver);
 //    }
+
 //
     public AccountLogoutPage logout() {
     	openMyAccountDropdown();

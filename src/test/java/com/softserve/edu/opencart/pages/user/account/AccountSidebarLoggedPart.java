@@ -1,5 +1,6 @@
 package com.softserve.edu.opencart.pages.user.account;
 
+
 import com.softserve.edu.opencart.data.ApplicationStatus;
 import com.softserve.edu.opencart.data.IUser;
 import org.openqa.selenium.By;

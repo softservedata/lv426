@@ -1,65 +1,104 @@
 
 package com.softserve.edu.opencart.pages.user.common;
-
+import com.softserve.edu.opencart.data.Reviews;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 
-public class ProductPage {
-   protected WebDriver productLayout;
+
+public class ProductPage extends BreadCrumbPart{
+    public ProductPage(WebDriver productLayout) {
+    }
 
 
+
+    protected WebDriver productLayout;
+    public WebElement reviewButton;
+    private WebElement productDescription;
     private ProductsContainerComponent productsContainer;
     private ProductComponent productComponent;
-    private ProductDescriptionComponent productDescription;
+
     public ProductReviewComponent productReview;
 
-    public ProductPage (WebDriver driver) {
 
-        this.productLayout=driver;
+
+
+    public ProductPage() {
+
+        super();
+        this.productLayout= productLayout;
         initElements();
     }
 
-    public void initElements(){
-        productsContainer = new ProductsContainerComponent(productLayout);
-        productComponent = new ProductComponent();
 
+    public void initElements() {
+        reviewButton = productLayout.findElement(By.xpath("//li[contains(@class,'' )]//a[contains(text(),'Reviews')]"));
+        productDescription=productLayout.findElement(By.xpath("//ul[contains(@class, \"nav nav-tabs\")]//a[contains(text(), 'Description')]"));
     }
-        //Page Object
 
 
-    public void addProductToWishList(){
-        productsContainer.clickProductComponentAddToWishButtonByName(productComponent.getNameText());
-    }
+    public WebElement getReviewButton () {
+
+        return reviewButton;
+        }
+
+
 
     public ProductsContainerComponent getProductComponentsContainer() {
         return productsContainer;
     }
-   /* public void addProductToWishList(){
-        getProductComponentsContainer().clickProductComponentAddToWishButtonByName(productComponent.getNameText());
+        //Page Object
+
+
+    public WebElement getProductDescription() {
+        return productDescription;
     }
-    */
 
 
 
-    public void sendReview(){
+
+    public void clickReview(){
+        getReviewButton().click();
+    }
+
+
+
+    public void productDescriptionclick(){
+        getProductDescription().click();
+    }
+
+    public void sendReview(Reviews review ){
         productReview.clickReview();
         productReview.clickInputNameBox();
         productReview.clearInputNameBox();
-        productReview.setInputNameBox("iva qwerty");
+        productReview.setInputNameBox(review.getName());
         productReview.clickInputReviewBox();
         productReview.clearInputReviewBox();
-        productReview.setInputReviewBox("I'm absolutely satisfied and will buy one more as a present");
-        productReview.clickRating5();
+        productReview.setInputReviewBox(review.getReview());
+        productReview.clickRatingButton(review.getRating());
         productReview.clickContinueReviewButton();
 
     }
-    //business logic
-    public ProductPageWithAlert successfulAddingToWishList(){
-        addProductToWishList();
-        return new ProductPageWithAlert(productLayout);
-    }
+
 }
+
+
+/*public ProductPage(WebDriver productLayout){
+        this.productLayout=productLayout;
+        initElements();
+    }
+
+    public ProductPage() {
+
+    }
+
+    public void initElements(){
+        productsContainer = new ProductsContainerComponent(productLayout);
+
+    }
+
+     */
 
 
 

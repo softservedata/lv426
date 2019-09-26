@@ -52,12 +52,14 @@ public class ProductsContainerComponent {
         return productComponentNames;
     }
 
-    public ProductComponent getProductComponentByName(String productName)
+    public ProductComponent getProductComponentByName(Product product)
     {
         ProductComponent result = null;
         for (ProductComponent current : getProductComponents())
         {
-            if (current.hasName(productName))
+
+            if (current.hasName(product.getName()))
+
             {
                 result = current;
                 break;
@@ -66,29 +68,30 @@ public class ProductsContainerComponent {
         if (result == null)
         {
             // TODO Develop Custom Exception
-            throw new RuntimeException("ProductName: " + productName + " not Found.");
+            throw new RuntimeException("ProductName: " + product + " not Found.");
         }
         return result;
     }
 
-    public String getProductComponentPriceByName(String productName)
+    public String getProductComponentPriceByName(Product productName)
     {
         return getProductComponentByName(productName).getPriceText();
     }
 
-    public String getProductComponentDescriptionByName(String productName)
+    public String getProductComponentDescriptionByName(Product productName)
     {
         return getProductComponentByName(productName).getPartialDescriptionText();
     }
 
-    public void clickProductComponentAddToCartButtonByName(String productName)
+    public void clickProductComponentAddToCartButtonByName(Product productName)
     {
         getProductComponentByName(productName).clickAddToCartButton();
     }
 
-    public void clickProductComponentAddToWishButtonByName(String productName)
+
+    public void addToWishButtonByName(Product product)
     {
-        getProductComponentByName(productName).clickAddToWishButton();
+        getProductComponentByName(product).clickAddToWishButton();
     }
 
     // Functional
@@ -110,9 +113,6 @@ public class ProductsContainerComponent {
 
     // Business Logic
 
-    public ProductComponent getProductComponentByName(Product product) 
-    {
-    	return getProductComponentByName(product.getName());
-    }
+
 
 }

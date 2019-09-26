@@ -1,5 +1,6 @@
 package com.softserve.edu.opencart.pages.user.shop;
 
+import com.softserve.edu.opencart.data.Product;
 import com.softserve.edu.opencart.data.shop.CartTableFullOrderInfo;
 import com.softserve.edu.opencart.data.shop.ShoppingCartTableElements;
 import org.openqa.selenium.By;
@@ -77,18 +78,17 @@ public class ShoppingCartContainerComponent extends ShoppingCartPage {
 		return new ShoppingCartPage(driver);
 	}
 
-	public ShoppingCartPage changeCountOfSomeOrderByName(String orderName, String count){
-		clickInputACountOfOrderByName(orderName);
-		clearInputACountOfOrderByName(orderName);
-		setInputACountOfOrderByName(orderName,count);
+	public ShoppingCartPage changeCountOfSomeOrderByName(Product orderName, String count){
+		clearInputACountOfOrderByName(orderName.getName());
+		setInputACountOfOrderByName(orderName.getName(),count);
 		clickToSubmitChangesInCartTable();
 		return new ShoppingCartPage(driver);
 	}
 
 	// Functional
 
-	public void clickInputACountOfOrderByName(String orderName){
-		elementToChangeACountOfOrderingByName(orderName).click();
+	public void clickInputACountOfOrderByName(Product orderName){
+		elementToChangeACountOfOrderingByName(orderName.getName()).click();
 	}
 
 	public void clearInputACountOfOrderByName(String orderName){

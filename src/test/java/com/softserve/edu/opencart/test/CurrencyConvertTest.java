@@ -35,8 +35,6 @@ public class CurrencyConvertTest extends UserTestRunner {
                 .goToCurrencyPage();
 
         map = currencyPage.getConvertValue();
-
-
         currencyPage
                 .goToAddNewCurrencyPage()
                 .addNewCurrency(currency);
@@ -53,20 +51,10 @@ public class CurrencyConvertTest extends UserTestRunner {
                 .getProductComponentByName(product)
                 .getCurrentPrice();
 
-
-        priceInEuro = searchSuccessPage
-                .chooseCurrency(Currencies.EURO)
-                .getProductsCriteria()
-                .getProductComponentByName(product)
-                .getCurrentPrice();
+        priceInEuro = getPrice(searchSuccessPage, Currencies.EURO, product);
         Assert.assertEquals(priceInEuro, getMultiply(priceInDolar, map.get("Euro")));
 
-
-        priceInPhound = searchSuccessPage
-                .chooseCurrency(Currencies.POUND_STERLING)
-                .getProductsCriteria()
-                .getProductComponentByName(product)
-                .getCurrentPrice();
+        priceInPhound = getPrice(searchSuccessPage, Currencies.POUND_STERLING, product);
         Assert.assertEquals(priceInPhound, getMultiply(priceInDolar, map.get("Pound Sterling")));
 
 
@@ -78,18 +66,12 @@ public class CurrencyConvertTest extends UserTestRunner {
         SearchSuccessPage searchSuccessPage = loadArsenApplication()
                 .successfulSearch(product);
 
-
         priceInDolar = searchSuccessPage
                 .getProductsCriteria()
                 .getProductComponentByName(product)
                 .getCurrentPrice();
 
-        priceInUA = searchSuccessPage
-                .chooseCurrency(Currencies.UA)
-                .getProductsCriteria()
-                .getProductComponentByName(product)
-                .getCurrentPrice();
-
+        priceInUA = getPrice(searchSuccessPage, Currencies.UA, product);
         Assert.assertEquals(priceInUA, getMultiply(priceInDolar, currency.getValue()));
 
 
@@ -103,6 +85,16 @@ public class CurrencyConvertTest extends UserTestRunner {
                 .goToAdminHomePage()
                 .goToCurrencyPage()
                 .deleteCurrency(currency);
+    }
+
+    private double getPrice(SearchSuccessPage successPage, Currencies currencies, Product product) {
+        return successPage
+                .chooseCurrency(currencies)
+                .getProductsCriteria()
+                .getProductComponentByName(product)
+                .getCurrentPrice();
+
+
     }
 
 }
