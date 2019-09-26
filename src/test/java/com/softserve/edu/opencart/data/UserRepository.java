@@ -50,8 +50,8 @@ public final class UserRepository {
                 .setAddress1("7address1")
                 .setCity("7city")
                 .setPostCode("7Code")
-                .setCountry("7country")
-                .setRegionState("7State")
+                .setCountry("Ukraine")
+                .setRegionState("L'vivs'ka Oblast'")
                 .setPassword(System.getenv().get("MY_PASSWORD"))
                 .setSubscribe(true)
                 .setFax("7fax")
@@ -72,6 +72,57 @@ public final class UserRepository {
                 .setRegionState("Kyiv")
                 .setPassword(System.getenv().get("OPENCART_PASSWORD"))
                 .setSubscribe(true)
+                .build();
+    }
+
+    public IUser getWrongFirstNameUser() {
+        return User.get()
+                .setFirstName("")
+                .setLastName("Klyn")
+                .seteMail("ivan@gmail.com")
+                .setTelephone("123456789")
+                .setAddress1("Kolt 10")
+                .setCity("Lviv")
+                .setPostCode("11111")
+                .setCountry("Ukraine")
+                .setRegionState("L'vivs'ka Oblast'")
+                .setPassword("qwerty")
+                .setSubscribe(true)
+                .build();
+    }
+
+    public IUser getExistingUser() {
+        return User.get()
+                .setFirstName("Olena")
+                .setLastName("Kook")
+                .seteMail("hahaha@gmail.com")
+                .setTelephone("0987654321")
+                .setAddress1("Zalizniaka 12")
+                .setCity("Lviv")
+                .setPostCode("88888")
+                .setCountry("Ukraine")
+                .setRegionState("L'vivs'ka Oblast'")
+                .setPassword(System.getenv().get("MY_PASSWORD"))
+                .setSubscribe(true)
+                .setFax("12341")
+                .setCompany("SoftServe")
+                .build();
+    }
+
+    public IUser getWrongPasswordUser() {
+        return User.get()
+                .setFirstName("Danylo")
+                .setLastName("Protz")
+                .seteMail("danylo@gmail.com")
+                .setTelephone("0987654321")
+                .setAddress1("Zalizniaka 12")
+                .setCity("Lviv")
+                .setPostCode("98675")
+                .setCountry("Ukraine")
+                .setRegionState("L'vivs'ka Oblast'")
+                .setPassword("")
+                .setSubscribe(false)
+                .setFax("12341")
                 .build();
     }
 

@@ -27,5 +27,12 @@ public final class ProductRepository {
                 .addPrice(Currencies.US_DOLLAR, "100");
     }
 
+    public static Product getIMac()
+    {
+        return new Product("iMac",
+                "Just when you thought iMac had everything, now there´s even more. More powerful Intel Core 2 Duo ..",
+                "122.00");
+    }
+
 }
 

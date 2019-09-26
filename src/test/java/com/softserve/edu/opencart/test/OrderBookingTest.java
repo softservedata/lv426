@@ -47,7 +47,7 @@ public class OrderBookingTest extends UserTestRunner {
         ShoppingCartPage shoppingCartPage =
                 loadApplication()
                 .successfulSearch(searchFilter)
-                .addProductToCartByProductCriteriaComponent(searchFilter.getProduct().getName())
+                .addProductToCartByProductCriteriaComponent(searchFilter.getProduct())
                 .gotoShoppingCartPage()
                 .shippingAndTaxesClick()
                 .estimationShoppingCartPageTrue(countryForEstimation)
@@ -56,7 +56,7 @@ public class OrderBookingTest extends UserTestRunner {
                 .useCouponClick()
                 .couponCodeInputsAndApplying(discount)
                 .tryToChangeSomething()
-                .changeCountOfSomeOrderByName(searchFilter.getProduct().getName(),
+                .changeCountOfSomeOrderByName(searchFilter.getProduct(),
                         searchFilter.getProduct().getPrice(Currencies.US_DOLLAR));
 
         assertEquals(shoppingCartPage.tryToChangeSomething()

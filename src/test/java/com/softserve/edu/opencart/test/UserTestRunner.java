@@ -34,10 +34,18 @@ public abstract class UserTestRunner {
 	private final String DRIVER_ERROR = "ERROR: Chromedriver not Found";
 	//private final String SERVER_URL = "http://taqc-opencart.epizy.com";
 	private final String ADMIN_URL = "http://192.168.68.137/opencart/upload/admin";
+<<<<<<< HEAD
+	//private final String SERVER_URL = "http://192.168.68.137/opencart/upload";
+	private final String SERVER_URL = "https://demo.opencart.com/index.php?route=common/home";
+=======
 	private final String SERVER_URL = "http://192.168.68.137/opencart/upload";
 	private final String SERVER_URL_BY_MAX = "http://192.168.163.136/opencart/upload";
 	private final String ADMIN_URL_BY_MAX = "http://192.168.163.136/opencart/upload/admin";
+    private final String SERVER_URL_BY_OLESIA = "http://192.168.45.131/opencart/upload";
+>>>>>>> 97df7f6ecbfa81bfcc2e1d85861f31737e277bed
 	private final String TIME_TEMPLATE = "yyyy-MM-dd_HH-mm-ss";
+	private final String  SERVER_URL_BY_MARTA="http://192.168.68.133/opencart/upload";
+	private final String ADMIN_MARTA_URL="http://192.168.68.133/opencart/upload/admin";
 	//
 	protected final Logger log = LoggerFactory.getLogger(this.getClass().getName());
 	private WebDriver driver;
@@ -91,10 +99,29 @@ public abstract class UserTestRunner {
 		return new HomePage(driver);
 	}
 
+	public HomePage loadMartaApplication(){
+		driver.get(SERVER_URL_BY_MARTA);
+		log.debug("loadApplication start");
+		return new HomePage(driver);
+	}
+
+    public HomePage loadOlesiaApplication() {
+        driver.get(SERVER_URL_BY_OLESIA);
+        log.debug("loadApplication start");
+        return new HomePage(driver);
+    }
+
 	public AdminLoginPage loadAdminLoginPage() {
 		driver.get(ADMIN_URL);
 		log.debug("loadAdminPanel start");
 		return new AdminLoginPage(driver);
+	}
+
+	public AdminLoginPage loadMartaAdminLoginPage(){
+		driver.get(ADMIN_MARTA_URL);
+		log.debug("loadAdminPanel start");
+		return new AdminLoginPage(driver);
+
 	}
 
 	//@Step("Save attached screenshot")
