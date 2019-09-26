@@ -2,8 +2,10 @@ package com.softserve.edu.opencart.pages.user.search;
 
 
 import com.softserve.edu.opencart.data.Product;
+
 import com.softserve.edu.opencart.pages.user.common.ProductComponent;
 import com.softserve.edu.opencart.pages.user.common.ProductPage;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -63,10 +65,12 @@ public class SearchSuccessPage extends SearchCriteriaPart {
         return new SearchSuccessPage(driver);
     }
 
-    public SearchSuccessPage addProductToCartByProductCriteriaComponent(Product orderName){
-	    productsCriteria.clickProductComponentAddToCartButtonByName(orderName);
-	    return new SearchSuccessPage(driver);
+
+    public SearchSuccessAlertPage addToWishButtonByName(Product product) {
+    	productsCriteria.addToWishButtonByName(product);
+   	    return new SearchSuccessAlertPage(driver);
     }
+
 
     public ProductPage gotoProductInfo(Product product) {
     	getProductsCriteria()
@@ -74,5 +78,6 @@ public class SearchSuccessPage extends SearchCriteriaPart {
     	.clickName();
     	return new ProductPage(driver);
     }
+
 
 }

@@ -93,16 +93,34 @@ public final class UserRepository {
 
     public IUser getExistingUser() {
         return User.get()
-                .setFirstName("Olena")
+                .setFirstName("Taras")
                 .setLastName("Kook")
-                .seteMail("hahaha@gmail.com")
+                .seteMail("taras@gmail.com")
                 .setTelephone("0987654321")
                 .setAddress1("Zalizniaka 12")
                 .setCity("Lviv")
                 .setPostCode("88888")
                 .setCountry("Ukraine")
                 .setRegionState("L'vivs'ka Oblast'")
-                .setPassword(System.getenv().get("MY_PASSWORD"))
+                .setPassword("taras")
+                .setSubscribe(true)
+                .setFax("12341")
+                .setCompany("SoftServe")
+                .build();
+    }
+
+    public IUser getEditExistingUser() {
+        return User.get()
+                .setFirstName("Taras")
+                .setLastName("Kookin")
+                .seteMail("taras@gmail.com")
+                .setTelephone("0987654333")
+                .setAddress1("Zalizniaka 12")
+                .setCity("Lviv")
+                .setPostCode("88888")
+                .setCountry("Ukraine")
+                .setRegionState("L'vivs'ka Oblast'")
+                .setPassword("taras")
                 .setSubscribe(true)
                 .setFax("12341")
                 .setCompany("SoftServe")
@@ -150,4 +168,23 @@ public final class UserRepository {
 //        return User.get()
 //                .setFirstName()
 //    }
+    public IUser getBeataUser() {
+        return User.get()
+                .setFirstName("Beata")
+                .setLastName("Kovtan")
+                .seteMail("beatka994@mail.ru")
+                .setTelephone("7telephone")
+                .setAddress1("7address1")
+                .setCity("7city")
+                .setPostCode("7Code")
+                .setCountry("7country")
+                .setRegionState("")
+                .setPassword("qwerty12")
+                .setSubscribe(true)
+                .setFax("7fax")
+                .setCompany("7company")
+                .setAddress2("7address2")
+                .build();
+    }
+
 }

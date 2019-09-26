@@ -49,6 +49,8 @@ public class EditAccountPage extends AccountSidebarLoggedPart {
         getFirstName().sendKeys(firstName);
     }
 
+    public String getFirstNameText() { return getFirstName().getAttribute("value"); }
+
     //lastname
     public WebElement getLastName() {
         return lastName;
@@ -65,6 +67,8 @@ public class EditAccountPage extends AccountSidebarLoggedPart {
     public void setLastName(String lastName) {
         getLastName().sendKeys(lastName);
     }
+
+    public String getLastNameText() { return getLastName().getAttribute("value"); }
 
     //email
     public WebElement getEmail() {
@@ -83,10 +87,10 @@ public class EditAccountPage extends AccountSidebarLoggedPart {
         getEmail().sendKeys(email);
     }
 
+    public String getEmailText() { return getEmail().getAttribute("value"); }
+
     //telephone
-    public WebElement getTelephone() {
-        return telephone;
-    }
+    public WebElement getTelephone() { return telephone; }
 
     public void clickTelephoneField() {
         getTelephone().click();
@@ -99,6 +103,8 @@ public class EditAccountPage extends AccountSidebarLoggedPart {
     public void setTelephone(String telephone) {
         getTelephone().sendKeys(telephone);
     }
+
+    public String getTelephoneText() { return getTelephone().getAttribute("value"); }
 
     //fax
     public WebElement getFax() {
@@ -117,6 +123,8 @@ public class EditAccountPage extends AccountSidebarLoggedPart {
         getFax().sendKeys(fax);
     }
 
+    public String getFaxText() { return getFax().getAttribute("value"); }
+
     //continueButtom
     public WebElement getContinueButton() {
         return continueButton;
@@ -131,7 +139,7 @@ public class EditAccountPage extends AccountSidebarLoggedPart {
         return backButton;
     }
 
-    public void clickBackButtonn() {
+    public void clickBackButton() {
         getBackButton().click();
     }
 
@@ -184,7 +192,7 @@ public class EditAccountPage extends AccountSidebarLoggedPart {
 
     public MyAccountPage withoutSavingEditAccount(IUser user) {
         fillEditAccount(user);
-        clickBackButtonn();
+        clickBackButton();
         return new MyAccountPage(driver);
     }
 }
