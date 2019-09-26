@@ -20,7 +20,7 @@ public class ProductContainerComponent {
     }
 
     private void initElements() {
-       productComponents = driver.findElement(By.cssSelector(PRODUCT_COMPONENT_CSSSELECTOR));
+        productComponents = driver.findElement(By.cssSelector(PRODUCT_COMPONENT_CSSSELECTOR));
     }
 
     public ProductComponent searchByName(ProductName name){

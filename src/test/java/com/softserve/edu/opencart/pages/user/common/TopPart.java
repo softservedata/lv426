@@ -62,6 +62,10 @@ public abstract class TopPart {
         initElements();
     }
 
+    public TopPart() {
+
+    }
+
     private void initElements() {
         currency = driver.findElement(By.cssSelector(".btn.btn-link.dropdown-toggle"));
         myAccount = driver.findElement(By.cssSelector(".list-inline > li > a.dropdown-toggle"));
@@ -309,16 +313,6 @@ public abstract class TopPart {
         dropdownLogged = null;
     }
 
-    private void clickDropdownLoggedLogout() {
-    	getDropdownLogged().clickLogout();
-    	dropdownLogged= null;
-    }
-
-    private void closeDropdownLogged() {
-        clickSearchTopField();
-        dropdownLogged= null;
-    }
-    
     // Functional
 
     // currency
@@ -474,12 +468,7 @@ public abstract class TopPart {
 //        return new DownloadsPage(driver);
 //    }
     
-    public AccountLogoutPage logout() {
-    	openMyAccountDropdown();
-    	createDropdownLogged();
-    	clickDropdownLoggedLogout();
-        return new AccountLogoutPage(driver);
-    }
+
 
     public AccountLogoutPage logout() {
         openMyAccountDropdown();
