@@ -44,7 +44,8 @@ public class OrderBookingTest extends UserTestRunner {
     public void orderBookingAndCartManipulationTest(SearchFilter searchFilter,
                                                     CountryForEstimation countryForEstimation,
                                                     DiscountUsageCode discount) {
-        loadApplication()
+        ShoppingCartPage shoppingCartPage =
+                loadApplication()
                 .successfulSearch(searchFilter)
                 .addProductToCartByProductCriteriaComponent(searchFilter.getProduct().getName())
                 .gotoShoppingCartPage()
@@ -57,10 +58,11 @@ public class OrderBookingTest extends UserTestRunner {
                 .tryToChangeSomething()
                 .changeCountOfSomeOrderByName(searchFilter.getProduct().getName(),
                         searchFilter.getProduct().getPrice(Currencies.US_DOLLAR));
-//        assertEquals(shoppingCartPage.tryToChangeSomething()
-//                .listOfCartOrders()
-//                .getOrderFromTableByName(searchFilter.getProduct().getName())
-//                .getTotal(), finalPriceTable.getTotal());
+
+        assertEquals(shoppingCartPage.tryToChangeSomething()
+                .listOfCartOrders()
+                .getOrderFromTableByName(searchFilter.getProduct().getName())
+                .getTotal(), shoppingCartPage.getFinalPriceTable().getTotalAfterSubTotal());
 
 
     }
