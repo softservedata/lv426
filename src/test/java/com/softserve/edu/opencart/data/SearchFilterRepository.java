@@ -12,5 +12,9 @@ public final class SearchFilterRepository {
     public static SearchFilter searchMacBook() {
         return new SearchFilter(ProductRepository.getMacBook());
     }
+
+    public static SearchFilter searchIPhone(){
+        return new SearchFilter(ProductRepository.getIPhone());
+    }
 }
 

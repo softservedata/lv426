@@ -34,9 +34,18 @@ public abstract class UserTestRunner {
 	private final String DRIVER_ERROR = "ERROR: Chromedriver not Found";
 	//private final String SERVER_URL = "http://taqc-opencart.epizy.com";
 	private final String ADMIN_URL = "http://192.168.68.137/opencart/upload/admin";
+<<<<<<< HEAD
 	//private final String SERVER_URL = "http://192.168.68.137/opencart/upload";
 	private final String SERVER_URL = "https://demo.opencart.com/index.php?route=common/home";
+=======
+	private final String SERVER_URL = "http://192.168.68.137/opencart/upload";
+	private final String SERVER_URL_BY_MAX = "http://192.168.163.136/opencart/upload";
+	private final String ADMIN_URL_BY_MAX = "http://192.168.163.136/opencart/upload/admin";
+    private final String SERVER_URL_BY_OLESIA = "http://192.168.45.131/opencart/upload";
+>>>>>>> 97df7f6ecbfa81bfcc2e1d85861f31737e277bed
 	private final String TIME_TEMPLATE = "yyyy-MM-dd_HH-mm-ss";
+	private final String  SERVER_URL_BY_MARTA="http://192.168.68.133/opencart/upload";
+	private final String ADMIN_MARTA_URL="http://192.168.68.133/opencart/upload/admin";
 	//
 	protected final Logger log = LoggerFactory.getLogger(this.getClass().getName());
 	private WebDriver driver;
@@ -44,7 +53,9 @@ public abstract class UserTestRunner {
 	@BeforeClass
 	public void beforeClass() {
 		log.info("Test suite start");
-		System.setProperty("webdriver.chrome.driver", "D:\\ChromeDriver\\chromedriver.exe");
+		//System.setProperty("webdriver.chrome.driver", "D:\\ChromeDriver\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe");//Maksym
 		driver = new ChromeDriver();
 		log.info("ChromeDriver loaded");
 		driver.manage().window().maximize();
@@ -59,9 +70,9 @@ public abstract class UserTestRunner {
 		log.info("ChromeDriver quite");
 	}
 
-//	@BeforeMethod
+	//@BeforeMethod
 	public void beforeMethod() {
-		driver.get(SERVER_URL);
+		driver.get(SERVER_URL_BY_MAX);
 		log.info("Web Application loaded");
 	}
 
@@ -82,15 +93,35 @@ public abstract class UserTestRunner {
 	}
 
 	public HomePage loadApplication() {
-		driver.get(SERVER_URL);
+		//driver.get(SERVER_URL);
+		driver.get(SERVER_URL_BY_MAX);
 		log.debug("loadApplication start");
 		return new HomePage(driver);
 	}
+
+	public HomePage loadMartaApplication(){
+		driver.get(SERVER_URL_BY_MARTA);
+		log.debug("loadApplication start");
+		return new HomePage(driver);
+	}
+
+    public HomePage loadOlesiaApplication() {
+        driver.get(SERVER_URL_BY_OLESIA);
+        log.debug("loadApplication start");
+        return new HomePage(driver);
+    }
 
 	public AdminLoginPage loadAdminLoginPage() {
 		driver.get(ADMIN_URL);
 		log.debug("loadAdminPanel start");
 		return new AdminLoginPage(driver);
+	}
+
+	public AdminLoginPage loadMartaAdminLoginPage(){
+		driver.get(ADMIN_MARTA_URL);
+		log.debug("loadAdminPanel start");
+		return new AdminLoginPage(driver);
+
 	}
 
 	//@Step("Save attached screenshot")

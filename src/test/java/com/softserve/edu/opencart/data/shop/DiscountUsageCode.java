@@ -1,13 +1,14 @@
 package com.softserve.edu.opencart.data.shop;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@Builder
 public class DiscountUsageCode {
     private String couponCode;
     private String giftCertificationCode;
-
-    public DiscountUsageCode(String couponCode, String giftCertificationCode) {
-        this.couponCode = couponCode;
-        this.giftCertificationCode = giftCertificationCode;
-    }
 
     public String getGiftCertificationCode() {
         return giftCertificationCode;

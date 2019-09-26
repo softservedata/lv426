@@ -44,7 +44,7 @@ public class Discount {
 //    }
 //    //getters
 //
-//    public int getQuantity() {
+//    public int getQuantityWeb() {
 //        return quantity;
 //    }
 //

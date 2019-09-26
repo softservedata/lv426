@@ -20,7 +20,11 @@ public class BreadCrumbPart extends TopPart {
 		initElements();
 	}
 
-	private void initElements() {
+    public BreadCrumbPart() {
+        super();
+    }
+
+    private void initElements() {
 		// init elements
 		breadCrumb = driver.findElement(By.cssSelector("ul.breadcrumb"));
 		//

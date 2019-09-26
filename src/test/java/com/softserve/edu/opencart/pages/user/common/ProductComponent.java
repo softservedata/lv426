@@ -1,6 +1,7 @@
 package com.softserve.edu.opencart.pages.user.common;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class ProductComponent {
@@ -24,6 +25,7 @@ public class ProductComponent {
 	public ProductComponent() {
 
 	}
+
 
 	private void initElements() {
 		// init elements
@@ -82,6 +84,10 @@ public class ProductComponent {
 	public void clickAddToCartButton() {
 		getAddToCartButton().click();
 	}
+	//	public SearchSuccessPage clickAddToCartButton() {
+//		getAddToCartButton().click();
+//		return new SearchSuccessPage();
+//	}
 
 	// addToWishButton
 	public WebElement getAddToWishButton() {
@@ -107,5 +113,12 @@ public class ProductComponent {
 
 
 	// Business Logic
+
+	public ProductPage goToProductPage(){
+		clickName();
+		return new ProductPage();
+	}
+
+
 
 }

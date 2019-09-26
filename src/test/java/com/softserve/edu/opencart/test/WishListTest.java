@@ -27,45 +27,39 @@ public class WishListTest extends UserTestRunner {
                 .gotoLoginPage()
                 .successfulLogin(validUser)
                 .successfulSearch(product)
-                .addToWishButtonByName(product)
-                ;
+                .addToWishButtonByName(product);
         Assert.assertTrue(searchSuccessAlertPage.getAddToWishListAlert().contains(searchSuccessAlertPage.ADD_TO_WISHLIST_ALERT));
+    }
+
+        @Test(dataProvider = "validUser")
+        public void getIntoWishList (IUser validUser){
+            WishListPage wishListPage = loadApplication()
+                    .gotoWishListPage(validUser);
+            List<String> pageName = wishListPage
+                    .getBreadCrumbComponentNames();
+            Assert.assertEquals(pageName.get(2), "Wish List");
+        }
+
+        @Test(dataProvider = "validUser")
+        public void deletingFromWishList (IUser validUser, Product product){
+            WishListAlertPage shoppingCartAlertPage =
+                    loadApplication()
+                            .gotoLoginPage()
+                            .successfulLogin(validUser)
+                            .gotoWishListRight()
+                            .deleteItemFromWishList(product);
+            Assert.assertTrue(shoppingCartAlertPage.getMessage().contains(shoppingCartAlertPage.DELETE_FROM_WISHLIST_ALERT));
+        }
+
+        @Test(dataProvider = "validUser")
+        public void addingFromWishListToShoppingCart (IUser validUser, Product product){
+            WishListAlertPage shoppingCartAlertPage = loadApplication()
+                    .gotoLoginPage()
+                    .successfulLogin(validUser)
+                    .gotoWishListRight()
+                    .addItemFromWishListToShoppingCart(product);
+            Assert.assertTrue(shoppingCartAlertPage.getMessage().contains(shoppingCartAlertPage.addToCartAlert(product)));
+        }
 
     }
 
-    @Test(dataProvider = "validUser")
-    public void GetIntoWishList(IUser validUser){
-        WishListPage wishListPage = loadApplication()
-                .gotoWishListPage(validUser)
-                ;
-        List<String> pageName = wishListPage
-                .getBreadCrumbComponentNames()
-                ;
-        Assert.assertEquals(pageName.get(2),"Wish List");
-    }
-
-    @Test(dataProvider = "validUser")
-    public void deletingFromWishList(IUser validUser, Product product) {
-        WishListAlertPage shoppingCartAlertPage  =
-                loadApplication()
-                .gotoLoginPage()
-                .successfulLogin(validUser)
-                .gotoWishListRight()
-                .deleteItemFromWishList(product)
-                ;
-        Assert.assertTrue(shoppingCartAlertPage.getMessage().contains(shoppingCartAlertPage.DELETE_FROM_WISHLIST_ALERT));
-    }
-
-    @Test(dataProvider = "validUser")
-    public void addingFromWishListToShoppingCart(IUser validUser, Product product) {
-        WishListAlertPage shoppingCartAlertPage  = loadApplication()
-                .gotoLoginPage()
-                .successfulLogin(validUser)
-                .gotoWishListRight()
-                .addItemFromWishListToShoppingCart(product)
-                ;
-        Assert.assertTrue(shoppingCartAlertPage.getMessage().contains(shoppingCartAlertPage.addToCartAlert(product)));
-    }
-
-
-}

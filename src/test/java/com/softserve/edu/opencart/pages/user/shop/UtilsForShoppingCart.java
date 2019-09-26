@@ -92,7 +92,7 @@ public class UtilsForShoppingCart {
         }
     }
 
-    enum Phones{
+    public enum Phones{
         IPHONE("iPhone"),
         PALM("Palm Treo Pro"),
         HTC("HTC Touch HD");
