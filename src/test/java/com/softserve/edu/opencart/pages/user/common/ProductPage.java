@@ -13,7 +13,7 @@ public class ProductPage extends BreadCrumbPart{
 
 
 
-        protected WebDriver productLayout;
+    protected WebDriver productLayout;
     public WebElement reviewButton;
     private WebElement productDescription;
     private ProductsContainerComponent productsContainer;
@@ -61,10 +61,7 @@ public class ProductPage extends BreadCrumbPart{
     public void clickReview(){
         getReviewButton().click();
     }
-   /* public void addProductToWishList(){
-        getProductComponentsContainer().clickProductComponentAddToWishButtonByName(productComponent.getNameText());
-    }
-    */
+
 
 
     public void productDescriptionclick(){
@@ -83,7 +80,6 @@ public class ProductPage extends BreadCrumbPart{
         productReview.clickContinueReviewButton();
 
     }
-    //business logic
 
 }
 

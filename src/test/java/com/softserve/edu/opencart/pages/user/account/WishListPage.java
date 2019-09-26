@@ -1,8 +1,7 @@
 package com.softserve.edu.opencart.pages.user.account;
 
-import com.softserve.edu.opencart.pages.user.common.ProductPageWithAlert;
+import com.softserve.edu.opencart.data.Product;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -30,16 +29,16 @@ public class WishListPage extends AccountSidebarLoggedPart {
 
 	// Business Logic
 
-	public WishListPageModifiedByAlert deleteItemFromWishList(String productName){
+	public WishListAlertPage deleteItemFromWishList(Product product){
 		getProductComponentsContainer().
-				clickOnWishListComponentDeleteButton(productName);
-		return new WishListPageModifiedByAlert(driver);
+				clickOnWishListComponentDeleteButton(product.getName());
+		return new WishListAlertPage(driver);
 	}
 
 
-	public WishListPageModifiedByAlert addItemFromWishListToShoppingCart(String productName){
-		getProductComponentsContainer().clickOnWishListComponentAddToCartButton(productName);
-		return new WishListPageModifiedByAlert(driver);
+	public WishListAlertPage addItemFromWishListToShoppingCart(Product product){
+		getProductComponentsContainer().clickOnWishListComponentAddToCartButton(product.getName());
+		return new WishListAlertPage(driver);
 	}
 
 

@@ -40,13 +40,14 @@ public class OrderBookingTest extends UserTestRunner {
         };
     }
 
-    @Test(dataProvider = "searchData")
+   // @Test(dataProvider = "searchData")
     public void orderBookingAndCartManipulationTest(SearchFilter searchFilter,
                                                     CountryForEstimation countryForEstimation,
                                                     DiscountUsageCode discount) {
-        loadApplication()
+        ShoppingCartPage shoppingCartPage =
+                loadApplication()
                 .successfulSearch(searchFilter)
-                .addProductToCartByProductCriteriaComponent(searchFilter.getProduct())
+                ///.addProductToCartByProductCriteriaComponent(searchFilter.getProduct())
                 .gotoShoppingCartPage()
                 .shippingAndTaxesClick()
                 .estimationShoppingCartPageTrue(countryForEstimation)
@@ -57,10 +58,11 @@ public class OrderBookingTest extends UserTestRunner {
                 .tryToChangeSomething()
                 .changeCountOfSomeOrderByName(searchFilter.getProduct(),
                         searchFilter.getProduct().getPrice(Currencies.US_DOLLAR));
-//        assertEquals(shoppingCartPage.tryToChangeSomething()
-//                .listOfCartOrders()
-//                .getOrderFromTableByName(searchFilter.getProduct().getName())
-//                .getTotal(), finalPriceTable.getTotal());
+
+        assertEquals(shoppingCartPage.tryToChangeSomething()
+                .listOfCartOrders()
+                .getOrderFromTableByName(searchFilter.getProduct().getName())
+                .getTotal(), shoppingCartPage.getFinalPriceTable().getTotalAfterSubTotal());
 
 
     }

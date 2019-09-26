@@ -18,4 +18,6 @@ public class CheckOutPage extends BreadCrumbPart {
     private void initElements(){
 
     }
+
+    //public BillingDetails
 }
