@@ -40,13 +40,13 @@ public class OrderBookingTest extends UserTestRunner {
         };
     }
 
-    @Test(dataProvider = "searchData")
+   // @Test(dataProvider = "searchData")
     public void orderBookingAndCartManipulationTest(SearchFilter searchFilter,
                                                     CountryForEstimation countryForEstimation,
                                                     DiscountUsageCode discount) {
         loadApplication()
                 .successfulSearch(searchFilter)
-                .addProductToCartByProductCriteriaComponent(searchFilter.getProduct())
+                ///.addProductToCartByProductCriteriaComponent(searchFilter.getProduct())
                 .gotoShoppingCartPage()
                 .shippingAndTaxesClick()
                 .estimationShoppingCartPageTrue(countryForEstimation)

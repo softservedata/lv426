@@ -130,4 +130,23 @@ public final class UserRepository {
 //        return User.get()
 //                .setFirstName()
 //    }
+    public IUser getBeataUser() {
+        return User.get()
+                .setFirstName("Beata")
+                .setLastName("Kovtan")
+                .seteMail("beatka994@mail.ru")
+                .setTelephone("7telephone")
+                .setAddress1("7address1")
+                .setCity("7city")
+                .setPostCode("7Code")
+                .setCountry("7country")
+                .setRegionState("")
+                .setPassword("qwerty12")
+                .setSubscribe(true)
+                .setFax("7fax")
+                .setCompany("7company")
+                .setAddress2("7address2")
+                .build();
+    }
+
 }
