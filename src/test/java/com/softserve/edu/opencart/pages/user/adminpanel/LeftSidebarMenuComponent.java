@@ -74,7 +74,8 @@ public class LeftSidebarMenuComponent extends HeaderPart {
     }
 
     private void clickReviewButton() {
-        getMenuComponent(By.xpath("//a[contains(text(),'Reviews')]")).button.click();
+        //getMenuComponent(By.xpath("//a[contains(text(),'Reviews')]")).button.click();
+        getMenuComponent(By.xpath("//ul[contains(@id,'menu')]//a[contains(text(),'Reviews')]")).button.click();
     }
 
     private void clickCustomerButton() {

@@ -23,7 +23,7 @@ public class ShoppingCartFunctionalTest extends UserTestRunner {
         };
     }
 
-    @Test(dataProvider = "searchData")
+   // @Test(dataProvider = "searchData")
     public void orderBookingAndCartManipulationTest(SearchFilter searchFilter,
                                                     CountryForEstimation countryForEstimation,
                                                     DiscountUsageCode discount) {
@@ -31,6 +31,8 @@ public class ShoppingCartFunctionalTest extends UserTestRunner {
                 loadApplication()
                 .successfulSearch(searchFilter.getProduct())
                 .addProductToCartByProductCriteriaComponent(searchFilter)
+                .successfulSearch(searchFilter)
+                ///.addProductToCartByProductCriteriaComponent(searchFilter.getProduct())
                 .gotoShoppingCartPage()
                 .shippingAndTaxesClick()
                 .estimationShoppingCartPageTrue(countryForEstimation)

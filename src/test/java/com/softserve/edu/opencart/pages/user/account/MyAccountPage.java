@@ -26,12 +26,12 @@ public class MyAccountPage extends AccountSidebarLoggedPart {
     // Page Object
 
     //successMyAccount
-    public WebElement getsuccessMyAccountPage() {
+    public WebElement getSuccessMyAccountPage() {
         return successMyAccountPage;
     }
 
-    public String getsuccessMyAccountPageText() {
-        return getsuccessMyAccountPage().getText();
+    public String getSuccessMyAccountPageText() {
+        return getSuccessMyAccountPage().getText();
     }
 
 
