@@ -6,12 +6,14 @@ import com.softserve.edu.opencart.pages.user.HomePage;
 import com.softserve.edu.opencart.pages.user.account.EditAccountPage;
 import com.softserve.edu.opencart.pages.user.account.MyAccountPage;
 import com.softserve.edu.opencart.pages.user.account.SuccessfulAccountEditPage;
+import com.softserve.edu.opencart.pages.user.account.UnsuccessfulEditAccountPage;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static com.softserve.edu.opencart.pages.user.account.MyAccountPage.EXPECTED_MY_ACCOUNT_PAGE;
 import static com.softserve.edu.opencart.pages.user.account.SuccessfulAccountEditPage.EXPECTED_EDIT_MESSAGE;
+import static com.softserve.edu.opencart.pages.user.account.UnsuccessfulEditAccountPage.EXPECTED_WRONG_FIRSTNAME;
 
 public class EditAccountTest extends UserTestRunner {
 
@@ -26,6 +28,13 @@ public class EditAccountTest extends UserTestRunner {
     public Object[][] withoutSavingEditAccount() {
         return new Object[][]{
                 {UserRepository.get().getEditExistingUser()},
+        };
+    }
+
+    @DataProvider
+    public Object[][] invalidFirstNameEditAccount() {
+        return new Object[][]{
+                {UserRepository.get().getExistingUser()},
         };
     }
 
@@ -68,6 +77,24 @@ public class EditAccountTest extends UserTestRunner {
                 .gotoEditAccountRight().getLastNameText(), validUser.getLastName());
 
         HomePage homePage = withoutSavingEditAccountPage
+                .gotoLogoutRight().gotoContinue();
+
+        Assert.assertTrue(homePage
+                .getSlideshow0FirstImageAttributeSrcText()
+                .contains(HomePage.EXPECTED_IPHONE6));
+    }
+
+    @Test(dataProvider = "invalidFirstNameEditAccount")
+    public void WrongFirstNameEditAccount(IUser wrongFirstNameUser) {
+        UnsuccessfulEditAccountPage unsuccessfulEditAccountPage = loadOlesiaApplication()
+                .gotoLoginPage()
+                .successfulLogin(wrongFirstNameUser)
+                .gotoEditAccountRight()
+                .unsuccessEditAccount(wrongFirstNameUser);
+
+        Assert.assertTrue(unsuccessfulEditAccountPage.getWarningFirstNameText().contains(EXPECTED_WRONG_FIRSTNAME));
+
+        HomePage homePage = unsuccessfulEditAccountPage
                 .gotoLogoutRight().gotoContinue();
 
         Assert.assertTrue(homePage

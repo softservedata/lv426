@@ -190,6 +190,12 @@ public class EditAccountPage extends AccountSidebarLoggedPart {
         return new SuccessfulAccountEditPage(driver);
     }
 
+    public UnsuccessfulEditAccountPage unsuccessEditAccount(IUser user) {
+        fillEditAccount(user);
+        clickContinueButtonn();
+        return new UnsuccessfulEditAccountPage(driver);
+    }
+
     public MyAccountPage withoutSavingEditAccount(IUser user) {
         fillEditAccount(user);
         clickBackButton();
