@@ -52,6 +52,7 @@ public class ProductsContainerComponent {
         return productComponentNames;
     }
 
+    // TODO Change to Product
     public ProductComponent getProductComponentByName(String productName)
     {
         ProductComponent result = null;
@@ -72,21 +73,25 @@ public class ProductsContainerComponent {
         return result;
     }
 
+    // TODO Change to Product
     public String getProductComponentPriceByName(String productName)
     {
         return getProductComponentByName(productName).getPriceText();
     }
 
+    // TODO Change to Product
     public String getProductComponentDescriptionByName(String productName)
     {
         return getProductComponentByName(productName).getPartialDescriptionText();
     }
 
+    // TODO Change to Product
     public void clickProductComponentAddToCartButtonByName(String productName)
     {
         getProductComponentByName(productName).clickAddToCartButton();
     }
 
+    // TODO Change to Product
     public void clickProductComponentAddToWishButtonByName(String productName)
     {
         getProductComponentByName(productName).clickAddToWishButton();
