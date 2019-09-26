@@ -8,27 +8,42 @@ import org.openqa.selenium.WebElement;
 
 public class MyAccountPage extends AccountSidebarLoggedPart {
 
-	public MyAccountPage(WebDriver driver) {
-		super(driver);
-		initElements();
-	}
-	private WebElement good;
-	private void initElements() {
+    public static final String EXPECTED_MY_ACCOUNT_PAGE = "My Account";
+    //
+    private WebElement successMyAccountPage;
 
-	}
+    public MyAccountPage(WebDriver driver) {
+        super(driver);
+        initElements();
+    }
 
-	// Page Object
+    private WebElement good;
+
+    private void initElements() {
+        successMyAccountPage = driver.findElement(By.cssSelector("div.col-sm-9 h2"));
+    }
+
+    // Page Object
+
+    //successMyAccount
+    public WebElement getsuccessMyAccountPage() {
+        return successMyAccountPage;
+    }
+
+    public String getsuccessMyAccountPageText() {
+        return getsuccessMyAccountPage().getText();
+    }
 
 
-	// Functional
+    // Functional
 
-	// Business Logic
-	public SearchSuccessPage searchGood(WebElement goodName){
-		SearchCriteriaPart searchCriteriaPart = new SearchCriteriaPart(driver);
-		searchCriteriaPart.clickgetCriteriaSearchField();
-		searchCriteriaPart.setCriteriaSearchField("MackBook");
-		searchCriteriaPart.ClickCriteriaSearchButton();
-		return new SearchSuccessPage(driver);
-	}
+    // Business Logic
+    public SearchSuccessPage searchGood(WebElement goodName) {
+        SearchCriteriaPart searchCriteriaPart = new SearchCriteriaPart(driver);
+        searchCriteriaPart.clickgetCriteriaSearchField();
+        searchCriteriaPart.setCriteriaSearchField("MackBook");
+        searchCriteriaPart.ClickCriteriaSearchButton();
+        return new SearchSuccessPage(driver);
+    }
 
 }
