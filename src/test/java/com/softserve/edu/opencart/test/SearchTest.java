@@ -26,8 +26,8 @@ public class SearchTest extends UserTestRunner {
 	public void checkSearch(SearchFilter searchFilter, Currencies currency) throws Exception {
 		// Steps
 		SearchSuccessPage searchSuccessPage = loadApplication()
-				.successfulSearch(searchFilter)
-				.chooseCurrency(currency);
+				.successfulSearch(searchFilter);
+				//.chooseCurrency(currency);
 		ProductComponent actualProductComponent = searchSuccessPage
 				.getProductsCriteria()
 				.getProductComponentByName(searchFilter.getProduct());

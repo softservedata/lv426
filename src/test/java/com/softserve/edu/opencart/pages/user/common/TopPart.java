@@ -1,27 +1,18 @@
 package com.softserve.edu.opencart.pages.user.common;
 
-import java.util.List;
-
+import com.softserve.edu.opencart.data.*;
+import com.softserve.edu.opencart.pages.user.HomePage;
+import com.softserve.edu.opencart.pages.user.account.*;
+import com.softserve.edu.opencart.pages.user.search.SearchSuccessPage;
+import com.softserve.edu.opencart.pages.user.search.SearchUnsuccessPage;
+import com.softserve.edu.opencart.pages.user.shop.ShoppingCartPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.softserve.edu.opencart.data.ApplicationStatus;
-import com.softserve.edu.opencart.data.Currencies;
-import com.softserve.edu.opencart.data.IUser;
-import com.softserve.edu.opencart.data.Product;
-import com.softserve.edu.opencart.data.SearchFilter;
-import com.softserve.edu.opencart.pages.user.HomePage;
-import com.softserve.edu.opencart.pages.user.account.AccountLogoutPage;
-import com.softserve.edu.opencart.pages.user.account.LoginPage;
-import com.softserve.edu.opencart.pages.user.account.MyAccountPage;
-import com.softserve.edu.opencart.pages.user.account.RegisterPage;
-import com.softserve.edu.opencart.pages.user.account.WishListPage;
-import com.softserve.edu.opencart.pages.user.search.SearchSuccessPage;
-import com.softserve.edu.opencart.pages.user.search.SearchUnsuccessPage;
-import com.softserve.edu.opencart.pages.user.shop.ShoppingCartPage;
+import java.util.List;
 
 public abstract class TopPart {
 
@@ -59,13 +50,13 @@ public abstract class TopPart {
     }
 
     private void initElements() {
-        currency = driver.findElement(By.cssSelector(".btn.btn-link.dropdown-toggle"));
+
         myAccount = driver.findElement(By.cssSelector(".list-inline > li > a.dropdown-toggle"));
         wishList = driver.findElement(By.id("wishlist-total"));
         shoppingCart = driver.findElement(By.cssSelector("a[title='Shopping Cart']"));
         checkout = driver.findElement(By.cssSelector("a[title='Checkout']"));
         logo = driver.findElement(By.cssSelector("#logo a"));
-        searchTopField = driver.findElement(By.name("search"));
+
         searchTopButton = driver.findElement(By.cssSelector("button.btn.btn-default"));
         cartButton = driver.findElement(By.cssSelector("#cart > button"));
     }
@@ -75,7 +66,7 @@ public abstract class TopPart {
     // currency
     public WebElement getCurrency() {
         //return driver.findElement(By.cssSelector(".btn.btn-link.dropdown-toggle"));
-        return currency;
+        return driver.findElement(By.cssSelector(".btn.btn-link.dropdown-toggle"));
     }
 
     public String getCurrencyText() {
@@ -153,7 +144,7 @@ public abstract class TopPart {
 
     // searchTopField
     public WebElement getSearchTopField() {
-        return searchTopField;
+        return driver.findElement(By.name("search"));
     }
 
     public String getSearchTopFieldText() {
@@ -297,7 +288,7 @@ public abstract class TopPart {
 
     private void clickDropdownLoggedLogout() {
         getDropdownLogged().clickLogout();
-<<<<<<< HEAD
+
         dropdownLogged = null;
     }
 //
@@ -316,16 +307,14 @@ public abstract class TopPart {
 //        dropdownLogged= null;
 //    }
     
-=======
-        dropdownLogged= null;
-    }
+
 
     private void closeDropdownLogged() {
         clickSearchTopField();
         dropdownLogged= null;
     }
 
->>>>>>> 17b0ba8a33654a5872c2086cd0844147a8a94678
+
     // Functional
 
     // currency
@@ -336,9 +325,10 @@ public abstract class TopPart {
     }
 
     //protected void clickCurrencyByPartialName(String currencyName) { // Code Smell
-    protected void clickCurrencyByPartialName(Currencies optionName) {
+    public void clickCurrencyByPartialName(Currencies optionName) {
         openCurrencyDropdownComponent();
         clickDropdownComponentByPartialName(optionName.toString());
+
     }
 
     public List<String> getListCurrencyNames() {
@@ -463,7 +453,7 @@ public abstract class TopPart {
 //    	createDropdownLogged();
 //    	clickDropdownLoggedDownloads();
 //        return new DownloadsPage(driver);
-<<<<<<< HEAD
+
 //
 //    }
 //
@@ -480,9 +470,7 @@ public abstract class TopPart {
     	clickDropdownLoggedLogout();
         return new AccountLogoutPage(driver);
     }
-=======
-//    }
->>>>>>> 17b0ba8a33654a5872c2086cd0844147a8a94678
+
 
     public ButtonCartProductComponent openButtonCartProductComponent() {
         clickCartButton();

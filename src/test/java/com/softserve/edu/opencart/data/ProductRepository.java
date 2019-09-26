@@ -16,6 +16,10 @@ public final class ProductRepository {
                 .addPrice(Currencies.US_DOLLAR, "602.00");
     }
 
+    public static Product getIphone() {
+        return new Product("iPhone", "iPhone is a revolutionary new mobile phone that allows you to make a call by simply tapping a nam..", "100.00");
+    }
+
     public static Product getInvalid() {
         return new Product("Bok", "Intel", "100");
     }

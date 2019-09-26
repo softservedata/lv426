@@ -57,8 +57,7 @@ public class ProductsContainerComponent {
         ProductComponent result = null;
         for (ProductComponent current : getProductComponents())
         {
-            if (current.getNameText().toLowerCase()
-                    .equals(productName.toLowerCase()))
+            if (current.hasName(productName))
             {
                 result = current;
                 break;

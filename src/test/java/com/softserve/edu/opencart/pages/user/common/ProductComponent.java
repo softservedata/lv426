@@ -3,6 +3,13 @@ package com.softserve.edu.opencart.pages.user.common;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static com.softserve.edu.opencart.tools.PriceUtils.getCurrency;
+
 public class ProductComponent {
 
 	private WebElement productLayout;
@@ -51,6 +58,8 @@ public class ProductComponent {
 	public String getNameText() {
 		return getName().getText();
 	}
+
+
 
 	public void clickName() {
 		getName().click();
@@ -103,8 +112,16 @@ public class ProductComponent {
 
 
 
+
 	// Functional
 
+	public boolean hasName(String name) {
+		return getNameText().equals(name);//TODO
+	}
+
+	public double getCurrentPrice() {
+		return getCurrency(getPrice().getText());
+	}
 	// Business Logic
 
 }

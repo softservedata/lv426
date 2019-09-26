@@ -21,8 +21,8 @@ public class ProductPage extends LeftSidebarMenuComponent {
     }
 
     public EditProductPage goToIphoneEditPage() {
-        searchIphone().goToEditProductPage();
-        return new EditProductPage(driver);
+         return searchIphone().goToEditProductPage();
+        //return new EditProductPage(driver);
     }
 
 

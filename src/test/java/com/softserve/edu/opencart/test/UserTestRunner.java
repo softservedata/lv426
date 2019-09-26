@@ -37,7 +37,7 @@ public abstract class UserTestRunner {
 	private final String TIME_TEMPLATE = "yyyy-MM-dd_HH-mm-ss";
 	//
 	protected final Logger log = LoggerFactory.getLogger(this.getClass().getName());
-	private WebDriver driver;
+	WebDriver driver;
 
 	@BeforeClass
 	public void beforeClass() {
@@ -74,9 +74,11 @@ public abstract class UserTestRunner {
 				e.printStackTrace();
 			}
 			// TODO Clear Cache or Logout
-		//	log.info("Web Application reloaded");
-		//	driver.get(SERVER_URL);
+			//	log.info("Web Application reloaded");
+			//	driver.get(SERVER_URL);
 		}
+
+		driver.quit();
 	}
 
 	public HomePage loadApplication() {

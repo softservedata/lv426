@@ -59,9 +59,9 @@ public class HomePage extends TopPart {
 	// Functional
 
 	// Business Logic
-    public HomePage chooseCurrency(Currencies currency)
-    {
-        clickCurrencyByPartialName(currency);
-        return new HomePage(driver);
-    }
+//    public HomePage chooseCurrency(Currencies currency)
+//    {
+//        clickCurrencyByPartialName(currency);
+//        return new HomePage(driver);
+//    }
 }
