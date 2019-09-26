@@ -93,16 +93,34 @@ public final class UserRepository {
 
     public IUser getExistingUser() {
         return User.get()
-                .setFirstName("Olena")
+                .setFirstName("Taras")
                 .setLastName("Kook")
-                .seteMail("hahaha@gmail.com")
+                .seteMail("taras@gmail.com")
                 .setTelephone("0987654321")
                 .setAddress1("Zalizniaka 12")
                 .setCity("Lviv")
                 .setPostCode("88888")
                 .setCountry("Ukraine")
                 .setRegionState("L'vivs'ka Oblast'")
-                .setPassword(System.getenv().get("MY_PASSWORD"))
+                .setPassword("taras")
+                .setSubscribe(true)
+                .setFax("12341")
+                .setCompany("SoftServe")
+                .build();
+    }
+
+    public IUser getEditExistingUser() {
+        return User.get()
+                .setFirstName("Taras")
+                .setLastName("Kookin")
+                .seteMail("taras@gmail.com")
+                .setTelephone("0987654333")
+                .setAddress1("Zalizniaka 12")
+                .setCity("Lviv")
+                .setPostCode("88888")
+                .setCountry("Ukraine")
+                .setRegionState("L'vivs'ka Oblast'")
+                .setPassword("taras")
                 .setSubscribe(true)
                 .setFax("12341")
                 .setCompany("SoftServe")
