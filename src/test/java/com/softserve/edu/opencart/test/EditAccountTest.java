@@ -12,48 +12,41 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static com.softserve.edu.opencart.pages.user.account.MyAccountPage.EXPECTED_MY_ACCOUNT_PAGE;
-import static com.softserve.edu.opencart.pages.user.account.SuccessfulAccountEditPage.EXPECTED_EDIT_MESSAGE;
+import static com.softserve.edu.opencart.pages.user.account.SuccessfulAccountEditPage.EXPECTED_SUCCESS_EDIT_MESSAGE;
 import static com.softserve.edu.opencart.pages.user.account.UnsuccessfulEditAccountPage.EXPECTED_WRONG_FIRSTNAME;
 
 public class EditAccountTest extends UserTestRunner {
 
     @DataProvider
-    public Object[][] successEditAccount() {
+    public Object[][] validEditAccount() {
         return new Object[][]{
-                {UserRepository.get().getEditExistingUser()},
-        };
-    }
-
-    @DataProvider
-    public Object[][] withoutSavingEditAccount() {
-        return new Object[][]{
-                {UserRepository.get().getEditExistingUser()},
+                {UserRepository.get().getExistingUser(), UserRepository.get().getEditExistingUser()},
         };
     }
 
     @DataProvider
     public Object[][] invalidFirstNameEditAccount() {
         return new Object[][]{
-                {UserRepository.get().getExistingUser()},
+                {UserRepository.get().getExistingUser(), UserRepository.get().getWrongFirstNameUser()},
         };
     }
 
-    @Test(dataProvider = "successEditAccount")
-    public void successEditAccount(IUser validUser) {
+    @Test(dataProvider = "validEditAccount")
+    public void successEditAccount(IUser validUser,IUser editUser) {
         SuccessfulAccountEditPage successfulAccountEditPage = loadOlesiaApplication()
                 .gotoLoginPage()
                 .successfulLogin(validUser)
                 .gotoEditAccountRight()
-                .successEditAccount(validUser);
+                .successEditAccount(editUser);
 
-        Assert.assertTrue(successfulAccountEditPage.getAlertWarningText().contains(EXPECTED_EDIT_MESSAGE));
+        Assert.assertTrue(successfulAccountEditPage.getAlertWarningText().contains(EXPECTED_SUCCESS_EDIT_MESSAGE));
 
         EditAccountPage editAccountPage = successfulAccountEditPage
                 .gotoEditAccountRight();
 
-        Assert.assertEquals(editAccountPage.getLastNameText(), validUser.getLastName());
+        Assert.assertEquals(editAccountPage.getLastNameText(), editUser.getLastName());
 
-        Assert.assertEquals(editAccountPage.getTelephoneText(), validUser.getTelephone());
+        Assert.assertEquals(editAccountPage.getTelephoneText(), editUser.getTelephone());
 
         HomePage homePage = editAccountPage
                 .gotoLogoutRight().gotoContinue();
@@ -63,20 +56,21 @@ public class EditAccountTest extends UserTestRunner {
                 .contains(HomePage.EXPECTED_IPHONE6));
     }
 
-    @Test(dataProvider = "withoutSavingEditAccount")
-    public void withoutSavingEditAccount(IUser validUser) {
+    @Test(dataProvider = "validEditAccount")
+    public void withoutSavingEditAccount(IUser validUser, IUser editUser) {
         MyAccountPage withoutSavingEditAccountPage = loadOlesiaApplication()
                 .gotoLoginPage()
                 .successfulLogin(validUser)
                 .gotoEditAccountRight()
-                .withoutSavingEditAccount(validUser);
+                .withoutSavingEditAccount(editUser);
 
         Assert.assertTrue(withoutSavingEditAccountPage.getSuccessMyAccountPageText().contains(EXPECTED_MY_ACCOUNT_PAGE));
 
-        Assert.assertEquals(withoutSavingEditAccountPage
-                .gotoEditAccountRight().getLastNameText(), validUser.getLastName());
+        EditAccountPage editAccountPage = withoutSavingEditAccountPage.gotoEditAccountRight();
 
-        HomePage homePage = withoutSavingEditAccountPage
+        Assert.assertEquals(editAccountPage.getLastNameText(), validUser.getLastName());
+
+        HomePage homePage = editAccountPage
                 .gotoLogoutRight().gotoContinue();
 
         Assert.assertTrue(homePage
@@ -85,16 +79,21 @@ public class EditAccountTest extends UserTestRunner {
     }
 
     @Test(dataProvider = "invalidFirstNameEditAccount")
-    public void WrongFirstNameEditAccount(IUser wrongFirstNameUser) {
+    public void WrongFirstNameEditAccount(IUser validUser, IUser wrongFirstNameUser) {
         UnsuccessfulEditAccountPage unsuccessfulEditAccountPage = loadOlesiaApplication()
                 .gotoLoginPage()
-                .successfulLogin(wrongFirstNameUser)
+                .successfulLogin(validUser)
                 .gotoEditAccountRight()
-                .unsuccessEditAccount(wrongFirstNameUser);
+                .unsuccessFirstNameEditAccount(wrongFirstNameUser);
 
         Assert.assertTrue(unsuccessfulEditAccountPage.getWarningFirstNameText().contains(EXPECTED_WRONG_FIRSTNAME));
 
-        HomePage homePage = unsuccessfulEditAccountPage
+        EditAccountPage editAccountPage = unsuccessfulEditAccountPage
+                .gotoEditAccountRight();
+
+        Assert.assertEquals(editAccountPage.getFirstNameText(), validUser.getFirstName());
+
+        HomePage homePage = editAccountPage
                 .gotoLogoutRight().gotoContinue();
 
         Assert.assertTrue(homePage

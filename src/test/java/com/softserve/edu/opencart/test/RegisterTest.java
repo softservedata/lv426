@@ -69,7 +69,9 @@ public class RegisterTest extends UserTestRunner {
         Assert.assertTrue(successfulLogin.getSuccessMyAccountPageText()
                 .contains(EXPECTED_MY_ACCOUNT_PAGE));
 
-        HomePage homePage = successfulLogin.gotoHomePage();
+        HomePage homePage = successfulLogin
+                .gotoLogoutRight()
+                .gotoContinue();
 
         Assert.assertTrue(homePage
                 .getSlideshow0FirstImageAttributeSrcText()
