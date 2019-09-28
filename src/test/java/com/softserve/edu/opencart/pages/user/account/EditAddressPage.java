@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class EditAddressPage  extends AccountSidebarLoggedPart {
+public class EditAddressPage extends AccountSidebarLoggedPart {
 
     /**
      * This variable is input field FirstName
@@ -91,99 +91,131 @@ public class EditAddressPage  extends AccountSidebarLoggedPart {
         this.postcode = driver.findElement(By.id("input-postcode"));
         this.country = driver.findElement(By.id("input-country"));
         this.zone = driver.findElement(By.id("input-zone"));
-        this.yesButton = driver.findElement(By.xpath("//input[@name ='default' and @value ='1']"));
-        this.noButton = driver.findElement(By.xpath("//input[@name ='default' and @value ='0']"));
-        this.continueButton = driver.findElement(By.xpath("//input[@class='btn btn-primary']"));
-        this.backButton = driver.findElement(By.xpath("//a[@class='btn btn-default']"));
-        this.errorText = driver.findElement(By.xpath("//div[contains(@class,'text-danger')]"));
+        this.yesButton = driver.findElement(By.xpath(
+                "//input[@name ='default' and @value ='1']"));
+        this.noButton = driver.findElement(By.xpath(
+                "//input[@name ='default' and @value ='0']"));
+        this.continueButton = driver.findElement(
+                By.xpath("//input[@class='btn btn-primary']"));
+        this.backButton = driver.findElement(
+                By.xpath("//a[@class='btn btn-default']"));
+        this.errorText = driver.findElement(
+                By.xpath("//div[contains(@class,'text-danger')]"));
     }
 
 
-
-    /** This method for input text in field FirstName */
+    /**
+     * This method for input text in field FirstName
+     */
     public void inputFirstname(String text) {
         firstname.click();
         firstname.clear();
         firstname.sendKeys(text);
     }
 
-    /** This method for input text in field LastName */
+    /**
+     * This method for input text in field LastName
+     */
     public void inputLastname(String text) {
         lastname.click();
         lastname.clear();
         lastname.sendKeys(text);
     }
 
-    /** This method for input text in field Company */
+    /**
+     * This method for input text in field Company
+     */
     public void inputCompany(String text) {
         company.click();
         company.clear();
         company.sendKeys(text);
     }
 
-    /** This method for input text in field First Address */
+    /**
+     * This method for input text in field First Address
+     */
     public void inputAddress1(String text) {
         firstAddress.click();
         firstAddress.clear();
         firstAddress.sendKeys(text);
     }
 
-    /** This method for input text in field Second Address */
+    /**
+     * This method for input text in field Second Address
+     */
     public void inputAddress2(String text) {
         secondAddress.click();
         secondAddress.clear();
         secondAddress.sendKeys(text);
     }
 
-    /** This method for input text in field City */
+    /**
+     * This method for input text in field City
+     */
     public void inputCity(String text) {
         city.click();
         city.clear();
         city.sendKeys(text);
     }
 
-    /** This method for input text in field Postcode */
+    /**
+     * This method for input text in field Postcode
+     */
     public void inputPostcode(String text) {
         postcode.click();
         postcode.clear();
         postcode.sendKeys(text);
     }
 
-    /** This method for select from dropdown menu Country element equal @param text*/
+    /**
+     * This method for select from dropdown menu Country element equal @param text
+     */
     public void selectCountry(String text) {
         String xpath = String.format("//option[text()='%s']", text);
         country = country.findElement(By.xpath(xpath));
         country.click();
     }
 
-    /** This method for click on button Continue */
+    /**
+     * This method for click on button Continue
+     */
     public void clickContinueButton() {
         continueButton.click();
     }
 
-    /** This method for select from dropdown menu Country element equal @param text*/
+    /**
+     * This method for select from dropdown menu Country element equal @param text
+     */
     public void selectZone(String text) {
         String xpath = String.format("//option[text()='%s']", text);
         zone = zone.findElement(By.xpath(xpath));
         zone.click();
     }
 
-    /** This method for click on button Yes if check Default Address */
+    /**
+     * This method for click on button Yes if check Default Address
+     */
     public void clickYesDefault() {
         yesButton.click();
     }
 
-    /** This method for click on button No if check Default Address */
+    /**
+     * This method for click on button No if check Default Address
+     */
     public void clickNoDefault() {
         noButton.click();
     }
 
-    /** This method for click on button Back */
+    /**
+     * This method for click on button Back
+     */
     public void clickBackButton() {
         backButton.click();
     }
 
-    /** This method for catch text from error message in firs input field */
+    /**
+     * This method for catch text from error message in firs input field
+     */
     public String getErrorText() {
         return errorText.getText();
     }

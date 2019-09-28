@@ -10,6 +10,7 @@ import com.softserve.edu.opencart.pages.user.common.BreadCrumbPart;
 public abstract class AccountSidebarPart extends BreadCrumbPart {
 
 
+
     private WebElement myAccountRight;
     private WebElement addressBookRight;
     private WebElement wishListRight;
@@ -192,6 +193,7 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
 =======
 >>>>>>> 9aaa9eee526ef9bbc17380c49c591e3dbe09d5f3
 
+>>>>>>> 62bd87803b405cfd24928920d45d55cb138aa093
     private WebElement myAccountRight;
     private WebElement addressBookRight;
     private WebElement wishListRight;

@@ -6,13 +6,19 @@ import org.openqa.selenium.WebElement;
 
 public class AdminListElementComponent {
     private WebDriver driver;
-    private WebElement component;
+    protected WebElement component;
     private WebElement selectButton;
+    private WebElement name;
 
     public AdminListElementComponent(WebDriver driver, WebElement component) {
         this.driver = driver;
         this.component = component;
         selectButton = component.findElement(By.cssSelector(".text-center input"));
+        name = component.findElement(By.cssSelector("td.text-left"));
+    }
+
+    public WebElement getName() {
+        return name;
     }
 
     private void clickSelectButton() {
@@ -20,7 +26,7 @@ public class AdminListElementComponent {
     }
 
     public boolean hasName(String name) {
-        return component.findElement(By.cssSelector("td.text-left")).getText().equals(name);//TODO
+        return getName().getText().equals(name);//TODO
     }
 
     public void select() {

@@ -12,6 +12,7 @@ public class TaxRatesPage extends LeftSidebarMenuComponent {
     private WebElement addButton;
     private WebElement deleteButton;
     private AdminListContainerComponent listContainerComponent;
+
     public TaxRatesPage(WebDriver driver) {
         super(driver);
         this.driver = driver;
@@ -28,9 +29,11 @@ public class TaxRatesPage extends LeftSidebarMenuComponent {
     private void asseptAlert() {
         driver.switchTo().alert().accept();
     }
+
     private void clickAddButton() {
         addButton.click();
     }
+
     private void clickDeleteButton() {
         deleteButton.click();
     }
@@ -42,12 +45,13 @@ public class TaxRatesPage extends LeftSidebarMenuComponent {
     }
 
 
-//return new TaxRatePage or this ?
+    //return new TaxRatePage or this ?
     public TaxRatesPage deleteTaxRate(TaxRate taxRate) {
         listContainerComponent.selectByName(taxRate.getName());
         clickDeleteButton();
         asseptAlert();
         return new TaxRatesPage(driver);
+
     }
 
 }

@@ -27,11 +27,14 @@ public class ShoppingCartFunctionalTest extends UserTestRunner {
     public void orderBookingAndCartManipulationTest(SearchFilter searchFilter,
                                                     CountryForEstimation countryForEstimation,
                                                     DiscountUsageCode discount) {
+
+
+
+
         ShoppingCartPage shoppingCartPage =
                 loadMaxApplication()
                 .successfulSearch(searchFilter.getProduct())
                 .addProductToCartByProductCriteriaComponent(searchFilter)
-                .successfulSearch(searchFilter)
                 .gotoShoppingCartPage()
                 .shippingAndTaxesClick()
                 .estimationShoppingCartPageTrue(countryForEstimation)

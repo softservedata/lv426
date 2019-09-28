@@ -4,6 +4,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static com.softserve.edu.opencart.tools.PriceUtils.getCurrency;
+import static com.softserve.edu.opencart.tools.PriceUtils.getSpecialCurrency;
+
 public class ProductComponent {
 
 	private WebElement productLayout;
@@ -40,7 +50,7 @@ public class ProductComponent {
 	// Page Object
 
 	// product
-	public WebElement getProductLayout() {
+	private WebElement getProductLayout() {
 		return productLayout;
 	}
 
@@ -52,6 +62,15 @@ public class ProductComponent {
 	public String getNameText() {
 		return getName().getText();
 	}
+	private WebElement getNewPrice() {
+		return getProductLayout().findElement(By.xpath(".//span[@class='price-new']"));
+	}
+	private WebElement getOldProductPrice() {
+		return getProductLayout().findElement(By.xpath(".//span[@class='price-old']"));
+	}
+
+
+
 
 	public void clickName() {
 		getName().click();
@@ -108,10 +127,40 @@ public class ProductComponent {
 
 
 
+
 	// Functional
 
 
-	// Business Logic
+	public boolean hasName(String name) {
+		return getNameText().equals(name);//TODO
+	}
+
+	public double getCurrentPrice() {
+		return getCurrency(getPrice().getText());
+	}
+
+	private double getSpecial() {
+		return getSpecialCurrency(getNewPrice().getText());
+	}
+
+	private double getOld() {
+		return getSpecialCurrency(getOldProductPrice().getText());
+	}
+
+
+
+
+
+	public Map<String, Double> getNewPrices() {
+		Map<String, Double> rezult = new HashMap<>();
+		rezult.put("NewPrice", getSpecial());
+		rezult.put("OldPrice", getOld());
+		return rezult;
+	}
+
+
+
+
 
 
 

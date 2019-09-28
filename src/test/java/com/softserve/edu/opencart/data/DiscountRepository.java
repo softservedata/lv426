@@ -19,4 +19,6 @@ public class DiscountRepository {
                 .endData( LocalDate.now().plusDays(1).toString())
                 .build();
     }
+
+
 }

@@ -37,20 +37,6 @@ public class RegisterTest extends UserTestRunner {
         };
     }
 
-    @DataProvider
-    public Object[][] withoutConfirmPrivacyPolicyUserRegister() {
-        return new Object[][]{
-                {UserRepository.get().getNewUser()},
-        };
-    }
-
-    @DataProvider
-    public Object[][] invalidConfirmPasswordUserRegister() {
-        return new Object[][]{
-                {UserRepository.get().getValidUser()},
-        };
-    }
-
     @Test(dataProvider = "validUserRegister", enabled = false)
     public void validUserRegisterTest(IUser validUser) {
         MyAccountPage successfulRegisterPage = loadOlesiaApplication()
@@ -69,7 +55,9 @@ public class RegisterTest extends UserTestRunner {
         Assert.assertTrue(successfulLogin.getSuccessMyAccountPageText()
                 .contains(EXPECTED_MY_ACCOUNT_PAGE));
 
-        HomePage homePage = successfulLogin.gotoHomePage();
+        HomePage homePage = successfulLogin
+                .gotoLogoutRight()
+                .gotoContinue();
 
         Assert.assertTrue(homePage
                 .getSlideshow0FirstImageAttributeSrcText()
@@ -122,7 +110,7 @@ public class RegisterTest extends UserTestRunner {
                 .contains(HomePage.EXPECTED_IPHONE6));
     }
 
-    @Test(dataProvider = "withoutConfirmPrivacyPolicyUserRegister")
+    @Test(dataProvider = "validUserRegister")
     public void withoutConfirmPrivacyPolicyUserRegisterTest(IUser invalidUser) {
         UnsuccessfulRegisterPage unsuccessfulRegisterPage = loadOlesiaApplication()
                 .gotoRegisterPage()
@@ -144,7 +132,7 @@ public class RegisterTest extends UserTestRunner {
                 .contains(HomePage.EXPECTED_IPHONE6));
     }
 
-    @Test(dataProvider = "invalidConfirmPasswordUserRegister")
+    @Test(dataProvider = "validUserRegister")
     public void wrongConfirmPasswordUserRegisterTest(IUser invalidUser) {
         UnsuccessfulRegisterPage unsuccessfulRegisterPage = loadOlesiaApplication()
                 .gotoRegisterPage()

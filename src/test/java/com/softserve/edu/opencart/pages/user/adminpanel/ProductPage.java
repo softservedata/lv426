@@ -9,7 +9,7 @@ public class ProductPage extends LeftSidebarMenuComponent {
     private ProductContainerComponent productContainerComponent;
     private ProductComponent productComponent;
 
-    ProductPage(WebDriver driver) {
+    public ProductPage(WebDriver driver) {
         super(driver);
         this.driver = driver;
         productContainerComponent = new ProductContainerComponent(driver);
@@ -20,10 +20,21 @@ public class ProductPage extends LeftSidebarMenuComponent {
         return productContainerComponent.searchByName(ProductName.IPHONE);
     }
 
-    public EditProductPage goToIphoneEditPage() {
-        searchIphone().goToEditProductPage();
-        return new EditProductPage(driver);
+    private ProductComponent searchNikon() {
+        return productContainerComponent.searchByName(ProductName.NIKON);
     }
+
+    public EditProductPage goToIphoneEditPage() {
+         return searchIphone().goToEditProductPage();
+
+    }
+
+    public EditProductPage goToNikonEditPage() {
+        return searchNikon().goToEditProductPage();
+
+    }
+
+
 
 
 }
