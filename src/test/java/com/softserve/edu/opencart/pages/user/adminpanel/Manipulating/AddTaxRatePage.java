@@ -89,6 +89,11 @@ public class AddTaxRatePage extends LeftSidebarMenuComponent {
     public TaxRatesPage addNewTaxRate(TaxRate tax) {
         fillInAllField(tax);
         clickSaveButton();
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return new TaxRatesPage(driver);
     }
 

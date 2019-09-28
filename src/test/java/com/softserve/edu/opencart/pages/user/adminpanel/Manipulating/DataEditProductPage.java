@@ -1,6 +1,7 @@
 package com.softserve.edu.opencart.pages.user.adminpanel.Manipulating;
 
 import com.softserve.edu.opencart.data.TaxClass;
+import com.softserve.edu.opencart.pages.user.adminpanel.ProductPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -39,15 +40,19 @@ public class DataEditProductPage extends EditProductPage {
         return getPriceField().getAttribute("value");
     }
 
-    public DataEditProductPage selectClassTax(TaxClass tax) {
+    public ProductPage selectClassTax(TaxClass tax) {
         selectTaxClassByName(tax);
         clickSaveButton();
-        return this;
+        return new ProductPage(driver);
     }
 
-    public DataEditProductPage selectDefaultTax() {
+    public double getPriceOfProduct() {
+        return Double.parseDouble(getSubPrice());
+    }
+
+    public ProductPage selectDefaultTax() {
         selectDefaultTaxClass();
         clickSaveButton();
-        return this;
+        return new ProductPage(driver);
     }
 }
