@@ -4,7 +4,8 @@ package com.softserve.edu.opencart.data;
 public enum Currencies {
     EURO("Euro"),
     POUND_STERLING("Pound Sterling"),
-    US_DOLLAR("US Dollar");
+    US_DOLLAR("US Dollar"),
+    UA("Ukrainian UAN");
     //
     private String name;
 
