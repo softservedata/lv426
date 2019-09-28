@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReturnsContainerComponent extends ReturnsPage {
-    protected WebDriver driver;
 
     private final String RETURNS_COMPONENTS_SELECTOR =
             "//div[contains(@class,'table-responsive')]" +
