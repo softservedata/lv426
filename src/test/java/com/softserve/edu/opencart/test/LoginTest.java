@@ -23,7 +23,7 @@ public class LoginTest extends UserTestRunner {
 	public void checkSuccessful(IUser validUser) throws Exception {
 		// Steps
 		/*
-		SearchSuccessPage searchSuccessPage = loadApplication()
+		SearchSuccessPage searchSuccessPage = loadMaxApplication()
 				.successfulSearch(searchFilter)
 				.chooseCurrency(currency);
 		ProductComponent actualProductComponent = searchSuccessPage

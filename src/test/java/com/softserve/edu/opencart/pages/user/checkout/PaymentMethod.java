@@ -3,64 +3,75 @@ package com.softserve.edu.opencart.pages.user.checkout;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class PaymentMethod extends CheckOutPage {
 
     private WebDriver driver;
     private WebElement element;
 
-    private WebElement chooseCashPayment;
-    private WebElement textAreaInPaymentMethod;
-    private WebElement paymentMethodContinueButton;
-    private WebElement privacyPolicyLink;
-    private WebElement privacyPolicyAgreement;
     private TermsAndConditions termsAndConditions;
 
     public PaymentMethod(WebDriver driver) {
         super(driver);
-        initElements();
+        this.driver = driver;
     }
 
-    private void initElements(){
-        chooseCashPayment = driver.findElement(By.cssSelector("input[name=\"payment_method\"]"));
-        textAreaInPaymentMethod = driver
-                .findElement(By.cssSelector("div#collapse-payment-method textarea.form-control"));
-        paymentMethodContinueButton = driver.findElement(By.cssSelector("input#button-payment-method"));
-        privacyPolicyAgreement = driver.findElement(By.cssSelector("input[name=\"agree\"]"));
-        privacyPolicyLink = driver.findElement(By.cssSelector("a.agree"));
-        termsAndConditions = new TermsAndConditions(driver);
-    }
 
     //Page object
 
+    private WebElement getWebChooseCashPayment(){
+        (new WebDriverWait(driver, 10)).until(ExpectedConditions
+                .elementToBeClickable(By.cssSelector("input[name=\"payment_method\"]")));
+        return driver.findElement(By.cssSelector("input[name=\"payment_method\"]"));
+    }
+
+    private WebElement getWebTextAreaInPaymentMethod(){
+        return driver.findElement(By.cssSelector("div#collapse-payment-method textarea.form-control"));
+    }
+
+    private WebElement getWebPaymentMethodContinueButton(){
+        return driver.findElement(By.cssSelector("input#button-payment-method"));
+    }
+
+    private WebElement getWebPrivacyPolicyAgreement(){
+        return driver.findElement(By.cssSelector("input[name=\"agree\"]"));
+    }
+
+    private WebElement getWebPrivacyPolicyLink(){
+        return driver.findElement(By.cssSelector("a.agree"));
+    }
+
     public void setTextAreaInPaymentMethod(String text){
-        textAreaInPaymentMethod.sendKeys(text);
+        getWebTextAreaInPaymentMethod().sendKeys(text);
     }
 
     //Functional
 
     public void clickPaymentMethodContinueButton(){
-        paymentMethodContinueButton.click();
+        getWebPaymentMethodContinueButton().click();
     }
 
-    public void chooseCashPayMent(){
-        chooseCashPayment.click();
+    public void chooseCashPayment(){
+        getWebChooseCashPayment().click();
     }
 
     public void clickTextAreaInPaymentMethod(){
-        textAreaInPaymentMethod.click();
+        getWebTextAreaInPaymentMethod().click();
     }
 
     public void clearTextAreaInPaymentMethod(){
-        textAreaInPaymentMethod.clear();
+        getWebTextAreaInPaymentMethod().clear();
     }
 
     public void confirmAgreement(){
-        privacyPolicyAgreement.click();
+        getWebPrivacyPolicyAgreement().click();
     }
 
     public void gotoPrivacyPolicyPage(){
-        privacyPolicyLink.click();
+        termsAndConditions = new TermsAndConditions(driver);
+        getWebPrivacyPolicyLink().click();
     }
 
     //Business logic
@@ -69,12 +80,14 @@ public class PaymentMethod extends CheckOutPage {
      * The method which completely do payment method part
      * @param text
      */
-    public void paymentMethodFullyComplete(String text){
-        chooseCashPayMent();
+    public ConfirmOrder paymentMethodFullyComplete(String text){
+        chooseCashPayment();
         clickTextAreaInPaymentMethod();
         clearTextAreaInPaymentMethod();
         setTextAreaInPaymentMethod(text);
+        confirmAgreement();
         clickPaymentMethodContinueButton();
+        return new ConfirmOrder(driver);
     }
 
     class TermsAndConditions {
@@ -89,10 +102,14 @@ public class PaymentMethod extends CheckOutPage {
         }
 
         private void initElements(){
+            (new WebDriverWait(driver,3)).until(ExpectedConditions
+                    .visibilityOfElementLocated(By.cssSelector("h4.modal-title")));
             title = driver.findElement(By.cssSelector("h4.modal-title"));
             body = driver.findElement(By.cssSelector("div.modal-body p"));
             close = driver.findElement(By.cssSelector("button.close"));
         }
+
+
 
         public String getTitleText(){
             return  title.getText();
