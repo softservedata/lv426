@@ -1,7 +1,6 @@
 package com.softserve.edu.opencart.data.addressbook;
 
 import com.softserve.edu.opencart.data.IAddress;
-import org.openqa.selenium.By;
 
 interface IFirstname {
     ILastname setFirstname(String firstname);
@@ -79,6 +78,7 @@ public class Address
         this.lastname = lastname;
         return this;
     }
+
     public IAddressBuild setCompany(String country) {
         this.company = company;
         return this;
@@ -98,6 +98,7 @@ public class Address
         this.city = city;
         return this;
     }
+
     public IAddressBuild setPostcode(String postcode) {
         this.postcode = postcode;
         return this;
