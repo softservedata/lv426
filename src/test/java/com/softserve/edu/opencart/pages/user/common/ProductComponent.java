@@ -32,7 +32,6 @@ public class ProductComponent {
 		name = productLayout.findElement(By.cssSelector("h4 a"));
 		partialDescription = productLayout.findElement(By.cssSelector("h4 + p"));
 		price = productLayout.findElement(By.cssSelector(".price"));
-		addToCartButton = productLayout.findElement(By.cssSelector(".fa.fa-shopping-cart"));
 		addToWishButton = productLayout.findElement(By.cssSelector(".fa.fa-heart"));
 		addToCompareButton = productLayout.findElement(By.cssSelector(".fa.fa-exchange"));
 
@@ -78,7 +77,7 @@ public class ProductComponent {
 
 	// addToCartButton
 	public WebElement getAddToCartButton() {
-		return addToCartButton;
+		return productLayout.findElement(By.cssSelector(".fa.fa-shopping-cart"));
 	}
 
 	public void clickAddToCartButton() {

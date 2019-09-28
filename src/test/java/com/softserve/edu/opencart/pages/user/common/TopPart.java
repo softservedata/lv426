@@ -63,10 +63,7 @@ public abstract class TopPart {
         currency = driver.findElement(By.cssSelector(".btn.btn-link.dropdown-toggle"));
         myAccount = driver.findElement(By.cssSelector(".list-inline > li > a.dropdown-toggle"));
         wishList = driver.findElement(By.id("wishlist-total"));
-        checkout = driver.findElement(By.cssSelector("a[title='Checkout']"));
         logo = driver.findElement(By.cssSelector("#logo a"));
-        searchTopField = driver.findElement(By.name("search"));
-        searchTopButton = driver.findElement(By.cssSelector("button.btn.btn-default"));
         cartButton = driver.findElement(By.cssSelector("#cart > button"));
     }
 
@@ -132,7 +129,7 @@ public abstract class TopPart {
 
     // checkout
     public WebElement getCheckout() {
-        return checkout;
+        return driver.findElement(By.cssSelector("a[title='Checkout']"));
     }
 
     public String getCheckoutText() {
@@ -140,6 +137,7 @@ public abstract class TopPart {
     }
 
     public void clickCheckout() {
+
         getCheckout().click();
     }
 
@@ -154,9 +152,9 @@ public abstract class TopPart {
 
     // searchTopField
     public WebElement getSearchTopField() {
-        return searchTopField;
+        return driver.findElement(By.name("search"));
     }
-
+//TODO
     public String getSearchTopFieldText() {
         return getSearchTopField().getAttribute(TAG_ATTRIBUTE_VALUE);
     }
@@ -175,7 +173,7 @@ public abstract class TopPart {
 
     // searchTopButton
     public WebElement getSearchTopButton() {
-        return searchTopButton;
+        return driver.findElement(By.cssSelector("button.btn.btn-default"));
     }
 
     public void clickSearchTopButton() {
@@ -445,6 +443,7 @@ public abstract class TopPart {
     }
 
     public CheckOutPage gotoCheckOutPage(){
+        driver.navigate().refresh();
         clickCheckout();
         return new CheckOutPage(driver);
     }

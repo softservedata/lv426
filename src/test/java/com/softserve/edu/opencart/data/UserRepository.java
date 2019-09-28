@@ -1,5 +1,7 @@
 package com.softserve.edu.opencart.data;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
 public final class UserRepository {
 
     private static volatile UserRepository instance = null;
@@ -27,6 +29,25 @@ public final class UserRepository {
                 .setFirstName("mary")
                 .setLastName("heras")
                 .seteMail("mary@gamil.com")
+                .setTelephone("765483945")
+                .setAddress1("address1")
+                .setCity("Lviv")
+                .setPostCode("77777")
+                .setCountry("Ukraine")
+                .setRegionState("Ternopil's'ka Oblast'")
+                .setPassword("mary")
+                .setSubscribe(true)
+                .setFax("12345")
+                .setCompany("company")
+                .setAddress2("address2")
+                .build();
+    }
+
+    public IUser getValidUserForCheckout() {
+        return User.get()
+                .setFirstName("mary")
+                .setLastName("heras")
+                .seteMail(RandomStringUtils.randomAlphabetic(5)+"@gamil.com")
                 .setTelephone("765483945")
                 .setAddress1("address1")
                 .setCity("Lviv")

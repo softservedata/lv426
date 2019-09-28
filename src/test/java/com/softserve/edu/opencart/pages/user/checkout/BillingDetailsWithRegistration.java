@@ -6,21 +6,18 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import static com.softserve.edu.opencart.data.checkout.CheckOutRepository.PATH_FOR_BILLING_REGISTRATION_PATH;
+
 public class BillingDetailsWithRegistration extends CheckOutOptions{
 
     private WebDriver driver;
     private WebElement element;
 
-    private WebElement newsLetterCheckBox;
-    private WebElement shippingAdressCheckBox;
-    private WebElement privacyPolicyCheckBox;
-    private WebElement privacyPolicyLink;
-    private WebElement password;
-    private WebElement passwordConfirm;
     private AccountRegister methods;
 
     public BillingDetailsWithRegistration(WebDriver driver) {
         super(driver);
+        this.driver = driver;
         initElements();
     }
 
@@ -29,6 +26,7 @@ public class BillingDetailsWithRegistration extends CheckOutOptions{
     }
 
     public DeliveryDetails accountAndBillingDetailsFilling(IUser user){
+//        driver.navigate().refresh();
         methods.personalInfoAndAddressFilling(user);
         methods.clickContinueCheckoutButton();
         return new DeliveryDetails(driver);
@@ -40,53 +38,66 @@ public class BillingDetailsWithRegistration extends CheckOutOptions{
 
         AccountRegister(WebDriver driver) {
             super(driver);
-            initElements();
+            this.driver = driver;
         }
 
-        protected void initElements() {
-            passwordConfirm = driver.findElement(By.cssSelector("input#input-payment-confirm"));
-            password = driver.findElement(By.cssSelector("div[class=\"form-group required\"] input[name=\"password\"]"));
-            newsLetterCheckBox = driver.findElement(By.cssSelector("input#newsletter"));
-            shippingAdressCheckBox = driver.findElement(By.cssSelector("input[name=\"shipping_address\"]"));
-            privacyPolicyCheckBox = driver.findElement(By.cssSelector("input[name=\"agree\"]"));
-            privacyPolicyLink = driver.findElement(By.cssSelector("a.agree"));
-        }
         //Functional
 
+        private WebElement getWebConfirmPassword(){
+            return driver.findElement(By.cssSelector("input#input-payment-confirm"));
+        }
+
+        private WebElement getWebPassword(){
+            return driver.findElement(By.cssSelector("div[class=\"form-group required\"] input[name=\"password\"]"));
+        }
+        private WebElement getWebNewsLetterCheckBox(){
+            return driver.findElement(By.cssSelector("input#newsletter"));
+        }
+        private WebElement getWebShippingAdressCheckBox(){
+            return driver.findElement(By.cssSelector("input[name=\"shipping_address\"]"));
+        }
+        private WebElement getWebPrivacyPolicyCheckBox(){
+            return driver.findElement(By.cssSelector("input[name=\"agree\"]"));
+        }
+
+        private WebElement getWebPolicyLink(){
+            return driver.findElement(By.cssSelector("a.agree"));
+        }
+
         public void confirmPrivacyPolicyCheckBox(){
-            privacyPolicyCheckBox.click();
+            getWebPrivacyPolicyCheckBox().click();
         }
 
         public void confirmNewsLetterCheckBox(){
-            newsLetterCheckBox.click();
+            getWebNewsLetterCheckBox().click();
         }
 
         public void confirmShippingAddressCheckBox(){
-            shippingAdressCheckBox.click();
+            getWebShippingAdressCheckBox().click();
         }
 
         public void clickPasswordField(){
-            password.click();
+            getWebPassword().click();
         }
 
         public void clearPasswordField(){
-            password.clear();
+            getWebPassword().clear();
         }
 
         public void setPasswordField(String passwordField){
-            password.sendKeys();
+            getWebPassword().sendKeys(passwordField);
         }
 
         public void clickPasswordConfirmField(){
-            passwordConfirm.click();
+            getWebConfirmPassword().click();
         }
 
         public void clearPasswordConfirmField(){
-            passwordConfirm.clear();
+            getWebConfirmPassword().clear();
         }
 
         public void setPasswordConfirmField(String passwordField){
-            passwordConfirm.sendKeys();
+            getWebConfirmPassword().sendKeys(passwordField);
         }
 
         //BA

@@ -25,7 +25,7 @@ public class SearchTest extends UserTestRunner {
 	@Test(dataProvider = "searchData")
 	public void checkSearch(SearchFilter searchFilter, Currencies currency) throws Exception {
 		// Steps
-		SearchSuccessPage searchSuccessPage = loadApplication()
+		SearchSuccessPage searchSuccessPage = loadMaxApplication()
 				.successfulSearch(searchFilter)
 				.chooseCurrency(currency);
 		ProductComponent actualProductComponent = searchSuccessPage

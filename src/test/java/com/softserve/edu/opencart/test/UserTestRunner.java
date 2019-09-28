@@ -41,8 +41,8 @@ public abstract class UserTestRunner {
 	private final String SERVER_URL_BY_BEATA = "https://demo.opencart.com/index.php?route=common/home";
 
 	private final String SERVER_URL = "http://192.168.68.137/opencart/upload";
-	private final String SERVER_URL_BY_MAX = "http://192.168.163.136/opencart/upload";
-	private final String ADMIN_URL_BY_MAX = "http://192.168.163.136/opencart/upload/admin";
+	private final String SERVER_URL_BY_MAX = "http://192.168.163.137/opencart/upload";
+	private final String ADMIN_URL_BY_MAX = "http://192.168.163.137/opencart/upload/admin";
     private final String SERVER_URL_BY_OLESIA = "http://192.168.45.131/opencart/upload";
 
 	private final String TIME_TEMPLATE = "yyyy-MM-dd_HH-mm-ss";
@@ -56,9 +56,9 @@ public abstract class UserTestRunner {
 	public void beforeClass() {
 		log.info("Test suite start");
 		//System.setProperty("webdriver.chrome.driver", "D:\\ChromeDriver\\chromedriver.exe");
-		//System.setProperty("webdriver.chrome.driver",
-		//		"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe");//Maksym
-		System.setProperty("webdriver.chrome.driver","C:\\Users\\Admin\\Desktop\\TAQC ITA SoftServe\\chromedriver_win32\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe");//Maksym
+		//System.setProperty("webdriver.chrome.driver","C:\\Users\\Admin\\Desktop\\TAQC ITA SoftServe\\chromedriver_win32\\chromedriver.exe");
 		driver = new ChromeDriver();
 		log.info("ChromeDriver loaded");
 		driver.manage().window().maximize();
@@ -95,22 +95,22 @@ public abstract class UserTestRunner {
 		}
 	}
 
-	public HomePage loadApplication() {
+	public HomePage loadMaxApplication() {
 		//driver.get(SERVER_URL);
 		driver.get(SERVER_URL_BY_MAX);
-		log.debug("loadApplication start");
+		log.debug("loadMaxApplication start");
 		return new HomePage(driver);
 	}
 
 	public HomePage loadMartaApplication(){
 		driver.get(SERVER_URL_BY_MARTA);
-		log.debug("loadApplication start");
+		log.debug("loadMaxApplication start");
 		return new HomePage(driver);
 	}
 
     public HomePage loadOlesiaApplication() {
         driver.get(SERVER_URL_BY_OLESIA);
-        log.debug("loadApplication start");
+        log.debug("loadMaxApplication start");
         return new HomePage(driver);
     }
 
@@ -128,13 +128,13 @@ public abstract class UserTestRunner {
 	}
 	public HomePage loadBeataApplication(){
 		driver.get(SERVER_URL_BY_BEATA);
-		log.debug("loadApplication start");
+		log.debug("loadMaxApplication start");
 		return new HomePage(driver);
 	}
 
 	//@Step("Save attached screenshot")
 	//@Attachment(value = "{0}", type = "image/png")
-	public byte[] saveImageAttach(String attachName) {
+	public byte[] saveImageAttach() {
 		byte[] result = null;
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		try {

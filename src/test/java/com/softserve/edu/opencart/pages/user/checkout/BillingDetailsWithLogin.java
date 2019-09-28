@@ -44,7 +44,7 @@ public class BillingDetailsWithLogin extends CheckOutOptions {
      */
     public DeliveryDetails billingDetailsFullyDone(){
         chooseNewAddressCreationBillingDetails();
-        formInputs.method.fullIputs(CheckOutRepository.get().validAdress());
+        formInputs.method.fullInputs(CheckOutRepository.get().validAdress());
         continueBillingButtonClick();
         return new DeliveryDetails(driver);
     }
