@@ -11,8 +11,7 @@ public class NewAddressForCheckOut {
     private String cssPath;
     private WebElement element;
     private WebDriver driver;
-    public static String NEW_BILLING_ADRESS = "#input-payment-";
-    public static String NEW_SHIPPING_ADRESS = "#input-shipping-";
+
 
     private WebElement firstNameBilling;
     private WebElement lastNameBilling;

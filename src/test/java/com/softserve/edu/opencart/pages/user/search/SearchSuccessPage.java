@@ -31,9 +31,6 @@ public class SearchSuccessPage extends SearchCriteriaPart {
 	}
 
 
-
-
-
 	// Page Object
 	
 	// productsCriteria
@@ -71,10 +68,14 @@ public class SearchSuccessPage extends SearchCriteriaPart {
     	productsCriteria.addToWishButtonByName(product);
    	    return new SearchSuccessAlertPage(driver);
     }
+
+
     public SearchSuccessPage addProductToCartByProductCriteriaComponent(SearchFilter searchFilter){
         productsCriteria.clickProductComponentAddToCartButtonByName(searchFilter.getProduct());
+        driver.navigate().refresh();
         return new SearchSuccessPage(driver);
     }
+
 
     public ProductPage gotoProductInfo(Product product) {
     	getProductsCriteria()

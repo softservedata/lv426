@@ -12,12 +12,11 @@ public class CheckOutPage extends BreadCrumbPart {
 
     public CheckOutPage(WebDriver driver) {
         super(driver);
-        initElements();
+        this.driver = driver;
     }
 
-    private void initElements(){
 
+    public CheckOutOptions continueCheckout(){
+        return new CheckOutOptions(driver);
     }
-
-    //public BillingDetails
 }

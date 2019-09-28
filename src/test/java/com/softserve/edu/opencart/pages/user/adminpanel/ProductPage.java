@@ -9,7 +9,7 @@ public class ProductPage extends LeftSidebarMenuComponent {
     private ProductContainerComponent productContainerComponent;
     private ProductComponent productComponent;
 
-    ProductPage(WebDriver driver) {
+    public ProductPage(WebDriver driver) {
         super(driver);
         this.driver = driver;
         productContainerComponent = new ProductContainerComponent(driver);
@@ -30,7 +30,7 @@ public class ProductPage extends LeftSidebarMenuComponent {
     }
 
     public EditProductPage goToNikonEditPage() {
-        return searchIphone().goToEditProductPage();
+        return searchNikon().goToEditProductPage();
 
     }
 

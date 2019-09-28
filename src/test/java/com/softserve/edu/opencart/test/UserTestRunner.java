@@ -34,10 +34,12 @@ public abstract class UserTestRunner {
 	private final String DRIVER_ERROR = "ERROR: Chromedriver not Found";
 	//private final String SERVER_URL = "http://taqc-opencart.epizy.com";
 
-	private final String ADMIN_ARSEN_URL = "http://192.168.68.137/opencart/upload/admin";
-	private final String SERVER_ARSEN_URL = "http://192.168.68.137/opencart/upload";
+	private final String ADMIN_ARSEN_URL = "http://192.168.68.138/opencart/upload/admin";
+	private final String SERVER_ARSEN_URL = "http://192.168.68.138/opencart/upload";
 
 	private final String ADMIN_URL = "http://192.168.68.137/opencart/upload/admin";
+	//private final String SERVER_URL = "http://192.168.68.137/opencart/upload";
+	private final String SERVER_URL_BY_NELOMAYTECOD = "https://demo.opencart.com/index.php?route=common/home";
 
 	//private final String SERVER_URL = "http://192.168.68.137/opencart/upload";
 	private final String SERVER_URL_BY_BEATA = "https://demo.opencart.com/index.php?route=common/home";
@@ -61,10 +63,12 @@ public abstract class UserTestRunner {
 		//System.setProperty("webdriver.chrome.driver", "D:\\ChromeDriver\\chromedriver.exe");
 		System.setProperty("webdriver.chrome.driver",
 				"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe");//Maksym
+		//System.setProperty("webdriver.chrome.driver","C:\\Users\\Admin\\Desktop\\TAQC ITA SoftServe\\chromedriver_win32\\chromedriver.exe");
 		driver = new ChromeDriver();
 		log.info("ChromeDriver loaded");
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
 	}
 
 	@AfterClass(alwaysRun = true)
@@ -96,6 +100,13 @@ public abstract class UserTestRunner {
 			//	driver.get(SERVER_URL);
 		}
 		driver.manage().deleteAllCookies();
+	}
+
+	public HomePage loadApplication() {
+		//driver.get(SERVER_URL);
+		driver.get(SERVER_URL_BY_MAX);
+		log.debug("loadApplication start");
+		return new HomePage(driver);
 	}
 
 	public HomePage loadArsenApplication() {

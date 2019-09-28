@@ -1,13 +1,22 @@
 package com.softserve.edu.opencart.test;
 
-import com.softserve.edu.opencart.data.*;
+import com.softserve.edu.opencart.data.Discount;
+import com.softserve.edu.opencart.data.DiscountRepository;
+import com.softserve.edu.opencart.data.SearchFilter;
+import com.softserve.edu.opencart.data.SearchFilterRepository;
+import com.softserve.edu.opencart.data.shop.FinalPriceComponentContainer;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import static com.softserve.edu.opencart.tools.PriceUtils.getCurrency;
+
 public class DiscountTest extends UserTestRunner {
     private Discount discount;
+
+    private double total;
+
 
     @DataProvider
     public Object[][] searchData() {
@@ -30,12 +39,17 @@ public class DiscountTest extends UserTestRunner {
 
     @Test(dataProvider = "searchData")
     public void testOfSpecialTest(Discount discount, SearchFilter product) {
-        loadArsenApplication()
+        FinalPriceComponentContainer finalPriceTable =  loadArsenApplication()
                 .successfulSearch(product)
                 .addProductToCartByProductCriteriaComponent(product)
                 .gotoShoppingCartPage()
                 .tryToChangeSomething()
-                .changeCountOfSomeOrderByName(product.getProduct(), String.valueOf(discount.getQuantity()));
+                .changeCountOfSomeOrderByName(product.getProduct(), String.valueOf(discount.getQuantity()))
+                .tryToChangeSomething()
+                .getFinalPricaContainer();
+
+
+        total = getCurrency(finalPriceTable.getCashSumByTitle("Total:").getPrice());
 
 
     }

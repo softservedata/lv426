@@ -57,7 +57,9 @@ public class RegisterPage extends AccountSidebarGuestPart {
         return firstName;
     }
 
-    public void clickFirstNameField() { getFirstName().click(); }
+    public void clickFirstNameField() {
+        getFirstName().click();
+    }
 
     public void clearFirstNameField() {
         getFirstName().clear();
@@ -106,7 +108,9 @@ public class RegisterPage extends AccountSidebarGuestPart {
         return telephone;
     }
 
-    public void clickTelephoneField() { getTelephone().click(); }
+    public void clickTelephoneField() {
+        getTelephone().click();
+    }
 
     public void clearTelephoneField() {
         getTelephone().clear();
@@ -159,7 +163,9 @@ public class RegisterPage extends AccountSidebarGuestPart {
         getAddress01().click();
     }
 
-    public void clearAddress01Field() { getAddress01().clear(); }
+    public void clearAddress01Field() {
+        getAddress01().clear();
+    }
 
     public void setAddress01(String address01) {
         getAddress01().sendKeys(address01);
@@ -174,7 +180,9 @@ public class RegisterPage extends AccountSidebarGuestPart {
         getAddress02().click();
     }
 
-    public void clearAddress02Field() { getAddress02().clear(); }
+    public void clearAddress02Field() {
+        getAddress02().clear();
+    }
 
     public void setAddress02(String address02) {
         getAddress01().sendKeys(address02);
@@ -288,7 +296,9 @@ public class RegisterPage extends AccountSidebarGuestPart {
         return agreePrivacyPolicyLink;
     }
 
-    public void clickAgreePrivacyPolicyLink() { getAgreePrivacyPolicyLink().click(); }
+    public void clickAgreePrivacyPolicyLink() {
+        getAgreePrivacyPolicyLink().click();
+    }
 
     //subscribe
     public WebElement getSubscribeLink() {
@@ -296,11 +306,13 @@ public class RegisterPage extends AccountSidebarGuestPart {
     }
 
     public void clickSubscribeLink(Boolean subscribe) {
-        if(subscribe){
-            getSubscribeLink().click();}
+        if (subscribe) {
+            getSubscribeLink().click();
+        }
     }
 
-    public void defaultLogin(IUser user) {}
+    public void defaultLogin(IUser user) {
+    }
 
     // Functional
 
@@ -407,31 +419,44 @@ public class RegisterPage extends AccountSidebarGuestPart {
         clickSubscribeLink(user.isSubscribe());
     }
 
-    public void fillRegisterAgreePrivacyPolicy(IUser user){
+    public void fillRegisterInvalidConfirmPassword(IUser user) {
+        fillRegister(user);
+        enterConfirmPassword(user.getPassword() + "qwerty");
+        clickAgreePrivacyPolicyLink();
+        clickContinueButton();
+    }
+
+    public void fillRegisterAgreePrivacyPolicy(IUser user) {
         fillRegister(user);
         clickAgreePrivacyPolicyLink();
         clickContinueButton();
     }
 
-    public void fillRegisterNotAgreePrivacyPolicy(IUser user){
+    public void fillRegisterNotAgreePrivacyPolicy(IUser user) {
         fillRegister(user);
         clickContinueButton();
     }
 
     // Business Logic
-    public SuccessfulRegisterPage successfulRegisterUser(IUser user){
+    public SuccessfulRegisterPage successfulRegisterUser(IUser user) {
 
         fillRegisterAgreePrivacyPolicy(user);
         return new SuccessfulRegisterPage(driver);
     }
 
-    public UnsuccessfulRegisterPage unsuccessfulRegisterNotAgreePrivacyPolicy(IUser user){
+    public UnsuccessfulRegisterPage unsuccessfulConfirmPasswordRegisterUser(IUser user) {
+
+        fillRegisterInvalidConfirmPassword(user);
+        return new UnsuccessfulRegisterPage(driver);
+    }
+
+    public UnsuccessfulRegisterPage unsuccessfulRegisterNotAgreePrivacyPolicy(IUser user) {
 
         fillRegisterNotAgreePrivacyPolicy(user);
         return new UnsuccessfulRegisterPage(driver);
     }
 
-    public UnsuccessfulRegisterPage unsuccessfulRegisterUser(IUser invalidUser){
+    public UnsuccessfulRegisterPage unsuccessfulRegisterUser(IUser invalidUser) {
 
         fillRegisterAgreePrivacyPolicy(invalidUser);
         return new UnsuccessfulRegisterPage(driver);

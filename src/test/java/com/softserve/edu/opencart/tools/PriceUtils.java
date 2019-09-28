@@ -38,4 +38,10 @@ public final class PriceUtils {
         return Double.parseDouble(df.format(rezult));
 
     }
+
+    public static double getPercentage(double num1, double num2) {
+        //DecimalFormat df = new DecimalFormat("#.##");
+        return getMultiply(num1, num2 / 100);
+
+    }
 }

@@ -68,7 +68,7 @@ public class ProductsContainerComponent {
         if (result == null)
         {
             // TODO Develop Custom Exception
-            throw new RuntimeException("ProductName: " + product + " not Found.");
+            throw new RuntimeException("ProductName: " + product.getName() + " not Found.");
         }
         return result;
     }

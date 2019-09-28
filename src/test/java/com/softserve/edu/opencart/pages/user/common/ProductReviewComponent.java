@@ -1,6 +1,7 @@
 package com.softserve.edu.opencart.pages.user.common;
 
 import com.softserve.edu.opencart.data.Rating;
+import com.softserve.edu.opencart.data.Reviews;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,7 +10,6 @@ import org.openqa.selenium.WebElement;
 
 public class ProductReviewComponent extends ProductPage {
 
-    protected WebDriver productLayout;
     private final String RATING_LOCATER_XPATH = "//input[@name='rating' and @value='%s']";
 
 
@@ -25,31 +25,33 @@ public class ProductReviewComponent extends ProductPage {
 
 
 
-    public ProductReviewComponent(WebDriver productLayout){
-        super(productLayout);
-        this.productLayout=productLayout;
+    public ProductReviewComponent(WebDriver driver){
+        super(driver);
+        //this.productLayout=productLayout;
         initElements();
     }
+
+    //public ProductReviewComponent() { }
 
 
     public void initElements() {
         //reviewButton = productLayout.findElement(By.xpath("//li[contains(@class,'' )]//a[contains(text(),'Reviews')]"));
-        inputNameBox = productLayout.findElement(By.id("input-name"));
-        inputReviewBox = productLayout.findElement(By.id("input-review"));
+        inputNameBox = driver.findElement(By.id("input-name"));
+        inputReviewBox = driver.findElement(By.id("input-review"));
         //rating1 = driver.findElement(By.xpath(Rating.VERYBAD.getValue()));
         //rating1= productLayout.findElement(By.xpath("//input[@name='rating' and @value='1']"));
         //rating2=productLayout.findElement(By.xpath("//input[@name='rating' and @value='2']"));
         //rating3=productLayout.findElement(By.xpath("//input[@name='rating' and @value='3']"));
         //rating4=productLayout.findElement(By.xpath("//input[@name='rating' and @value='4']"));
         //rating5=productLayout.findElement(By.xpath("//input[@name='rating' and @value='5']"));
-        continueReviewButton = productLayout.findElement(By.id("button-review"));
+        continueReviewButton = driver.findElement(By.id("button-review"));
     }
 
     //Page Object
 
 
     public WebElement getProductLayout() {
-        return (WebElement) productLayout;
+        return (WebElement) driver;
     }
 
     public WebElement getContinueReviewButton() {
@@ -111,6 +113,33 @@ public class ProductReviewComponent extends ProductPage {
     public void clickContinueReviewButton() {
         getContinueReviewButton().click();
     }
+
+
+    public void sendReview(Reviews review) {
+        clickInputNameBox();
+        clearInputNameBox();
+        setInputNameBox(review.getName());
+        clickInputReviewBox();
+        clearInputReviewBox();
+        setInputReviewBox(review.getFeedback());
+        clickRatingButton(review.getRating());
+        //clickContinueReviewButton();
+
+    }
+
+    public SuccessReviewPage successReview(Reviews review){
+        sendReview(review);
+        clickContinueReviewButton();
+        return new SuccessReviewPage(driver);
+    }
+
+    public  UnsuccessfullReviewPage unsuccessReview(Reviews review){
+        sendReview(review);
+        clickContinueReviewButton();
+        return new UnsuccessfullReviewPage(driver);
+    }
+
+
 }
 
 

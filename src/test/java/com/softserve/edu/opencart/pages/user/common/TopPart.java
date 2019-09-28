@@ -3,6 +3,7 @@ package com.softserve.edu.opencart.pages.user.common;
 import com.softserve.edu.opencart.data.*;
 import com.softserve.edu.opencart.pages.user.HomePage;
 import com.softserve.edu.opencart.pages.user.account.*;
+import com.softserve.edu.opencart.pages.user.checkout.CheckOutPage;
 import com.softserve.edu.opencart.pages.user.search.SearchSuccessPage;
 import com.softserve.edu.opencart.pages.user.search.SearchUnsuccessPage;
 import com.softserve.edu.opencart.pages.user.shop.ShoppingCartPage;
@@ -10,6 +11,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -62,15 +65,12 @@ public abstract class TopPart {
     private void initElements() {
 
         js = (JavascriptExecutor) driver;
-
         myAccount = driver.findElement(By.cssSelector(".list-inline > li > a.dropdown-toggle"));
         wishList = driver.findElement(By.id("wishlist-total"));
-        shoppingCart = driver.findElement(By.cssSelector("a[title='Shopping Cart']"));
         checkout = driver.findElement(By.cssSelector("a[title='Checkout']"));
         logo = driver.findElement(By.cssSelector("#logo a"));
 
         searchTopButton = driver.findElement(By.cssSelector("button.btn.btn-default"));
-        cartButton = driver.findElement(By.cssSelector("#cart > button"));
     }
 
     // Page Object
@@ -121,7 +121,8 @@ public abstract class TopPart {
 
     // shoppingCart
     public WebElement getShoppingCart() {
-        return shoppingCart;
+
+        return driver.findElement(By.xpath("//a[@title='Shopping Cart']"));
     }
 
     public String getShoppingCartText() {
@@ -129,19 +130,8 @@ public abstract class TopPart {
     }
 
     public void clickShoppingCart() {
-        //webDriverWait.until(ExpectedConditions.elementToBeClickable((By.cssSelector("#cart > button"))));
-//        try{
-//            js.executeAsyncScript("arguments[0].click();",shoppingCart);
-//        }
-//        catch (ElementClickInterceptedException e){
-//            getShoppingCart().click();
-//        }
-        //driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        //(new WebDriverWait(driver, 10)).until(ExpectedConditions.elementToBeClickable(getShoppingCart()));
+
         getShoppingCart().click();
 
     }
@@ -200,7 +190,8 @@ public abstract class TopPart {
 
     // cartButton
     public WebElement getCartButton() {
-        return cartButton;
+      //new WebDriverWait(driver, 10)).until(ExpectedConditions.el(By.cssSelector("#cart > button")));
+        return  driver.findElement(By.cssSelector("#cart > button"));
     }
 
     public String getCartButtonText() {
@@ -461,6 +452,11 @@ public abstract class TopPart {
         return new MyAccountPage(driver);
     }
 
+    public CheckOutPage gotoCheckOutPage(){
+        clickCheckout();
+        return new CheckOutPage(driver);
+    }
+
 //    public OrderHistoryPage gotoOrderHistory() {
 //    	openMyAccountDropdown();
 //    	createDropdownLogged();
@@ -501,9 +497,15 @@ public abstract class TopPart {
 
 
     public ButtonCartProductComponent openButtonCartProductComponent() {
+
         clickCartButton();
         // TODO is Aggregation
         return new ButtonCartProductComponent(driver);
+    }
+
+    public ShoppingCartPage goToShoppingCartPageFromCartComponent() {
+        openButtonCartProductComponent().ClickVievButton();
+        return new ShoppingCartPage(driver);
     }
 
     public ButtonCartEmptyComponent openEmptyButtonCartProductComponent() {

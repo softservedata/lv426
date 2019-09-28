@@ -4,8 +4,8 @@ public interface IReviews {
 
     String getName();
 
-    String getReview();
+    String getFeedback();
 
-    String getRating();
+    Rating getRating();
 
 }
