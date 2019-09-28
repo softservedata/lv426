@@ -32,31 +32,6 @@ public class EditAccountTest extends UserTestRunner {
     }
 
     @Test(dataProvider = "validEditAccount")
-    public void successEditAccount(IUser validUser,IUser editUser) {
-        SuccessfulAccountEditPage successfulAccountEditPage = loadOlesiaApplication()
-                .gotoLoginPage()
-                .successfulLogin(validUser)
-                .gotoEditAccountRight()
-                .successEditAccount(editUser);
-
-        Assert.assertTrue(successfulAccountEditPage.getAlertWarningText().contains(EXPECTED_SUCCESS_EDIT_MESSAGE));
-
-        EditAccountPage editAccountPage = successfulAccountEditPage
-                .gotoEditAccountRight();
-
-        Assert.assertEquals(editAccountPage.getLastNameText(), editUser.getLastName());
-
-        Assert.assertEquals(editAccountPage.getTelephoneText(), editUser.getTelephone());
-
-        HomePage homePage = editAccountPage
-                .gotoLogoutRight().gotoContinue();
-
-        Assert.assertTrue(homePage
-                .getSlideshow0FirstImageAttributeSrcText()
-                .contains(HomePage.EXPECTED_IPHONE6));
-    }
-
-    @Test(dataProvider = "validEditAccount")
     public void withoutSavingEditAccount(IUser validUser, IUser editUser) {
         MyAccountPage withoutSavingEditAccountPage = loadOlesiaApplication()
                 .gotoLoginPage()
@@ -77,6 +52,33 @@ public class EditAccountTest extends UserTestRunner {
                 .getSlideshow0FirstImageAttributeSrcText()
                 .contains(HomePage.EXPECTED_IPHONE6));
     }
+
+    @Test(dataProvider = "validEditAccount")
+    public void successEditAccount(IUser validUser, IUser editUser) {
+        SuccessfulAccountEditPage successfulAccountEditPage = loadOlesiaApplication()
+                .gotoLoginPage()
+                .successfulLogin(validUser)
+                .gotoEditAccountRight()
+                .successEditAccount(editUser);
+
+        Assert.assertTrue(successfulAccountEditPage.getAlertWarningText().contains(EXPECTED_SUCCESS_EDIT_MESSAGE));
+
+        EditAccountPage editAccountPage = successfulAccountEditPage
+                .gotoEditAccountRight();
+
+        Assert.assertEquals(editAccountPage.getLastNameText(), editUser.getLastName());
+
+        Assert.assertEquals(editAccountPage.getTelephoneText(), editUser.getTelephone());
+
+        HomePage homePage = editAccountPage
+                .successEditAccount(validUser)
+                .gotoLogoutRight().gotoContinue();
+
+        Assert.assertTrue(homePage
+                .getSlideshow0FirstImageAttributeSrcText()
+                .contains(HomePage.EXPECTED_IPHONE6));
+    }
+
 
     @Test(dataProvider = "invalidFirstNameEditAccount")
     public void WrongFirstNameEditAccount(IUser validUser, IUser wrongFirstNameUser) {

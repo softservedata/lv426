@@ -94,7 +94,7 @@ public final class UserRepository {
     public IUser getExistingUser() {
         return User.get()
                 .setFirstName("Taras")
-                .setLastName("Kookin")
+                .setLastName("Kook")
                 .seteMail("taras@gmail.com")
                 .setTelephone("5555555555")
                 .setAddress1("Zalizniaka 12")
@@ -112,7 +112,7 @@ public final class UserRepository {
     public IUser getEditExistingUser() {
         return User.get()
                 .setFirstName("Taras")
-                .setLastName("Kook")
+                .setLastName("Kookin")
                 .seteMail("taras@gmail.com")
                 .setTelephone("1111111111")
                 .setAddress1("Zalizniaka 12")
