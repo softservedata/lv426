@@ -84,7 +84,7 @@ public abstract class UserTestRunner {
 
 	//@BeforeMethod
 	public void beforeMethod() {
-		driver.get(SERVER_URL_BY_MAX);
+		//driver.get(SERVER_URL_BY_MAX);
 		log.info("Web Application loaded");
 	}
 
