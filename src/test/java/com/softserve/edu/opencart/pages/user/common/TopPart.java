@@ -11,8 +11,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -63,12 +61,11 @@ public abstract class TopPart {
     }
 
     private void initElements() {
-
         js = (JavascriptExecutor) driver;
         myAccount = driver.findElement(By.cssSelector(".list-inline > li > a.dropdown-toggle"));
         wishList = driver.findElement(By.id("wishlist-total"));
-        checkout = driver.findElement(By.cssSelector("a[title='Checkout']"));
         logo = driver.findElement(By.cssSelector("#logo a"));
+        cartButton = driver.findElement(By.cssSelector("#cart > button"));
 
         searchTopButton = driver.findElement(By.cssSelector("button.btn.btn-default"));
     }
@@ -138,7 +135,7 @@ public abstract class TopPart {
 
     // checkout
     public WebElement getCheckout() {
-        return checkout;
+        return driver.findElement(By.cssSelector("a[title='Checkout']"));
     }
 
     public String getCheckoutText() {
@@ -146,6 +143,7 @@ public abstract class TopPart {
     }
 
     public void clickCheckout() {
+
         getCheckout().click();
     }
 
@@ -162,7 +160,7 @@ public abstract class TopPart {
     public WebElement getSearchTopField() {
         return driver.findElement(By.name("search"));
     }
-
+//TODO
     public String getSearchTopFieldText() {
         return getSearchTopField().getAttribute(TAG_ATTRIBUTE_VALUE);
     }
@@ -181,7 +179,7 @@ public abstract class TopPart {
 
     // searchTopButton
     public WebElement getSearchTopButton() {
-        return searchTopButton;
+        return driver.findElement(By.cssSelector("button.btn.btn-default"));
     }
 
     public void clickSearchTopButton() {
@@ -453,6 +451,7 @@ public abstract class TopPart {
     }
 
     public CheckOutPage gotoCheckOutPage(){
+        driver.navigate().refresh();
         clickCheckout();
         return new CheckOutPage(driver);
     }
