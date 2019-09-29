@@ -24,6 +24,13 @@ public class RegisterTest extends UserTestRunner {
     }
 
     @DataProvider
+    public Object[][] invalidUserRegister() {
+        return new Object[][]{
+                {UserRepository.get().getInvalidUser()},
+        };
+    }
+
+    @DataProvider
     public Object[][] invalidFirstNameUserRegister() {
         return new Object[][]{
                 {UserRepository.get().getWrongFirstNameUser()},
@@ -110,7 +117,7 @@ public class RegisterTest extends UserTestRunner {
                 .contains(HomePage.EXPECTED_IPHONE6));
     }
 
-    @Test(dataProvider = "validUserRegister")
+    @Test(dataProvider = "invalidUserRegister")
     public void withoutConfirmPrivacyPolicyUserRegisterTest(IUser invalidUser) {
         UnsuccessfulRegisterPage unsuccessfulRegisterPage = loadOlesiaApplication()
                 .gotoRegisterPage()
@@ -132,7 +139,7 @@ public class RegisterTest extends UserTestRunner {
                 .contains(HomePage.EXPECTED_IPHONE6));
     }
 
-    @Test(dataProvider = "validUserRegister")
+    @Test(dataProvider = "invalidUserRegister")
     public void wrongConfirmPasswordUserRegisterTest(IUser invalidUser) {
         UnsuccessfulRegisterPage unsuccessfulRegisterPage = loadOlesiaApplication()
                 .gotoRegisterPage()

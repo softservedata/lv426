@@ -48,7 +48,7 @@ public abstract class UserTestRunner {
 
 	private final String SERVER_URL_BY_MAX = "http://192.168.163.136/opencart/upload";
 	private final String ADMIN_URL_BY_MAX = "http://192.168.163.136/opencart/upload/admin";
-    private final String SERVER_URL_BY_OLESIA = "http://192.168.45.131/opencart/upload";
+    private final String SERVER_URL_BY_OLESIA = "http://192.168.45.132/opencart/upload";
 
 	private final String TIME_TEMPLATE = "yyyy-MM-dd_HH-mm-ss";
 	private final String  SERVER_URL_BY_MARTA="http://192.168.68.133/opencart/upload";
