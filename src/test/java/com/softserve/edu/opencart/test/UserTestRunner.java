@@ -48,7 +48,7 @@ public abstract class UserTestRunner {
 	private final String SERVER_URL_BY_MAX = "http://192.168.163.137/opencart/upload";
 	private final String ADMIN_URL_BY_MAX = "http://192.168.163.137/opencart/upload/admin";
 
-    private final String SERVER_URL_BY_OLESIA = "http://192.168.45.131/opencart/upload";
+	private final String SERVER_URL_BY_OLESIA = "http://192.168.45.132/opencart/upload";
 
 	private final String ADMIN_YURA_URL = "http://192.168.68.135/opencart/upload/admin";
 	private final String SERVER_YURA_URL = "http://192.168.68.135/opencart/upload";
@@ -84,7 +84,7 @@ public abstract class UserTestRunner {
 
 	//@BeforeMethod
 	public void beforeMethod() {
-		driver.get(SERVER_URL_BY_MAX);
+		//driver.get(SERVER_URL_BY_MAX);
 		log.info("Web Application loaded");
 	}
 
