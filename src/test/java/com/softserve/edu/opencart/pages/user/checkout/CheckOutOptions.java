@@ -1,10 +1,11 @@
 package com.softserve.edu.opencart.pages.user.checkout;
 
-import com.softserve.edu.opencart.data.IUser;
 import com.softserve.edu.opencart.data.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CheckOutOptions extends CheckOutPage {
 
@@ -22,69 +23,87 @@ public class CheckOutOptions extends CheckOutPage {
 
     public CheckOutOptions(WebDriver driver) {
         super(driver);
+        this.driver = driver;
         initElements();
     }
 
     private void initElements() {
-        registerCheckBox = driver.findElement(By.cssSelector("input[value=\"register\"]"));
-        guestCheckBox = driver.findElement(By.cssSelector("input[value=\"guest\"]"));
-        eMailInput = driver.findElement(By.cssSelector("input#input-email"));
-        passwordInput = driver.findElement(By.cssSelector("input#input-password"));
-        forgottenPasswordLink = driver.findElement(By.xpath("//a[contains(text(),'Forgotten')]"));
-        continueCheckOutOptionsButton = driver.findElement(By.cssSelector("input#button-account"));
-        loginCheckOutOptionsButton = driver.findElement(By.cssSelector("input#button-login"));
     }
 
     // Page object
 
+    private WebElement getWebRegisterCheckBox(){
+        return driver.findElement(By.cssSelector("input[value=\"register\"]"));
+    }
+    private WebElement getWebGuestCheckBox(){
+        return driver.findElement(By.cssSelector("input[value=\"guest\"]"));
+    }
+    private WebElement getWebeMailInput(){
+        return driver.findElement(By.cssSelector("input#input-email"));
+    }
+    private WebElement getWebPasswordInput(){
+        return driver.findElement(By.cssSelector("input#input-password"));
+    }
+    private WebElement getWebForgottenPasswordLink (){
+        return driver.findElement(By.xpath("//a[contains(text(),'Forgotten')]"));
+    }
+    private WebElement getWebContinueCheckOutOptionsButton(){
+        return driver.findElement(By.cssSelector("input#button-account"));
+    }
+    private WebElement getWebLoginCheckOutOptionsButton(){
+        return driver.findElement(By.cssSelector("input#button-login"));
+    }
+
     public void eMailInputClick() {
-        eMailInput.click();
+        getWebeMailInput().click();
     }
 
     public void eMailInputClear() {
-        eMailInput.clear();
+        getWebeMailInput().clear();
     }
 
     public void setEMailInput(String email) {
-        eMailInput.sendKeys(email);
+        getWebeMailInput().sendKeys(email);
     }
 
     public void passwordInputClick() {
-        passwordInput.click();
+        getWebPasswordInput().click();
     }
 
     public void passwordInputClear() {
-        passwordInput.clear();
+        getWebPasswordInput().clear();
     }
 
     public void setPasswordInput(String password) {
-        passwordInput.sendKeys(password);
+        getWebPasswordInput().sendKeys(password);
     }
 
     //functional
     public void continueCheckOutOptionsButtonClick() {
-        continueCheckOutOptionsButton.click();
+        (new WebDriverWait(driver, 3)).until(ExpectedConditions
+                .elementToBeClickable( getWebContinueCheckOutOptionsButton()));
+        getWebContinueCheckOutOptionsButton().click();
     }
 
     public void loginCheckOutOptionsButtonClick() {
-        loginCheckOutOptionsButton.click();
+        getWebLoginCheckOutOptionsButton().click();
     }
 
     public void chooseRegisterCheckBox() {
-        registerCheckBox.click();
+        getWebRegisterCheckBox().click();
     }
 
     public void chooseGuestCheckBox() {
-        guestCheckBox.click();
+        getWebGuestCheckBox().click();
     }
 
     public void forgottenPasswordLinkClick(){
-        forgottenPasswordLink.click();
+        getWebForgottenPasswordLink().click();
     }
 
 //business logic
 
-    public void loginAsUser(User user){
+    public BillingDetailsWithLogin loginAsUser(User user){
         eMailInputClick();
         eMailInputClear();
         setEMailInput(user.geteMail());
@@ -92,17 +111,22 @@ public class CheckOutOptions extends CheckOutPage {
         passwordInputClear();
         setPasswordInput(user.getPassword());
         loginCheckOutOptionsButtonClick();
+        return new BillingDetailsWithLogin(driver);
     }
 
-    public void continueCheckoutAsGuest(){
+    public BillingDetailsAsGuest continueCheckoutAsGuest(){
         chooseGuestCheckBox();
         continueCheckOutOptionsButtonClick();
+        return new BillingDetailsAsGuest(driver);
     }
 
-    public void continueCheckoutWithRegistration(){
+    public BillingDetailsWithRegistration continueCheckoutWithRegistration(){
         chooseRegisterCheckBox();
         continueCheckOutOptionsButtonClick();
+        return new BillingDetailsWithRegistration(driver);
     }
+
+
 
 
 }

@@ -33,22 +33,32 @@ public abstract class UserTestRunner {
 	// TODO
 	private final String DRIVER_ERROR = "ERROR: Chromedriver not Found";
 	//private final String SERVER_URL = "http://taqc-opencart.epizy.com";
+
+	private final String ADMIN_ARSEN_URL = "http://192.168.68.138/opencart/upload/admin";
+	private final String SERVER_ARSEN_URL = "http://192.168.68.138/opencart/upload";
+
 	private final String ADMIN_URL = "http://192.168.68.137/opencart/upload/admin";
+	//private final String SERVER_URL = "http://192.168.68.137/opencart/upload";
+	private final String SERVER_URL_BY_NELOMAYTECOD = "https://demo.opencart.com/index.php?route=common/home";
 
 	//private final String SERVER_URL = "http://192.168.68.137/opencart/upload";
 	private final String SERVER_URL_BY_BEATA = "https://demo.opencart.com/index.php?route=common/home";
 
 	private final String SERVER_URL = "http://192.168.68.137/opencart/upload";
-	private final String SERVER_URL_BY_MAX = "http://192.168.163.136/opencart/upload";
-	private final String ADMIN_URL_BY_MAX = "http://192.168.163.136/opencart/upload/admin";
+	private final String SERVER_URL_BY_MAX = "http://192.168.163.137/opencart/upload";
+	private final String ADMIN_URL_BY_MAX = "http://192.168.163.137/opencart/upload/admin";
+
     private final String SERVER_URL_BY_OLESIA = "http://192.168.45.131/opencart/upload";
+
+	private final String ADMIN_YURA_URL = "http://192.168.68.135/opencart/upload/admin";
+	private final String SERVER_YURA_URL = "http://192.168.68.135/opencart/upload";
 
 	private final String TIME_TEMPLATE = "yyyy-MM-dd_HH-mm-ss";
 	private final String  SERVER_URL_BY_MARTA="http://192.168.68.133/opencart/upload";
 	private final String ADMIN_MARTA_URL="http://192.168.68.133/opencart/upload/admin";
 	//
 	protected final Logger log = LoggerFactory.getLogger(this.getClass().getName());
-	private WebDriver driver;
+	WebDriver driver;
 
 	@BeforeClass
 	public void beforeClass() {
@@ -56,10 +66,12 @@ public abstract class UserTestRunner {
 		//System.setProperty("webdriver.chrome.driver", "D:\\ChromeDriver\\chromedriver.exe");
 		System.setProperty("webdriver.chrome.driver",
 				"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe");//Maksym
+		//System.setProperty("webdriver.chrome.driver","C:\\Users\\Admin\\Desktop\\TAQC ITA SoftServe\\chromedriver_win32\\chromedriver.exe");
 		driver = new ChromeDriver();
 		log.info("ChromeDriver loaded");
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
 	}
 
 	@AfterClass(alwaysRun = true)
@@ -87,32 +99,53 @@ public abstract class UserTestRunner {
 				e.printStackTrace();
 			}
 			// TODO Clear Cache or Logout
-		//	log.info("Web Application reloaded");
-		//	driver.get(SERVER_URL);
+			//	log.info("Web Application reloaded");
+			//	driver.get(SERVER_URL);
 		}
+		driver.manage().deleteAllCookies();
 	}
 
-	public HomePage loadApplication() {
+	public HomePage loadMaxApplication() {
 		//driver.get(SERVER_URL);
 		driver.get(SERVER_URL_BY_MAX);
+		log.debug("loadMaxApplication start");
+		return new HomePage(driver);
+	}
+
+	public HomePage loadArsenApplication() {
+		//driver.get(SERVER_URL);
+		driver.get(SERVER_ARSEN_URL);
 		log.debug("loadApplication start");
 		return new HomePage(driver);
 	}
 
 	public HomePage loadMartaApplication(){
 		driver.get(SERVER_URL_BY_MARTA);
-		log.debug("loadApplication start");
+		log.debug("loadMartaApplication start");
 		return new HomePage(driver);
 	}
 
     public HomePage loadOlesiaApplication() {
         driver.get(SERVER_URL_BY_OLESIA);
-        log.debug("loadApplication start");
+        log.debug("loadOlesiaApplication start");
         return new HomePage(driver);
     }
 
-	public AdminLoginPage loadAdminLoginPage() {
-		driver.get(ADMIN_URL);
+	public HomePage loadBeataApplication(){
+		driver.get(SERVER_URL_BY_BEATA);
+		log.debug("loadMaxApplication start");
+		return new HomePage(driver);
+	}
+
+	public HomePage loadYuraApplication() {
+		driver.get(SERVER_YURA_URL);
+		log.debug("loadYuraApplication start");
+		return new HomePage(driver);
+	}
+
+
+	public AdminLoginPage loadArsenAdminLoginPage() {
+		driver.get(ADMIN_ARSEN_URL);
 		log.debug("loadAdminPanel start");
 		return new AdminLoginPage(driver);
 	}
@@ -123,15 +156,18 @@ public abstract class UserTestRunner {
 		return new AdminLoginPage(driver);
 
 	}
-	public HomePage loadBeataApplication(){
-		driver.get(SERVER_URL_BY_BEATA);
-		log.debug("loadApplication start");
-		return new HomePage(driver);
+
+	public AdminLoginPage loadYuraAdminLoginPage(){
+		driver.get(ADMIN_YURA_URL);
+		log.debug("loadAdminPanel start");
+		return new AdminLoginPage(driver);
+
 	}
+
 
 	//@Step("Save attached screenshot")
 	//@Attachment(value = "{0}", type = "image/png")
-	public byte[] saveImageAttach(String attachName) {
+	public byte[] saveImageAttach() {
 		byte[] result = null;
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		try {

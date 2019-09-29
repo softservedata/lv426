@@ -17,7 +17,7 @@ public class TaxClassRepository {
 
     private static TaxClass getFixedAmountClass() {
         return TaxClass.builder()
-                .name("Test Class")
+                .name("Fixed Test Class")
                 .description("New Test Class")
                 .taxRate("Fixed TestTax")
                 .build();
@@ -26,7 +26,7 @@ public class TaxClassRepository {
 
     private static TaxClass getPercentageClass() {
         return TaxClass.builder()
-                .name("Test Class")
+                .name("Percentage Test Class")
                 .description("New Test Class")
                 .taxRate("Percentage TestTax")
                 .build();

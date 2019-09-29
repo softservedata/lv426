@@ -3,17 +3,20 @@ package com.softserve.edu.opencart.pages.user.common;
 import com.softserve.edu.opencart.data.*;
 import com.softserve.edu.opencart.pages.user.HomePage;
 import com.softserve.edu.opencart.pages.user.account.*;
+import com.softserve.edu.opencart.pages.user.checkout.CheckOutPage;
 import com.softserve.edu.opencart.pages.user.search.SearchSuccessPage;
 import com.softserve.edu.opencart.pages.user.search.SearchUnsuccessPage;
 import com.softserve.edu.opencart.pages.user.shop.ShoppingCartPage;
-import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
+
+
 
 public abstract class TopPart {
 
@@ -59,15 +62,12 @@ public abstract class TopPart {
 
     private void initElements() {
         js = (JavascriptExecutor) driver;
-        currency = driver.findElement(By.cssSelector(".btn.btn-link.dropdown-toggle"));
         myAccount = driver.findElement(By.cssSelector(".list-inline > li > a.dropdown-toggle"));
         wishList = driver.findElement(By.id("wishlist-total"));
-        shoppingCart = driver.findElement(By.cssSelector("a[title='Shopping Cart']"));
-        checkout = driver.findElement(By.cssSelector("a[title='Checkout']"));
         logo = driver.findElement(By.cssSelector("#logo a"));
-        searchTopField = driver.findElement(By.name("search"));
-        searchTopButton = driver.findElement(By.cssSelector("button.btn.btn-default"));
         cartButton = driver.findElement(By.cssSelector("#cart > button"));
+
+        searchTopButton = driver.findElement(By.cssSelector("button.btn.btn-default"));
     }
 
     // Page Object
@@ -75,7 +75,7 @@ public abstract class TopPart {
     // currency
     public WebElement getCurrency() {
         //return driver.findElement(By.cssSelector(".btn.btn-link.dropdown-toggle"));
-        return currency;
+        return driver.findElement(By.cssSelector(".btn.btn-link.dropdown-toggle"));
     }
 
     public String getCurrencyText() {
@@ -118,7 +118,8 @@ public abstract class TopPart {
 
     // shoppingCart
     public WebElement getShoppingCart() {
-        return shoppingCart;
+
+        return driver.findElement(By.xpath("//a[@title='Shopping Cart']"));
     }
 
     public String getShoppingCartText() {
@@ -126,26 +127,15 @@ public abstract class TopPart {
     }
 
     public void clickShoppingCart() {
-        //webDriverWait.until(ExpectedConditions.elementToBeClickable((By.cssSelector("#cart > button"))));
-//        try{
-//            js.executeAsyncScript("arguments[0].click();",shoppingCart);
-//        }
-//        catch (ElementClickInterceptedException e){
-//            getShoppingCart().click();
-//        }
-        //driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        //(new WebDriverWait(driver, 10)).until(ExpectedConditions.elementToBeClickable(getShoppingCart()));
+
         getShoppingCart().click();
 
     }
 
     // checkout
     public WebElement getCheckout() {
-        return checkout;
+        return driver.findElement(By.cssSelector("a[title='Checkout']"));
     }
 
     public String getCheckoutText() {
@@ -153,6 +143,7 @@ public abstract class TopPart {
     }
 
     public void clickCheckout() {
+
         getCheckout().click();
     }
 
@@ -167,9 +158,9 @@ public abstract class TopPart {
 
     // searchTopField
     public WebElement getSearchTopField() {
-        return searchTopField;
+        return driver.findElement(By.name("search"));
     }
-
+//TODO
     public String getSearchTopFieldText() {
         return getSearchTopField().getAttribute(TAG_ATTRIBUTE_VALUE);
     }
@@ -188,7 +179,7 @@ public abstract class TopPart {
 
     // searchTopButton
     public WebElement getSearchTopButton() {
-        return searchTopButton;
+        return driver.findElement(By.cssSelector("button.btn.btn-default"));
     }
 
     public void clickSearchTopButton() {
@@ -197,7 +188,8 @@ public abstract class TopPart {
 
     // cartButton
     public WebElement getCartButton() {
-        return cartButton;
+      //new WebDriverWait(driver, 10)).until(ExpectedConditions.el(By.cssSelector("#cart > button")));
+        return  driver.findElement(By.cssSelector("#cart > button"));
     }
 
     public String getCartButtonText() {
@@ -349,9 +341,10 @@ public abstract class TopPart {
     }
 
     //protected void clickCurrencyByPartialName(String currencyName) { // Code Smell
-    protected void clickCurrencyByPartialName(Currencies optionName) {
+    public void clickCurrencyByPartialName(Currencies optionName) {
         openCurrencyDropdownComponent();
         clickDropdownComponentByPartialName(optionName.toString());
+
     }
 
     public List<String> getListCurrencyNames() {
@@ -457,6 +450,12 @@ public abstract class TopPart {
         return new MyAccountPage(driver);
     }
 
+    public CheckOutPage gotoCheckOutPage(){
+        driver.navigate().refresh();
+        clickCheckout();
+        return new CheckOutPage(driver);
+    }
+
 //    public OrderHistoryPage gotoOrderHistory() {
 //    	openMyAccountDropdown();
 //    	createDropdownLogged();
@@ -497,9 +496,15 @@ public abstract class TopPart {
 
 
     public ButtonCartProductComponent openButtonCartProductComponent() {
+
         clickCartButton();
         // TODO is Aggregation
         return new ButtonCartProductComponent(driver);
+    }
+
+    public ShoppingCartPage goToShoppingCartPageFromCartComponent() {
+        openButtonCartProductComponent().ClickVievButton();
+        return new ShoppingCartPage(driver);
     }
 
     public ButtonCartEmptyComponent openEmptyButtonCartProductComponent() {

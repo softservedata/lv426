@@ -17,6 +17,13 @@ import static com.softserve.edu.opencart.pages.user.account.UnsuccessfulRegister
 public class RegisterTest extends UserTestRunner {
 
     @DataProvider
+    public Object[][] validUserRegister() {
+        return new Object[][]{
+                {UserRepository.get().getNewUser()},
+        };
+    }
+
+    @DataProvider
     public Object[][] invalidFirstNameUserRegister() {
         return new Object[][]{
                 {UserRepository.get().getWrongFirstNameUser()},
@@ -30,21 +37,35 @@ public class RegisterTest extends UserTestRunner {
         };
     }
 
-    @DataProvider
-    public Object[][] withoutConfirmPrivacyPolicyUserRegister() {
-        return new Object[][]{
-                {UserRepository.get().getWrongFirstNameUser()},
-        };
+    @Test(dataProvider = "validUserRegister", enabled = false)
+    public void validUserRegisterTest(IUser validUser) {
+        MyAccountPage successfulRegisterPage = loadOlesiaApplication()
+                .gotoRegisterPage()
+                .successfulRegisterUser(validUser)
+                .gotoContinue();
+
+        Assert.assertTrue(successfulRegisterPage.getSuccessMyAccountPageText()
+                .contains(EXPECTED_MY_ACCOUNT_PAGE));
+
+        MyAccountPage successfulLogin = successfulRegisterPage
+                .gotoLogoutRight()
+                .gotoLoginPage()
+                .successfulLogin(validUser);
+
+        Assert.assertTrue(successfulLogin.getSuccessMyAccountPageText()
+                .contains(EXPECTED_MY_ACCOUNT_PAGE));
+
+        HomePage homePage = successfulLogin
+                .gotoLogoutRight()
+                .gotoContinue();
+
+        Assert.assertTrue(homePage
+                .getSlideshow0FirstImageAttributeSrcText()
+                .contains(HomePage.EXPECTED_IPHONE6));
     }
 
-    @DataProvider
-    public Object[][] invalidPasswordUserRegister() {
-        return new Object[][]{
-                {UserRepository.get().getWrongPasswordUser()},
-        };
-    }
     @Test(dataProvider = "existingUserRegister")
-    public void checkExistingUserRegister(IUser existingUser){
+    public void existingUserRegisterTest(IUser existingUser) {
         UnsuccessfulRegisterPage unsuccessfulRegisterPage = loadOlesiaApplication()
                 .gotoRegisterPage()
                 .unsuccessfulRegisterUser(existingUser);
@@ -55,10 +76,12 @@ public class RegisterTest extends UserTestRunner {
                 .gotoLoginPage()
                 .successfulLogin(existingUser);
 
-        Assert.assertTrue(successfulLogin.getsuccessMyAccountPageText()
+        Assert.assertTrue(successfulLogin.getSuccessMyAccountPageText()
                 .contains(EXPECTED_MY_ACCOUNT_PAGE));
 
-        HomePage homePage = successfulLogin.gotoHomePage();
+        HomePage homePage = successfulLogin
+                .gotoLogoutRight()
+                .gotoContinue();
 
         Assert.assertTrue(homePage
                 .getSlideshow0FirstImageAttributeSrcText()
@@ -66,7 +89,7 @@ public class RegisterTest extends UserTestRunner {
     }
 
     @Test(dataProvider = "invalidFirstNameUserRegister")
-    public void checkWrongFirstNameUserRegister(IUser wrongFirstNameUser){
+    public void wrongFirstNameUserRegisterTest(IUser wrongFirstNameUser) {
         UnsuccessfulRegisterPage unsuccessfulRegisterPage = loadOlesiaApplication()
                 .gotoRegisterPage()
                 .unsuccessfulRegisterUser(wrongFirstNameUser);
@@ -87,8 +110,8 @@ public class RegisterTest extends UserTestRunner {
                 .contains(HomePage.EXPECTED_IPHONE6));
     }
 
-    @Test(dataProvider = "invalidFirstNameUserRegister")
-    public void withoutConfirmPrivacyPolicyUserRegister(IUser invalidUser){
+    @Test(dataProvider = "validUserRegister")
+    public void withoutConfirmPrivacyPolicyUserRegisterTest(IUser invalidUser) {
         UnsuccessfulRegisterPage unsuccessfulRegisterPage = loadOlesiaApplication()
                 .gotoRegisterPage()
                 .unsuccessfulRegisterNotAgreePrivacyPolicy(invalidUser);
@@ -109,13 +132,13 @@ public class RegisterTest extends UserTestRunner {
                 .contains(HomePage.EXPECTED_IPHONE6));
     }
 
-    @Test(dataProvider = "invalidPasswordUserRegister")
-    public void checkWrongConfirmPasswordUserRegister(IUser invalidUser){
+    @Test(dataProvider = "validUserRegister")
+    public void wrongConfirmPasswordUserRegisterTest(IUser invalidUser) {
         UnsuccessfulRegisterPage unsuccessfulRegisterPage = loadOlesiaApplication()
                 .gotoRegisterPage()
-                .unsuccessfulRegisterUser(invalidUser);
+                .unsuccessfulConfirmPasswordRegisterUser(invalidUser);
 
-        Assert.assertTrue(unsuccessfulRegisterPage.getWarningPasswordText().contains(EXPECTED_WRONG_PASSWORD));
+        Assert.assertTrue(unsuccessfulRegisterPage.getWarningConfirmPasswordText().contains(EXPECTED_WRONG_CONFIRM_PASSWORD));
 
         UnsuccessfulLoginPage unsuccessfulLogin = unsuccessfulRegisterPage
                 .gotoLoginPage()

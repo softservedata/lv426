@@ -4,130 +4,147 @@ import lombok.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class NewAddressForCheckOut {
     private String cssPath;
     private WebElement element;
     private WebDriver driver;
-    public static String NEW_BILLING_ADRESS = "#input-payment-";
-    public static String NEW_SHIPPING_ADRESS = "#input-shipping-";
 
-    private WebElement firstNameBilling;
-    private WebElement lastNameBilling;
-    private WebElement companyBilling;
-    private WebElement address1Billing;
-    private WebElement address2Billing;
-    private WebElement cityBilling;
-    private WebElement postcodeBilling;
-    private WebElement countryBilling;
     private Select countrySelect;
-    private WebElement stateBilling;
     private Select stateSelect;
 
     public NewAddressForCheckOut(WebDriver driver, String cssPath){
         this.driver = driver;
         this.cssPath = cssPath;
-        initElements(cssPath);
     }
 
-    private void initElements(String cssPath){
-        firstNameBilling = driver.findElement(By.cssSelector(cssPath + "firstname"));
-        lastNameBilling = driver.findElement(By.cssSelector(cssPath + "lastname"));
-        companyBilling = driver.findElement(By.cssSelector(cssPath + "company"));
-        countryBilling = driver.findElement(By.cssSelector(cssPath + "country"));
-        address1Billing = driver.findElement(By.cssSelector(cssPath + "address-1"));
-        address2Billing = driver.findElement(By.cssSelector(cssPath + "address-2"));
-        cityBilling = driver.findElement(By.cssSelector(cssPath + "city"));
-        postcodeBilling = driver.findElement(By.cssSelector(cssPath + "postcode"));
-        stateBilling = driver.findElement(By.cssSelector(cssPath + "zone"));
-    }
 
     //Page object
 
     public void setFirstName(String firstName){
-        firstNameBilling.sendKeys(firstName);
+        getWebFirstNameBilling().sendKeys(firstName);
     }
 
     public void setLastName(String lastName){
-        lastNameBilling.sendKeys(lastName);
+        getWebLastNameBilling().sendKeys(lastName);
     }
 
     public void setCompany(String сompany){
-        companyBilling.sendKeys(сompany);
+        getWebCompanyBilling().sendKeys(сompany);
     }
 
     public void setAddress1(String address1){
-        address1Billing.sendKeys(address1);
+        getWebAddress1Billing().sendKeys(address1);
     }
 
     public void setAddress2(String address2){
-        address2Billing.sendKeys(address2);
+        getWebAddress2Billing().sendKeys(address2);
     }
 
     public void setCity(String city){
-        cityBilling.sendKeys(city);
+        getWebCityBilling().sendKeys(city);
     }
 
     public void setPostcode(String postcode){
-        postcodeBilling.sendKeys(postcode);
+        getWebPostcodeBilling().sendKeys(postcode);
     }
 
 
     //functional
 
+    private WebElement getWebFirstNameBilling(){
+        return driver.findElement(By.cssSelector(cssPath + "firstname"));
+    }
+
+    private WebElement getWebLastNameBilling(){
+        return driver.findElement(By.cssSelector(cssPath + "lastname"));
+    }
+
+    private WebElement getWebCompanyBilling(){
+        return driver.findElement(By.cssSelector(cssPath + "company"));
+    }
+
+    private WebElement getWebCountryBilling(){
+        return driver.findElement(By.cssSelector(cssPath + "country"));
+    }
+
+    private WebElement getWebAddress1Billing(){
+        return driver.findElement(By.cssSelector(cssPath + "address-1"));
+    }
+
+    private WebElement getWebAddress2Billing(){
+        return driver.findElement(By.cssSelector(cssPath + "address-2"));
+    }
+
+    private WebElement getWebCityBilling(){
+        return driver.findElement(By.cssSelector(cssPath + "city"));
+    }
+
+    private WebElement getWebPostcodeBilling(){
+        return driver.findElement(By.cssSelector(cssPath + "postcode"));
+    }
+
+    private WebElement getWebStateBilling(){
+        return driver.findElement(By.cssSelector(cssPath + "zone"));
+    }
+
     public void stateClick(){
-        stateBilling.click();
+        getWebStateBilling().click();
     }
     public void postcodeClick(){
-        postcodeBilling.click();
+        getWebPostcodeBilling().click();
     }
     public void postcodeClear(){
-        postcodeBilling.clear();
+        getWebPostcodeBilling().clear();
     }
     public void cityClick(){
-        cityBilling.click();
+        getWebCityBilling().click();
     }
     public void cityClear(){
-        cityBilling.clear();
+        getWebCityBilling().clear();
     }
     public void address2Click(){
-        address2Billing.click();
+        getWebAddress2Billing().click();
     }
     public void address2Clear(){
-        address2Billing.clear();
+        getWebAddress2Billing().clear();
     }
 
     public void address1Click(){
-        address1Billing.click();
+        getWebAddress1Billing().click();
     }
     public void address1Clear(){
-        address1Billing.clear();
+        getWebAddress1Billing().clear();
     }
     public void companyClick(){
-        companyBilling.click();
+        getWebCompanyBilling().click();
     }
     public void companyClear(){
-        companyBilling.clear();
+        getWebCompanyBilling().clear();
     }
     public void countryClick(){
-        countryBilling.click();
+        getWebCountryBilling().click();
     }
     public void lastNameClick(){
-        lastNameBilling.click();
+        getWebLastNameBilling().click();
     }
     public void lastNameClear(){
-        lastNameBilling.clear();
+        getWebLastNameBilling().clear();
     }
     public void firstNameClick(){
-        firstNameBilling.click();
+        getWebFirstNameBilling().click();
     }
     public void firstNameClear(){
-        firstNameBilling.clear();
+        getWebFirstNameBilling().clear();
     }
     //Business logic
     public void firstNameBillingInput(NewShippingAdress address){
+        (new WebDriverWait(driver, 2)).until(ExpectedConditions
+                .elementToBeClickable(getWebFirstNameBilling()));
         firstNameClick();
         firstNameClear();
         setFirstName(address.getFirstNameShipping());
@@ -146,7 +163,7 @@ public class NewAddressForCheckOut {
 
     public void address1BillingInput(NewShippingAdress address){
         address1Click();
-        address2Clear();
+        address1Clear();
         setAddress1(address.getAddress1Shipping());
     }
 
@@ -168,18 +185,18 @@ public class NewAddressForCheckOut {
     }
 
     public void countryBillingInput(NewShippingAdress address){
-        countrySelect = new Select(countryBilling);
+        countrySelect = new Select(getWebCountryBilling());
         countryClick();
         countrySelect.selectByVisibleText(address.getCountryShipping());
     }
 
     public void stateBillingInput(NewShippingAdress address){
-        stateSelect = new Select(stateBilling);
+        stateSelect = new Select(getWebStateBilling());
         stateClick();
         stateSelect.selectByVisibleText(address.getStateShipping());
     }
 
-    public void fullIputs(NewShippingAdress address){
+    public void fullInputs(NewShippingAdress address){
         firstNameBillingInput(address);
         lastNameBillingInput(address);
         companyBillingInput(address);

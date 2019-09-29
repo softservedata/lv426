@@ -47,10 +47,17 @@ public class FinalPriceTable {
         return vat;
     }
 
+
     public WebElement getTotalWebAfterVAT() {
         total = driver.findElement(By.xpath("//div[@class='col-sm-4 col-sm-offset-8']" +
                         "//td/strong[contains(text(),'VAT')]/../../following-sibling::tr/td/strong[contains(text(),'Total:')]" +
                         "/../following-sibling::td[last()]"));
+        return total;
+    }
+    public WebElement getTotalAfterTestClass() {
+        total = driver.findElement(By.xpath("//div[@class='col-sm-4 col-sm-offset-8']" +
+                "//td/strong[contains(text(),'Test Class')]/../../following-sibling::tr/td/strong[contains(text(),'Total:')]" +
+                "/../following-sibling::td[last()]"));
         return total;
     }
 

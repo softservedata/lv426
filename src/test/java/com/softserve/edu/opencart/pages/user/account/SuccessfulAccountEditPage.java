@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 public class SuccessfulAccountEditPage extends MyAccountPage {
 
-    public static final String EXPECTED_EDIT_MESSAGE = "Success: Your account has been successfully updated.";
+    public static final String EXPECTED_SUCCESS_EDIT_MESSAGE = "Success: Your account has been successfully updated.";
     //
     private WebElement alertWarning;
 

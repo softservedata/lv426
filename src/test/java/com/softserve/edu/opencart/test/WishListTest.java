@@ -25,15 +25,46 @@ public class WishListTest extends UserTestRunner {
     }
 
     @Test(dataProvider = "validUser")
+
     public void addItemToWishList(IUser validUser, Product product) {
         SearchSuccessAlertPage searchSuccessAlertPage = loadBeataApplication()
                 .gotoLoginPage()
+
                 .successfulLogin(validUser)
                 .successfulSearch(product)
                 .addToWishButtonByName(product);
         Assert.assertTrue(searchSuccessAlertPage.getAddToWishListAlert().contains(ADD_TO_WISHLIST_ALERT));
         searchSuccessAlertPage.log
     }
+
+
+    @Test(dataProvider = "validUser")
+    public void GetIntoWishList(IUser validUser){
+        List<String> pageName = loadArsenApplication()
+                .gotoWishListPage(validUser)
+                .getBreadCrumbComponentNames();
+        Assert.assertEquals(pageName.get(1),"Wish List");
+    }
+
+    //@Test(dataProvider = "validUser")
+//    public void deletingFromWishList(IUser validUser, ProductName productName) {
+//        String actual = loadArsenApplication().gotoLoginPage()
+//                .successfulLogin(validUser)
+//                .gotoWishListRight()
+//                .deleteItemFromWishList(productName.IPHONE.toString())
+//                .getSuccessfulDeletingFromWishListAlertText();
+//        Assert.assertEquals(actual, DELETE_FROM_WISHLIST_ALERT);
+//    }
+
+//    @Test(dataProvider = "validUser")
+//    public void addingFromWishListToShoppingCart(IUser validUser, ProductName productName) {
+//        String actual = loadArsenApplication().gotoLoginPage()
+//                .successfulLogin(validUser)
+//                .gotoWishListRight()
+//                .addItemFromWishListToShoppingCart(productName.IPHONE.toString())
+//                .getSuccessfulAddingToShoppingCartFromWishListAlertText();
+//        Assert.assertEquals(actual, ADD_TO_CART_ALERT(productName.IPHONE.toString()));
+//    }
 
         @Test(dataProvider = "validUser")
         public void getIntoWishList (IUser validUser){
@@ -68,6 +99,7 @@ public class WishListTest extends UserTestRunner {
             Assert.assertTrue(wishListAlertPage.getMessage().contains(wishListAlertPage.addToCartAlert(product)));
             wishListAlertPage.logout();
         }
+
 
     }
 
