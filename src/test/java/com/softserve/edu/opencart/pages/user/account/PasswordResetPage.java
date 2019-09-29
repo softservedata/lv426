@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class PasswordResetPage extends AccountSidebarGuestPart{
+public class PasswordResetPage extends AccountSidebarGuestPart {
     private WebElement passwordField;
     private WebElement confirmPasswordField;
     private WebElement continueButton;
@@ -14,9 +14,10 @@ public class PasswordResetPage extends AccountSidebarGuestPart{
         super(driver);
         initElements();
     }
+
     private void initElements() {
         passwordField = driver.findElement(By.id("input-password"));
-        confirmPasswordField = driver.findElement(By.id("input-password"));
+        confirmPasswordField = driver.findElement(By.id("input-confirm"));
         continueButton = driver.findElement(By.cssSelector("button.btn.btn-primary"));
     }
     // Page Object
@@ -37,6 +38,7 @@ public class PasswordResetPage extends AccountSidebarGuestPart{
     public void setPasswordField(String text) {
         getPasswordField().sendKeys(text);
     }
+
     //ConfirmPasswordField
     public WebElement getConfirmPasswordField() {
         return confirmPasswordField;
@@ -58,6 +60,7 @@ public class PasswordResetPage extends AccountSidebarGuestPart{
     public WebElement getContinueButton() {
         return continueButton;
     }
+
     public void clickContinueButton() {
         getContinueButton().click();
     }
@@ -69,6 +72,7 @@ public class PasswordResetPage extends AccountSidebarGuestPart{
         clearPasswordField();
         setPasswordField(text);
     }
+
     private void fillConfirmPasswordField(String text) {
         clickConfirmPasswordField();
         clearConfirmPasswordField();
@@ -76,14 +80,15 @@ public class PasswordResetPage extends AccountSidebarGuestPart{
     }
 
     // Business Logic
-    public LoginPage resetPassword(String password, String confirmPassword){
-        fillPasswordField(password);
-        fillConfirmPasswordField(confirmPassword);
+    public SuccessfulResetPage resetPassword(IUser user) {
+        fillPasswordField(user.getPassword());
+        fillConfirmPasswordField(user.getPassword());
         clickContinueButton();
-        return new LoginPage(driver);
+        return new SuccessfulResetPage(driver);
     }
-    public void defaultLogin(IUser user)
-    {}
+
+    public void defaultLogin(IUser user) {
+    }
 
 }
 

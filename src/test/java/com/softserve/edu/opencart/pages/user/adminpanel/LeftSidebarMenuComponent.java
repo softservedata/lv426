@@ -79,12 +79,12 @@ public class LeftSidebarMenuComponent extends HeaderPart {
     }
 
     private void clickCustomerButton() {
-        getMenuComponent(By.xpath("//a[contains(text(),'Customers')]")).button.click();
+        getMenuComponent(By.xpath("//ul[contains(@id,'menu')]//a[contains(text(),'Customers')]")).button.click();
     }
+
     private void clickReturnsButton() {
         getMenuComponent(By.xpath("//li[@id = 'menu-sale']/ul/li/a[contains(text(),'Returns')]")).button.click();
     }
-
 
 
     //bl
@@ -150,9 +150,8 @@ public class LeftSidebarMenuComponent extends HeaderPart {
     public ReturnsPage goToReturnsPage() {
         clickSalesMenu();
         clickReturnsButton();
-        return  new  ReturnsPage(driver);
+        return new ReturnsPage(driver);
     }
-
 
 
 }

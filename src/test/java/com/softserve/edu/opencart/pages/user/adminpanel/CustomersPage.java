@@ -1,8 +1,11 @@
 package com.softserve.edu.opencart.pages.user.adminpanel;
 
+import com.softserve.edu.opencart.data.IUser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import java.util.concurrent.TimeUnit;
 
 public class CustomersPage extends LeftSidebarMenuComponent {
     private WebElement customerNameField;
@@ -57,15 +60,17 @@ public class CustomersPage extends LeftSidebarMenuComponent {
     }
 
     //Functional
-    private void filterCustomer(String text) {
+    public void filterCustomer(IUser user) {
         clickCustomerNameField();
         clearCustomerNameField();
-        setCustomerNameField(text);
+        setCustomerNameField(user.getFirstName() + " " + user.getLastName());
         clickFilterButton();
     }
-    private void unlockUser() {
+
+    public void unlockUser(IUser user) {
+        filterCustomer(user);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         clickUnlockButton();
     }
-
 
 }

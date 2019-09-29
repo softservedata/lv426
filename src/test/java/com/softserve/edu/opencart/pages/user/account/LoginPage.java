@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+
 public class LoginPage extends AccountSidebarGuestPart {
 
     private WebElement email;
@@ -115,4 +116,12 @@ public class LoginPage extends AccountSidebarGuestPart {
         fillLogin(invalidUser);
         return new UnsuccessfulLoginPage(driver);
     }
+
+    public UnsuccessfulLoginPage lockUser(IUser user){
+        for (int i = 0; i < 6; i++) {
+            unsuccessfulLoginPage(user);
+        }
+        return new UnsuccessfulLoginPage(driver);
+    }
+
 }

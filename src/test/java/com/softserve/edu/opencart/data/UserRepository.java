@@ -59,7 +59,7 @@ public final class UserRepository {
                 .setAddress2("7address2")
                 .build();
     }
-    public IUser getChangePasswordUser() {
+    public IUser getPasswordUser() {
         return User.get()
                 .setFirstName("Test1")
                 .setLastName("Test1")
@@ -74,6 +74,38 @@ public final class UserRepository {
                 .setSubscribe(true)
                 .build();
     }
+    public IUser getChangedPasswordUser() {
+        return User.get()
+                .setFirstName("Test1")
+                .setLastName("Test1")
+                .seteMail(System.getenv().get("EMAIL_ADDRESS"))
+                .setTelephone("123456")
+                .setAddress1("111")
+                .setCity("111")
+                .setPostCode("111")
+                .setCountry("Ukraine")
+                .setRegionState("Kyiv")
+                .setPassword(System.getenv().get("ANOTHER_OPENCART_PASSWORD"))
+                .setSubscribe(true)
+                .build();
+    }
+
+    public IUser getInvalidEmailUser() {
+        return User.get()
+                .setFirstName("Test1")
+                .setLastName("Test1")
+                .seteMail("vika@gmail.com")
+                .setTelephone("123456")
+                .setAddress1("111")
+                .setCity("111")
+                .setPostCode("111")
+                .setCountry("Ukraine")
+                .setRegionState("Kyiv")
+                .setPassword(System.getenv().get("OPENCART_PASSWORD"))
+                .setSubscribe(true)
+                .build();
+    }
+
 
     public IUser getWrongFirstNameUser() {
         return User.get()
