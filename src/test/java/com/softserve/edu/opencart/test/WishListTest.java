@@ -32,6 +32,7 @@ public class WishListTest extends UserTestRunner {
                 .successfulSearch(product)
                 .addToWishButtonByName(product);
         Assert.assertTrue(searchSuccessAlertPage.getAddToWishListAlert().contains(ADD_TO_WISHLIST_ALERT));
+        searchSuccessAlertPage.log
     }
 
         @Test(dataProvider = "validUser")
@@ -41,27 +42,31 @@ public class WishListTest extends UserTestRunner {
             List<String> pageName = wishListPage
                     .getBreadCrumbComponentNames();
             Assert.assertEquals(pageName.get(2), "Wish List");
+            wishListPage.logout();
         }
 
         @Test(dataProvider = "validUser")
         public void deletingFromWishList (IUser validUser, Product product){
-            WishListAlertPage shoppingCartAlertPage =
+            WishListAlertPage wishListAlertPage =
                     loadBeataApplication()
                             .gotoLoginPage()
                             .successfulLogin(validUser)
                             .gotoWishListRight()
                             .deleteItemFromWishList(product);
-            Assert.assertTrue(shoppingCartAlertPage.getMessage().contains(DELETE_FROM_WISHLIST_ALERT));
+            Assert.assertTrue(wishListAlertPage.getMessage().contains(DELETE_FROM_WISHLIST_ALERT));
+            wishListAlertPage.logout();
+
         }
 
         @Test(dataProvider = "validUser")
         public void addingFromWishListToShoppingCart (IUser validUser, Product product){
-            WishListAlertPage shoppingCartAlertPage = loadBeataApplication()
+            WishListAlertPage wishListAlertPage = loadBeataApplication()
                     .gotoLoginPage()
                     .successfulLogin(validUser)
                     .gotoWishListRight()
                     .addItemFromWishListToShoppingCart(product);
-            Assert.assertTrue(shoppingCartAlertPage.getMessage().contains(shoppingCartAlertPage.addToCartAlert(product)));
+            Assert.assertTrue(wishListAlertPage.getMessage().contains(wishListAlertPage.addToCartAlert(product)));
+            wishListAlertPage.logout();
         }
 
     }
