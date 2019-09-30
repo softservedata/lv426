@@ -50,8 +50,8 @@ public abstract class UserTestRunner {
 
 	private final String SERVER_URL_BY_OLESIA = "http://192.168.45.132/opencart/upload";
 
-	private final String ADMIN_YURA_URL = "http://192.168.68.135/opencart/upload/admin";
-	private final String SERVER_YURA_URL = "http://192.168.68.135/opencart/upload";
+	private final String ADMIN_YURA_URL = "http://192.168.112.135/opencart/upload/admin";
+	private final String SERVER_YURA_URL = "http://192.168.112.135/opencart/upload";
 	
  	private final String ADMIN_URL_BY_VIKA = "http://192.168.238.130/opencart/upload/admin";
 	private final String SERVER_URL_BY_VIKA = "http://192.168.238.130/opencart/upload";

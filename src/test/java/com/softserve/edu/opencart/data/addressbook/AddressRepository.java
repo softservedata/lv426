@@ -66,8 +66,8 @@ public class AddressRepository {
                 .setLastname("")
                 .setAddress1("")
                 .setCity("")
-                .setCountry("")
-                .setZone("")
+                .setCountry(" --- Please Select --- ")
+                .setZone(" --- None --- ")
                 .setDefaultAddress(false)
                 .setPostcode("")
                 .build();
@@ -109,10 +109,10 @@ public class AddressRepository {
                         "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
                 .setCity(
                         "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-                .setCountry("Togo")
-                .setZone("Kara")
+                .setCountry(" --- Please Select --- ")
+                .setZone(" --- None --- ")
                 .setDefaultAddress(false)
-                .setPostcode("12345678911")
+                .setPostcode("123456789111")
                 .build();
     }
 }

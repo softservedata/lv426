@@ -18,32 +18,53 @@ public class EditAddressMessages extends EditAddressPage {
         super(driver);
     }
 
-    public void setFirstnameErorr() {
+
+    public boolean editInitElements() {
+        setFirstnameErorr();
+        setLastnameError();
+        setAddressError();
+        setCityError();
+        setCountryError();
+        return true;
+    }
+
+    public boolean addInitElements() {
+        setFirstnameErorr();
+        setLastnameError();
+        setAddressError();
+        setCityError();
+        setPostcodeError();
+        setCountryError();
+        return true;
+    }
+
+
+    private void setFirstnameErorr() {
         firstnameErorr = driver.findElement(By.xpath(
                 "//div[@class='text-danger' and contains(text(), 'First')]"));
     }
 
-    public void setLastnameError() {
+    private void setLastnameError() {
         lastnameError = driver.findElement(By.xpath(
                 "//div[@class='text-danger' and contains(text(), 'Last')]"));
     }
 
-    public void setAddressError() {
+    private void setAddressError() {
         addressError = driver.findElement(By.xpath(
                 "//div[@class='text-danger' and contains(text(), 'Address')]"));
     }
 
-    public void setCityError() {
+    private void setCityError() {
         cityError = driver.findElement(By.xpath(
                 "//div[@class='text-danger' and contains(text(), 'City')]"));
     }
 
-    public void setPostcodeError() {
+    private void setPostcodeError() {
         cityError = driver.findElement(By.xpath(
                 "//div[@class='text-danger' and contains(text(), 'Postcode')]"));
     }
 
-    public void setCountryError() {
+    private void setCountryError() {
         countryError = driver.findElement(By.xpath(
                 "//div[@class='text-danger' and contains(text(), 'country')]"));
     }
@@ -52,4 +73,6 @@ public class EditAddressMessages extends EditAddressPage {
         regionError = driver.findElement(By.xpath(
                 "//div[@class='text-danger' and contains(text(), 'region')]"));
     }
+
+
 }
