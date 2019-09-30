@@ -224,4 +224,23 @@ public final class UserRepository {
                 .build();
     }
 
+    public IUser getRomanUser() {
+        return User.get()
+                .setFirstName("Roman")
+                .setLastName("Karas")
+                .seteMail("roman@gmail.com")
+                .setTelephone("12345678")
+                .setAddress1("address")
+                .setCity("city")
+                .setPostCode("postcode")
+                .setCountry("7country")
+                .setRegionState("")
+                .setPassword("qwerty")
+                .setSubscribe(true)
+                .setFax("7fax")
+                .setCompany("7company")
+                .setAddress2("7address2")
+                .build();
+    }
+
 }

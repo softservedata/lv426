@@ -104,6 +104,11 @@ public abstract class AccountSidebarLoggedPart extends AccountSidebarPart {
         return new AddressBookPage(driver);
     }
 
+    public OrderHistoryPage gotoOrderHistoryRight() {
+        clickOrderHistoryRight();
+        return new OrderHistoryPage(driver);
+    }
+
     public WishListPage gotoWishListRight() {
         WebDriverWait wait=new WebDriverWait(driver, 20);
         clickWishListRight();

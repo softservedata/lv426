@@ -1,18 +1,18 @@
 package com.softserve.edu.opencart.data.addressbook;
 
+import com.softserve.edu.opencart.pages.user.addressbook.AddressBookPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class AddressBookTableInfo {
+public class AddressBookTableInfo  {
     private WebDriver driver;
     private WebElement element;
     private WebElement addressInfo;
     private WebElement editButton;
     private WebElement deleteButton;
 
-    public AddressBookTableInfo(WebElement element, WebDriver driver) {
-        this.element = element;
+    public AddressBookTableInfo( WebDriver driver) {
         this.driver = driver;
         initElemnts();
     }
