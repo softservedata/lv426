@@ -13,7 +13,7 @@ public abstract class AccountSidebarGuestPart extends AccountSidebarPart {
     private WebElement registerRight;
     private WebElement forgottenPasswordRight;
 
-    public AccountSidebarGuestPart(WebDriver driver) {
+    AccountSidebarGuestPart(WebDriver driver) {
         super(driver);
         initElements();
     }
@@ -27,20 +27,20 @@ public abstract class AccountSidebarGuestPart extends AccountSidebarPart {
     // Page Object
 
     // loginRight
-    public WebElement getLoginRight() {
+    private WebElement getLoginRight() {
         return loginRight;
     }
 
-    public String LoginRight() {
+    public String LoginRightText() {
         return getLoginRight().getText();
     }
 
-    public void clickLoginRight() {
+    private void clickLoginRight() {
         getLoginRight().click();
     }
 
     // registerRight
-    public WebElement getRegisterRight() {
+    private WebElement getRegisterRight() {
         return registerRight;
     }
 
@@ -48,13 +48,13 @@ public abstract class AccountSidebarGuestPart extends AccountSidebarPart {
         return getRegisterRight().getText();
     }
 
-    public void clickRegisterRight() {
+    private void clickRegisterRight() {
         getRegisterRight().click();
     }
 
 
     // forgottenPasswordRight
-    public WebElement getForgottenPasswordRight() {
+    private WebElement getForgottenPasswordRight() {
         return forgottenPasswordRight;
     }
 
@@ -62,7 +62,7 @@ public abstract class AccountSidebarGuestPart extends AccountSidebarPart {
         return getForgottenPasswordRight().getText();
     }
 
-    public void clickForgottenPasswordRight() {
+    private void clickForgottenPasswordRight() {
         getForgottenPasswordRight().click();
     }
 

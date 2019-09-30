@@ -1,11 +1,9 @@
 package com.softserve.edu.opencart.pages.user.account;
 
-import com.softserve.edu.opencart.data.IUser;
+import com.softserve.edu.opencart.pages.user.common.BreadCrumbPart;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
-import com.softserve.edu.opencart.pages.user.common.BreadCrumbPart;
 
 public abstract class AccountSidebarPart extends BreadCrumbPart {
 
@@ -22,7 +20,7 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
     private WebElement transactionsRight;
     private WebElement newsletterRight;
 
-    public AccountSidebarPart(WebDriver driver) {
+    AccountSidebarPart(WebDriver driver) {
         super(driver);
         initElements();
     }
@@ -44,7 +42,7 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
     // Page Object
 
     // myAccountRight
-    public WebElement getMyAccountRight() {
+    private WebElement getMyAccountRight() {
         return myAccountRight;
     }
 
@@ -57,7 +55,7 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
     }
 
     // addressBookRight
-    public WebElement getAddressBookRight() {
+    private WebElement getAddressBookRight() {
         return addressBookRight;
     }
 
@@ -70,7 +68,7 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
     }
 
     // wishListRight
-    public WebElement getWishListRight() {
+    private WebElement getWishListRight() {
         return wishListRight;
     }
 
@@ -83,7 +81,7 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
     }
 
     // orderHistoryRight
-    public WebElement getOrderHistoryRight() {
+    private WebElement getOrderHistoryRight() {
         return orderHistoryRight;
     }
 
@@ -96,7 +94,7 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
     }
 
     // downloadsRight
-    public WebElement getDownloadsRight() {
+    private WebElement getDownloadsRight() {
         return downloadsRight;
     }
 
@@ -109,7 +107,7 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
     }
 
     // recurringpaymentsRight
-    public WebElement getRecurringpaymentsRight() {
+    private WebElement getRecurringpaymentsRight() {
         return recurringpaymentsRight;
     }
 
@@ -122,7 +120,7 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
     }
 
     // rewardPointsRight
-    public WebElement getRewardPointsRight() {
+    private WebElement getRewardPointsRight() {
         return rewardPointsRight;
     }
 
@@ -135,7 +133,7 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
     }
 
     // returnsRight
-    public WebElement getReturnsRight() {
+    private WebElement getReturnsRight() {
         return returnsRight;
     }
 
@@ -148,7 +146,7 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
     }
 
     // transactionsRight
-    public WebElement getTransactionsRight() {
+    private WebElement getTransactionsRight() {
         return transactionsRight;
     }
 
@@ -161,7 +159,7 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
     }
 
     // newsletterRight
-    public WebElement getNewsletterRight() {
+    private WebElement getNewsletterRight() {
         return newsletterRight;
     }
 
@@ -177,187 +175,3 @@ public abstract class AccountSidebarPart extends BreadCrumbPart {
 
     // Business Logic
 }
-
-
-
-/*package com.softserve.edu.opencart.pages.user.account;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
-import com.softserve.edu.opencart.pages.user.common.BreadCrumbPart;
-
-public abstract class AccountSidebarPart extends BreadCrumbPart {
-
-=======
->>>>>>> 9aaa9eee526ef9bbc17380c49c591e3dbe09d5f3
-
->>>>>>> 62bd87803b405cfd24928920d45d55cb138aa093
-    private WebElement myAccountRight;
-    private WebElement addressBookRight;
-    private WebElement wishListRight;
-    private WebElement orderHistoryRight;
-    private WebElement downloadsRight;
-    private WebElement recurringPaymentsRight;
-    private WebElement rewardPointsRight;
-    private WebElement returnsRight;
-    private WebElement transactionsRight;
-    private WebElement newsLetterRight;
-
-    public AccountSidebarPart(WebDriver driver) {
-        super(driver);
-        initElements();
-    }
-    private void initElements() {
-        // init elements
-        myAccountRight= driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/account')]"));
-        addressBookRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/address')]"));
-        wishListRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/wishlist')]"));
-        orderHistoryRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/order')]"));
-        downloadsRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/download')]"));
-        recurringPaymentsRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/recurring')]"));
-        rewardPointsRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/reward')]"));
-        returnsRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/return')]"));
-        transactionsRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/transaction')]"));
-        newsLetterRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/newsletter')]"));
-    }
-
-	// myAccountRight
-    public WebElement getMyAccountRight() {
-        return myAccountRight;
-    }
-
-    public String getMyAccountRightText() {
-        return getMyAccountRight().getText();
-    }
-
-    public void clickMyAccountRight() {
-        getMyAccountRight().click();
-    }
-
-	// addressBookRight
-    public WebElement getAddressBookRight() {
-        return addressBookRight;
-    }
-
-    public String getAddressBookRightText() {
-        return getAddressBookRight().getText();
-    }
-
-    public void clickAddressBookRight() {
-        getAddressBookRight().click();
-    }
-
-    // wishListRight
-    public WebElement getWishListRight() {
-        return wishListRight;
-    }
-
-    public String getWishListRightText() {
-        return getWishListRight().getText();
-    }
-
-    public void clickWishListRight() {
-        getWishListRight().click();
-    }
-
-    // orderHistoryRight
-    public WebElement getOrderHistoryRight() {
-        return orderHistoryRight;
-    }
-
-    public String getOrderHistoryRightText() {
-        return getOrderHistoryRight().getText();
-    }
-
-    public void clickOrderHistoryRight() {
-        getOrderHistoryRight().click();
-    }
-
-    // downloadsRight
-    public WebElement getDownloadsRight() {
-        return downloadsRight;
-    }
-
-    public String getDownloadsRightText() {
-        return getDownloadsRight().getText();
-    }
-
-    public void clickDownloadsRight() {
-        getDownloadsRight().click();
-    }
-
-    // recurringpaymentsRight
-    public WebElement getRecurringpaymentsRight() {
-        return recurringPaymentsRight;
-    }
-
-    public String getRecurringpaymentsRightText() {
-        return getRecurringpaymentsRight().getText();
-    }
-
-    public void clickRecurringpaymentsRight() {
-        getRecurringpaymentsRight().click();
-    }
-
-    // rewardPointsRight
-    public WebElement getRewardPointsRight() {
-        return rewardPointsRight;
-    }
-
-    public String getRewardPointsRightText() {
-        return getRewardPointsRight().getText();
-    }
-
-    public void clickRewardPointsRight() {
-        getRewardPointsRight().click();
-    }
-
-    // returnsRight
-    public WebElement getReturnsRight() {
-        return returnsRight;
-    }
-
-    public String getReturnsRightText() {
-        return getReturnsRight().getText();
-    }
-
-    public void clickReturnsRight() {
-        getReturnsRight().click();
-    }
-
-    // transactionsRight
-    public WebElement getTransactionsRight() {
-        return transactionsRight;
-    }
-
-    public String getTransactionsRightText() {
-        return getTransactionsRight().getText();
-    }
-
-    public void clickTransactionsRight() {
-        getTransactionsRight().click();
-    }
-
-    // newsletterRight
-    public WebElement getNewsletterRight() {
-        return newsLetterRight;
-    }
-
-    public String getNewsletterRightText() {
-        return getNewsletterRight().getText();
-    }
-
-    public void clickNewsletterRight() {
-        getNewsletterRight().click();
-    }
-
-    protected abstract void defaultLogin(IUser user);
-
-    // Functional
-
-    // Business Logic
-}
-
- */

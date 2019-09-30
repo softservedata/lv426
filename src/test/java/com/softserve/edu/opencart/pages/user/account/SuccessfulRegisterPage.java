@@ -8,7 +8,7 @@ public class SuccessfulRegisterPage extends AccountSidebarLoggedPart {
 
     private WebElement continueButton;
 
-    public SuccessfulRegisterPage(WebDriver driver) {
+    SuccessfulRegisterPage(WebDriver driver) {
         super(driver);
         initElements();
     }
@@ -20,7 +20,7 @@ public class SuccessfulRegisterPage extends AccountSidebarLoggedPart {
     // Page Object
 
     // continueButton
-    public WebElement getContinueButton() {
+    private WebElement getContinueButton() {
         return continueButton;
     }
 
@@ -28,11 +28,9 @@ public class SuccessfulRegisterPage extends AccountSidebarLoggedPart {
         return getContinueButton().getText();
     }
 
-    public void clickContinueButton() {
+    private void clickContinueButton() {
         getContinueButton().click();
     }
-
-    // Functional
 
     // Business Logic
 

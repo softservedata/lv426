@@ -1,9 +1,7 @@
 package com.softserve.edu.opencart.pages.user.account;
 
 
-
 import com.softserve.edu.opencart.data.ApplicationStatus;
-import com.softserve.edu.opencart.data.IUser;
 import com.softserve.edu.opencart.pages.user.addressbook.AddressBookPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -21,6 +19,7 @@ public abstract class AccountSidebarLoggedPart extends AccountSidebarPart {
         initElements();
         ApplicationStatus.get().setLogged(true);
     }
+
     private void initElements() {
         // init elements
         editAccountRight = driver.findElement(By.xpath("//div[@class='list-group']/a[contains(@href, 'account/edit')]"));
@@ -71,9 +70,6 @@ public abstract class AccountSidebarLoggedPart extends AccountSidebarPart {
 
     // Functional
 
-    @Override
-    protected void defaultLogin(IUser user) {
-    }
 
     // Business Logic
 
@@ -110,7 +106,7 @@ public abstract class AccountSidebarLoggedPart extends AccountSidebarPart {
     }
 
     public WishListPage gotoWishListRight() {
-        WebDriverWait wait=new WebDriverWait(driver, 20);
+        WebDriverWait wait = new WebDriverWait(driver, 20);
         clickWishListRight();
         return new WishListPage(driver);
 
