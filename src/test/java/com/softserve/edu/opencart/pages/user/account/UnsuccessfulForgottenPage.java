@@ -16,13 +16,13 @@ public class UnsuccessfulForgottenPage extends ForgotPasswordPage {
     }
 
     private void initElements() {
-        alertWarning = driver.findElement(By.cssSelector(".alert.alert-danger"));
+
     }
     // Page Object
 
     // alertWarning
     public WebElement getAlertWarning() {
-        return alertWarning;
+        return driver.findElement(By.cssSelector(".alert.alert-danger"));
     }
 
     public String getAlertWarningText() {

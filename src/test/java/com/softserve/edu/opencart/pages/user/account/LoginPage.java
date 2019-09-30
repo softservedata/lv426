@@ -4,28 +4,35 @@ import com.softserve.edu.opencart.data.IUser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.sql.Time;
+import java.util.concurrent.TimeUnit;
 
 
 public class LoginPage extends AccountSidebarGuestPart {
 
-    private WebElement email;
-    private WebElement password;
+   // private WebElement email;
+   // private WebElement password;
     private WebElement loginButton;
 
     public LoginPage(WebDriver driver) {
         super(driver);
+        this.driver = driver;
         initElements();
     }
 
     private void initElements() {
-        email = driver.findElement(By.name("email"));
-        password = driver.findElement(By.name("password"));
-        loginButton = driver.findElement(By.cssSelector("input.btn.btn-primary"));
+        //email =
+        //password = driver.findElement(By.name("password"));
+        //loginButton = driver.findElement(By.cssSelector("input.btn.btn-primary"));
     }
 
     // Page Object
     public WebElement getEmail() {
-        return email;
+        return driver.findElement(By.name("email"));
     }
 
     public String getEmailText() {
@@ -33,11 +40,13 @@ public class LoginPage extends AccountSidebarGuestPart {
     }
 
     public void clearEmailField() {
-
         getEmail().clear();
     }
 
     public void clickEmailField() {
+        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+        (new WebDriverWait(driver, 5)).until(ExpectedConditions.elementToBeClickable(getEmail()));
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         getEmail().click();
     }
 
@@ -47,7 +56,7 @@ public class LoginPage extends AccountSidebarGuestPart {
 
     // password
     public WebElement getPassword() {
-        return password;
+        return driver.findElement(By.name("password"));
     }
 
     public String getPasswordText() {
@@ -59,6 +68,9 @@ public class LoginPage extends AccountSidebarGuestPart {
     }
 
     public void clickPasswordField() {
+        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+        (new WebDriverWait(driver, 5)).until(ExpectedConditions.elementToBeClickable(getPassword()));
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         getPassword().click();
     }
 
@@ -68,7 +80,7 @@ public class LoginPage extends AccountSidebarGuestPart {
 
     // loginButton
     public WebElement getLoginButton() {
-        return loginButton;
+        return driver.findElement(By.cssSelector("input.btn.btn-primary"));
     }
 
 
@@ -80,6 +92,9 @@ public class LoginPage extends AccountSidebarGuestPart {
     {}
 
     public void clickLoginButton() {
+        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+        (new WebDriverWait(driver, 5)).until(ExpectedConditions.elementToBeClickable(getLoginButton()));
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         getLoginButton().click();
     }
 
@@ -117,11 +132,12 @@ public class LoginPage extends AccountSidebarGuestPart {
         return new UnsuccessfulLoginPage(driver);
     }
 
-    public UnsuccessfulLoginPage lockUser(IUser user){
+    public UnsuccessfulForgottenPage lockUser(IUser user){
         for (int i = 0; i < 6; i++) {
             unsuccessfulLoginPage(user);
+            driver.navigate().refresh();
         }
-        return new UnsuccessfulLoginPage(driver);
+        return new UnsuccessfulForgottenPage(driver);
     }
 
 }

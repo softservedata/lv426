@@ -16,5 +16,9 @@ public final class SearchFilterRepository {
     public static SearchFilter searchIPhone(){
         return new SearchFilter(ProductRepository.getIPhone());
     }
+
+    public static SearchFilter searchNikon() {
+        return new SearchFilter(ProductRepository.getNikon());
+    }
 }
 

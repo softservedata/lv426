@@ -7,7 +7,7 @@ public final class CheckOutRepository {
     public static String NEW_BILLING_ADDRESS_CSSSELECTOR = "#input-payment-";
     public static String NEW_SHIPPING_ADDRESS_CSSSELECTOR = "#input-shipping-";
     public static String FULL_TEST_ACC = "TestName TestLastName, TestAdress, Kakhovka, Khersons'ka Oblast', Ukraine";
-
+    public static String PATH_FOR_BILLING_REGISTRATION_PATH = "div[class=\"form-group required\"]";
     private static volatile CheckOutRepository instance = null;
 
     CheckOutRepository(){}

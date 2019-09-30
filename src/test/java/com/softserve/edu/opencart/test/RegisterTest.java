@@ -24,6 +24,13 @@ public class RegisterTest extends UserTestRunner {
     }
 
     @DataProvider
+    public Object[][] invalidUserRegister() {
+        return new Object[][]{
+                {UserRepository.get().getInvalidUser()},
+        };
+    }
+
+    @DataProvider
     public Object[][] invalidFirstNameUserRegister() {
         return new Object[][]{
                 {UserRepository.get().getWrongFirstNameUser()},
@@ -34,20 +41,6 @@ public class RegisterTest extends UserTestRunner {
     public Object[][] existingUserRegister() {
         return new Object[][]{
                 {UserRepository.get().getExistingUser()},
-        };
-    }
-
-    @DataProvider
-    public Object[][] withoutConfirmPrivacyPolicyUserRegister() {
-        return new Object[][]{
-                {UserRepository.get().getNewUser()},
-        };
-    }
-
-    @DataProvider
-    public Object[][] invalidConfirmPasswordUserRegister() {
-        return new Object[][]{
-                {UserRepository.get().getValidUser()},
         };
     }
 
@@ -69,7 +62,9 @@ public class RegisterTest extends UserTestRunner {
         Assert.assertTrue(successfulLogin.getSuccessMyAccountPageText()
                 .contains(EXPECTED_MY_ACCOUNT_PAGE));
 
-        HomePage homePage = successfulLogin.gotoHomePage();
+        HomePage homePage = successfulLogin
+                .gotoLogoutRight()
+                .gotoContinue();
 
         Assert.assertTrue(homePage
                 .getSlideshow0FirstImageAttributeSrcText()
@@ -122,7 +117,7 @@ public class RegisterTest extends UserTestRunner {
                 .contains(HomePage.EXPECTED_IPHONE6));
     }
 
-    @Test(dataProvider = "withoutConfirmPrivacyPolicyUserRegister")
+    @Test(dataProvider = "invalidUserRegister")
     public void withoutConfirmPrivacyPolicyUserRegisterTest(IUser invalidUser) {
         UnsuccessfulRegisterPage unsuccessfulRegisterPage = loadOlesiaApplication()
                 .gotoRegisterPage()
@@ -144,7 +139,7 @@ public class RegisterTest extends UserTestRunner {
                 .contains(HomePage.EXPECTED_IPHONE6));
     }
 
-    @Test(dataProvider = "invalidConfirmPasswordUserRegister")
+    @Test(dataProvider = "invalidUserRegister")
     public void wrongConfirmPasswordUserRegisterTest(IUser invalidUser) {
         UnsuccessfulRegisterPage unsuccessfulRegisterPage = loadOlesiaApplication()
                 .gotoRegisterPage()

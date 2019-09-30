@@ -4,192 +4,224 @@ import com.softserve.edu.opencart.data.IUser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static com.softserve.edu.opencart.data.checkout.CheckOutRepository.PATH_FOR_BILLING_REGISTRATION_PATH;
 
 public abstract class PersonalDetailsForCheckoutRegistration {
     private WebElement element;
     private WebDriver driver;
 
-    protected WebElement firstName;
-    protected WebElement lastName;
-    protected WebElement email;
-    protected WebElement telephone;
-    protected WebElement fax;
-    protected WebElement company;
-    protected WebElement address01;
-    protected WebElement address02;
-    protected WebElement city;
-    protected WebElement postcode;
-    protected WebElement country;
+
     protected Select countrySelect;
-    protected WebElement state;
     protected Select stateSelect;
-    protected WebElement continueCheckoutButton;
 
     public PersonalDetailsForCheckoutRegistration(WebDriver driver){
         this.driver = driver;
-        initElements();
     }
 
-
-    protected void initElements() {
-        firstName = driver.findElement(By.name("firstname"));
-        lastName = driver.findElement(By.name("lastname"));
-        email = driver.findElement(By.name("email"));
-        telephone = driver.findElement(By.name("telephone"));
-        fax = driver.findElement(By.name("fax"));
-        company = driver.findElement(By.name("company"));
-        address01 = driver.findElement(By.name("address_1"));
-        address02 = driver.findElement(By.name("address_2"));
-        city = driver.findElement(By.name("city"));
-        postcode = driver.findElement(By.name("postcode"));
-        state = driver.findElement(By.cssSelector("select#input-payment-zone"));
-        country = driver.findElement(By.cssSelector("select#input-payment-country"));
-        continueCheckoutButton = driver.findElement(By.cssSelector("input#button-account"));
-    }
 
     // Page Object
 
     public void setFirstName(String firtsName) {
-        firstName.sendKeys(firtsName);
+        getWebFirstName().sendKeys(firtsName);
     }
 
     public void setLastName(String LastName) {
-        lastName.sendKeys(LastName);
+        getWebLastName().sendKeys(LastName);
     }
 
     public void setEmail(String Email){
-        email.sendKeys(Email);
+        getWebEmail().sendKeys(Email);
     }
 
     public void setTelephone(String phone){
-        telephone.sendKeys(phone);
+        getWebTelephone().sendKeys(phone);
     }
 
     public void setFax(String faxon){
-        fax.sendKeys(faxon);
+        getWebFax().sendKeys(faxon);
     }
 
     public void setCompany(String coop){
-        company.sendKeys(coop);
+        getWebCompany().sendKeys(coop);
     }
 
-    public void setAddress01(String adress){
-        address01.sendKeys(adress);
+    public void setAddress01(String address){
+        getWebAddress01().sendKeys(address);
     }
 
-    public void setAddress02(String adress){
-        address02.sendKeys(adress);
+    public void setAddress02(String address){
+        getWebAddress02().sendKeys(address);
     }
 
     public void setCity(String bigCity){
-        city.sendKeys(bigCity);
+        getWebCity().sendKeys(bigCity);
     }
 
     public void setPostcode(String code){
-        postcode.sendKeys(code);
+        getWebPostcode().sendKeys(code);
     }
 
     public void setCountry(String bigCountry){
-        countrySelect = new Select(country);
+        countrySelect = new Select(getWebCountry());
         clickCountryField();
         countrySelect.selectByVisibleText(bigCountry);
     }
 
     public void setState(String bigState){
-        stateSelect = new Select(country);
+        stateSelect = new Select(getWebState());
         clickStateField();
         stateSelect.selectByVisibleText(bigState);}
 
 
     // Functional
 
+    private WebElement getWebFirstName(){
+        (new WebDriverWait(driver, 5)).until(ExpectedConditions.elementToBeClickable(By.name("firstname")));
+        return driver.findElement(By.name("firstname"));
+    }
+
+    private WebElement getWebLastName(){
+        return driver.findElement(By.name("lastname"));
+    }
+
+    private WebElement getWebEmail(){
+//        (new WebDriverWait(driver, 5)).until(ExpectedConditions.elementToBeClickable(By.name("email")));
+        return driver.findElement(By.cssSelector("div[class=\"form-group required\"] input[name=\"email\"]"));
+    }
+
+    private WebElement getWebTelephone(){
+        return driver.findElement(By.name("telephone"));
+    }
+
+    private WebElement getWebFax(){
+        return driver.findElement(By.name("fax"));
+    }
+
+    private WebElement getWebCompany(){
+        return driver.findElement(By.name("company"));
+    }
+
+    private WebElement getWebAddress01(){
+        return driver.findElement(By.name("address_1"));
+    }
+
+    private WebElement getWebAddress02(){
+        return driver.findElement(By.name("address_2"));
+    }
+
+    private WebElement getWebCity(){
+        return driver.findElement(By.name("city"));
+    }
+
+    private WebElement getWebPostcode(){
+        return driver.findElement(By.name("postcode"));
+    }
+
+    private WebElement getWebState(){
+        return driver.findElement(By.cssSelector("select#input-payment-zone"));
+    }
+
+    private WebElement getWebCountry(){
+        return driver.findElement(By.cssSelector("select#input-payment-country"));
+    }
+
+    private WebElement getWebContinueCheckoutButton(){
+        return driver.findElement(By.cssSelector("input#button-register"));
+    }
+
+
     public void clickContinueCheckoutButton(){
-        continueCheckoutButton.click();
+        getWebContinueCheckoutButton().click();
     }
 
     public void clickFirstNameField() {
-        firstName.click();
+        (new WebDriverWait(driver, 5)).until(ExpectedConditions
+                .elementToBeClickable(getWebFirstName()));
+        getWebFirstName().click();
     }
 
     public void clickLastNameField() {
-        lastName.click();
+        getWebLastName().click();
     }
 
     public void clickEmailField() {
-        email.click();
+        getWebEmail().click();
     }
 
     public void clickFaxField() {
-        fax.click();
+        getWebFax().click();
     }
 
     public void clickTelephoneField() {
-        telephone.click();
+        getWebTelephone().click();
     }
 
     public void clickCompanyField() {
-        company.click();
+        getWebCompany().click();
     }
 
     public void clickAddress01Field() {
-        address01.click();
+        getWebAddress01().click();
     }
 
     public void clickAddress02Field() {
-        address02.click();
+        getWebAddress02().click();
     }
 
     public void clickCityField() {
-        city.click();
+        getWebCity().click();
     }
 
     public void clickPostcodeField() {
-        postcode.click();
+        getWebPostcode().click();
     }
 
     public void clickCountryField() {
-        country.click();
+        getWebCountry().click();
     }
 
     public void clickStateField() {
-        state.click();
+        getWebState().click();
     }
 
-    public void clearFirstNameField(){firstName.clear();}
+    public void clearFirstNameField(){getWebFirstName().clear();}
 
     public void clearLastNameField() {
-        lastName.clear();
+        getWebLastName().clear();
     }
 
     public void clearEmailField() {
-        email.clear();
+        getWebEmail().clear();
     }
 
     public void clearFaxField() {
-        fax.clear();
+        getWebFax().clear();
     }
 
     public void clearTelephoneField() {
-        telephone.clear();
+        getWebTelephone().clear();
     }
 
     public void clearCompanyField() {
-        company.clear();
+        getWebCompany().clear();
     }
 
-    public void clearAddress01Field() { address01.clear(); }
+    public void clearAddress01Field() { getWebAddress01().clear(); }
 
     public void clearAddress02Field() {
-        address02.clear();
+        getWebAddress02().clear();
     }
 
     public void clearCityField() {
-        city.clear();
+        getWebCity().clear();
     }
 
     public void clearPostcodeField() {
-        postcode.clear();
+        getWebPostcode().clear();
     }
 
 

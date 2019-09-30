@@ -16,15 +16,16 @@ import static com.softserve.edu.opencart.pages.user.account.UnsuccessfulLoginPag
 import static com.softserve.edu.opencart.pages.user.account.UnsuccessfulPasswordPage.EXPECTED_INVALID_CONFIRMATION_MESSAGE;
 
 
-public class ChangePasswordTest extends UserTestRunner{
+public class ChangePasswordTest extends UserTestRunner {
     @DataProvider
     public Object[][] changePasswordUser() {
         return new Object[][]{
                 {UserRepository.get().getPasswordUser(), UserRepository.get().getChangedPasswordUser()}
         };
     }
-    @Test(dataProvider = "changePasswordUser")
-    public void changePasswordTest (IUser testUser, IUser changedUser) {
+
+    @Test(dataProvider = "changePasswordUser", priority = 1)
+    public void changePasswordTest(IUser testUser, IUser changedUser) {
         SuccessfulMyAccountPage successfulChange = loadVikaApplication()
                 .gotoLoginPage()
                 .successfulLogin(testUser)
@@ -39,8 +40,8 @@ public class ChangePasswordTest extends UserTestRunner{
                 .contains(EXPECTED_MY_ACCOUNT_PAGE));
     }
 
-    @Test(dataProvider = "changePasswordUser")
-    public void changeInvalidPasswordTest (IUser testUser, IUser changedUser) {
+    @Test(dataProvider = "changePasswordUser", priority = 2)
+    public void changeInvalidPasswordTest(IUser testUser, IUser changedUser) {
         UnsuccessfulPasswordPage unsuccessfulChange = loadVikaApplication()
                 .gotoLoginPage()
                 .successfulLogin(changedUser)
@@ -54,8 +55,8 @@ public class ChangePasswordTest extends UserTestRunner{
         Assert.assertTrue(loginChanged.getAlertWarningText().contains(EXPECTED_LOGIN_MESSAGE));
     }
 
-    @Test(dataProvider = "changePasswordUser")
-    public void changeBackPasswordTest (IUser testUser, IUser changedUser) {
+    @Test(dataProvider = "changePasswordUser", priority = 3)
+    public void changeBackPasswordTest(IUser testUser, IUser changedUser) {
         SuccessfulMyAccountPage successfulChange = loadVikaApplication()
                 .gotoLoginPage()
                 .successfulLogin(changedUser)
@@ -69,7 +70,4 @@ public class ChangePasswordTest extends UserTestRunner{
         Assert.assertTrue(loginChanged.getSuccessMyAccountPageText()
                 .contains(EXPECTED_MY_ACCOUNT_PAGE));
     }
-
-
-
 }

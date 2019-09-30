@@ -13,6 +13,7 @@ public class BillingDetailsAsGuest extends CheckOutOptions{
 
     public BillingDetailsAsGuest(WebDriver driver) {
         super(driver);
+        this.driver = driver;
         initElements();
     }
 
@@ -28,6 +29,7 @@ public class BillingDetailsAsGuest extends CheckOutOptions{
     class BillingDetailsFilling extends PersonalDetailsForCheckoutRegistration{
         public BillingDetailsFilling(WebDriver driver) {
             super(driver);
+
         }
 
     }

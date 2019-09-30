@@ -1,5 +1,7 @@
 package com.softserve.edu.opencart.data;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
 public final class UserRepository {
 
     private static volatile UserRepository instance = null;
@@ -27,6 +29,25 @@ public final class UserRepository {
                 .setFirstName("mary")
                 .setLastName("heras")
                 .seteMail("mary@gamil.com")
+                .setTelephone("765483945")
+                .setAddress1("address1")
+                .setCity("Lviv")
+                .setPostCode("77777")
+                .setCountry("Ukraine")
+                .setRegionState("Ternopil's'ka Oblast'")
+                .setPassword("mary")
+                .setSubscribe(true)
+                .setFax("12345")
+                .setCompany("company")
+                .setAddress2("address2")
+                .build();
+    }
+
+    public IUser getValidUserForCheckout() {
+        return User.get()
+                .setFirstName("mary")
+                .setLastName("heras")
+                .seteMail(RandomStringUtils.randomAlphabetic(5)+"@gamil.com")
                 .setTelephone("765483945")
                 .setAddress1("address1")
                 .setCity("Lviv")
@@ -110,7 +131,7 @@ public final class UserRepository {
     public IUser getWrongFirstNameUser() {
         return User.get()
                 .setFirstName("")
-                .setLastName("Klyn")
+                .setLastName("Kookin")
                 .seteMail("ivan@gmail.com")
                 .setTelephone("123456789")
                 .setAddress1("Kolt 10")
@@ -128,7 +149,7 @@ public final class UserRepository {
                 .setFirstName("Taras")
                 .setLastName("Kook")
                 .seteMail("taras@gmail.com")
-                .setTelephone("0987654321")
+                .setTelephone("5555555555")
                 .setAddress1("Zalizniaka 12")
                 .setCity("Lviv")
                 .setPostCode("88888")
@@ -146,13 +167,31 @@ public final class UserRepository {
                 .setFirstName("Taras")
                 .setLastName("Kookin")
                 .seteMail("taras@gmail.com")
-                .setTelephone("0987654333")
+                .setTelephone("1111111111")
                 .setAddress1("Zalizniaka 12")
                 .setCity("Lviv")
                 .setPostCode("88888")
                 .setCountry("Ukraine")
                 .setRegionState("L'vivs'ka Oblast'")
                 .setPassword("taras")
+                .setSubscribe(true)
+                .setFax("12341")
+                .setCompany("SoftServe")
+                .build();
+    }
+
+    public IUser getInvalidUser() {
+        return User.get()
+                .setFirstName("Oleg")
+                .setLastName("Dmytriv")
+                .seteMail("oleg@gmail.com")
+                .setTelephone("1111111111")
+                .setAddress1("Upa 22")
+                .setCity("Lviv")
+                .setPostCode("88888")
+                .setCountry("Ukraine")
+                .setRegionState("L'vivs'ka Oblast'")
+                .setPassword("oleg")
                 .setSubscribe(true)
                 .setFax("12341")
                 .setCompany("SoftServe")
@@ -181,14 +220,14 @@ public final class UserRepository {
         return User.get()
                 .setFirstName("Danylo")
                 .setLastName("Protz")
-                .seteMail("danylko@gmail.com")
+                .seteMail("dan@gmail.com")
                 .setTelephone("0987654321")
                 .setAddress1("Zalizniaka 12")
                 .setCity("Lviv")
                 .setPostCode("98675")
                 .setCountry("Ukraine")
                 .setRegionState("L'vivs'ka Oblast'")
-                .setPassword("danylko")
+                .setPassword("danylo")
                 .setSubscribe(false)
                 .setFax("12341")
                 .build();

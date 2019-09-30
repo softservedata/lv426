@@ -2,13 +2,12 @@ package com.softserve.edu.opencart.test;
 
 
 import com.softserve.edu.opencart.data.*;
-import com.softserve.edu.opencart.pages.user.account.MyAccountPage;
-import com.softserve.edu.opencart.pages.user.account.SuccessfulLoginPage;
-import com.softserve.edu.opencart.pages.user.account.SuccessfulResetPage;
-import com.softserve.edu.opencart.pages.user.account.UnsuccessfulForgottenPage;
+import com.softserve.edu.opencart.pages.user.account.*;
 import com.softserve.edu.opencart.pages.user.mail.MailUser;
 import com.softserve.edu.opencart.pages.user.mail.MailUserRepository;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -53,6 +52,7 @@ public class ForgottenPasswordTest extends UserTestRunner {
                 .successfulLogin(changedUser);
         Assert.assertTrue(loginChanged.getSuccessMyAccountPageText()
                 .contains(EXPECTED_MY_ACCOUNT_PAGE));
+
     }
 
     @Test(dataProvider = "invalidEmailUser")
@@ -62,6 +62,15 @@ public class ForgottenPasswordTest extends UserTestRunner {
                 .gotoForgottenPasswordRight()
                 .sendIvalidEmail(invalidEmailUser);
         Assert.assertTrue(unsuccessfulEmail.getAlertWarningText().contains(EXPECTED_INVALID_EMAIL_MESSAGE));
+    }
+    //todo after
+    @AfterClass
+    public void changePasswordBack(IUser testUser, IUser changedUser){
+        loadVikaApplication()
+                .gotoLoginPage()
+                .successfulLogin(changedUser)
+                .gotoPasswordRight()
+                .changePassword(testUser);
     }
 
 }

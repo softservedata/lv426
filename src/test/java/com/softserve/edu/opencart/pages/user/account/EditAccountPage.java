@@ -183,6 +183,11 @@ public class EditAccountPage extends AccountSidebarLoggedPart {
         enterFax(user.getFax());
     }
 
+    public void wrongFirstNameEditAccount(IUser user) {
+        fillEditAccount(user);
+        enterFirstName("");
+    }
+
     // Business Logic
     public SuccessfulAccountEditPage successEditAccount(IUser user) {
         fillEditAccount(user);
@@ -190,8 +195,8 @@ public class EditAccountPage extends AccountSidebarLoggedPart {
         return new SuccessfulAccountEditPage(driver);
     }
 
-    public UnsuccessfulEditAccountPage unsuccessEditAccount(IUser user) {
-        fillEditAccount(user);
+    public UnsuccessfulEditAccountPage unsuccessFirstNameEditAccount(IUser user) {
+        wrongFirstNameEditAccount(user);
         clickContinueButtonn();
         return new UnsuccessfulEditAccountPage(driver);
     }

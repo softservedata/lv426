@@ -3,57 +3,70 @@ package com.softserve.edu.opencart.pages.user.checkout;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class DeliveryMethod extends CheckOutPage {
     private WebDriver driver;
     private WebElement element;
 
-    private WebElement flatRateCheckBox;
-    private WebElement textAreaDeliver;
-    private WebElement deliveryMethodContinueButton;
-
     public DeliveryMethod(WebDriver driver) {
         super(driver);
-        initElements();
+        this.driver = driver;
     }
 
-    private void initElements(){
-        flatRateCheckBox = driver.findElement(By.cssSelector("input[name=\"shipping_method\"]"));
-        textAreaDeliver = driver.findElement(By.cssSelector("textarea.form-control"));
-        deliveryMethodContinueButton = driver.findElement(By.cssSelector("input#button-shipping-method"));
-    }
 
     //Functional
-    public void confirmFlatRateCheckBox(){
-        flatRateCheckBox.click();
+    private WebElement getWebFlatRateCheckBox() {
+        (new WebDriverWait(driver, 10)).until(ExpectedConditions
+                .elementToBeClickable(By.cssSelector("input[name=\"shipping_method\"]")));
+        return driver.findElement(By.cssSelector("input[name=\"shipping_method\"]"));
     }
 
-    public void clickTextAreaDeliveryMethod(){
-        textAreaDeliver.click();
+    private WebElement getWebTextAreaDeliver() {
+        return driver.findElement(By.cssSelector("textarea.form-control"));
     }
 
-    public void clearTextAreaDeliveryMethod(){
-        textAreaDeliver.clear();
+    private WebElement getWebDeliveryMethodContinueButton() {
+        return driver.findElement(By.cssSelector("input#button-shipping-method"));
     }
 
-    public void clickDeliveryMethodContinueButton(){
-        deliveryMethodContinueButton.click();
+    public void confirmFlatRateCheckBox() {
+        try {
+            getWebFlatRateCheckBox().click();
+        } catch (org.openqa.selenium.ElementClickInterceptedException ex) {
+        }
+            getWebFlatRateCheckBox().click();
+
+    }
+
+    public void clickTextAreaDeliveryMethod() {
+        getWebTextAreaDeliver().click();
+    }
+
+    public void clearTextAreaDeliveryMethod() {
+        getWebTextAreaDeliver().clear();
+    }
+
+    public void clickDeliveryMethodContinueButton() {
+        getWebDeliveryMethodContinueButton().click();
     }
 
     //Page object
 
-    public void setTextAreaDeliver(String textForDelivery){
-        textAreaDeliver.sendKeys(textForDelivery);
+    public void setTextAreaDeliver(String textForDelivery) {
+        getWebTextAreaDeliver().sendKeys(textForDelivery);
     }
 
     //Business logic
 
-    public void deliveryMethodFullyComplete(String text){
+    public PaymentMethod deliveryMethodFullyComplete(String text) {
         confirmFlatRateCheckBox();
-        clickDeliveryMethodContinueButton();
+        clickTextAreaDeliveryMethod();
         clearTextAreaDeliveryMethod();
         setTextAreaDeliver(text);
         clickDeliveryMethodContinueButton();
+        return new PaymentMethod(driver);
     }
 
 

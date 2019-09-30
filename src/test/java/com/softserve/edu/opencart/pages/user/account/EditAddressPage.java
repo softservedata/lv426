@@ -76,7 +76,7 @@ public class EditAddressPage extends AccountSidebarLoggedPart {
      */
     private WebElement errorText;
 
-    public EditAddressPage(WebDriver driver, WebElement firstname) {
+    public EditAddressPage(WebDriver driver) {
         super(driver);
         initElements();
     }

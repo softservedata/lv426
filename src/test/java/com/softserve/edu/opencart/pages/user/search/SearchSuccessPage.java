@@ -69,9 +69,11 @@ public class SearchSuccessPage extends SearchCriteriaPart {
    	    return new SearchSuccessAlertPage(driver);
     }
 
+
     public SearchSuccessPage addProductToCartByProductCriteriaComponent(SearchFilter searchFilter){
-	    productsCriteria.clickProductComponentAddToCartButtonByName(searchFilter.getProduct());
-	    return new SearchSuccessPage(driver);
+        productsCriteria.clickProductComponentAddToCartButtonByName(searchFilter.getProduct());
+        driver.navigate().refresh();
+        return new SearchSuccessPage(driver);
     }
 
 
