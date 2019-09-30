@@ -23,8 +23,14 @@ public class ShopRepository {
                 .build();
     }
 
-//    public static FinalPriceTableComponent builderFinalPriceTableForIPhones(){
-//        return finalPriceTableComponent.builder()
-//                .
-//    }
+    public static DiscountUsageCode builderCodesForCoupon() {
+        return discountUsageCode.builder()
+                .couponCode("2222")
+                .giftCertificationCode(RandomStringUtils.randomAlphabetic(8))
+                .build();
+    }
+
+    public static String[] massOfSymbols(){
+        return new String[]{"!","@","#","$","^","&","*","(",")","-","+","/","'",".","<",",","?",":",";"};
+    }
 }

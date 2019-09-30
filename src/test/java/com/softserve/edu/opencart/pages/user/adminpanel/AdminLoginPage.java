@@ -1,5 +1,7 @@
 package com.softserve.edu.opencart.pages.user.adminpanel;
 
+import com.softserve.edu.opencart.pages.user.adminpanel.Manipulating.AdminUser;
+import com.softserve.edu.opencart.pages.user.adminpanel.Manipulating.AdminUserRepository;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,9 +9,6 @@ import org.openqa.selenium.WebElement;
 public class AdminLoginPage {
 
     private WebDriver driver;
-
-    private static final String ADMIN_NAME = "admin";
-    private static final String ADMIN_PASSWORD = "Lv426_Taqc";
 
     private WebElement inputLoginField;
     private WebElement inputPasswordField;
@@ -51,22 +50,22 @@ public class AdminLoginPage {
     }
 
     //funk
-    private void enterUserName() {
+    private void enterUserName(AdminUser adminUser) {
         clickOnUserNameField();
         clearUserNameField();
-        inputLoginField.sendKeys(ADMIN_NAME);
+        inputLoginField.sendKeys(adminUser.getLoginName());
     }
 
-    private void enterPassword() {
+    private void enterPassword(AdminUser adminUser) {
         clickOnPasswordField();
         clearPasswordField();
-        inputPasswordField.sendKeys(ADMIN_PASSWORD);
+        inputPasswordField.sendKeys(adminUser.getPassword());
     }
 
     //BL
     public AdminHomePage goToAdminHomePage() {
-        enterUserName();
-        enterPassword();
+        enterUserName(AdminUserRepository.getDefault());
+        enterPassword(AdminUserRepository.getDefault());
         clickOnLoginButton();
         return new AdminHomePage(driver);
     }

@@ -1,6 +1,12 @@
 package com.softserve.edu.opencart.pages.user.shop;
 
-public class UtilsForShoppingCart {
+import com.softserve.edu.opencart.data.SearchFilter;
+import com.softserve.edu.opencart.pages.user.common.TopPart;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+public class UtilsForShoppingCart extends TopPart {
+
     enum Cameras {
         CANON("Canon EOS 5D"),
         NIKON("Nikon D300");
@@ -172,6 +178,23 @@ public class UtilsForShoppingCart {
         public String getAlertMessage(){
              return alertMessage;
         }
+    }
+
+    public ShoppingCartPage changeCountOfSomeOrderByNameWithMass(SearchFilter searchFilter, String[] mass){
+        ShoppingCartPage shoppingCartPage = new ShoppingCartPage(driver);
+        for(int i =0;i<mass.length;i++){
+            shoppingCartPage.successfulSearch(searchFilter.getProduct())
+                    .addProductToCartByProductCriteriaComponent(searchFilter)
+                    .gotoShoppingCartPage();
+            shoppingCartPage.tryToChangeSomething()
+            .clickInputACountOfOrderByName(searchFilter.getProduct());
+            shoppingCartPage.tryToChangeSomething()
+            .clearInputACountOfOrderByName(searchFilter.getProduct());
+            shoppingCartPage.tryToChangeSomething()
+            .setInputACountOfOrderByName(searchFilter.getProduct().getName(),mass[i]);
+            driver.navigate().back();
+        }
+        return new ShoppingCartPage(driver);
     }
 
 }

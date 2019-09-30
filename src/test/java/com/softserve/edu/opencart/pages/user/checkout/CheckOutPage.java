@@ -1,12 +1,12 @@
 package com.softserve.edu.opencart.pages.user.checkout;
 
 import com.softserve.edu.opencart.pages.user.common.BreadCrumbPart;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class CheckOutPage extends BreadCrumbPart {
 
-    private WebDriver driver;
     private WebElement element;
 
 
@@ -16,7 +16,10 @@ public class CheckOutPage extends BreadCrumbPart {
     }
 
 
-    public CheckOutOptions continueCheckout(){
+    public CheckOutOptions continueCheckout() {
         return new CheckOutOptions(driver);
     }
+
+
+
 }

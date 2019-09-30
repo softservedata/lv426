@@ -5,7 +5,8 @@ public enum Currencies {
     EURO("Euro"),
     POUND_STERLING("Pound Sterling"),
     US_DOLLAR("US Dollar"),
-    UA("Ukrainian UAN");
+    UA("Ukrainian UAN"),
+    TEST("For some test");
     //
     private String name;
 

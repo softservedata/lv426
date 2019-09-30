@@ -12,13 +12,13 @@ public class ConfirmOrderSumConclusionContainer {
     }
 
 
-    public List<ConfirmOrderSumConclusionComponents> getListOfConfirmOrderConlusionComponents() {
+    public List<ConfirmOrderSumConclusionComponents> getListOfConfirmOrderConclusionComponents() {
         return listOfComponents;
     }
 
     public ConfirmOrderSumConclusionComponents getCashSumByTitle(String title) {
         ConfirmOrderSumConclusionComponents order = null;
-        for (ConfirmOrderSumConclusionComponents element : getListOfConfirmOrderConlusionComponents()) {
+        for (ConfirmOrderSumConclusionComponents element : getListOfConfirmOrderConclusionComponents()) {
             if ((element.getTitleConfirmTable()).equals(title)) {
                 order = element;
                 break;

@@ -1,5 +1,6 @@
 package com.softserve.edu.opencart.pages.user.checkout;
 
+import com.softserve.edu.opencart.data.IUser;
 import com.softserve.edu.opencart.data.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,7 +10,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CheckOutOptions extends CheckOutPage {
 
-    private WebDriver driver;
     private WebElement element;
 
     private WebElement registerCheckBox;
@@ -23,7 +23,6 @@ public class CheckOutOptions extends CheckOutPage {
 
     public CheckOutOptions(WebDriver driver) {
         super(driver);
-        this.driver = driver;
         initElements();
     }
 
@@ -103,7 +102,7 @@ public class CheckOutOptions extends CheckOutPage {
 
 //business logic
 
-    public BillingDetailsWithLogin loginAsUser(User user){
+    public BillingDetailsWithLogin loginAsUser(IUser user){
         eMailInputClick();
         eMailInputClear();
         setEMailInput(user.geteMail());
@@ -114,11 +113,17 @@ public class CheckOutOptions extends CheckOutPage {
         return new BillingDetailsWithLogin(driver);
     }
 
-    public BillingDetailsAsGuest continueCheckoutAsGuest(){
+    public BillingDetailsAsGuest continueCheckoutAsGuestWithoutDeliveryMethod(){
         chooseGuestCheckBox();
         continueCheckOutOptionsButtonClick();
         return new BillingDetailsAsGuest(driver);
     }
+    public BillingDetailsAsGuest continueCheckoutAsGuestWithDeliveryMethod(){
+        chooseGuestCheckBox();
+        continueCheckOutOptionsButtonClick();
+        return new BillingDetailsAsGuest(driver);
+    }
+
 
     public BillingDetailsWithRegistration continueCheckoutWithRegistration(){
         chooseRegisterCheckBox();

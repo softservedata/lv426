@@ -67,11 +67,18 @@ public class EditAccountTest extends UserTestRunner {
                 .gotoEditAccountRight();
 
         Assert.assertEquals(editAccountPage.getLastNameText(), editUser.getLastName());
-
         Assert.assertEquals(editAccountPage.getTelephoneText(), editUser.getTelephone());
 
-        HomePage homePage = editAccountPage
-                .successEditAccount(validUser)
+        SuccessfulAccountEditPage turnBackChanges = editAccountPage
+                .successEditAccount(validUser);
+
+        EditAccountPage editBackAccountPage = turnBackChanges
+                .gotoEditAccountRight();
+
+        Assert.assertEquals(editBackAccountPage.getLastNameText(), validUser.getLastName());
+        Assert.assertEquals(editBackAccountPage.getTelephoneText(), validUser.getTelephone());
+
+        HomePage homePage = editBackAccountPage
                 .gotoLogoutRight().gotoContinue();
 
         Assert.assertTrue(homePage

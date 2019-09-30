@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static com.softserve.edu.opencart.data.checkout.CheckOutRepository.PATH_FOR_BILLING_REGISTRATION_PATH;
+import java.util.concurrent.TimeUnit;
 
 public abstract class PersonalDetailsForCheckoutRegistration {
     private WebElement element;
@@ -80,6 +80,7 @@ public abstract class PersonalDetailsForCheckoutRegistration {
     // Functional
 
     private WebElement getWebFirstName(){
+        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         (new WebDriverWait(driver, 5)).until(ExpectedConditions.elementToBeClickable(By.name("firstname")));
         return driver.findElement(By.name("firstname"));
     }
@@ -89,7 +90,9 @@ public abstract class PersonalDetailsForCheckoutRegistration {
     }
 
     private WebElement getWebEmail(){
-//        (new WebDriverWait(driver, 5)).until(ExpectedConditions.elementToBeClickable(By.name("email")));
+        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+        (new WebDriverWait(driver, 15)).until(ExpectedConditions
+                .elementToBeClickable(By.cssSelector("div[class=\"form-group required\"] input[name=\"email\"]")));
         return driver.findElement(By.cssSelector("div[class=\"form-group required\"] input[name=\"email\"]"));
     }
 
@@ -129,19 +132,37 @@ public abstract class PersonalDetailsForCheckoutRegistration {
         return driver.findElement(By.cssSelector("select#input-payment-country"));
     }
 
-    private WebElement getWebContinueCheckoutButton(){
+    private WebElement getWebContinueCheckoutAsRegistrationButton(){
         return driver.findElement(By.cssSelector("input#button-register"));
     }
 
+    private WebElement getWebContinueCheckoutAsGuestButton(){
+        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+        (new WebDriverWait(driver,5)).until(ExpectedConditions
+                .elementToBeClickable(By.cssSelector("input#button-guest")));
+        return driver.findElement(By.cssSelector("input#button-guest"));
+    }
 
-    public void clickContinueCheckoutButton(){
-        getWebContinueCheckoutButton().click();
+
+    public void clickContinueCheckoutAsRegistrationButton(){
+        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+        (new WebDriverWait(driver,5)).until(ExpectedConditions
+        .elementToBeClickable(getWebContinueCheckoutAsRegistrationButton()));
+        getWebContinueCheckoutAsRegistrationButton().click();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    }
+
+    public void clickContinueCheckoutAsGuestButton(){
+        getWebContinueCheckoutAsGuestButton().click();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     public void clickFirstNameField() {
+        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         (new WebDriverWait(driver, 5)).until(ExpectedConditions
                 .elementToBeClickable(getWebFirstName()));
         getWebFirstName().click();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     public void clickLastNameField() {
@@ -150,6 +171,7 @@ public abstract class PersonalDetailsForCheckoutRegistration {
 
     public void clickEmailField() {
         getWebEmail().click();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     public void clickFaxField() {
