@@ -15,7 +15,7 @@ public class EditAccountPage extends AccountSidebarLoggedPart {
     private WebElement continueButton;
     private WebElement backButton;
 
-    public EditAccountPage(WebDriver driver) {
+    EditAccountPage(WebDriver driver) {
         super(driver);
         initElements();
     }
@@ -33,115 +33,77 @@ public class EditAccountPage extends AccountSidebarLoggedPart {
     // Page Object
 
     //firstname
-    public WebElement getFirstName() {
+    private WebElement getFirstName() {
         return firstName;
     }
 
-    public void clickFirstNameField() {
+    private void clickFirstNameField() {
         getFirstName().click();
     }
 
-    public void clearFirstNameField() {
+    private void clearFirstNameField() {
         getFirstName().clear();
     }
 
-    public void setFirstName(String firstName) {
+    private void setFirstName(String firstName) {
         getFirstName().sendKeys(firstName);
     }
 
     public String getFirstNameText() { return getFirstName().getAttribute("value"); }
 
     //lastname
-    public WebElement getLastName() {
-        return lastName;
-    }
+    private WebElement getLastName() { return lastName; }
 
-    public void clickLastNameField() {
-        getLastName().click();
-    }
+    private void clickLastNameField() { getLastName().click(); }
 
-    public void clearLastNameField() {
-        getLastName().clear();
-    }
+    private void clearLastNameField() { getLastName().clear(); }
 
-    public void setLastName(String lastName) {
-        getLastName().sendKeys(lastName);
-    }
+    private void setLastName(String lastName) { getLastName().sendKeys(lastName); }
 
     public String getLastNameText() { return getLastName().getAttribute("value"); }
 
     //email
-    public WebElement getEmail() {
-        return email;
-    }
+    public WebElement getEmail() { return email; }
 
-    public void clickEmailField() {
-        getEmail().click();
-    }
+    private void clickEmailField() { getEmail().click(); }
 
-    public void clearEmailField() {
-        getEmail().clear();
-    }
+    private void clearEmailField() { getEmail().clear(); }
 
-    public void setEmail(String email) {
-        getEmail().sendKeys(email);
-    }
+    public void setEmail(String email) { getEmail().sendKeys(email); }
 
     public String getEmailText() { return getEmail().getAttribute("value"); }
 
     //telephone
-    public WebElement getTelephone() { return telephone; }
+    private WebElement getTelephone() { return telephone; }
 
-    public void clickTelephoneField() {
-        getTelephone().click();
-    }
+    private void clickTelephoneField() { getTelephone().click(); }
 
-    public void clearTelephoneField() {
-        getTelephone().clear();
-    }
+    private void clearTelephoneField() { getTelephone().clear(); }
 
-    public void setTelephone(String telephone) {
-        getTelephone().sendKeys(telephone);
-    }
+    private void setTelephone(String telephone) { getTelephone().sendKeys(telephone); }
 
     public String getTelephoneText() { return getTelephone().getAttribute("value"); }
 
     //fax
-    public WebElement getFax() {
-        return fax;
-    }
+    private WebElement getFax() { return fax; }
 
-    public void clickFaxField() {
-        getFax().click();
-    }
+    private void clickFaxField() { getFax().click(); }
 
-    public void clearFaxField() {
-        getFax().clear();
-    }
+    private void clearFaxField() { getFax().clear(); }
 
-    public void setFax(String fax) {
-        getFax().sendKeys(fax);
-    }
+    private void setFax(String fax) { getFax().sendKeys(fax); }
 
     public String getFaxText() { return getFax().getAttribute("value"); }
 
     //continueButtom
-    public WebElement getContinueButton() {
-        return continueButton;
-    }
+    private WebElement getContinueButton() { return continueButton; }
 
-    public void clickContinueButtonn() {
-        getContinueButton().click();
-    }
+    private void clickContinueButtonn() { getContinueButton().click(); }
 
     //backButton
-    public WebElement getBackButton() {
-        return backButton;
-    }
+    private WebElement getBackButton() { return backButton; }
 
-    public void clickBackButton() {
-        getBackButton().click();
-    }
+    private void clickBackButton() { getBackButton().click(); }
 
     // Functional
 
@@ -175,7 +137,7 @@ public class EditAccountPage extends AccountSidebarLoggedPart {
         setFax(fax);
     }
 
-    public void fillEditAccount(IUser user) {
+    private void fillEditAccount(IUser user) {
         enterFirstName(user.getFirstName());
         enterLastName(user.getLastName());
         enterEmail(user.geteMail());
@@ -183,7 +145,7 @@ public class EditAccountPage extends AccountSidebarLoggedPart {
         enterFax(user.getFax());
     }
 
-    public void wrongFirstNameEditAccount(IUser user) {
+    private void wrongFirstNameEditAccount(IUser user) {
         fillEditAccount(user);
         enterFirstName("");
     }
@@ -195,15 +157,15 @@ public class EditAccountPage extends AccountSidebarLoggedPart {
         return new SuccessfulAccountEditPage(driver);
     }
 
-    public UnsuccessfulEditAccountPage unsuccessFirstNameEditAccount(IUser user) {
-        wrongFirstNameEditAccount(user);
-        clickContinueButtonn();
-        return new UnsuccessfulEditAccountPage(driver);
-    }
-
     public MyAccountPage withoutSavingEditAccount(IUser user) {
         fillEditAccount(user);
         clickBackButton();
         return new MyAccountPage(driver);
+    }
+
+    public UnsuccessfulEditAccountPage unsuccessFirstNameEditAccount(IUser user) {
+        wrongFirstNameEditAccount(user);
+        clickContinueButtonn();
+        return new UnsuccessfulEditAccountPage(driver);
     }
 }

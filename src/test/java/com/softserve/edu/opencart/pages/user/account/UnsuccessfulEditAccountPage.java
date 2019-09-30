@@ -4,17 +4,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class UnsuccessfulEditAccountPage extends AccountSidebarLoggedPart{
+public class UnsuccessfulEditAccountPage extends AccountSidebarLoggedPart {
 
     public static final String EXPECTED_WRONG_FIRSTNAME = "First Name must be between 1 and 32 characters!";
     public static final String EXPECTED_WRONG_LASTNAME = "Last Name must be between 1 and 32 characters!";
     public static final String EXPECTED_WRONG_EMAIL = "E-Mail Address does not appear to be valid!";
     public static final String EXPECTED_WRONG_TELEPHONE = "Telephone must be between 3 and 32 characters!";
 
-    public UnsuccessfulEditAccountPage(WebDriver driver) {
+    UnsuccessfulEditAccountPage(WebDriver driver) {
         super(driver);
     }
-
 
     // Page Object
 

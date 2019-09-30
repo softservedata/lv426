@@ -30,7 +30,6 @@ import com.softserve.edu.opencart.pages.user.HomePage;
 
 public abstract class UserTestRunner {
 
-	// TODO
 	private final String DRIVER_ERROR = "ERROR: Chromedriver not Found";
 	//private final String SERVER_URL = "http://taqc-opencart.epizy.com";
 
@@ -61,17 +60,15 @@ public abstract class UserTestRunner {
 	private final String ADMIN_MARTA_URL="http://192.168.68.133/opencart/upload/admin";
 	private final String MAIL_URL = "https://mail.ukr.net";
 	//
-	protected final Logger log = LoggerFactory.getLogger(this.getClass().getName());
+	private final Logger log = LoggerFactory.getLogger(this.getClass().getName());
 	WebDriver driver;
 	//WebDriver maxDriver;
 
 	@BeforeClass
 	public void beforeClass() {
 		log.info("Test suite start");
-		//System.setProperty("webdriver.chrome.driver", "D:\\ChromeDriver\\chromedriver.exe");
 		System.setProperty("webdriver.chrome.driver",
-				"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe");//Maksym
-		//System.setProperty("webdriver.chrome.driver","C:\\Users\\Admin\\Desktop\\TAQC ITA SoftServe\\chromedriver_win32\\chromedriver.exe");
+				"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe");
 		driver = new ChromeDriver();
 		log.info("ChromeDriver loaded");
 		driver.manage().window().maximize();
@@ -87,18 +84,6 @@ public abstract class UserTestRunner {
 		log.info("ChromeDriver quite");
 	}
 
-	//@BeforeMethod
-	public void beforeMethod() {
-		log.info("Test suite start");
-		System.setProperty("webdriver.chrome.driver",
-				"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe");//Maksym
-		driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		//driver.get(SERVER_URL_BY_MAX);
-		log.info("Web Application loaded");
-	}
-
 	@AfterMethod
 	public void afterMethod(ITestResult testResult) {
 		if (!testResult.isSuccess()) {
@@ -109,58 +94,55 @@ public abstract class UserTestRunner {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			// TODO Clear Cache or Logout
-			//	log.info("Web Application reloaded");
-			//	driver.get(SERVER_URL);
 		}
 		driver.manage().deleteAllCookies();
 	}
 
-	public HomePage loadMaxApplication() {
+	HomePage loadMaxApplication() {
 		driver.get(SERVER_URL_BY_MAX);
 		log.debug("loadMaxApplication start");
 		return new HomePage(driver);
 	}
 
-	public HomePage loadArsenApplication() {
+	HomePage loadArsenApplication() {
 		//driver.get(SERVER_URL);
 		driver.get(SERVER_ARSEN_URL);
 		log.debug("loadApplication start");
 		return new HomePage(driver);
 	}
 
-	public HomePage loadMartaApplication(){
+	HomePage loadMartaApplication(){
 		driver.get(SERVER_URL_BY_MARTA);
 		log.debug("loadMartaApplication start");
 		return new HomePage(driver);
 	}
 
-    public HomePage loadOlesiaApplication() {
+    HomePage loadOlesiaApplication() {
         driver.get(SERVER_URL_BY_OLESIA);
         log.debug("loadOlesiaApplication start");
         return new HomePage(driver);
     }
 
-	public HomePage loadBeataApplication(){
+	HomePage loadBeataApplication(){
 		driver.get(SERVER_URL_BY_BEATA);
 		log.debug("loadMaxApplication start");
 		return new HomePage(driver);
 	}
 
-	public HomePage loadYuraApplication() {
+	HomePage loadYuraApplication() {
 		driver.get(SERVER_YURA_URL);
 		log.debug("loadYuraApplication start");
 		return new HomePage(driver);
 	}
 
 
-	public AdminLoginPage loadArsenAdminLoginPage() {
+	AdminLoginPage loadArsenAdminLoginPage() {
 		driver.get(ADMIN_ARSEN_URL);
 		log.debug("loadAdminPanel start");
 		return new AdminLoginPage(driver);
 	}
 
-	public AdminLoginPage loadMartaAdminLoginPage(){
+	AdminLoginPage loadMartaAdminLoginPage(){
 		driver.get(ADMIN_MARTA_URL);
 		log.debug("loadAdminPanel start");
 		return new AdminLoginPage(driver);
