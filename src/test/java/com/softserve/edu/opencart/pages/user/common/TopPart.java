@@ -11,6 +11,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,7 +53,6 @@ public abstract class TopPart {
     private DropdownLogged dropdownLogged;
 
     protected TopPart(WebDriver driver) {
-        //this.webDriverWait = new WebDriverWait(driver, 2);
         this.driver = driver;
         initElements();
     }
@@ -127,8 +128,6 @@ public abstract class TopPart {
     }
 
     public void clickShoppingCart() {
-        //(new WebDriverWait(driver, 10)).until(ExpectedConditions.elementToBeClickable(getShoppingCart()));
-
         getShoppingCart().click();
 
     }
@@ -149,7 +148,9 @@ public abstract class TopPart {
 
     // logo
     public WebElement getLogo() {
-        return logo;
+        (new WebDriverWait(driver,5)).until(ExpectedConditions
+                .elementToBeClickable(By.cssSelector("#logo a")));
+        return driver.findElement(By.cssSelector("#logo a"));
     }
 
     public void clickLogo() {
@@ -204,7 +205,6 @@ public abstract class TopPart {
 
     // dropdownComponent
     protected DropdownComponent getDropdownComponent() {
-        //LeaveUtils.castExceptionByCondition(dropdownOptions == null, OPTION_NULL_MESSAGE);
         if (dropdownComponent == null)
         {
             // TODO Develop Custom Exception

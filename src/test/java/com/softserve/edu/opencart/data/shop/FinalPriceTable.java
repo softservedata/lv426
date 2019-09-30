@@ -8,6 +8,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.concurrent.TimeUnit;
+
 @Setter
 @NoArgsConstructor
 public class FinalPriceTable {
@@ -28,6 +30,7 @@ public class FinalPriceTable {
     }
 
     public WebElement getSubTotalWeb() {
+        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         subTotal = (new WebDriverWait(driver, 5)
                 .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='col-sm-4 col-sm-offset-8']" +
                         "//td/strong[contains(text(),'Sub-Total:')]/../following-sibling::td"))));
@@ -95,6 +98,8 @@ public class FinalPriceTable {
      }
 
      public String getSubTotal(){
+         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+         getSubTotalWeb().getText();
         return getSubTotalWeb().getText();
      }
 }

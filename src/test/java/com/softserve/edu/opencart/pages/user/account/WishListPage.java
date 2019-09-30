@@ -5,6 +5,9 @@ import com.softserve.edu.opencart.data.Product;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class WishListPage extends AccountSidebarLoggedPart {
 
@@ -41,6 +44,29 @@ public class WishListPage extends AccountSidebarLoggedPart {
 		return new WishListAlertPage(driver);
 	}
 
+	public int  getElementsCountInList(){
+		int productCount = getProductComponentsContainer()
+		.getWishListComponentsCount();
+		return productCount;
+	}
+	public String  getProductModel(Product product){
+		String productModel = getProductComponentsContainer()
+				.getWishListComponentModelByName(product.getName());
+		return productModel;
+	}
+
+	public String  getPresentsInStock(Product product){
+		String presentsInStock = getProductComponentsContainer()
+				.getWishListComponentStockStatusByName(product.getName());
+		return presentsInStock;
+	}
+
+	public List<String> getInfoAboutProduct(Product product){
+		List<String> stringList= new ArrayList<String>() ;
+		stringList.add(getProductModel(product));
+		stringList.add(getPresentsInStock(product));
+		return stringList;
+	}
 
 
 

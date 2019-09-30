@@ -1,6 +1,7 @@
 package com.softserve.edu.opencart.pages.user.shop;
 
 import com.softserve.edu.opencart.data.Product;
+import com.softserve.edu.opencart.data.SearchFilter;
 import com.softserve.edu.opencart.data.shop.CartTableFullOrderInfo;
 import com.softserve.edu.opencart.data.shop.ShoppingCartTableElements;
 import org.openqa.selenium.By;
@@ -11,10 +12,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class ShoppingCartContainerComponent extends ShoppingCartPage {
 	
-	protected WebDriver driver;
 	private WebDriverWait explicitWait;
 	private WebElement submitOrderChangesButton;
 	private final String SHOPPINGCART_COMPONENTS_CSSSELECTOR="//div[contains(@class,'table-responsive')]" +
@@ -24,7 +25,6 @@ public class ShoppingCartContainerComponent extends ShoppingCartPage {
 
 	public ShoppingCartContainerComponent(WebDriver driver) {
 		super(driver);
-		this.driver = driver;
 		initElements();
 	}
 
@@ -43,6 +43,10 @@ public class ShoppingCartContainerComponent extends ShoppingCartPage {
 
 	// Page Object
 	public WebElement elementToChangeACountOfOrderingByName(String orderName){
+		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+		(new WebDriverWait(driver, 10))
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//td/a[contains(text(),'"+ orderName
+						+"')]/../following-sibling::td/div/input")));
 		return driver.findElement(By.xpath("//td/a[contains(text(),'"+ orderName
 				+"')]/../following-sibling::td/div/input"));
 	}
@@ -79,20 +83,24 @@ public class ShoppingCartContainerComponent extends ShoppingCartPage {
 	}
 
 	public ShoppingCartPage changeCountOfSomeOrderByName(Product orderName, String count){
-		clearInputACountOfOrderByName(orderName.getName());
+		clickInputACountOfOrderByName(orderName);
+		clearInputACountOfOrderByName(orderName);
 		setInputACountOfOrderByName(orderName.getName(),count);
 		clickToSubmitChangesInCartTable();
 		return new ShoppingCartPage(driver);
 	}
 
+
+
 	// Functional
 
 	public void clickInputACountOfOrderByName(Product orderName){
 		elementToChangeACountOfOrderingByName(orderName.getName()).click();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
-	public void clearInputACountOfOrderByName(String orderName){
-		elementToChangeACountOfOrderingByName(orderName).clear();
+	public void clearInputACountOfOrderByName(Product orderName){
+		elementToChangeACountOfOrderingByName(orderName.getName()).clear();
 	}
 
 	public void setInputACountOfOrderByName(String orderName, String count){

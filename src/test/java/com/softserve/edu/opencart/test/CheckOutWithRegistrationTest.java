@@ -12,13 +12,13 @@ import static com.softserve.edu.opencart.data.checkout.CheckOutRepository.FULL_T
 import static com.softserve.edu.opencart.pages.user.shop.UtilsForShoppingCart.Phones.IPHONE;
 import static org.testng.Assert.assertEquals;
 
-public class CheckOutTest extends UserTestRunner{
+public class CheckOutWithRegistrationTest extends UserTestRunner{
 
 
     @DataProvider
     public Object[][] searchData() {
         return new Object[][]{
-                {SearchFilterRepository.searchIPhone(), UserRepository.get().getValidUserForCheckout(), IPHONE.getPhone()}
+                {SearchFilterRepository.searchIPhone(), UserRepository.get().getValidUserForCheckoutWithRegistration(), IPHONE.getPhone()}
 
         };
     }
@@ -31,11 +31,10 @@ public class CheckOutTest extends UserTestRunner{
                 .gotoCheckOutPage()
                 .continueCheckout()
                 .continueCheckoutWithRegistration()
-                .accountAndBillingDetailsFilling(user)
-                .setChooseDeliveryAccount(FULL_TEST_ACC)
+                .accountAndBillingDetailsFillingWithRegistration(user)
+                .setChooseDeliveryAccount()
                 .deliveryMethodFullyComplete(user.getLastName())
-                .paymentMethodFullyComplete(user.getPostCode());
-                //.confirmCheckoutButtonClick();
+                .paymentMethodFullyCompleteForUser(user.getPostCode());
 
         assertEquals(confirmOrder.listOrderInfo().getProductByNameConfirmOrderPage(orderName).getTotalFromConfirmPage()
                 ,confirmOrder.listWithCashInfo().getCashSumByTitle("Sub-Total:").getPriceConfirmTable(),

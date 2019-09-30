@@ -19,41 +19,19 @@ public class ShoppingCartPage extends BreadCrumbPart {
     //
     private WebElement closeFatalAlertButton;
     private WebElement closeSuccessAlertButton;
-    private WebElement shoppingCartTableTitle;
-    private WebElement shippingAndTaxes;
-    private WebElement useCouponDropDown;
-    private WebElement giftCertificationDropDown;
-    private WebElement continueShoppingButton;
-    private WebElement checkoutButton;
-    //shopping cart table
-    public WebElement update;
-    public WebElement delete;
     //alerts
     private WebElement fatalAlert;
     private WebElement successAlert;
     //price table
     private String FINAL_PRICE_TABLE_CSSSELECTOR = "div[class=\"col-sm-4 col-sm-offset-8\"] table tbody tr";
     private List<FinalPriceTableComponent> finalPriceTableComponentElements;
-   // private String FINAL_PRICE_TABLE_FOR_CASH_CSSSELECTOR = "//div[@class='col-sm-4 col-sm-offset-8']/table/tbody/tr/td[contains(text(),'.')]";
-   // private Map<FinalPriceTableComponent,FinalPriceTableComponent> finalPriceTableFinalPriceTableMap;
 
     public ShoppingCartPage(WebDriver driver) {
         super(driver);
-        this.driver = driver;
         initElements();
     }
 
     private void initElements() {
-        shoppingCartTableTitle = driver.findElement(By.xpath("//div[@id='content']/h1"));
-        useCouponDropDown = driver.findElement(By.xpath("//a[contains(text(),'Use Coupon Code ')]"));
-        giftCertificationDropDown = driver.findElement(By.xpath("//a[contains(text(),'Use Gift')]"));
-        checkoutButton = driver.findElement(By.cssSelector("div.pull-right a[class=\"btn btn-primary\"]"));
-        continueShoppingButton = driver.findElement(By.cssSelector("div.pull-left a"));
-        shippingAndTaxes = driver.findElement(By.xpath("//div[contains(@class,'panel panel-default')]" +
-                "//a[contains(text(),'Estimate Shipping & Taxes')]"));
-        update = driver.findElement(By.cssSelector("button[type=submit]"));
-        delete = driver.findElement(By.xpath("//table[contains(@class,'table table-bordered')]" +
-                "//tbody//td/div/span/button[contains(@class,'btn btn-danger')]"));
         finalPriceTableComponentElements = new ArrayList<>();
         for (WebElement elements : driver.findElements(By.cssSelector(FINAL_PRICE_TABLE_CSSSELECTOR))) {
             finalPriceTableComponentElements.add(new FinalPriceTableComponent(elements,driver));
@@ -62,7 +40,71 @@ public class ShoppingCartPage extends BreadCrumbPart {
 
     // Page Object
 
+    public void refreshShoppingCart(){
+        driver.navigate().refresh();
+    }
+
+    public HomePage gotoHomePageFromShoppingCart() {
+        clickLogo();
+        return new HomePage(driver);
+    }
+
+    private WebElement getWebTitleOfEmptyCart(){
+        return driver.findElement(By.cssSelector("div#content h1"));
+    }
+
+    private WebElement getWebBodyOfEmptyCart(){
+        return driver.findElement(By.cssSelector("div#content  p"));
+    }
+    //
+    private WebElement getWebContinueEmptyCartButton(){
+        return driver.findElement(By.cssSelector("div[class=\"buttons clearfix\"] div.pull-right a"));
+    }
+
+    private WebElement getWebShoppingCartTableTitle(){
+        return driver.findElement(By.xpath("//div[@id='content']/h1"));
+    }
+
+    private WebElement getWebUseCouponDropDown(){
+        return driver.findElement(By.xpath("//a[contains(text(),'Use Coupon Code ')]"));
+    }
+
+    private WebElement getWebGiftCertificationDropDown(){
+        return driver.findElement(By.xpath("//a[contains(text(),'Use Gift')]"));
+    }
+
+    private WebElement getWebCheckoutButton(){
+        return driver.findElement(By.cssSelector("div.pull-right a[class=\"btn btn-primary\"]"));
+    }
+
+    private WebElement getWebContinueShoppingButton(){
+        return driver.findElement(By.cssSelector("div.pull-left a"));
+    }
+
+    private WebElement getWebShippingAndTaxes(){
+        return driver.findElement(By.xpath("//div[contains(@class,'panel panel-default')]" +
+                "//a[contains(text(),'Estimate Shipping & Taxes')]"));
+    }
+
+    private WebElement getWebUpdate(){
+        return driver.findElement(By.cssSelector("button[type=submit]"));
+    }
+
+    private WebElement getWebDelete(){
+        return driver.findElement(By.xpath("//table[contains(@class,'table table-bordered')]" +
+                "//tbody//td/div/span/button[contains(@class,'btn btn-danger')]"));
+    }
+
     // Functional
+
+    public String getBodyOfEmptyCart(){
+        return getWebBodyOfEmptyCart().getText();
+    }
+
+    public String getTitleOfEmptyCart(){
+        return getWebTitleOfEmptyCart().getText();
+    }
+
     public List<FinalPriceTableComponent> getFinalPriceTableComponentElements(){
         return finalPriceTableComponentElements;
     }
@@ -73,7 +115,7 @@ public class ShoppingCartPage extends BreadCrumbPart {
 
     //returns with hooks
     public String getWeightOfOrdering() {
-        return shoppingCartTableTitle.getText().replaceAll("\\D+\\s", "");
+        return getWebShoppingCartTableTitle().getText().replaceAll("\\D+\\s", "");
     }
 
     public ShoppingCartPage closeOneDangerAlert() {
@@ -88,7 +130,7 @@ public class ShoppingCartPage extends BreadCrumbPart {
     }
 
     public ShippingTaxesComponent shippingAndTaxesClick() {
-        shippingAndTaxes.click();
+        getWebShippingAndTaxes().click();
         return new ShippingTaxesComponent(driver);
     }
 
@@ -103,22 +145,22 @@ public class ShoppingCartPage extends BreadCrumbPart {
     }
 
     public HomePage continueShoppingButtonClick() {
-        continueShoppingButton.click();
+        getWebContinueShoppingButton().click();
         return new HomePage(driver);
     }
 
     public CheckOutPage checkoutButtonClick() {
-        checkoutButton.click();
+        getWebCheckoutButton().click();
         return new CheckOutPage(driver);
     }
 
     public DiscountComponent useCouponClick() {
-        useCouponDropDown.click();
+        getWebUseCouponDropDown().click();
         return new DiscountComponent(driver);
     }
 
     public DiscountComponent giftCertificationClick() {
-        giftCertificationDropDown.click();
+        getWebGiftCertificationDropDown().click();
         return new DiscountComponent(driver);
     }
     public ShoppingCartContainerComponent tryToChangeSomething(){

@@ -14,12 +14,14 @@ public class AddressBookMessenges  extends AddressBookPage{
     }
 
 
-    private void initSuccess() {
+    public boolean initSuccess() {
         success = driver.findElement(By.className("alert alert-success"));
+        return true;
     }
 
-    private void initWarning() {
+    public boolean initWarning() {
         warning = driver.findElement(By.className("alert alert-warning"));
+        return true;
     }
 
 }

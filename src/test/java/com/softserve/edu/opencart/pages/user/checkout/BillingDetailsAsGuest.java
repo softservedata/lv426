@@ -7,13 +7,11 @@ import org.openqa.selenium.WebElement;
 
 public class BillingDetailsAsGuest extends CheckOutOptions{
 
-    private WebDriver driver;
     private WebElement element;
     private BillingDetailsFilling methods;
 
     public BillingDetailsAsGuest(WebDriver driver) {
         super(driver);
-        this.driver = driver;
         initElements();
     }
 
@@ -21,9 +19,23 @@ public class BillingDetailsAsGuest extends CheckOutOptions{
         methods = new BillingDetailsFilling(driver);
     }
 
-    public void billingDetailsPartFilling(IUser user){
+    public DeliveryDetails billingDetailsAndRegistrationPartFilling(IUser user){
+        methods.clickContinueCheckoutAsRegistrationButton();
         methods.personalInfoAndAddressFilling(user);
-        methods.clickContinueCheckoutButton();
+        methods.clickContinueCheckoutAsRegistrationButton();
+        return new DeliveryDetails(driver);
+    }
+
+    public PaymentMethod billingDetailsAsGuestPartFillingWithoutDelivery(IUser user){
+        methods.personalInfoAndAddressFilling(user);
+        methods.clickContinueCheckoutAsGuestButton();
+        return new PaymentMethod(driver);
+    }
+
+    public DeliveryDetails billingDetailsAsGuestPartFilling(IUser user){
+        methods.personalInfoAndAddressFilling(user);
+        methods.clickContinueCheckoutAsGuestButton();
+        return new DeliveryDetails(driver);
     }
 
     class BillingDetailsFilling extends PersonalDetailsForCheckoutRegistration{
