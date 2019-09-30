@@ -9,7 +9,7 @@ public class OrderHistoryPage extends AccountSidebarLoggedPart {
     /**
      * This variable is button Look Order
      */
-    private WebElement lookButton;
+    private OrderHistoryContainerComponent ordersTable;
 
 
     public OrderHistoryPage(WebDriver driver) {
@@ -18,11 +18,10 @@ public class OrderHistoryPage extends AccountSidebarLoggedPart {
     }
 
     private void initElements() {
-        this.lookButton = driver.findElement(By.xpath(
-                "//td[contains(text(),'#3')]/following-sibling::td/a[contains(@class,'btn btn-info')]"));
+        this.ordersTable = new OrderHistoryContainerComponent(driver);
     }
 
-    public void lookClick() {
-        lookButton.click();
+    public OrderHistoryContainerComponent getOrdersTable() {
+        return ordersTable;
     }
 }

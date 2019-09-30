@@ -21,7 +21,7 @@ public class OrderDetailPage extends AccountSidebarLoggedPart {
      */
     private WebElement actionMessage;
 
-    public OrderDetailPage(WebDriver driver, WebElement firstname) {
+    public OrderDetailPage(WebDriver driver) {
         super(driver);
         initElements();
     }
@@ -37,15 +37,17 @@ public class OrderDetailPage extends AccountSidebarLoggedPart {
     /**
      * This method for click on button Return Order
      */
-    public void returnButtonClick() {
+    public ReturnOrderPage returnButtonClick() {
         returnButton.click();
+        return new ReturnOrderPage(driver);
     }
 
     /**
      * This method for click on button Reorder Order
      */
-    public void reorderButtonClick() {
+    public OrderDetailPage reorderButtonClick() {
         reorderButton.click();
+        return new OrderDetailPage(driver);
     }
 
     /**

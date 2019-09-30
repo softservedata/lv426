@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderHistoryContainerComponent extends OrderHistoryPage{
+public class OrderHistoryContainerComponent {
     protected WebDriver driver;
 
     private final String ORDERHISTORY_COMPONENTS_SELECTOR =
@@ -18,14 +18,14 @@ public class OrderHistoryContainerComponent extends OrderHistoryPage{
     private List<OrderHistoryTableInfo> addressElements ;
 
     public OrderHistoryContainerComponent(WebDriver driver) {
-        super(driver);
+        this.driver = driver;
         initElements();
     }
 
     private void initElements() {
         addressElements = new ArrayList<>();
         for(WebElement productTable : driver.findElements(By.xpath(ORDERHISTORY_COMPONENTS_SELECTOR))){
-            addressElements.add(new OrderHistoryTableInfo(productTable, driver));
+            addressElements.add(new OrderHistoryTableInfo( driver));
 
         }
     }

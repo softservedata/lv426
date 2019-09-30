@@ -153,6 +153,12 @@ public class LeftSidebarMenuComponent extends HeaderPart {
         return new CustomersPage(driver);
     }
 
+    public ReturnsPage gotoReturnsPage() {
+        clickSalesMenu();
+        clickReturnsButton();
+        return new ReturnsPage(driver);
+    }
+
 //    public ReturnsPage goToReturnsPage() {
 //        clickSalesMenu();
 //        clickReturnsButton();

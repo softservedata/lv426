@@ -1,5 +1,6 @@
 package com.softserve.edu.opencart.data;
 
+import com.softserve.edu.opencart.pages.user.account.OrderDetailPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,9 +16,8 @@ public class OrderHistoryTableInfo {
     private WebElement dateAdd;
     private WebElement lookDetailButton;
 
-    public OrderHistoryTableInfo(WebElement element, WebDriver driver) {
+    public OrderHistoryTableInfo( WebDriver driver) {
         this.driver = driver;
-        this.element = element;
         initElements();
     }
 
@@ -28,8 +28,9 @@ public class OrderHistoryTableInfo {
                 "//td[@class ='text-right']/a"));
     }
 
-    public void clickLookDetailButton() {
+    public OrderDetailPage clickLookDetailButton() {
         lookDetailButton.click();
+        return new OrderDetailPage(driver);
     }
 
     public String getIdInform() {

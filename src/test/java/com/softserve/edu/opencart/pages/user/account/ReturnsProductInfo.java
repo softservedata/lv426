@@ -4,7 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class ReturnsProductInfo extends ReturnOrderPage {
+public class ReturnsProductInfo {
+
+    private WebDriver driver;
 
     private WebElement productName;
 
@@ -27,7 +29,7 @@ public class ReturnsProductInfo extends ReturnOrderPage {
     private WebElement submitButton;
 
     public ReturnsProductInfo(WebDriver driver) {
-        super(driver);
+        this.driver=driver;
         initElements();
     }
 
