@@ -1,12 +1,14 @@
 package com.softserve.edu.opencart.pages.user.account;
 
 
+
 import com.softserve.edu.opencart.data.ApplicationStatus;
 import com.softserve.edu.opencart.data.IUser;
 import com.softserve.edu.opencart.pages.user.addressbook.AddressBookPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class AccountSidebarLoggedPart extends AccountSidebarPart {
 
@@ -102,9 +104,16 @@ public abstract class AccountSidebarLoggedPart extends AccountSidebarPart {
         return new AddressBookPage(driver);
     }
 
+    public OrderHistoryPage gotoOrderHistoryRight() {
+        clickOrderHistoryRight();
+        return new OrderHistoryPage(driver);
+    }
+
     public WishListPage gotoWishListRight() {
+        WebDriverWait wait=new WebDriverWait(driver, 20);
         clickWishListRight();
         return new WishListPage(driver);
+
     }
 
 //    public OrderHistoryPage gotoOrderHistoryRight() {}

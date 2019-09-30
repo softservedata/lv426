@@ -1,61 +1,75 @@
 package com.softserve.edu.opencart.pages.user.addressbook;
 
+import com.softserve.edu.opencart.data.IAddress;
 import com.softserve.edu.opencart.pages.user.account.AccountSidebarLoggedPart;
+import com.softserve.edu.opencart.pages.user.account.EditAddressPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class AddressBookPage extends AccountSidebarLoggedPart {
 
-	/** This variable for address information on page */
-	private WebElement addressText;
+    /**
+     * This variable for address information on page
+     */
+    private AddressBookContainerComponent addressTable;
 
-	/** This variable for button Edit on page */
-	private WebElement editButton;
+    /**
+     * This variable for button New Address on page
+     */
+    private WebElement newAddressButton;
 
-	/** This variable for button Delete on page */
-	private WebElement deleteButton;
-
-	/** This variable for button New Address on page */
-	private WebElement newAddressButton;
-
-/*	*//** This variable for catching message about success update *//*
+    /*	*//** This variable for catching message about success update *//*
 	private WebElement updateText;
 
-	*//** This variable for catching message with warning *//*
+	*/
+
+    /**
+     * This variable for catching message with warning
+     *//*
 	private WebElement warningText;*/
+    public AddressBookPage(WebDriver driver) {
+        super(driver);
+        initElements();
+    }
 
-	public AddressBookPage(WebDriver driver) {
-		super(driver);
-		initElements();
-	}
+    private void initElements() {
+        addressTable = new AddressBookContainerComponent(driver);
+        newAddressButton =
+                driver.findElement(By.linkText("New Address"));
+    }
 
-	private void initElements() {
-		addressText = driver.findElement(By.className("text-left"));
-		editButton = driver.findElement(By.linkText("Edit"));
-		deleteButton = driver.findElement(By.xpath("//a[contains(@class,'btn btn-danger')]"));
-		newAddressButton = driver.findElement(By.linkText("New Address"));
-	//	updateText = driver.findElement(By.xpath("//div[contains(@class,'alert alert-success')]"));
-	//	warningText = driver.findElement(By.xpath("//div[contains(@class,'alert alert-warning')]"));
-	}
+    // Page Object
 
-	// Page Object
+    // Functional
 
-	// Functional
-	/** This method click on button Edit */
-	public void editClick() {
-		editButton.click();
-	}
+    public AddressBookContainerComponent getAddressTable() {
+        return addressTable;
+    }
 
-	/** This method click on button Delete  */
-	public void deleteClick() {
-		deleteButton.click();
-	}
+    /**
+     * This method click on button Edit
+     */
+    public EditAddressPage editClick() {
+        addressTable.getAddresselements().get(0).clickEditButton();
+        return new EditAddressPage(driver);
+    }
 
-	/** This method click on button New Address  */
-	public void newAddressClick() {
-		newAddressButton.click();
-	}
+    /**
+     * This method click on button Delete
+     */
+    public void deleteClick() {
+        addressTable.getAddresselements().get(0).clickDeleteButton();
+    }
 
-	// Business Logic
+    /**
+     * This method click on button New Address
+     */
+    public EditAddressPage newAddressClick() {
+        newAddressButton.click();
+        return new EditAddressPage(driver);
+    }
+
+    // Business Logic
+
 }

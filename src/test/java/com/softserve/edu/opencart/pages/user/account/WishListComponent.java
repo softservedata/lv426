@@ -1,7 +1,6 @@
 package com.softserve.edu.opencart.pages.user.account;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class WishListComponent {
@@ -25,7 +24,7 @@ public class WishListComponent {
         stock = wishListLayout.findElement(By.xpath("//tbody/tr/td[4]"));
         price = wishListLayout.findElement(By.cssSelector(".price"));
         addToCartButton = wishListLayout.findElement(By.cssSelector("td button .fa.fa-shopping-cart"));
-        deleteFromWishListButton = wishListLayout.findElement(By.xpath("td a .fa.fa-times"));
+        deleteFromWishListButton = wishListLayout.findElement(By.cssSelector("td a .fa.fa-times"));
 
     }
 
@@ -92,7 +91,4 @@ public class WishListComponent {
     public void clickDeleteFromWishListButton() {
         getDeleteFromWishListButton().click();
     }
-	// Functional
-
-	// Business Logic
 }

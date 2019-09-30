@@ -38,12 +38,6 @@ public class MyAccountPage extends AccountSidebarLoggedPart {
     // Functional
 
     // Business Logic
-    public SearchSuccessPage searchGood(WebElement goodName) {
-        SearchCriteriaPart searchCriteriaPart = new SearchCriteriaPart(driver);
-        searchCriteriaPart.clickgetCriteriaSearchField();
-        searchCriteriaPart.setCriteriaSearchField("MackBook");
-        searchCriteriaPart.ClickCriteriaSearchButton();
-        return new SearchSuccessPage(driver);
-    }
+
 
 }
