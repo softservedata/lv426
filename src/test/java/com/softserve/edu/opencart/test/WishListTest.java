@@ -6,10 +6,12 @@ import com.softserve.edu.opencart.pages.user.account.WishListAlertPage;
 import com.softserve.edu.opencart.pages.user.account.WishListPage;
 import com.softserve.edu.opencart.pages.user.search.SearchSuccessAlertPage;
 import org.testng.annotations.DataProvider;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.softserve.edu.opencart.pages.user.account.WishListAlertPage.DELETE_FROM_WISHLIST_ALERT;
@@ -34,47 +36,41 @@ public class WishListTest extends UserTestRunner {
                 .successfulSearch(product)
                 .addToWishButtonByName(product);
         Assert.assertTrue(searchSuccessAlertPage.getAddToWishListAlert().contains(ADD_TO_WISHLIST_ALERT));
-        searchSuccessAlertPage.log
+
     }
 
-
-    @Test(dataProvider = "validUser")
-    public void GetIntoWishList(IUser validUser){
-        List<String> pageName = loadArsenApplication()
-                .gotoWishListPage(validUser)
-                .getBreadCrumbComponentNames();
-        Assert.assertEquals(pageName.get(1),"Wish List");
-    }
-
-    //@Test(dataProvider = "validUser")
-//    public void deletingFromWishList(IUser validUser, ProductName productName) {
-//        String actual = loadArsenApplication().gotoLoginPage()
-//                .successfulLogin(validUser)
-//                .gotoWishListRight()
-//                .deleteItemFromWishList(productName.IPHONE.toString())
-//                .getSuccessfulDeletingFromWishListAlertText();
-//        Assert.assertEquals(actual, DELETE_FROM_WISHLIST_ALERT);
-//    }
-
-//    @Test(dataProvider = "validUser")
-//    public void addingFromWishListToShoppingCart(IUser validUser, ProductName productName) {
-//        String actual = loadArsenApplication().gotoLoginPage()
-//                .successfulLogin(validUser)
-//                .gotoWishListRight()
-//                .addItemFromWishListToShoppingCart(productName.IPHONE.toString())
-//                .getSuccessfulAddingToShoppingCartFromWishListAlertText();
-//        Assert.assertEquals(actual, ADD_TO_CART_ALERT(productName.IPHONE.toString()));
-//    }
 
         @Test(dataProvider = "validUser")
-        public void getIntoWishList (IUser validUser){
-            WishListPage wishListPage = loadBeataApplication()
-                    .gotoWishListPage(validUser);
+        public void getIntoWishList (IUser validUser, Product product){
+            WishListPage wishListPage =
+                    loadBeataApplication()
+                            .gotoLoginPage()
+                            .successfulLogin(validUser)
+                            .gotoWishListPage(validUser);
             List<String> pageName = wishListPage
                     .getBreadCrumbComponentNames();
             Assert.assertEquals(pageName.get(2), "Wish List");
             wishListPage.logout();
         }
+
+    @Test(dataProvider = "validUser")
+    public void gettingInformationAboutProduct (IUser validUser, Product product){
+
+               WishListPage wishListPage= loadBeataApplication()
+                        .gotoLoginPage()
+                        .successfulLogin(validUser)
+                        .gotoWishListRight();
+        List<String> actual = wishListPage
+                        .getInfoAboutProduct(product);
+        List<String> expected = new ArrayList<String>();
+        expected.add("Product 11");
+        expected.add("OutOfStock");
+        expected.add( "$101.00");
+        Assert.assertEquals(actual,expected);
+        wishListPage.logout();
+
+
+    }
 
         @Test(dataProvider = "validUser")
         public void deletingFromWishList (IUser validUser, Product product){
@@ -89,13 +85,27 @@ public class WishListTest extends UserTestRunner {
 
         }
 
-        @Test(dataProvider = "validUser")
+    @Test(dataProvider = "validUser")
+    public void WishListElementsCount (IUser validUser, Product product){
+        int actual = loadBeataApplication()
+                .gotoLoginPage()
+                .successfulLogin(validUser)
+                .gotoWishListRight()
+                .getElementsCountInList()
+                ;
+        Assert.assertEquals(actual,2);
+    }
+
+
+
+    @Test(dataProvider = "validUser")
         public void addingFromWishListToShoppingCart (IUser validUser, Product product){
             WishListAlertPage wishListAlertPage = loadBeataApplication()
                     .gotoLoginPage()
                     .successfulLogin(validUser)
                     .gotoWishListRight()
-                    .addItemFromWishListToShoppingCart(product);
+                    .addItemFromWishListToShoppingCart(product)
+                    ;
             Assert.assertTrue(wishListAlertPage.getMessage().contains(wishListAlertPage.addToCartAlert(product)));
             wishListAlertPage.logout();
         }
