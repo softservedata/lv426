@@ -10,7 +10,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ShippingTaxesComponent extends ShoppingCartPage {
 
-    protected WebDriver driver;
     private WebDriverWait explicitWait;
 
     private Select countryForShippingAndTaxes;
@@ -25,7 +24,6 @@ public class ShippingTaxesComponent extends ShoppingCartPage {
 
     public ShippingTaxesComponent(WebDriver driver) {
         super(driver);
-        this.driver = driver;
         initElements();
     }
 
@@ -33,14 +31,6 @@ public class ShippingTaxesComponent extends ShoppingCartPage {
         // init elements
         postcodeForShippingAndTaxes = driver.findElement(By.cssSelector("#input-postcode"));
         getQuotesButton = driver.findElement(By.cssSelector("button[id=\"button-quote\"]"));
-//        taxConfirmAlert = explicitWait.until(ExpectedConditions.visibilityOfElementLocated(
-//                (By.cssSelector("div.modal-content label input"))));
-//        cancelButtonTaxAlert = explicitWait.until(ExpectedConditions
-//                .visibilityOfElementLocated((By.cssSelector("div.modal-footer  button"))));
-//        applyButtonTaxAlert = explicitWait.until(ExpectedConditions
-//                .visibilityOfElementLocated((By.cssSelector("div.modal-footer  input"))));
-//        flatRateInAlert = explicitWait.until(ExpectedConditions
-//                .visibilityOfElementLocated((By.cssSelector("div.modal-content label"))));
     }
 
     // Page Object

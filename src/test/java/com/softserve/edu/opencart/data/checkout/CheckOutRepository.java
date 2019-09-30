@@ -2,6 +2,10 @@ package com.softserve.edu.opencart.data.checkout;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 public final class CheckOutRepository {
 //for delivery details
     public static String NEW_BILLING_ADDRESS_CSSSELECTOR = "#input-payment-";
@@ -22,8 +26,8 @@ public final class CheckOutRepository {
         }
         return instance;
     }
-//??????????????
-    public NewShippingAdress validAdress(){
+
+    public NewShippingAdress validAddress(){
         return NewShippingAdress.get()
                 .setFirstName(RandomStringUtils.randomAlphabetic(5))
                 .setLastName(RandomStringUtils.randomAlphabetic(5))
@@ -34,5 +38,27 @@ public final class CheckOutRepository {
                 .setCountry("Ukraine")
                 .setRegionState("L'vivs'ka Oblast'")
                 .build();
+    }
+
+    public String getSpecialTextForCheckOut(){
+
+        StringBuilder text = new StringBuilder();
+        BufferedReader special = null;
+        try {
+            special = new BufferedReader(new FileReader("D:\\framework\\lv426\\specialtext.txt"));
+            while (special.ready()) {
+                text.append(special.readLine());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            if (special != null) {
+                special.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return text.toString();
     }
 }

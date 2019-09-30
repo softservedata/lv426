@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.concurrent.TimeUnit;
+
 
 public class NewAddressForCheckOut {
     private String cssPath;
@@ -57,6 +59,10 @@ public class NewAddressForCheckOut {
     //functional
 
     private WebElement getWebFirstNameBilling(){
+        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+        (new WebDriverWait(driver,10)).until(ExpectedConditions
+        .elementToBeClickable(By.cssSelector(cssPath + "firstname")));
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         return driver.findElement(By.cssSelector(cssPath + "firstname"));
     }
 
@@ -136,6 +142,12 @@ public class NewAddressForCheckOut {
         getWebLastNameBilling().clear();
     }
     public void firstNameClick(){
+        (new WebDriverWait(driver,10)).until(ExpectedConditions
+        .elementToBeClickable(getWebFirstNameBilling()));
+        try {
+            getWebFirstNameBilling().click();
+
+        }catch (org.openqa.selenium.ElementClickInterceptedException ex){}
         getWebFirstNameBilling().click();
     }
     public void firstNameClear(){

@@ -24,6 +24,22 @@ public final class UserRepository {
         return getValidUser();
     }
 
+    public IUser getMaksymUser(){
+        return User.get()
+                .setFirstName("Maksym")
+                .setLastName("Chapchai")
+                .seteMail("chapchaimax@gmail.com")
+                .setTelephone("456446465")
+                .setAddress1("Lviv")
+                .setCity("Lvivshchina")
+                .setPostCode("2")
+                .setCountry("Ukraine")
+                .setRegionState("L'vivs'ka Oblast'")
+                .setPassword("ocozliaes")
+                .setSubscribe(true)
+                .build();
+    }
+
     public IUser getValidUser() {
         return User.get()
                 .setFirstName("mary")
@@ -43,7 +59,7 @@ public final class UserRepository {
                 .build();
     }
 
-    public IUser getValidUserForCheckout() {
+    public IUser getValidUserForCheckoutWithRegistration() {
         return User.get()
                 .setFirstName("mary")
                 .setLastName("heras")
@@ -59,6 +75,22 @@ public final class UserRepository {
                 .setFax("12345")
                 .setCompany("company")
                 .setAddress2("address2")
+                .build();
+    }
+
+    public IUser getValidUserForCheckoutAsGuest() {
+        return User.get()
+                .setFirstName(RandomStringUtils.randomAlphabetic(3)+RandomStringUtils.randomNumeric(3))
+                .setLastName(RandomStringUtils.randomNumeric(3)+RandomStringUtils.randomAlphabetic(3))
+                .seteMail(RandomStringUtils.randomAlphabetic(5)+"@bk.com")
+                .setTelephone(RandomStringUtils.randomNumeric(9))
+                .setAddress1(RandomStringUtils.randomAlphabetic(7))
+                .setCity("Lviv")
+                .setPostCode("77777")
+                .setCountry("Ukraine")
+                .setRegionState("Ternopil's'ka Oblast'")
+                .setPassword("mary")
+                .setSubscribe(true)
                 .build();
     }
 

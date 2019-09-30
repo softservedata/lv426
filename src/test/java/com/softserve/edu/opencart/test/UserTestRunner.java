@@ -56,6 +56,7 @@ public abstract class UserTestRunner {
 	//
 	protected final Logger log = LoggerFactory.getLogger(this.getClass().getName());
 	WebDriver driver;
+	//WebDriver maxDriver;
 
 	@BeforeClass
 	public void beforeClass() {
@@ -81,7 +82,13 @@ public abstract class UserTestRunner {
 
 	//@BeforeMethod
 	public void beforeMethod() {
-		driver.get(SERVER_URL_BY_MAX);
+		log.info("Test suite start");
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe");//Maksym
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		//driver.get(SERVER_URL_BY_MAX);
 		log.info("Web Application loaded");
 	}
 
@@ -103,7 +110,6 @@ public abstract class UserTestRunner {
 	}
 
 	public HomePage loadMaxApplication() {
-		//driver.get(SERVER_URL);
 		driver.get(SERVER_URL_BY_MAX);
 		log.debug("loadMaxApplication start");
 		return new HomePage(driver);

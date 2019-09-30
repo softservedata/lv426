@@ -3,6 +3,10 @@ package com.softserve.edu.opencart.data.checkout;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.concurrent.TimeUnit;
 
 public class ConfirmOrderSumConclusionComponents {
     private WebElement element;
@@ -25,10 +29,15 @@ public class ConfirmOrderSumConclusionComponents {
     //functional
 
     public String getTitleConfirmTable(){
+        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+        (new WebDriverWait(driver, 5)).until(ExpectedConditions
+        .elementToBeClickable(getWebTitle()));
         return getWebTitle().getText();
     }
 
     public String getPriceConfirmTable(){
+        (new WebDriverWait(driver, 5)).until(ExpectedConditions
+                .elementToBeClickable(getWebPrice()));
         return getWebPrice().getText();
     }
 

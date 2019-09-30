@@ -1,5 +1,9 @@
 package com.softserve.edu.opencart.data;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
+import static com.softserve.edu.opencart.data.Currencies.TEST;
+
 public final class ProductRepository {
 
     private ProductRepository() {
@@ -13,7 +17,8 @@ public final class ProductRepository {
         return new Product("MacBook", "Intel Core 2 Duo processor Powered by an Intel Core 2 Duo processor at speeds up to 2.1..", "500")
                 .addPrice(Currencies.EURO, "472.33")
                 .addPrice(Currencies.POUND_STERLING, "368.73")
-                .addPrice(Currencies.US_DOLLAR, "602.00");
+                .addPrice(Currencies.US_DOLLAR, "602.00")
+                .addPrice(TEST, RandomStringUtils.randomAlphabetic(3)+"$#@!%^&*()?><:;.,/[]/*-+");
     }
 
     public static Product getIphone() {
@@ -21,7 +26,8 @@ public final class ProductRepository {
     }
 
     public static Product getNikon() {
-        return new Product("Nikon D300", "Engineered with pro-level features and performance, the 12.3-effective-megapixel D300 combine..", "122.00");
+        return new Product("Nikon D300", "Engineered with pro-level features and performance, the 12.3-effective-megapixel D300 combine..", "122.00")
+                .addPrice(TEST, "-15656484646");
     }
 
     public static Product getInvalid() {
@@ -32,7 +38,9 @@ public final class ProductRepository {
         return new Product("iPhone",
                 "iPhone is a revolutionary new mobile phone that allows you to make a call by simply tapping a nam..",
                 "123.20")
-                .addPrice(Currencies.US_DOLLAR, "100");
+                .addPrice(Currencies.US_DOLLAR, "101.00")
+                .addPrice(TEST, "33333333333333333333333333333333333333333333333333333333333333333333" +
+                        "3333333333333333333333333333333333333333333333333333333333333333");
     }
 
     public static Product getIMac()
