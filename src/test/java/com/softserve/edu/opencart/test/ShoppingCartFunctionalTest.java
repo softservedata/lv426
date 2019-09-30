@@ -28,9 +28,6 @@ public class ShoppingCartFunctionalTest extends UserTestRunner {
                                                     CountryForEstimation countryForEstimation,
                                                     DiscountUsageCode discount) {
 
-
-
-
         ShoppingCartPage shoppingCartPage =
                 loadMaxApplication()
                 .successfulSearch(searchFilter.getProduct())
@@ -52,7 +49,6 @@ public class ShoppingCartFunctionalTest extends UserTestRunner {
                 .getTotal(), shoppingCartPage.getFinalPricaContainer().getCashSumByTitle("Total:").getPrice());
 
 
-    }
+    }//2222
 
-//    public void
 }

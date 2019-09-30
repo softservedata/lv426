@@ -185,7 +185,7 @@
 						</temporary.variable>
 					</systemPropertyVariables>
 					<suiteXmlFiles>
-						<!-- <suiteXmlFile>testng.xml</suiteXmlFile> -->
+						<!-- <suiteXmlFile>shoppingCartParallel.xml</suiteXmlFile> -->
 						<!-- <suiteXmlFile>testng2.xml</suiteXmlFile> -->
 						<suiteXmlFile>testng7opencart.xml</suiteXmlFile>
 					</suiteXmlFiles>

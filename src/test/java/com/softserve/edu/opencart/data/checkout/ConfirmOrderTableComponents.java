@@ -17,15 +17,15 @@ public class ConfirmOrderTableComponents {
 
     private WebElement getWebProductName(){
         return driver.findElement(By.xpath("//div[@class='panel-body']//tbody/tr/td/a"));
-    }//[@class='text-left']
+    }
 
     private WebElement getWebModel(){
         return driver.findElement(By.xpath("//div[@class='panel-body']//tbody/tr/td/a/../" +
                 "following-sibling::td[@class=\"text-left\"]"));
-    }//div[@class='panel-collapse collapse in']//tbody/
+    }
     private WebElement getWebQuantity(){
         return driver.findElement(By.xpath("//div[@class='panel-body']//tbody/tr/td[@class='text-right'][1]"));
-    }//div[@class='panel-collapse collapse in']//tbody//tr
+    }
     private WebElement getWebUnitPrice(){
         return driver.findElement(By.xpath("//div[@class='panel-body']//tbody/tr/td[@class='text-right'][2]"));
     }

@@ -9,8 +9,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class DiscountComponent extends ShoppingCartPage {
 
-    protected WebDriver driver;
-
     private WebElement couponCodeInputField;
     private WebElement couponCodeApplyButton;
     private WebElement giftCertificationInputField;
@@ -18,15 +16,9 @@ public class DiscountComponent extends ShoppingCartPage {
 
     public DiscountComponent(WebDriver driver) {
         super(driver);
-        this.driver = driver;
-        //initElements();
     }
 
-    private void initElements() {
-//        giftCertificationInputField = (new WebDriverWait(driver,5))
-//                .until(ExpectedConditions
-//                        .visibilityOfElementLocated(By.cssSelector("div.panel-body input[name=\"voucher\"]")));
-    }
+
 
     // Page Object
 

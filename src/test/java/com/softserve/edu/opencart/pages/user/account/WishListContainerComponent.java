@@ -11,7 +11,8 @@ import java.util.List;
 public class WishListContainerComponent {
 
 	protected WebDriver driver;
-	private final String WISHLIST_COMPONENT_CSSSELECTOR = "table.table.table-bordered.table-hover tbody tr";
+	private final String WISHLIST_COMPONENT_CSSSELECTOR = "div.table-responsive table.table.table-bordered.table-hover tbody tr";
+	//private final String WISHLIST_COMPONENT_CSSSELECTOR = "//div[@class='table-responsive]'/table[@class='table table-bordered table-hover']/tbody";
 	private List<WishListComponent> wishListComponents;
 	public WishListContainerComponent(WebDriver driver) {
 		this.driver = driver;
@@ -94,7 +95,7 @@ public class WishListContainerComponent {
 		return getWishListComponents().size();
 	}
 
-	// Business Logic
+
 
 
 }
