@@ -69,13 +69,6 @@ public abstract class AccountSidebarGuestPart extends AccountSidebarPart {
 
     // Functional
 
-
-//    protected void defaultLogin(IUser user) {
-//    	new LoginPage(driver)
-//    		.fillLogin(user);
-//    }
-
-
     // Business Logic
 
     public LoginPage gotoLoginRight() {

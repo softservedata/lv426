@@ -1,12 +1,10 @@
 package com.softserve.edu.opencart.pages.user.account;
 
-import com.softserve.edu.opencart.data.IUser;
+import com.softserve.edu.opencart.data.ApplicationStatus;
+import com.softserve.edu.opencart.pages.user.HomePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
-import com.softserve.edu.opencart.data.ApplicationStatus;
-import com.softserve.edu.opencart.pages.user.HomePage;
 
 public class AccountLogoutPage extends AccountSidebarGuestPart {
 
@@ -25,7 +23,7 @@ public class AccountLogoutPage extends AccountSidebarGuestPart {
     // Page Object
 
     // continueButton
-    public WebElement getContinueButton() {
+    private WebElement getContinueButton() {
         return continueButton;
     }
 
@@ -33,7 +31,7 @@ public class AccountLogoutPage extends AccountSidebarGuestPart {
         return getContinueButton().getText();
     }
 
-    public void clickContinueButton() {
+    private void clickContinueButton() {
         getContinueButton().click();
     }
 
@@ -41,12 +39,9 @@ public class AccountLogoutPage extends AccountSidebarGuestPart {
 
     // Business Logic
 
-    public HomePage gotoContinue(){
+    public HomePage gotoContinue() {
         clickContinueButton();
         return new HomePage(driver);
     }
-
-    public void defaultLogin(IUser user)
-    {}
 
 }

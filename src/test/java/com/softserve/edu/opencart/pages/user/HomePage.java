@@ -1,14 +1,10 @@
 package com.softserve.edu.opencart.pages.user;
 
+import com.softserve.edu.opencart.pages.user.common.ProductsContainerComponent;
+import com.softserve.edu.opencart.pages.user.common.TopPart;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
-
-
-import com.softserve.edu.opencart.data.Currencies;
-import com.softserve.edu.opencart.pages.user.common.ProductsContainerComponent;
-import com.softserve.edu.opencart.pages.user.common.TopPart;
 
 public class HomePage extends TopPart {
 
@@ -32,18 +28,15 @@ public class HomePage extends TopPart {
 	// Page Object
 
 	// slideshow0
-	public WebElement getSlideshow0() {
+	private WebElement getSlideshow0() {
 		return slideshow0;
 	}
 
-	public WebElement getSlideshow0FirstImage() {
-		// return getSlideshow0().findElement(By.cssSelector("a > img"));
+	private WebElement getSlideshow0FirstImage() {
 		return getSlideshow0().findElement(By.xpath(".//a/img"));
-		// return Slideshow0.findElement(By.xpath("//a/img")); // ERROR
-		// return driver.findElement(By.xpath("//div[@id='slideshow0']//a/img"));
 	}
 
-	public String getSlideshow0FirstImageAttributeText(String attribute) {
+	private String getSlideshow0FirstImageAttributeText(String attribute) {
 		return getSlideshow0FirstImage().getAttribute(attribute).trim();
 	}
 
@@ -59,9 +52,4 @@ public class HomePage extends TopPart {
 	// Functional
 
 	// Business Logic
-//    public HomePage chooseCurrency(Currencies currency)
-//    {
-//        clickCurrencyByPartialName(currency);
-//        return new HomePage(driver);
-//    }
 }
