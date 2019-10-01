@@ -44,7 +44,7 @@ public class RegisterTest extends UserTestRunner {
         };
     }
 
-    @Test(dataProvider = "validUserRegister", enabled = false)
+    @Test(dataProvider = "validUserRegister")
     public void validUserRegisterTest(IUser validUser) {
         MyAccountPage successfulRegisterPage = loadOlesiaApplication()
                 .gotoRegisterPage()
