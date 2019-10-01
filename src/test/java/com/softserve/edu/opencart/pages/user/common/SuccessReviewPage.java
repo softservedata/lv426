@@ -12,11 +12,11 @@ public class SuccessReviewPage extends ProductReviewComponent {
         super(driver);
     }
 
-    public WebElement getMessage(){
+    public WebElement getMessage() {
         return driver.findElement(By.cssSelector("alert alert-success"));
     }
 
-    public String getText(){
+    public String getText() {
         return getMessage().getText();
     }
 }

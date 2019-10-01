@@ -14,11 +14,11 @@ public class ReviewPage extends LeftSidebarMenuComponent {
 
         super(driver);
         this.driver = driver;
-        //reviewContainerComponent = new ReviewContainerComponent(driver);
+
         reviewComponent = new ReviewComponent(driver);
     }
 
-    public EditReviewPage gotoEditReview(){
+    public EditReviewPage gotoEditReview() {
         return reviewComponent.goToEditReviewPage();
     }
 

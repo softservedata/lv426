@@ -25,7 +25,6 @@ public class SearchSuccessPage extends SearchCriteriaPart {
 	}
     private WebElement foundedGood;
 	private void initElements() {
-		// init elements
 		productsCriteria = new ProductsCriteriaComponent(driver);
 
 	}

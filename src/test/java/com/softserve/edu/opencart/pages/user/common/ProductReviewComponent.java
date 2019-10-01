@@ -7,43 +7,28 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 
-
 public class ProductReviewComponent extends ProductPage {
 
     private final String RATING_LOCATER_XPATH = "//input[@name='rating' and @value='%s']";
+    public static final String CHECK_ENABLING = "iva qwerty";
 
 
     public WebElement inputNameBox;
     public WebElement inputReviewBox;
-    public WebElement rateButton;
-    //public WebElement rating1;
-    //public WebElement rating2;
-    //public WebElement rating3;
-    //public WebElement rating4;
-    //public WebElement rating5;
     public WebElement continueReviewButton;
 
 
-
-    public ProductReviewComponent(WebDriver driver){
+    public ProductReviewComponent(WebDriver driver) {
         super(driver);
-        //this.productLayout=productLayout;
+
         initElements();
     }
 
-    //public ProductReviewComponent() { }
-
 
     public void initElements() {
-        //reviewButton = productLayout.findElement(By.xpath("//li[contains(@class,'' )]//a[contains(text(),'Reviews')]"));
+
         inputNameBox = driver.findElement(By.id("input-name"));
         inputReviewBox = driver.findElement(By.id("input-review"));
-        //rating1 = driver.findElement(By.xpath(Rating.VERYBAD.getValue()));
-        //rating1= productLayout.findElement(By.xpath("//input[@name='rating' and @value='1']"));
-        //rating2=productLayout.findElement(By.xpath("//input[@name='rating' and @value='2']"));
-        //rating3=productLayout.findElement(By.xpath("//input[@name='rating' and @value='3']"));
-        //rating4=productLayout.findElement(By.xpath("//input[@name='rating' and @value='4']"));
-        //rating5=productLayout.findElement(By.xpath("//input[@name='rating' and @value='5']"));
         continueReviewButton = driver.findElement(By.id("button-review"));
     }
 
@@ -58,7 +43,7 @@ public class ProductReviewComponent extends ProductPage {
         return continueReviewButton;
     }
 
-    public WebElement getRateButton(Rating rating){
+    public WebElement getRateButton(Rating rating) {
         return driver.findElement(By.xpath(String.format(RATING_LOCATER_XPATH, rating.getValue())));
     }
     //getReviewButton
@@ -73,6 +58,14 @@ public class ProductReviewComponent extends ProductPage {
         return inputReviewBox;
     }
 
+    public WebElement getReviewExist() {
+        return driver.findElement(By.xpath("//strong[contains(text(), 'iva qwerty')]"));
+    }
+
+    public String getNameReviewExistText() {
+        return getReviewExist().getText();
+    }
+
 
     //Functionality
 
@@ -85,7 +78,7 @@ public class ProductReviewComponent extends ProductPage {
         getInputNameBox().clear();
     }
 
-    public void clickRatingButton(Rating rating){
+    public void clickRatingButton(Rating rating) {
         getRateButton(rating).click();
     }
 
@@ -114,26 +107,46 @@ public class ProductReviewComponent extends ProductPage {
         getContinueReviewButton().click();
     }
 
-
-    public void sendReview(Reviews review) {
+    public void fillName(Reviews review) {
         clickInputNameBox();
         clearInputNameBox();
         setInputNameBox(review.getName());
+    }
+
+    public void fillReview(Reviews review) {
         clickInputReviewBox();
         clearInputReviewBox();
         setInputReviewBox(review.getFeedback());
+    }
+
+
+    public void sendReview(Reviews review) {
+        fillName(review);
+        fillReview(review);
         clickRatingButton(review.getRating());
         //clickContinueReviewButton();
 
     }
 
-    public SuccessReviewPage successReview(Reviews review){
+    public void sendInvalidReview(Reviews review) {
+        fillName(review);
+        fillReview(review);
+
+    }
+
+    public UnsuccessfullReviewPage invalidReview(Reviews review) {
+        sendInvalidReview(review);
+        clickContinueReviewButton();
+        return new UnsuccessfullReviewPage(driver);
+    }
+
+    public SuccessReviewPage successReview(Reviews review) {
         sendReview(review);
         clickContinueReviewButton();
         return new SuccessReviewPage(driver);
     }
 
-    public  UnsuccessfullReviewPage unsuccessReview(Reviews review){
+    public UnsuccessfullReviewPage unsuccessReview(Reviews review) {
         sendReview(review);
         clickContinueReviewButton();
         return new UnsuccessfullReviewPage(driver);

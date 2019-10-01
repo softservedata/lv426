@@ -11,8 +11,6 @@ public class UnsuccessfullReviewPage extends ProductReviewComponent {
     public static final String EXPECTED_RATING_MESSAGE = "Warning: Please select a review rating!";
 
 
-
-
     public UnsuccessfullReviewPage(WebDriver driver) {
         super(driver);
 
@@ -25,10 +23,8 @@ public class UnsuccessfullReviewPage extends ProductReviewComponent {
 
 
     public WebElement getWarning() {
-        //return driver.findElement(By.xpath("//*[@id='form-review']/div/div"));
         return driver.findElement(By.cssSelector("div.alert.alert-danger"));
     }
-
 
 
     public String getNameWarningText() {

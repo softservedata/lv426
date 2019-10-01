@@ -7,10 +7,7 @@ import org.openqa.selenium.WebElement;
 
 
 public class ProductPage extends BreadCrumbPart {
-    //public ProductPage(WebDriver productLayout) { }
 
-
-    //protected WebDriver productLayout;
     public WebElement reviewButton;
     private WebElement productDescription;
     private ProductsContainerComponent productsContainer;
@@ -21,7 +18,6 @@ public class ProductPage extends BreadCrumbPart {
 
     public ProductPage(WebDriver driver) {
         super(driver);
-        //this.productLayout = productLayout;
         initElements();
     }
 
@@ -52,12 +48,6 @@ public class ProductPage extends BreadCrumbPart {
     }
 
 
-   /* public void addProductToWishList(){
-        getProductComponentsContainer().clickProductComponentAddToWishButtonByName(productComponent.getNameText());
-    }
-    */
-
-
     public void productDescriptionclick() {
         getProductDescription().click();
     }
@@ -72,21 +62,7 @@ public class ProductPage extends BreadCrumbPart {
 }
 
 
-/*public ProductPage(WebDriver productLayout){
-        this.productLayout=productLayout;
-        initElements();
-    }
 
-    public ProductPage() {
-
-    }
-
-    public void initElements(){
-        productsContainer = new ProductsContainerComponent(productLayout);
-
-    }
-
-     */
 
 
 

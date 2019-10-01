@@ -17,7 +17,7 @@ public class ReviewComponent {
         initElements();
     }
 
-    private void initElements(){
+    private void initElements() {
 
         actionButton = driver.findElement(By.cssSelector("tr a.btn.btn-primary"));
     }

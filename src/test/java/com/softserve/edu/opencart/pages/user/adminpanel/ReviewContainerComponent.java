@@ -12,14 +12,12 @@ public class ReviewContainerComponent {
     private WebElement productComponents;
 
 
-
-
     public ReviewContainerComponent(WebDriver driver) {
-        this.driver=driver;
+        this.driver = driver;
         initElements();
     }
 
-    private void initElements(){
+    private void initElements() {
         productComponents = driver.findElement(By.cssSelector(REVIEW_CONTAINER_CSSSELECTOR));
 
     }
