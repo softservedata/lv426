@@ -13,16 +13,16 @@ import com.softserve.edu.opencart.pages.user.account.MyAccountPage;
 import com.softserve.edu.opencart.pages.user.account.UnsuccessfulLoginPage;
 import com.softserve.edu.opencart.tools.ListUtils;
 
-public class LoginTest extends UserTestRunner {
+public class LoginTest extends ParallelTestRunner { //UserTestRunner {
 
-	@DataProvider
+	@DataProvider//(parallel=true)
 	public Object[][] validUser() {
 		return new Object[][] {
 			{ UserRepository.get().getHahahaUser() },
 		};
 	}
 
-	@DataProvider
+	@DataProvider(parallel=true)
 	public Object[][] validUsers() {
 		//return ListUtils.toMultiArray(UserRepository.get().fromCsv());
 		return ListUtils.toMultiArray(UserRepository.get().fromExcel());
