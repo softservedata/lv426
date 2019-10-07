@@ -27,22 +27,38 @@ public final class RestUrlRepository {
 	}
 
 	public static RestUrl getLogout() {
-		return new RestUrl().addBaseUrl(server).addGetUrl("").addPostUrl("/logout").addPutUrl("").addDeleteUrl("");
+		return new RestUrl()
+				.addBaseUrl(server)
+				.addGetUrl("")
+				.addPostUrl("/logout")
+				.addPutUrl("")
+				.addDeleteUrl("");
 	}
 
 	public static RestUrl getTokenLifetime() {
-		return new RestUrl().addBaseUrl(server).addGetUrl("/tokenlifetime").addPostUrl("").addPutUrl("/tokenlifetime")
+		return new RestUrl()
+				.addBaseUrl(server)
+				.addGetUrl("/tokenlifetime")
+				.addPostUrl("")
+				.addPutUrl("/tokenlifetime")
 				.addDeleteUrl("");
 	}
 
 	public static RestUrl getUserItem() {
-		return new RestUrl().addBaseUrl(server).addGetUrl("/item/{index}/user/{name}").addPostUrl("").addPutUrl("")
+		return new RestUrl()
+				.addBaseUrl(server)
+				.addGetUrl("/item/{index}/user/{name}")
+				.addPostUrl("")
+				.addPutUrl("")
 				.addDeleteUrl("");
 	}
 
 	public static RestUrl getItem() {
-		return new RestUrl().addBaseUrl(server).addGetUrl("/item/{index}").addPostUrl("/item/{index}")
-				.addPutUrl("/item/{index}").addDeleteUrl("/item/{index}");
+		return new RestUrl().addBaseUrl(server)
+				.addGetUrl("/item/{index}")
+				.addPostUrl("/item/{index}")
+				.addPutUrl("/item/{index}")
+				.addDeleteUrl("/item/{index}");
 	}
 
 }

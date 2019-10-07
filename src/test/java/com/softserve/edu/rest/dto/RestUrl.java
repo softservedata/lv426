@@ -49,18 +49,18 @@ public class RestUrl {
 	}
 
 	public String readGetUrl() {
-		return urls.get(RestUrlKeys.GET);
+		return readBaseUrl() + urls.get(RestUrlKeys.GET);
 	}
 
 	public String readPostUrl() {
-		return urls.get(RestUrlKeys.POST);
+		return readBaseUrl() + urls.get(RestUrlKeys.POST);
 	}
 
 	public String readPutUrl() {
-		return urls.get(RestUrlKeys.PUT);
+		return readBaseUrl() + urls.get(RestUrlKeys.PUT);
 	}
 
 	public String readDeleteUrl() {
-		return urls.get(RestUrlKeys.DELETE);
+		return readBaseUrl() + urls.get(RestUrlKeys.DELETE);
 	}
 }

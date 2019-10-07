@@ -1,6 +1,6 @@
 package com.softserve.edu.rest.entity;
 
-class SimpleEntity {
+public class SimpleEntity {
 
 	private String content;
 
