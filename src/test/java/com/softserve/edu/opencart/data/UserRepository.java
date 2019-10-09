@@ -112,7 +112,7 @@ public final class UserRepository {
                 .setAddress2("7address2")
                 .build();
     }
-    public IUser getChangePasswordUser() {
+    public IUser getPasswordUser() {
         return User.get()
                 .setFirstName("Test1")
                 .setLastName("Test1")
@@ -127,6 +127,38 @@ public final class UserRepository {
                 .setSubscribe(true)
                 .build();
     }
+    public IUser getChangedPasswordUser() {
+        return User.get()
+                .setFirstName("Test1")
+                .setLastName("Test1")
+                .seteMail(System.getenv().get("EMAIL_ADDRESS"))
+                .setTelephone("123456")
+                .setAddress1("111")
+                .setCity("111")
+                .setPostCode("111")
+                .setCountry("Ukraine")
+                .setRegionState("Kyiv")
+                .setPassword(System.getenv().get("ANOTHER_OPENCART_PASSWORD"))
+                .setSubscribe(true)
+                .build();
+    }
+
+    public IUser getInvalidEmailUser() {
+        return User.get()
+                .setFirstName("Test1")
+                .setLastName("Test1")
+                .seteMail("vika@gmail.com")
+                .setTelephone("123456")
+                .setAddress1("111")
+                .setCity("111")
+                .setPostCode("111")
+                .setCountry("Ukraine")
+                .setRegionState("Kyiv")
+                .setPassword(System.getenv().get("OPENCART_PASSWORD"))
+                .setSubscribe(true)
+                .build();
+    }
+
 
     public IUser getWrongFirstNameUser() {
         return User.get()
@@ -220,20 +252,20 @@ public final class UserRepository {
         return User.get()
                 .setFirstName("Danylo")
                 .setLastName("Protz")
-                .seteMail("protzzz@gmail.com")
+                .seteMail("dan@gmail.com")
                 .setTelephone("0987654321")
                 .setAddress1("Zalizniaka 12")
                 .setCity("Lviv")
                 .setPostCode("98675")
                 .setCountry("Ukraine")
                 .setRegionState("L'vivs'ka Oblast'")
-                .setPassword("protz")
+                .setPassword("danylo")
                 .setSubscribe(false)
                 .setFax("12341")
                 .build();
     }
 
-//    public IUser getShopValidUser(){
+    //    public IUser getShopValidUser(){
 //        return User.get()
 //                .setFirstName()
 //    }
