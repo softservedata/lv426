@@ -50,7 +50,7 @@ public class AddressBookTest extends UserTestRunner {
     @Override
     @AfterMethod
     public void afterMethod(ITestResult testResult) {
-        //  addressBookPage = loadYuraApplication()
+         // addressBookPage = loadYuraApplication().
     }
 
     @Test(dataProvider = "validAddresses")
@@ -75,24 +75,22 @@ public class AddressBookTest extends UserTestRunner {
 
     @Test(dataProvider = "invalidAddress")
     public void failAddAddressTest(IAddress address) {
-        EditAddressPage editAddressPage = addressBookPage
+        EditAddressMessages messages = addressBookPage
                 .newAddressClick()
                 .fillFailEditAddress(address);
-        EditAddressMessages messages =
-                new EditAddressMessages(driver);
+
         Assert.assertTrue(messages.editInitElements());
-        addressBookPage = editAddressPage.clickBackButton();
+        addressBookPage = messages.clickBackButton();
     }
 
     @Test(dataProvider = "invalidAddress")
     public void failEditAddressTest(IAddress address) {
-        EditAddressPage editAddressPage = addressBookPage
+        EditAddressMessages messages = addressBookPage
                 .editClick()
                 .fillFailEditAddress(address);
-        EditAddressMessages messages =
-                new EditAddressMessages(driver);
+
         Assert.assertTrue(messages.editInitElements());
-        addressBookPage = editAddressPage.clickBackButton();
+        addressBookPage = messages.clickBackButton();
     }
 
 }

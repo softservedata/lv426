@@ -45,18 +45,25 @@ public class ForgotPasswordPage extends AccountSidebarGuestPart {
     }
 
     // Functional
-    private void fillEmailField(String text) {
+    public void fillForgottenEmailField(String text) {
         clickEmailField();
         clearEmailField();
         setEmailField(text);
     }
 
     // Business Logic
-    private LoginPage sendEmailField(String email) {
-        fillEmailField(email);
+    public SuccessfulLoginPage sendEmailField(IUser user) {
+        fillForgottenEmailField(user.geteMail());
         clickContinueButton();
-        return  new LoginPage(driver);
+        return new SuccessfulLoginPage(driver);
     }
+
+    public UnsuccessfulForgottenPage sendIvalidEmail(IUser user) {
+        fillForgottenEmailField(user.geteMail());
+        clickContinueButton();
+        return new UnsuccessfulForgottenPage(driver);
+    }
+
     public void defaultLogin(IUser user)
     {}
 

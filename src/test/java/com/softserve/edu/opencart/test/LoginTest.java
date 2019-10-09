@@ -12,7 +12,6 @@ import static com.softserve.edu.opencart.pages.user.account.MyAccountPage.EXPECT
 import static com.softserve.edu.opencart.pages.user.account.UnsuccessfulLoginPage.EXPECTED_LOGIN_MESSAGE;
 
 public class LoginTest extends UserTestRunner {
-
 	@DataProvider
 	public Object[][] validUser() {
 		return new Object[][]{

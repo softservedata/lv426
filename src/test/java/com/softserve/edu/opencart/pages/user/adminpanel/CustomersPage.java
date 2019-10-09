@@ -1,13 +1,17 @@
 package com.softserve.edu.opencart.pages.user.adminpanel;
 
+import com.softserve.edu.opencart.data.IUser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.concurrent.TimeUnit;
 
 public class CustomersPage extends LeftSidebarMenuComponent {
     private WebElement customerNameField;
     private WebElement filterButton;
-    private WebElement unlockButton;
 
     public CustomersPage(WebDriver driver) {
         super(driver);
@@ -17,7 +21,6 @@ public class CustomersPage extends LeftSidebarMenuComponent {
     private void initElements() {
         customerNameField = driver.findElement(By.id("input-name"));
         filterButton = driver.findElement(By.id("button-filter"));
-        unlockButton = driver.findElement(By.cssSelector("a.btn.btn-warning"));
     }
 
     // Page Object
@@ -49,23 +52,26 @@ public class CustomersPage extends LeftSidebarMenuComponent {
 
     //unlockButton
     public WebElement getUnlockButton() {
-        return unlockButton;
+        return driver.findElement(By.cssSelector("a.btn.btn-warning"));
     }
 
     public void clickUnlockButton() {
+        (new WebDriverWait(driver, 5)).until(ExpectedConditions.elementToBeClickable(getUnlockButton()));
         getUnlockButton().click();
     }
 
     //Functional
-    private void filterCustomer(String text) {
+    public void filterCustomer(IUser user) {
         clickCustomerNameField();
         clearCustomerNameField();
-        setCustomerNameField(text);
+        setCustomerNameField(user.getFirstName() + " " + user.getLastName());
         clickFilterButton();
     }
-    private void unlockUser() {
+
+    public void unlockUser(IUser user) {
+        filterCustomer(user);
+
         clickUnlockButton();
     }
-
 
 }

@@ -278,7 +278,7 @@ public class EditAddressPage extends AccountSidebarLoggedPart {
         return new AddressBookPage(driver);
     }
 
-    public EditAddressPage fillFailEditAddress(IAddress address) {
+    public EditAddressMessages fillFailEditAddress(IAddress address) {
         inputFirstname(address.getFirstname());
         inputLastname(address.getLastname());
         inputAddress1(address.getAddress1());
@@ -290,7 +290,7 @@ public class EditAddressPage extends AccountSidebarLoggedPart {
         clickNoDefault();
         clickContinueButton();
 
-        return new EditAddressPage(driver);
+        return new EditAddressMessages(driver);
     }
 }
 

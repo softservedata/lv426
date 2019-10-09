@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import com.softserve.edu.opencart.pages.user.account.PasswordResetPage;
 
+import java.util.ArrayList;
+
 public class PasswordResetMail extends MailSidebarPart {
     private WebElement passwordResetLink;
 
@@ -14,7 +16,7 @@ public class PasswordResetMail extends MailSidebarPart {
     }
 
     private void initElements() {
-        passwordResetLink = driver.findElement(By.cssSelector("a[href*='http://192.168.238.129/opencart/upload/']"));//todo
+        passwordResetLink = driver.findElement(By.cssSelector("a[href*='http://192.168.238.130/opencart/upload/']"));//todo
     }
 
     // Page Object
@@ -30,6 +32,10 @@ public class PasswordResetMail extends MailSidebarPart {
     //Business Logic
     public PasswordResetPage gotoResetPasswordPage() {
         clickPasswordResetLink();
+        ArrayList<String> tabs2 = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs2.get(0));
+        driver.close();
+        driver.switchTo().window(tabs2.get(1));
         return new PasswordResetPage(driver);
     }
 }
