@@ -3,19 +3,22 @@ package com.softserve.edu.rest.services;
 import com.softserve.edu.rest.data.User;
 import com.softserve.edu.rest.dto.RestParameters;
 import com.softserve.edu.rest.entity.SimpleEntity;
+import com.softserve.edu.rest.resources.CoolDownTimeResource;
 import com.softserve.edu.rest.resources.LoginResource;
 
-public class GuestService {
+public class GuestService extends BaseService{
 
 	protected LoginResource loginResource;
 //	protected TokenlifetimeResource tokenlifetimeResource;
-//	protected CooldownResource cooldownResource;
+	protected CoolDownTimeResource cooldownResource;
 //	private ResetApiResource resetApiResource;
+protected User user;
+
 
 	public GuestService() {
 		loginResource = new LoginResource();
 //		tokenlifetimeResource = new TokenlifetimeResource();
-//		cooldownResource = new CooldownResource();
+		cooldownResource = new CoolDownTimeResource();
 //		resetApiResource = new ResetApiResource();
 	}
 
@@ -50,10 +53,11 @@ public class GuestService {
 //		return new Lifetime(simpleEntity.getContent());
 //	}
 
-//	public Cooldown getCurrentCooldown() {
-//		SimpleEntity simpleEntity = cooldownResource.httpGetAsEntity(null, null);
-//		return new Cooldown(simpleEntity.getContent());
-//	}
+	public String getCoolDownTime(){
+		SimpleEntity simpleEntity = cooldownResource
+				.httpGetAsEntity(null,null);
+		return simpleEntity.getContent();
+	}
 
 	// TODO
 //    public void UnsuccessfulUserLogin(IUser user)

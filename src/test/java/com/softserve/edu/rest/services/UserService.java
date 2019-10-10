@@ -3,6 +3,7 @@ package com.softserve.edu.rest.services;
 import com.softserve.edu.rest.data.User;
 import com.softserve.edu.rest.dto.RestParameters;
 import com.softserve.edu.rest.entity.SimpleEntity;
+import com.softserve.edu.rest.resources.CoolDownTimeResource;
 import com.softserve.edu.rest.resources.LoginResource;
 import com.softserve.edu.rest.resources.LogoutResource;
 
@@ -42,6 +43,16 @@ public class UserService extends GuestService {
         return new GuestService();
     }
 
+    public String changeCoolDown(String newTime){
+        RestParameters bodyParameters = new RestParameters()
+                .addParameter("token", user.getToken())
+                .addParameter("time", newTime);
+        SimpleEntity simpleEntity = cooldownResource
+                .httpPutAsEntity(null, null, bodyParameters);
+        //checkEntity(simpleEntity, user.getPassword());
+        return simpleEntity.getContent();
+    }
+
 //    public String getUserName() {
 //        RestParameters urlParameters = new RestParameters()
 //                .addParameter("token", user.getToken());
@@ -62,13 +73,5 @@ public class UserService extends GuestService {
 //        return simpleEntity.getContent();
 //    }
 //
-//    public String changeCooldown(String newTime){
-//        RestParameters bodyParameters = new RestParameters()
-//                .addParameter("token", user.getToken())
-//                .addParameter("time", newTime);
-//        SimpleEntity simpleEntity = cooldownResource
-//                .httpPutAsEntity(null, null, bodyParameters);
-//        //checkEntity(simpleEntity, user.getPassword());
-//        return simpleEntity.getContent();
-//    }
+
 }

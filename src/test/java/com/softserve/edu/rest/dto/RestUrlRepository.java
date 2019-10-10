@@ -25,6 +25,15 @@ public final class RestUrlRepository {
 				.addDeleteUrl("");
 		// .addDeleteUrl("/logout");
 	}
+	public static RestUrl getCoolDownTime() {
+		return new RestUrl()
+				.addBaseUrl(server)
+				.addGetUrl("/cooldowntime")
+				.addPostUrl("")
+				.addPutUrl("/cooldowntime")
+				.addDeleteUrl("");
+		// .addDeleteUrl("/logout");
+	}
 
 	public static RestUrl getLogout() {
 		return new RestUrl()

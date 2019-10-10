@@ -3,6 +3,10 @@ package com.softserve.edu.rest.resources;
 import com.google.gson.Gson;
 import com.softserve.edu.rest.dto.RestParameters;
 import com.softserve.edu.rest.dto.RestUrl;
+import org.apache.poi.ss.formula.functions.T;
+
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 
 public class RestQueries<TGET, TPOST, TPUT, TDELETE> extends RestCrud {
 
@@ -11,59 +15,59 @@ public class RestQueries<TGET, TPOST, TPUT, TDELETE> extends RestCrud {
     //protected final Logger log = Logger.getLogger(this.getClass());
     //
     // TODO Move Converter to class
+
     private Class<TGET> classTGET;
     private Class<TPOST> classTPOST;
     private Class<TPUT> classTPUT;
     private Class<TDELETE> classTDELETE;
     private Gson gson;
 
-    protected RestQueries(RestUrl restUrl,
-    		Class<TGET> classTGET, Class<TPOST> classTPOST,
-    		Class<TPUT> classTPUT, Class<TDELETE> classTDELETE) {
+//    protected RestQueries(RestUrl restUrl,
+//    		Class<TGET> classTGET, Class<TPOST> classTPOST,
+//    		Class<TPUT> classTPUT, Class<TDELETE> classTDELETE) {
+//        super(restUrl);
+//        this.classTGET = classTGET;  // TODO Get Class<T> from <T>
+//        this.classTPOST = classTPOST;
+//        this.classTPUT = classTPUT;
+//        this.classTDELETE = classTDELETE;
+//        gson = new Gson();
+//    }
+
+    protected RestQueries(RestUrl restUrl){
         super(restUrl);
-        this.classTGET = classTGET;  // TODO Get Class<T> from <T>
-        this.classTPOST = classTPOST;
-        this.classTPUT = classTPUT;
-        this.classTDELETE = classTDELETE;
+        this.classTGET = getClassInstance(classTGET, 0);
+        this.classTPOST = getClassInstance(classTPOST, 1);
+        this.classTPUT = getClassInstance(classTPUT, 2);
+        this.classTDELETE = getClassInstance(classTDELETE, 3);
         gson = new Gson();
     }
-    
-    // TODO Move Converter to class
-    private TGET convertToEntityTGET(String json) {
-        return gson.fromJson(json, classTGET);
+
+    private <Z> Z convertToEntity(String json, Class<Z> someClass){
+        return gson.fromJson(json ,  someClass);
     }
-    
-    private TPOST convertToEntityTPOST(String json) {
-        return gson.fromJson(json, classTPOST);
+    @SuppressWarnings("unchecked")
+    private <X> Class<X> getClassInstance(Class<X> anyClass, int index){
+        return  anyClass = ((Class<X>)((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[index]);
     }
-    
-    private TPUT convertToEntityTPUT(String json) {
-        return gson.fromJson(json, classTPUT);
-    }
-    
-    private TDELETE convertToEntityTDELETE(String json) {
-        return gson.fromJson(json, classTDELETE);
-    }
-    
     // Entity - - - - - - - - - - - - - - - - - - - -
 
     public TGET httpGetAsEntity(RestParameters pathVariables, RestParameters urlParameters) {
-        return convertToEntityTGET(httpGetAsText(pathVariables, urlParameters));
+        return convertToEntity(httpGetAsText(pathVariables, urlParameters), classTGET);
     }
 
     public TPOST httpPostAsEntity(RestParameters pathVariables, RestParameters urlParameters,
                               RestParameters bodyParameters) {
-        return convertToEntityTPOST(httpPostAsText(pathVariables, urlParameters, bodyParameters));
+        return convertToEntity(httpPostAsText(pathVariables, urlParameters, bodyParameters), classTPOST);
     }
 
     public TPUT httpPutAsEntity(RestParameters pathVariables, RestParameters urlParameters,
                              RestParameters bodyParameters) {
-        return convertToEntityTPUT(httpPutAsText(pathVariables, urlParameters, bodyParameters));
+        return convertToEntity(httpPutAsText(pathVariables, urlParameters, bodyParameters), classTPUT);
     }
 
     public TDELETE httpDeleteAsEntity(RestParameters pathVariables, RestParameters urlParameters,
                                 RestParameters bodyParameters) {
-        return convertToEntityTDELETE(httpDeleteAsText(pathVariables, urlParameters, bodyParameters));
+        return convertToEntity(httpDeleteAsText(pathVariables, urlParameters, bodyParameters), classTDELETE);
     }
     
     // List Entity - - - - - - - - - - - - - - - - - - - -

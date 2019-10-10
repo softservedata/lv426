@@ -6,9 +6,7 @@ import com.softserve.edu.rest.entity.SimpleEntity;
 public class LogoutResource extends RestQueries<SimpleEntity, SimpleEntity, SimpleEntity, SimpleEntity> {
 
     public LogoutResource() {
-    	super(RestUrlRepository.getLogout(),
-				SimpleEntity.class, SimpleEntity.class,
-				SimpleEntity.class, SimpleEntity.class);
+    	super(RestUrlRepository.getLogout());
     }
 
 }
