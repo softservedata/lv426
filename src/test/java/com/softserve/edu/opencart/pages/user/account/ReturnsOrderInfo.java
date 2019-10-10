@@ -28,7 +28,7 @@ public class ReturnsOrderInfo {
     private void initElements() {
         this.firstname = driver.findElement(By.id("input-firstname"));
         this.lastname = driver.findElement(By.id("input-lastname"));
-        this.email = driver.findElement(By.id("/input-email"));
+        this.email = driver.findElement(By.id("input-email"));
         this.phone = driver.findElement(By.id("input-telephone"));
         this.orderId = driver.findElement(By.id("input-order-id"));
         this.orderDate =

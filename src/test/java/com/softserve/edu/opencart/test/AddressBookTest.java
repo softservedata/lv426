@@ -5,8 +5,8 @@ import com.softserve.edu.opencart.data.IUser;
 import com.softserve.edu.opencart.data.UserRepository;
 import com.softserve.edu.opencart.data.addressbook.AddressRepository;
 import com.softserve.edu.opencart.pages.user.account.EditAddressMessages;
-import com.softserve.edu.opencart.pages.user.account.EditAddressPage;
 import com.softserve.edu.opencart.pages.user.addressbook.AddressBookPage;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
@@ -42,15 +42,12 @@ public class AddressBookTest extends UserTestRunner {
                 .gotoAddressBookRight();
     }
 
-    @AfterClass
-    public void finish() {
-        driver.quit();
-    }
+
 
     @Override
     @AfterMethod
     public void afterMethod(ITestResult testResult) {
-         // addressBookPage = loadYuraApplication().
+          addressBookPage = loadAddreeBook();
     }
 
     @Test(dataProvider = "validAddresses")
@@ -58,6 +55,7 @@ public class AddressBookTest extends UserTestRunner {
         addressBookPage = addressBookPage
                 .newAddressClick()
                 .fillEditAddress(address);
+        waitDriver.until(ExpectedConditions.visibilityOf(addressBookPage.getTable()));
         Assert.assertTrue(addressBookPage.getAddressTable()
                 .getAddressByText(address.getFirstname())
                 .getAddressInfo().contains(address.getFirstname()));
@@ -68,6 +66,7 @@ public class AddressBookTest extends UserTestRunner {
         addressBookPage = addressBookPage
                 .editClick()
                 .fillEditAddress(address);
+
         Assert.assertTrue(addressBookPage.getAddressTable()
                 .getAddressByText(address.getFirstname())
                 .getAddressInfo().contains(address.getFirstname()));
@@ -78,9 +77,8 @@ public class AddressBookTest extends UserTestRunner {
         EditAddressMessages messages = addressBookPage
                 .newAddressClick()
                 .fillFailEditAddress(address);
-
+        System.out.println(address.getFirstname());
         Assert.assertTrue(messages.editInitElements());
-        addressBookPage = messages.clickBackButton();
     }
 
     @Test(dataProvider = "invalidAddress")
@@ -90,7 +88,6 @@ public class AddressBookTest extends UserTestRunner {
                 .fillFailEditAddress(address);
 
         Assert.assertTrue(messages.editInitElements());
-        addressBookPage = messages.clickBackButton();
     }
 
 }

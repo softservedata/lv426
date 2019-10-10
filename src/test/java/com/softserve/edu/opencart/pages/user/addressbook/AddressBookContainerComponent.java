@@ -26,7 +26,7 @@ public class AddressBookContainerComponent  {
     private void initElements() {
         addressElements = new ArrayList<>();
         for(WebElement productTable : driver.findElements(By.xpath(ADDRESSBOOK_COMPONENTS_SELECTOR))){
-            addressElements.add(new AddressBookTableInfo( driver));
+            addressElements.add(new AddressBookTableInfo(productTable, driver));
 
         }
     }
@@ -37,7 +37,7 @@ public class AddressBookContainerComponent  {
 
     public AddressBookTableInfo getAddressByText(String text) {
         int ind = 0;
-        for(int i = 0; i<addressElements.size()-1; i++) {
+        for(int i = 0; i<addressElements.size(); i++) {
             if(addressElements.get(i).getAddressInfo().contains(text)) {
                 ind=i;
                 break;

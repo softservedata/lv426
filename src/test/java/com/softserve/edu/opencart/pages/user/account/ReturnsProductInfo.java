@@ -42,6 +42,7 @@ public class ReturnsProductInfo {
                 By.xpath("//input[@name='opened' and @value='1']"));
         this.returnReason = driver.findElement(By.xpath(
                 "//input[@name = 'return_reason_id' and @value = '1']"));
+        clickReturnReason();
         this.detail = driver.findElement(By.name("comment"));
         this.submitButton = driver.findElement(
                 By.xpath("//input[@class = 'btn btn-primary']"));

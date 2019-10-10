@@ -13,4 +13,7 @@ public class ReturnsPage extends LeftSidebarMenuComponent {
         returnsProducts = new ReturnsContainerComponent(driver);
     }
 
+    public ReturnsContainerComponent getReturnsProducts() {
+        return returnsProducts;
+    }
 }

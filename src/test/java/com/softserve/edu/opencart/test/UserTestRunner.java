@@ -10,7 +10,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import com.softserve.edu.opencart.pages.user.account.OrderHistoryPage;
 import com.softserve.edu.opencart.pages.user.account.WishListPage;
+import com.softserve.edu.opencart.pages.user.addressbook.AddressBookPage;
 import com.softserve.edu.opencart.pages.user.adminpanel.AdminLoginPage;
 import com.softserve.edu.opencart.pages.user.mail.LoginPage;
 import org.apache.commons.io.FileUtils;
@@ -18,6 +20,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.ITestResult;
@@ -51,6 +54,8 @@ public abstract class UserTestRunner {
 
 	private final String ADMIN_YURA_URL = "http://192.168.112.135/opencart/upload/admin";
 	private final String SERVER_YURA_URL = "http://192.168.112.135/opencart/upload";
+	private final String ADDRESS_BOOK = "http://192.168.112.135/opencart/upload/index.php?route=account/address";
+	private final String ORDER_HISTORY = "http://192.168.112.135/opencart/upload/index.php?route=account/order";
 	
  	private final String ADMIN_URL_BY_VIKA = "http://192.168.238.130/opencart/upload/admin";
 	private final String SERVER_URL_BY_VIKA = "http://192.168.238.130/opencart/upload";
@@ -62,7 +67,7 @@ public abstract class UserTestRunner {
 	//
 	private final Logger log = LoggerFactory.getLogger(this.getClass().getName());
 	WebDriver driver;
-	//WebDriver maxDriver;
+	WebDriverWait waitDriver;
 
 	@BeforeClass
 	public void beforeClass() {
@@ -131,8 +136,21 @@ public abstract class UserTestRunner {
 
 	HomePage loadYuraApplication() {
 		driver.get(SERVER_YURA_URL);
+		waitDriver = new WebDriverWait(driver,20);
 		log.debug("loadYuraApplication start");
 		return new HomePage(driver);
+	}
+
+	public  OrderHistoryPage loadOrderHistory() {
+		driver.get(ORDER_HISTORY);
+		log.debug("OrderHistory load");
+		return new OrderHistoryPage(driver);
+	}
+
+	public AddressBookPage loadAddreeBook() {
+		driver.get(ADDRESS_BOOK);
+		log.debug("AddressBook load");
+		return new AddressBookPage(driver);
 	}
 
 

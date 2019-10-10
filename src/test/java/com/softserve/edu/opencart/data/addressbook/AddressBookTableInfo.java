@@ -12,17 +12,18 @@ public class AddressBookTableInfo  {
     private WebElement editButton;
     private WebElement deleteButton;
 
-    public AddressBookTableInfo( WebDriver driver) {
+    public AddressBookTableInfo(WebElement element,  WebDriver driver) {
+        this.element = element;
         this.driver = driver;
         initElemnts();
     }
 
     public void initElemnts() {
-        addressInfo = driver.findElement(By.xpath("//table[contains(@class,'table table-bordered')]" +
+        addressInfo = element.findElement(By.xpath("//table[contains(@class,'table table-bordered')]" +
                 "//td[contains(@class,'text-left')]"));
-        editButton = driver.findElement(By.xpath("//table[contains(@class,'table table-bordered')]" +
+        editButton = element.findElement(By.xpath("//table[contains(@class,'table table-bordered')]" +
                 "//td[contains(@class,'text-right')]"+"//a[@class = 'btn btn-info']"));
-        deleteButton = driver.findElement(By.xpath("//table[contains(@class,'table table-bordered')]" +
+        deleteButton = element.findElement(By.xpath("//table[contains(@class,'table table-bordered')]" +
                 "//td[contains(@class,'text-right')]"+"//a[@class = 'btn btn-danger']"));
     }
 

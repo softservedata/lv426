@@ -1,6 +1,7 @@
 package com.softserve.edu.opencart.pages.user.addressbook;
 
 import com.softserve.edu.opencart.data.IAddress;
+import com.softserve.edu.opencart.data.addressbook.AddressBookTableInfo;
 import com.softserve.edu.opencart.pages.user.account.AccountSidebarLoggedPart;
 import com.softserve.edu.opencart.pages.user.account.EditAddressPage;
 import org.openqa.selenium.By;
@@ -34,6 +35,7 @@ public class AddressBookPage extends AccountSidebarLoggedPart {
     }
 
     private void initElements() {
+        //addressTable.getAddresselements().clear();
         addressTable = new AddressBookContainerComponent(driver);
         newAddressButton =
                 driver.findElement(By.linkText("New Address"));
@@ -45,6 +47,10 @@ public class AddressBookPage extends AccountSidebarLoggedPart {
 
     public AddressBookContainerComponent getAddressTable() {
         return addressTable;
+    }
+
+    public WebElement getTable() {
+        return driver.findElement(By.xpath("//table[@class='table table-bordered table-hover']"));
     }
 
     /**
@@ -70,6 +76,12 @@ public class AddressBookPage extends AccountSidebarLoggedPart {
         return new EditAddressPage(driver);
     }
 
+    public AddressBookPage deleteAll() {
+        for(int i = 0; i<addressTable.getAddresselements().size(); i++) {
+            addressTable.getAddresselements().get(i).clickDeleteButton();
+        }
+        return new AddressBookPage(driver);
+    }
     // Business Logic
 
 }

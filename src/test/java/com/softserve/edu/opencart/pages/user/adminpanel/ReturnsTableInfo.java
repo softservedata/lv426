@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 public class ReturnsTableInfo {
     private WebDriver driver;
     private String elementPath;
-
+    private WebElement element;
     private WebElement returnId;
     private WebElement productId;
     private WebElement customer;
@@ -17,20 +17,21 @@ public class ReturnsTableInfo {
     private WebElement dateAdd;
     private WebElement editButton;
 
-    public ReturnsTableInfo(String  element, WebDriver driver) {
+    public ReturnsTableInfo(WebElement  element, WebDriver driver, String path) {
         this.driver = driver;
-        this.elementPath = element;
+        this.element = element;
+        this.elementPath = path;
     }
 
     public void initElements() {
-        returnId = driver.findElement(By.xpath(elementPath + "/td[1]"));
-        productId = driver.findElement(By.xpath(elementPath + "/td[2]"));
-        customer = driver.findElement(By.xpath(elementPath + "/td[3]"));
-        product = driver.findElement(By.xpath(elementPath + "/td[4]"));
-        model = driver.findElement(By.xpath(elementPath + "/td[5]"));
-        status = driver.findElement(By.xpath(elementPath + "/td[6]"));
-        dateAdd = driver.findElement(By.xpath(elementPath + "/td[7]"));
-        editButton = driver.findElement(By.xpath(elementPath + "/td[8]"));
+        returnId = element.findElement(By.xpath(elementPath + "/td[1]"));
+        productId = element.findElement(By.xpath(elementPath + "/td[2]"));
+        customer = element.findElement(By.xpath(elementPath + "/td[3]"));
+        product = element.findElement(By.xpath(elementPath + "/td[4]"));
+        model = element.findElement(By.xpath(elementPath + "/td[5]"));
+        status = element.findElement(By.xpath(elementPath + "/td[6]"));
+        dateAdd = element.findElement(By.xpath(elementPath + "/td[7]"));
+        editButton = element.findElement(By.xpath(elementPath + "/td[8]"));
     }
 
     public String getReturnId() {

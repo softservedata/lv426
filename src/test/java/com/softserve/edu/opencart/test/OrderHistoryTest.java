@@ -6,7 +6,9 @@ import com.softserve.edu.opencart.data.shop.FinalPriceTableComponent;
 import com.softserve.edu.opencart.pages.user.account.OrderDetailPage;
 import com.softserve.edu.opencart.pages.user.account.OrderHistoryPage;
 import com.softserve.edu.opencart.pages.user.account.ReturnOrderPage;
+import com.softserve.edu.opencart.pages.user.account.SuccessfulReturnPage;
 import com.softserve.edu.opencart.pages.user.adminpanel.AdminLoginPage;
+import com.softserve.edu.opencart.pages.user.adminpanel.ReturnsPage;
 import com.softserve.edu.opencart.pages.user.shop.ShoppingCartPage;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -18,6 +20,7 @@ import org.testng.annotations.Test;
 public class OrderHistoryTest extends UserTestRunner {
 
     private OrderHistoryPage orderHistoryPage;
+    private static final String id = "2";
 
     @BeforeClass
     public void setUp() {
@@ -32,28 +35,34 @@ public class OrderHistoryTest extends UserTestRunner {
     @Override
     @AfterMethod
     public void afterMethod(ITestResult testResult) {
-         // addressBookPage = loadYuraApplication()
+        orderHistoryPage  = loadOrderHistory();
     }
 
     @Test
     public void reorderTest() {
         OrderDetailPage orderDetailPage =
-                orderHistoryPage.getOrdersTable().getOrderById("2")//make "2" const
+                orderHistoryPage.getOrdersTable().getOrderById(id)
                         .clickLookDetailButton().reorderButtonClick();
-        ShoppingCartPage shoppingCartPage = orderDetailPage.gotoShoppingCartPage();
-        Assert.assertFalse(shoppingCartPage.getFinalPriceTableComponentElements().isEmpty());
+        ShoppingCartPage shoppingCartPage =
+                orderDetailPage.gotoShoppingCartPage();
+        Assert.assertFalse(
+                shoppingCartPage.getFinalPriceTableComponentElements()
+                        .isEmpty());
+
+
     }
 
     @Test
     public void returnTest() {
         ReturnOrderPage returnOrderPage =
-                orderHistoryPage.getOrdersTable().getOrderById("2")
+                orderHistoryPage.getOrdersTable().getOrderById(id)
                         .clickLookDetailButton().returnButtonClick();
-        returnOrderPage.submitButtonClick();
 
-      //  AdminLoginPage adminLoginPage = loadYuraAdminLoginPage().goToAdminHomePage().goToCurrencyPage()
+        SuccessfulReturnPage successfulReturnPage =
+                returnOrderPage.clickSubmitButton();
+        Assert.assertTrue(successfulReturnPage.isSuccessfulPage());
+
     }
-
 
 
 }

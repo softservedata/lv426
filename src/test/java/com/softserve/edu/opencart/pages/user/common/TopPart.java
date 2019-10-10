@@ -3,6 +3,7 @@ package com.softserve.edu.opencart.pages.user.common;
 import com.softserve.edu.opencart.data.*;
 import com.softserve.edu.opencart.pages.user.HomePage;
 import com.softserve.edu.opencart.pages.user.account.*;
+import com.softserve.edu.opencart.pages.user.addressbook.AddressBookPage;
 import com.softserve.edu.opencart.pages.user.checkout.CheckOutPage;
 import com.softserve.edu.opencart.pages.user.search.SearchSuccessPage;
 import com.softserve.edu.opencart.pages.user.search.SearchUnsuccessPage;
