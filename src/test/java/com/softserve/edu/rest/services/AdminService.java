@@ -1,6 +1,8 @@
 package com.softserve.edu.rest.services;
 
 import com.softserve.edu.rest.data.User;
+import com.softserve.edu.rest.dto.RestParameters;
+import com.softserve.edu.rest.entity.SimpleEntity;
 
 public class AdminService extends UserService {
 
@@ -27,7 +29,7 @@ public class AdminService extends UserService {
 //        cooldownResource = new CooldownResource();
     }
 
-//    public AdminService(LoginResource loginResource,
+    //    public AdminService(LoginResource loginResource,
 //                        TokenlifetimeResource tokenlifetimeResource,
 //                        User user) {
 //        super(loginResource, tokenlifetimeResource, user);
@@ -77,6 +79,19 @@ public class AdminService extends UserService {
 ////                .addParameter("time", adminUser.getTime())
 //                .addParameter("time", "3333" )
 //                ;
+    public AdminService changeCoolDown(String newTime) {
+        RestParameters bodyParameters = new RestParameters()
+                .addParameter("token", user.getToken())
+                .addParameter("time", newTime);
+        SimpleEntity simpleEntity = cooldownResource
+                .httpPutAsEntity(null, null, bodyParameters);
+        //checkEntity(simpleEntity, user.getPassword());
+        return this;
+    }
+
+    public GuestService gotoGuestFunctional(){
+        return this;
+    }
 //
 //        SimpleEntity simpleEntity = userResource.
 //                httpPutAsEntity(null, bodyParameters, null);

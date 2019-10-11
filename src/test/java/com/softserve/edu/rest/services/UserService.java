@@ -43,15 +43,6 @@ public class UserService extends GuestService {
         return new GuestService();
     }
 
-    public String changeCoolDown(String newTime){
-        RestParameters bodyParameters = new RestParameters()
-                .addParameter("token", user.getToken())
-                .addParameter("time", newTime);
-        SimpleEntity simpleEntity = cooldownResource
-                .httpPutAsEntity(null, null, bodyParameters);
-        //checkEntity(simpleEntity, user.getPassword());
-        return simpleEntity.getContent();
-    }
 
 //    public String getUserName() {
 //        RestParameters urlParameters = new RestParameters()

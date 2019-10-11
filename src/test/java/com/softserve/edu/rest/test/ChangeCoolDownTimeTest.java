@@ -9,21 +9,21 @@ import org.testng.annotations.Test;
 
 import static org.testng.AssertJUnit.assertEquals;
 
-public class ChangeCoolDownTimeTest
-{
+public class ChangeCoolDownTimeTest {
     @DataProvider
     public Object[][] correctUser() {
         return new Object[][]{
-                { UserRepository.getAdmin() },
+                {UserRepository.getAdmin()},
         };
     }
 
     @Test(dataProvider = "correctUser")
-    public void coolDownTimeChangeTest(User user){
+    public void coolDownTimeChangeTest(User user) {
         GuestService guestService = new GuestService();
         UserService userService = guestService
-                .successfulUserLogin(user);
-        userService.changeCoolDown("500000");
+                .getCoolDownTime()
+                .SuccessfulAdminLogin(user)
+                .changeCoolDown("500000");
         assertEquals(userService.getCoolDownTime(), "500000");
     }
 }
