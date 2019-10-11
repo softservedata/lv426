@@ -1,14 +1,18 @@
 package com.softserve.edu.rest.services;
 
+import com.softserve.edu.rest.data.Lifetime;
 import com.softserve.edu.rest.data.User;
+import com.softserve.edu.rest.dto.RestParameters;
+import com.softserve.edu.rest.entity.SimpleEntity;
+import com.softserve.edu.rest.resources.LoginResource;
 
 public class AdminService extends UserService {
 
-//    private AdminsResource adminsResource;
-//    private LoggedAdminsResource loggedAdminsResource;
+    //    private AdminsResource adminsResource;
+    // private LoggedAdminsResource loggedAdminsResource;
 //    // Locked
 //    private LockedAdminsResource lockedAdminsResource;
-//    private LoggedUsersResource loggedUsersResource;
+    private LoginResource loggedAdminResource;
 //    private LockedUsersResource lockedUsersResource;
 //    private UnlockAllUsersResource unlockAllUsersResource;
 //    private LockUnlockUserResource lockUnlockUserResource;
@@ -18,7 +22,7 @@ public class AdminService extends UserService {
     public AdminService(User user) {
         super(user);
 //        adminsResource = new AdminsResource();
-//        loggedAdminsResource = new LoggedAdminsResource();
+        loggedAdminResource = new LoginResource();
 //        loggedUsersResource = new LoggedUsersResource();
 //        lockedAdminsResource = new LockedAdminsResource();
 //        lockedUsersResource = new LockedUsersResource();
@@ -27,24 +31,22 @@ public class AdminService extends UserService {
 //        cooldownResource = new CooldownResource();
     }
 
-//    public AdminService(LoginResource loginResource,
+    //    public AdminService(LoginResource loginResource,
 //                        TokenlifetimeResource tokenlifetimeResource,
 //                        User user) {
 //        super(loginResource, tokenlifetimeResource, user);
 //    }
 //
-//    public AdminService UpdateTokenlifetime(Lifetime lifetime) {
-//        // System.out.println("lifetime = " + lifetime.getTimeAsString() + " User = " +
-//        // user);
-//        RestParameters bodyParameters = new RestParameters()
-//                .addParameter("token", user.getToken())
-//                .addParameter("time", lifetime.getTimeAsString());
-//        SimpleEntity simpleEntity = tokenlifetimeResource
-//                .httpPutAsEntity(null, null, bodyParameters);
-//       // checkEntity(simpleEntity, "Error Update Tokenlifetime");
-//        return this;
-//    }
-//
+    public AdminService updateTokenLifetime(Lifetime lifetime) {
+        RestParameters bodyParameters = new RestParameters()
+                .addParameter("token", user.getToken())
+                .addParameter("time", lifetime.getTime());
+        SimpleEntity simpleEntity = tokenResources
+                .httpPutAsEntity(null, null, bodyParameters);
+        return this;
+    }
+
+    //
 //    //    public String getAdminName() {
 ////        RestParameters urlParameters = new RestParameters()
 ////                .addParameter("token",user.getToken());
@@ -131,7 +133,8 @@ public class AdminService extends UserService {
 //        SimpleEntity simpleEntity = loggedUsersResource.httpGetAsEntity(null, urlParameters);
 //        return simpleEntity.getContent();
 //    }
-//
+
+    //
 //    public boolean unlockUser(User unlockingUser) {
 //        RestParameters bodyParameters = new RestParameters()
 //                .addParameter("token", user.getToken())

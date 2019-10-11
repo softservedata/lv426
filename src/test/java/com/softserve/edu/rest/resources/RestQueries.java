@@ -4,6 +4,9 @@ import com.google.gson.Gson;
 import com.softserve.edu.rest.dto.RestParameters;
 import com.softserve.edu.rest.dto.RestUrl;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.ParameterizedType;
+
 public class RestQueries<TGET, TPOST, TPUT, TDELETE> extends RestCrud {
 
     private final String CONVERT_OBJECT_ERROR = "ConvertToObject Error. %s\n%s";
@@ -11,61 +14,53 @@ public class RestQueries<TGET, TPOST, TPUT, TDELETE> extends RestCrud {
     //protected final Logger log = Logger.getLogger(this.getClass());
     //
     // TODO Move Converter to class
+
     private Class<TGET> classTGET;
     private Class<TPOST> classTPOST;
     private Class<TPUT> classTPUT;
     private Class<TDELETE> classTDELETE;
+
     private Gson gson;
 
-    protected RestQueries(RestUrl restUrl,
-    		Class<TGET> classTGET, Class<TPOST> classTPOST,
-    		Class<TPUT> classTPUT, Class<TDELETE> classTDELETE) {
+    protected RestQueries(RestUrl restUrl) {
         super(restUrl);
-        this.classTGET = classTGET;  // TODO Get Class<T> from <T>
-        this.classTPOST = classTPOST;
-        this.classTPUT = classTPUT;
-        this.classTDELETE = classTDELETE;
+        this.classTGET = getEmptyInstance(classTGET, 0);  // TODO Get Class<T> from <T>
+        this.classTPOST = getEmptyInstance(classTPOST, 1);
+        this.classTPUT = getEmptyInstance(classTPUT, 2);
+        this.classTDELETE = getEmptyInstance(classTDELETE, 3);
         gson = new Gson();
     }
-    
-    // TODO Move Converter to class
-    private TGET convertToEntityTGET(String json) {
-        return gson.fromJson(json, classTGET);
-    }
-    
-    private TPOST convertToEntityTPOST(String json) {
-        return gson.fromJson(json, classTPOST);
-    }
-    
-    private TPUT convertToEntityTPUT(String json) {
-        return gson.fromJson(json, classTPUT);
-    }
-    
-    private TDELETE convertToEntityTDELETE(String json) {
-        return gson.fromJson(json, classTDELETE);
-    }
-    
-    // Entity - - - - - - - - - - - - - - - - - - - -
 
+    @SuppressWarnings("unchecked")
+    private <X> Class<X> getEmptyInstance(Class<X> clazz, int index) {
+        clazz = ((Class<X>) ((ParameterizedType) getClass()
+                .getGenericSuperclass()).getActualTypeArguments()[index]);
+        return clazz;
+    }
+    private <T> T convertTo(String json, Class<T> current) {
+        return gson.fromJson(json, current);
+    }
+    // Entity - - - - - - - - - - - - - - - - - - - -
     public TGET httpGetAsEntity(RestParameters pathVariables, RestParameters urlParameters) {
-        return convertToEntityTGET(httpGetAsText(pathVariables, urlParameters));
+
+        return convertTo(httpGetAsText(pathVariables, urlParameters), classTGET);
     }
 
     public TPOST httpPostAsEntity(RestParameters pathVariables, RestParameters urlParameters,
-                              RestParameters bodyParameters) {
-        return convertToEntityTPOST(httpPostAsText(pathVariables, urlParameters, bodyParameters));
+                                  RestParameters bodyParameters) {
+        return convertTo(httpPostAsText(pathVariables, urlParameters, bodyParameters), classTPOST);
     }
 
     public TPUT httpPutAsEntity(RestParameters pathVariables, RestParameters urlParameters,
-                             RestParameters bodyParameters) {
-        return convertToEntityTPUT(httpPutAsText(pathVariables, urlParameters, bodyParameters));
+                                RestParameters bodyParameters) {
+        return convertTo(httpPutAsText(pathVariables, urlParameters, bodyParameters), classTPUT);
     }
 
     public TDELETE httpDeleteAsEntity(RestParameters pathVariables, RestParameters urlParameters,
-                                RestParameters bodyParameters) {
-        return convertToEntityTDELETE(httpDeleteAsText(pathVariables, urlParameters, bodyParameters));
+                                      RestParameters bodyParameters) {
+        return convertTo(httpDeleteAsText(pathVariables, urlParameters, bodyParameters), classTDELETE);
     }
-    
+
     // List Entity - - - - - - - - - - - - - - - - - - - -
 
     // TODO
