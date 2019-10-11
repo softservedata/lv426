@@ -38,6 +38,7 @@ public class RestQueries<TGET, TPOST, TPUT, TDELETE> extends RestCrud {
     private <Z> Z convertToEntity(String json, Class<Z> someClass){
         return gson.fromJson(json ,  someClass);
     }
+
     @SuppressWarnings("unchecked")
     private <X> Class<X> getClassInstance(Class<X> anyClass, int index){
         return  anyClass = ((Class<X>)((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[index]);

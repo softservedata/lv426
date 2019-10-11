@@ -9,7 +9,7 @@ public final class RestUrlRepository {
 	public static RestUrl getAdminAuthorized() {
 		return new RestUrl()
 				.addBaseUrl(server)
-				.addGetUrl("/login/users")
+				.addGetUrl("/login/admins")
 				.addPostUrl("/login")
 				.addPutUrl("")
 				.addDeleteUrl("");
@@ -19,7 +19,7 @@ public final class RestUrlRepository {
 	public static RestUrl getUserAuthorized() {
 		return new RestUrl()
 				.addBaseUrl(server)
-				.addGetUrl("")
+				.addGetUrl("/login/users")
 				.addPostUrl("/login")
 				.addPutUrl("")
 				.addDeleteUrl("");
@@ -70,4 +70,24 @@ public final class RestUrlRepository {
 				.addDeleteUrl("/item/{index}");
 	}
 
+	public static RestUrl getAllAdmins()
+	{
+		return new RestUrl()
+				.addBaseUrl(server)
+				.addGetUrl("/admins")
+				.addPostUrl("")
+				.addPutUrl("")
+				.addDeleteUrl("");
+
+	}
+	public static RestUrl getAllUsers()
+	{
+		return new RestUrl()
+				.addBaseUrl(server)
+				.addGetUrl("/users")
+				.addPostUrl("")
+				.addPutUrl("")
+				.addDeleteUrl("");
+
+	}
 }

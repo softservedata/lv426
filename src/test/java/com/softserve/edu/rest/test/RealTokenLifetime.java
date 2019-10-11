@@ -4,45 +4,44 @@ import com.softserve.edu.rest.data.Lifetime;
 import com.softserve.edu.rest.data.LifetimeRepository;
 import com.softserve.edu.rest.data.User;
 import com.softserve.edu.rest.data.UserRepository;
+import com.softserve.edu.rest.services.AdminService;
 import com.softserve.edu.rest.services.GuestService;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class TokenLifeTime {
+public class RealTokenLifetime {
     private GuestService guestService;
-    private User notExistUser;
-    private  Lifetime lifetime;
+
 
     @DataProvider
-    public Object[][] correctUser() {
+    public Object[][] adminUser() {
         return new Object[][]{
                 {UserRepository.getAdmin()},
         };
     }
-
 
     @BeforeClass
     public void setUp() {
         guestService = new GuestService();
     }
 
-    @Test
-    public void getTokenLifeTime() {
-        lifetime = guestService.getTokenLifetime();
-
-        Assert.assertEquals(lifetime.getTime(), LifetimeRepository.getDefault().getTime());
+    @Test(dataProvider = "adminUser")
+    public void checkRealTime(User user) {
+        Lifetime testTime = LifetimeRepository.getShortLifeTime();
+        AdminService adminService = guestService.successfulAdminLogin(user);
+        adminService.updateTokenLifetime(testTime);
+        wait(testTime);
+        Assert.assertFalse(adminService.isAdminLogged(user));
     }
 
-    @Test
-    public void checkIfTokenLifeTimeIsPositiveNumber() {
-        lifetime = guestService.getTokenLifetime();
-        Assert.assertTrue(Integer.parseInt(lifetime.getTime()) > 0);
-    }
-
-    private int parseInt(String lifetime) {
-        return Integer.parseInt(lifetime);
+    private void wait(Lifetime time) {
+        try {
+            Thread.sleep(Integer.parseInt(time.getTime()));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 

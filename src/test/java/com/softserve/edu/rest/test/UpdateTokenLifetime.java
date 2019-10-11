@@ -13,36 +13,37 @@ import org.testng.asserts.SoftAssert;
 public class UpdateTokenLifetime {
     private GuestService guestService;
     private AdminService adminService;
-    private UserService userService;
-    private UserRepository user;
+
 
 
     @DataProvider
     public Object[][] inCorrectLifetime() {
         return new Object[][]{
-                {LifetimeRepository.getNegativeDefault()},
                 {LifetimeRepository.getSpecialSymbolLifetime()},
                 {LifetimeRepository.getTextLifetime()},
                 {LifetimeRepository.getZeroLifetime()},
+                {LifetimeRepository.getNegativeDefault()}
         };
     }
 
     @BeforeClass
     public void setUp() {
-        guestService = new GuestService();
+
     }
 
     @BeforeMethod
     public void loginAsAdmin() {
+        guestService = new GuestService();
         adminService = guestService.successfulAdminLogin(UserRepository.getAdmin());
     }
 
     @AfterMethod
     public void logoutAdmin() {
-        if (adminService != null) {
+        if ((adminService != null) && (guestService != null)){
             adminService.updateTokenLifetime(LifetimeRepository.getDefault());
             adminService.logoutUser();
             adminService = null;
+            guestService = null;
         }
     }
 
@@ -61,11 +62,10 @@ public class UpdateTokenLifetime {
 
     @Test(dataProvider = "inCorrectLifetime")
     public void tryToUpdateInvalidTokenLifeTime(Lifetime lifetime) {
-        Lifetime lifeTimeBefore = guestService.getTokenLifetime();
         adminService.updateTokenLifetime(lifetime);
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(adminService.getTokenLifetime().getTime(), lifeTimeBefore.getTime());
-        softAssert.assertNotEquals(adminService.getTokenLifetime().getTime(), lifetime);
+        softAssert.assertEquals(adminService.getTokenLifetime().getTime(), LifetimeRepository.getDefault().getTime());
+        softAssert.assertNotEquals(adminService.getTokenLifetime().getTime(), lifetime.getTime());
         softAssert.assertAll();
     }
 

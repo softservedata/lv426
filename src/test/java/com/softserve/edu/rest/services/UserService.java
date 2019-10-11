@@ -5,12 +5,7 @@ import com.softserve.edu.rest.data.User;
 import com.softserve.edu.rest.dto.RestParameters;
 import com.softserve.edu.rest.entity.SimpleEntity;
 
-import com.softserve.edu.rest.resources.CoolDownTimeResource;
-import com.softserve.edu.rest.resources.LoginResource;
-
 import com.softserve.edu.rest.resources.LogoutResource;
-
-import java.lang.reflect.InvocationTargetException;
 
 public class UserService extends GuestService {
 
