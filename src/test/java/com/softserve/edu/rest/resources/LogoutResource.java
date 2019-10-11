@@ -7,7 +7,8 @@ import org.apache.commons.lang3.ObjectUtils;
 public class LogoutResource extends RestQueries<ObjectUtils.Null, SimpleEntity, ObjectUtils.Null, ObjectUtils.Null> {
 
     public LogoutResource() {
-        super(RestUrlRepository.getLogout());
+    	super(RestUrlRepository.getLogout());
+
     }
 
 }

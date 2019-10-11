@@ -3,6 +3,10 @@ package com.softserve.edu.rest.resources;
 import com.google.gson.Gson;
 import com.softserve.edu.rest.dto.RestParameters;
 import com.softserve.edu.rest.dto.RestUrl;
+import org.apache.poi.ss.formula.functions.T;
+
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
@@ -24,41 +28,40 @@ public class RestQueries<TGET, TPOST, TPUT, TDELETE> extends RestCrud {
 
     protected RestQueries(RestUrl restUrl) {
         super(restUrl);
-        this.classTGET = getEmptyInstance(classTGET, 0);  // TODO Get Class<T> from <T>
-        this.classTPOST = getEmptyInstance(classTPOST, 1);
-        this.classTPUT = getEmptyInstance(classTPUT, 2);
-        this.classTDELETE = getEmptyInstance(classTDELETE, 3);
+        this.classTGET = getClassInstance(classTGET, 0);  // TODO Get Class<T> from <T>
+        this.classTPOST = getClassInstance(classTPOST, 1);
+        this.classTPUT = getClassInstance(classTPUT, 2);
+        this.classTDELETE = getClassInstance(classTDELETE, 3);
         gson = new Gson();
     }
 
-    @SuppressWarnings("unchecked")
-    private <X> Class<X> getEmptyInstance(Class<X> clazz, int index) {
-        clazz = ((Class<X>) ((ParameterizedType) getClass()
-                .getGenericSuperclass()).getActualTypeArguments()[index]);
-        return clazz;
+    private <Z> Z convertToEntity(String json, Class<Z> someClass){
+        return gson.fromJson(json ,  someClass);
     }
-    private <T> T convertTo(String json, Class<T> current) {
-        return gson.fromJson(json, current);
+    @SuppressWarnings("unchecked")
+    private <X> Class<X> getClassInstance(Class<X> anyClass, int index){
+        return  anyClass = ((Class<X>)((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[index]);
+
     }
     // Entity - - - - - - - - - - - - - - - - - - - -
     public TGET httpGetAsEntity(RestParameters pathVariables, RestParameters urlParameters) {
-
-        return convertTo(httpGetAsText(pathVariables, urlParameters), classTGET);
+        return convertToEntity(httpGetAsText(pathVariables, urlParameters), classTGET);
     }
 
     public TPOST httpPostAsEntity(RestParameters pathVariables, RestParameters urlParameters,
-                                  RestParameters bodyParameters) {
-        return convertTo(httpPostAsText(pathVariables, urlParameters, bodyParameters), classTPOST);
+                              RestParameters bodyParameters) {
+        return convertToEntity(httpPostAsText(pathVariables, urlParameters, bodyParameters), classTPOST);
     }
 
     public TPUT httpPutAsEntity(RestParameters pathVariables, RestParameters urlParameters,
-                                RestParameters bodyParameters) {
-        return convertTo(httpPutAsText(pathVariables, urlParameters, bodyParameters), classTPUT);
+                             RestParameters bodyParameters) {
+        return convertToEntity(httpPutAsText(pathVariables, urlParameters, bodyParameters), classTPUT);
     }
 
     public TDELETE httpDeleteAsEntity(RestParameters pathVariables, RestParameters urlParameters,
-                                      RestParameters bodyParameters) {
-        return convertTo(httpDeleteAsText(pathVariables, urlParameters, bodyParameters), classTDELETE);
+                                RestParameters bodyParameters) {
+        return convertToEntity(httpDeleteAsText(pathVariables, urlParameters, bodyParameters), classTDELETE);
+
     }
 
     // List Entity - - - - - - - - - - - - - - - - - - - -

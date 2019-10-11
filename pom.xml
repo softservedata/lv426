@@ -51,7 +51,11 @@
 		<!-- - - - - - JSON - - - - - -->
 		<jackson.core.version>2.10.0</jackson.core.version>
 		<google.gson.version>2.8.5</google.gson.version>
+<<<<<<< HEAD
 
+=======
+		<com.fasterxml.jackson.core.version>2.9.8</com.fasterxml.jackson.core.version>
+>>>>>>> 053d6c140c498dc0a0734519f884293061e2835f
 	</properties>
 
 	<dependencies>
@@ -135,6 +139,16 @@
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>${google.gson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${jackson.core.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson.core.version}</version>
 		</dependency>
 
 	</dependencies>

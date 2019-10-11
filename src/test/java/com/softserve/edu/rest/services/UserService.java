@@ -4,6 +4,10 @@ import com.softserve.edu.rest.data.Lifetime;
 import com.softserve.edu.rest.data.User;
 import com.softserve.edu.rest.dto.RestParameters;
 import com.softserve.edu.rest.entity.SimpleEntity;
+
+import com.softserve.edu.rest.resources.CoolDownTimeResource;
+import com.softserve.edu.rest.resources.LoginResource;
+
 import com.softserve.edu.rest.resources.LogoutResource;
 
 import java.lang.reflect.InvocationTargetException;
@@ -12,7 +16,7 @@ public class UserService extends GuestService {
 
     protected LogoutResource logoutResource;
 
-//    protected UserResource userResource;
+    //    protected UserResource userResource;
     protected User user;
 
 //    protected UsersResourse usersResourse;
@@ -44,6 +48,7 @@ public class UserService extends GuestService {
         return new GuestService();
     }
 
+
     public UserService tryToChangeTokenLifeTime(Lifetime time) {
         RestParameters body = new RestParameters()
                 .addParameter("token", user.getToken())
@@ -52,6 +57,16 @@ public class UserService extends GuestService {
         return this;
     }
 
+
+    public String changeCoolDown(String newTime) {
+        RestParameters bodyParameters = new RestParameters()
+                .addParameter("token", user.getToken())
+                .addParameter("time", newTime);
+        SimpleEntity simpleEntity = cooldownResource
+                .httpPutAsEntity(null, null, bodyParameters);
+        //checkEntity(simpleEntity, user.getPassword());
+        return simpleEntity.getContent();
+    }
 
 
 //    public String getUserName() {
@@ -74,13 +89,5 @@ public class UserService extends GuestService {
 //        return simpleEntity.getContent();
 //    }
 //
-//    public String changeCooldown(String newTime){
-//        RestParameters bodyParameters = new RestParameters()
-//                .addParameter("token", user.getToken())
-//                .addParameter("time", newTime);
-//        SimpleEntity simpleEntity = cooldownResource
-//                .httpPutAsEntity(null, null, bodyParameters);
-//        //checkEntity(simpleEntity, user.getPassword());
-//        return simpleEntity.getContent();
-//    }
+
 }
