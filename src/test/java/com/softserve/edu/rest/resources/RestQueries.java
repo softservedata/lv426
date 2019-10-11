@@ -3,10 +3,8 @@ package com.softserve.edu.rest.resources;
 import com.google.gson.Gson;
 import com.softserve.edu.rest.dto.RestParameters;
 import com.softserve.edu.rest.dto.RestUrl;
-import org.apache.poi.ss.formula.functions.T;
 
 import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 
 public class RestQueries<TGET, TPOST, TPUT, TDELETE> extends RestCrud {
 

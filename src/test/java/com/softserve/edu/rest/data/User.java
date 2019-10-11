@@ -1,12 +1,15 @@
 package com.softserve.edu.rest.data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
 
     private String name;
     private String password;
     private String token;
     private String time;
-//    private List<Item> items;
+    private List<Item> items;
     private boolean adminRights;
     private final String ERROR_USER_LOCKED = "ERROR, user locked";
     private final String ERROR_USER_NOT_FOUND = "ERROR, user not found";
@@ -15,7 +18,7 @@ public class User {
     public User(String name, String password) {
         this.name = name;
         this.password = password;
- //       items = new ArrayList<>();
+        items = new ArrayList<>();
         adminRights = false;
     }
 
@@ -37,10 +40,10 @@ public class User {
         return this;
     }
 
-//    public User addItem(Item item) {
-//        items.add(item);
-//        return this;
-//    }
+    public User addItem(Item item) {
+        items.add(item);
+        return this;
+    }
 
     public User setPassword(String password) {
         this.password = password;
@@ -69,9 +72,9 @@ public class User {
         return adminRights;
     }
 
-//    public List<Item> getItems() {
-//        return items;
-//    }
+    public List<Item> getItems() {
+        return items;
+    }
 
     @Override
     public String toString() {
