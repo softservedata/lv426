@@ -1,8 +1,15 @@
 package com.softserve.edu.rest.data;
 
-import java.util.ArrayList;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+
 import java.util.List;
 
+@Getter
+@Builder
+@AllArgsConstructor
 public class User {
 
     private String name;
@@ -18,7 +25,7 @@ public class User {
     public User(String name, String password) {
         this.name = name;
         this.password = password;
-        items = new ArrayList<>();
+        //       items = new ArrayList<>();
         adminRights = false;
     }
 
@@ -72,9 +79,9 @@ public class User {
         return adminRights;
     }
 
-    public List<Item> getItems() {
-        return items;
-    }
+//    public List<Item> getItems() {
+//        return items;
+//    }
 
     @Override
     public String toString() {

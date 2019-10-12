@@ -1,13 +1,15 @@
 package com.softserve.edu.rest.data;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+
+@Getter
+@Builder
+@AllArgsConstructor
 public class Item {
     private String item;
     private String index;
-
-    public Item(String item, String index) {
-        this.item = item;
-        this.index = index;
-    }
 
     public Item setItem(String item) {
         this.item = item;

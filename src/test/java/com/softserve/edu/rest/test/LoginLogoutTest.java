@@ -8,6 +8,8 @@ import com.softserve.edu.rest.data.UserRepository;
 import com.softserve.edu.rest.services.GuestService;
 import com.softserve.edu.rest.services.UserService;
 
+import java.lang.reflect.InvocationTargetException;
+
 public class LoginLogoutTest {
 
 	@DataProvider

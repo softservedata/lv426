@@ -6,14 +6,23 @@ public class ItemRepository {
     }
 
     public static Item getValidItem() {
-        return new Item("computer", "1234");
+        return Item.builder()
+                .item("computer")
+                .index("1234")
+                .build();
     }
 
     public static Item getUpdateValidItem() {
-        return new Item("phone", "1234");
+        return Item.builder()
+                .item("phone")
+                .index("1234")
+                .build();
     }
 
     public static Item getSecond() {
-        return new Item("my second information", "2345");
+        return Item.builder()
+                .item("information")
+                .index("9876")
+                .build();
     }
 }

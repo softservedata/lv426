@@ -6,6 +6,9 @@ import com.softserve.edu.rest.dto.RestUrl;
 
 import java.lang.reflect.ParameterizedType;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.ParameterizedType;
+
 public class RestQueries<TGET, TPOST, TPUT, TDELETE> extends RestCrud {
 
     private final String CONVERT_OBJECT_ERROR = "ConvertToObject Error. %s\n%s";
@@ -18,22 +21,12 @@ public class RestQueries<TGET, TPOST, TPUT, TDELETE> extends RestCrud {
     private Class<TPOST> classTPOST;
     private Class<TPUT> classTPUT;
     private Class<TDELETE> classTDELETE;
+
     private Gson gson;
 
-//    protected RestQueries(RestUrl restUrl,
-//    		Class<TGET> classTGET, Class<TPOST> classTPOST,
-//    		Class<TPUT> classTPUT, Class<TDELETE> classTDELETE) {
-//        super(restUrl);
-//        this.classTGET = classTGET;  // TODO Get Class<T> from <T>
-//        this.classTPOST = classTPOST;
-//        this.classTPUT = classTPUT;
-//        this.classTDELETE = classTDELETE;
-//        gson = new Gson();
-//    }
-
-    protected RestQueries(RestUrl restUrl){
+    protected RestQueries(RestUrl restUrl) {
         super(restUrl);
-        this.classTGET = getClassInstance(classTGET, 0);
+        this.classTGET = getClassInstance(classTGET, 0);  // TODO Get Class<T> from <T>
         this.classTPOST = getClassInstance(classTPOST, 1);
         this.classTPUT = getClassInstance(classTPUT, 2);
         this.classTDELETE = getClassInstance(classTDELETE, 3);
@@ -43,12 +36,13 @@ public class RestQueries<TGET, TPOST, TPUT, TDELETE> extends RestCrud {
     private <Z> Z convertToEntity(String json, Class<Z> someClass){
         return gson.fromJson(json ,  someClass);
     }
+
     @SuppressWarnings("unchecked")
     private <X> Class<X> getClassInstance(Class<X> anyClass, int index){
         return  anyClass = ((Class<X>)((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[index]);
+
     }
     // Entity - - - - - - - - - - - - - - - - - - - -
-
     public TGET httpGetAsEntity(RestParameters pathVariables, RestParameters urlParameters) {
         return convertToEntity(httpGetAsText(pathVariables, urlParameters), classTGET);
     }
@@ -66,8 +60,9 @@ public class RestQueries<TGET, TPOST, TPUT, TDELETE> extends RestCrud {
     public TDELETE httpDeleteAsEntity(RestParameters pathVariables, RestParameters urlParameters,
                                 RestParameters bodyParameters) {
         return convertToEntity(httpDeleteAsText(pathVariables, urlParameters, bodyParameters), classTDELETE);
+
     }
-    
+
     // List Entity - - - - - - - - - - - - - - - - - - - -
 
     // TODO
