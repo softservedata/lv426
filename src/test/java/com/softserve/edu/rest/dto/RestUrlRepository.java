@@ -117,4 +117,12 @@ public final class RestUrlRepository {
                 .addDeleteUrl("");
 
     }
+    public static RestUrl getUserActions() {
+        return new RestUrl()
+                .addBaseUrl(server)
+                .addGetUrl("/user")
+                .addPostUrl("/user")
+                .addPutUrl("/user")
+                .addDeleteUrl("/user");
+    }
 }

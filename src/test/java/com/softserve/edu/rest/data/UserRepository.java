@@ -21,6 +21,14 @@ public final class UserRepository {
                 .build();
     }
 
+    public static User notExistingUser2() {
+        return User.builder()
+                .name("Ivan")
+                .password("ksjddlfkjddqwerty")
+                .adminRights(false)
+                .build();
+    }
+
     public static User FakeAdmin() {
         return User.builder()
                 .name("FakeAdmin")
@@ -28,6 +36,5 @@ public final class UserRepository {
                 .token("DT2ES1AHRY5Y09MMC6A5XSQ500W74E3E")
                 .build();
     }
-
 
 }

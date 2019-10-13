@@ -63,23 +63,21 @@ public class AdminService extends UserService {
 ////        checkEntity(simpleEntity, user.getName());
 ////        return simpleEntity.getContent();
 ////    }
-//    @Step("Create user")
-//    public Boolean createUser(User newUser) {
-//        RestParameters bodyParameters = new RestParameters()
-//                .addParameter("token", user.getToken())
-//                .addParameter("name", newUser.getName())
-//                .addParameter("password", newUser.getPassword())
-//                .addParameter("rights", newUser.isAdminRights() + "");
-//
-//        SimpleEntity simpleEntity = userResource.
-//                httpPostAsEntity(null, null, bodyParameters);
-//        if (simpleEntity.getContent().equals("true")) {
-//            return true;
-//        } else {
-//            return false;
-//        }
-//
-//    }
+    public AdminService createUser(User newUser) {
+        RestParameters bodyParameters = new RestParameters()
+                .addParameter("token", user.getToken())
+                .addParameter("name", newUser.getName())
+                .addParameter("password", newUser.getPassword())
+                .addParameter("rights", newUser.isAdminRights() + "");
+
+        SimpleEntity simpleEntity = userResource.
+                httpPostAsEntity(null, null, bodyParameters);
+        if ((simpleEntity.getContent() == null) || (simpleEntity.getContent().isEmpty())
+                || (simpleEntity.getContent().toLowerCase().equals("false"))) {
+            throw new RuntimeException();
+        }
+        return this;
+    }
 //
 //    public Boolean setCooldownTime(User adminUser) {
 //        RestParameters bodyParameters = new RestParameters()
