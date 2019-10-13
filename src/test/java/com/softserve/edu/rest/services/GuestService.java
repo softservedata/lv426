@@ -1,14 +1,17 @@
 package com.softserve.edu.rest.services;
 
+import com.softserve.edu.rest.data.Lifetime;
 import com.softserve.edu.rest.data.User;
 import com.softserve.edu.rest.dto.RestParameters;
 import com.softserve.edu.rest.entity.SimpleEntity;
 import com.softserve.edu.rest.resources.CoolDownTimeResource;
 import com.softserve.edu.rest.resources.LoginResource;
+import com.softserve.edu.rest.resources.TokenLifeTimeResource;
 
 public class GuestService extends BaseService {
 
     protected LoginResource loginResource;
+    protected TokenLifeTimeResource tokenResources;
     //	protected TokenlifetimeResource tokenlifetimeResource;
     protected CoolDownTimeResource cooldownResource;
     //	private ResetApiResource resetApiResource;
@@ -17,9 +20,8 @@ public class GuestService extends BaseService {
 
     public GuestService() {
         loginResource = new LoginResource();
-//		tokenlifetimeResource = new TokenlifetimeResource();
+        tokenResources = new TokenLifeTimeResource();
         cooldownResource = new CoolDownTimeResource();
-//		resetApiResource = new ResetApiResource();
     }
 
 //	public GuestService(LoginResource loginResource, TokenlifetimeResource tokenlifetimeResource) {
@@ -58,6 +60,11 @@ public class GuestService extends BaseService {
                 .httpGetAsEntity(null, null);
         return this;
     }
+//    public String getCoolDownTime() {
+//        SimpleEntity simpleEntity = cooldownResource
+//                .httpGetAsEntity(null, null);
+//        return simpleEntity.getContent();
+//    }
 
     // TODO
 //    public void UnsuccessfulUserLogin(IUser user)
@@ -70,13 +77,26 @@ public class GuestService extends BaseService {
                 .addParameter("name", user.getName())
                 .addParameter("password", user.getPassword());
         SimpleEntity simpleEntity = loginResource.httpPostAsEntity(null, null, bodyParameters);
-//		checkEntity(simpleEntity, "Error Login");
+        checkEntity(simpleEntity, "Error Login");
         user.setToken(simpleEntity.getContent());
         return new UserService(user);
     }
 
     public AdminService SuccessfulAdminLogin(User adminUser) {
-        RestParameters bodyParameters = new RestParameters().addParameter("name", adminUser.getName())
+        RestParameters bodyParameters = new RestParameters().addParameter("name", adminUser.getName());
+        return new AdminService(adminUser);
+    }
+
+    public Lifetime getTokenLifetime() {
+        RestParameters bodyParameters = new RestParameters();
+        SimpleEntity simpleEntity = tokenResources.httpGetAsEntity(null, null);
+        checkEntity(simpleEntity, "Something was wrong");
+        return new Lifetime(simpleEntity.getContent());
+    }
+
+    public AdminService successfulAdminLogin(User adminUser) {
+        RestParameters bodyParameters = new RestParameters()
+                .addParameter("name", adminUser.getName())
                 .addParameter("password", adminUser.getPassword());
         SimpleEntity simpleEntity = loginResource.httpPostAsEntity(null, null, bodyParameters);
         checkEntity(simpleEntity, "Error Login");

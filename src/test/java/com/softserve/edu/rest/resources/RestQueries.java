@@ -3,14 +3,12 @@ package com.softserve.edu.rest.resources;
 import com.google.gson.Gson;
 import com.softserve.edu.rest.dto.RestParameters;
 import com.softserve.edu.rest.dto.RestUrl;
-import org.apache.poi.ss.formula.functions.T;
 
 import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 
 public class RestQueries<TGET, TPOST, TPUT, TDELETE> extends RestCrud {
 
-    private final String CONVERT_OBJECT_ERROR = "ConvertToObject Error. %s\n%s";
+    private final String CONVERT_OBJECT_ERROR = "ConvertToObject Error. %s%s";
     //
     //protected final Logger log = Logger.getLogger(this.getClass());
     //
@@ -20,20 +18,10 @@ public class RestQueries<TGET, TPOST, TPUT, TDELETE> extends RestCrud {
     private Class<TPOST> classTPOST;
     private Class<TPUT> classTPUT;
     private Class<TDELETE> classTDELETE;
+
     private Gson gson;
 
-//    protected RestQueries(RestUrl restUrl,
-//    		Class<TGET> classTGET, Class<TPOST> classTPOST,
-//    		Class<TPUT> classTPUT, Class<TDELETE> classTDELETE) {
-//        super(restUrl);
-//        this.classTGET = classTGET;  // TODO Get Class<T> from <T>
-//        this.classTPOST = classTPOST;
-//        this.classTPUT = classTPUT;
-//        this.classTDELETE = classTDELETE;
-//        gson = new Gson();
-//    }
-
-    protected RestQueries(RestUrl restUrl){
+    protected RestQueries(RestUrl restUrl) {
         super(restUrl);
         this.classTGET = getClassInstance(classTGET, 0);
         this.classTPOST = getClassInstance(classTPOST, 1);
@@ -42,34 +30,37 @@ public class RestQueries<TGET, TPOST, TPUT, TDELETE> extends RestCrud {
         gson = new Gson();
     }
 
-    private <Z> Z convertToEntity(String json, Class<Z> someClass){
-        return gson.fromJson(json ,  someClass);
+    private <Z> Z convertToEntity(String json, Class<Z> someClass) {
+        return gson.fromJson(json, someClass);
     }
-    @SuppressWarnings("unchecked")
-    private <X> Class<X> getClassInstance(Class<X> anyClass, int index){
-        return  anyClass = ((Class<X>)((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[index]);
-    }
-    // Entity - - - - - - - - - - - - - - - - - - - -
 
+    @SuppressWarnings("unchecked")
+    private <X> Class<X> getClassInstance(Class<X> anyClass, int index) {
+        return anyClass = (Class<X>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[index];
+
+    }
+
+    // Entity - - - - - - - - - - - - - - - - - - - -
     public TGET httpGetAsEntity(RestParameters pathVariables, RestParameters urlParameters) {
         return convertToEntity(httpGetAsText(pathVariables, urlParameters), classTGET);
     }
 
     public TPOST httpPostAsEntity(RestParameters pathVariables, RestParameters urlParameters,
-                              RestParameters bodyParameters) {
+                                  RestParameters bodyParameters) {
         return convertToEntity(httpPostAsText(pathVariables, urlParameters, bodyParameters), classTPOST);
     }
 
     public TPUT httpPutAsEntity(RestParameters pathVariables, RestParameters urlParameters,
-                             RestParameters bodyParameters) {
+                                RestParameters bodyParameters) {
         return convertToEntity(httpPutAsText(pathVariables, urlParameters, bodyParameters), classTPUT);
     }
 
     public TDELETE httpDeleteAsEntity(RestParameters pathVariables, RestParameters urlParameters,
-                                RestParameters bodyParameters) {
+                                      RestParameters bodyParameters) {
         return convertToEntity(httpDeleteAsText(pathVariables, urlParameters, bodyParameters), classTDELETE);
+
     }
-    
+
     // List Entity - - - - - - - - - - - - - - - - - - - -
 
     // TODO
