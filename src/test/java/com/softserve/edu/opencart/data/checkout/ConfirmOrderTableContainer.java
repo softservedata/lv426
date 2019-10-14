@@ -26,7 +26,7 @@ public class ConfirmOrderTableContainer {
             }
         }
         if(order==null){
-            throw new OrderNotFoundException("Product with name" + name + " not found", new RuntimeException());
+            throw new OrderNotFoundException("Product with name " + name + " not found", new RuntimeException());
         }
         return order;
     }

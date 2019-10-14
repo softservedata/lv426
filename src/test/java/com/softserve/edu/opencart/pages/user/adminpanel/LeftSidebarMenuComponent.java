@@ -9,7 +9,7 @@ import java.util.List;
 
 public class LeftSidebarMenuComponent extends HeaderPart {
 
-  //  public WebDriver driver; // made public
+    public WebDriver driver; // made public
     private WebElement dashBoard;
     private List<WebElement> dropDowmMenuList;
     private MenuButtonComponent menuComponent;
@@ -85,8 +85,9 @@ public class LeftSidebarMenuComponent extends HeaderPart {
     }
 
     private void clickCustomerButton() {
-        getMenuComponent(By.xpath("//a[contains(text(),'Customers')]")).button.click();
+        getMenuComponent(By.xpath("//ul[contains(@id,'menu')]//a[contains(text(),'Customers')]")).button.click();
     }
+
     private void clickReturnsButton() {
         getMenuComponent(By.xpath("//li[@id = 'menu-sale']/ul/li/a[contains(text(),'Returns')]")).button.click();
     }
@@ -153,12 +154,11 @@ public class LeftSidebarMenuComponent extends HeaderPart {
         return new CustomersPage(driver);
     }
 
-//    public ReturnsPage goToReturnsPage() {
-//        clickSalesMenu();
-//        clickReturnsButton();
-//        return  new  ReturnsPage(driver);
-//    }
-
+    public ReturnsPage goToReturnsPage() {
+        clickSalesMenu();
+        clickReturnsButton();
+        return new ReturnsPage(driver);
+    }
 
 
 }

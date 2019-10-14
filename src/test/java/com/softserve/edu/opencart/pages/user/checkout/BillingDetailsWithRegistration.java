@@ -6,18 +6,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import static com.softserve.edu.opencart.data.checkout.CheckOutRepository.PATH_FOR_BILLING_REGISTRATION_PATH;
-
 public class BillingDetailsWithRegistration extends CheckOutOptions{
 
-    private WebDriver driver;
     private WebElement element;
 
     private AccountRegister methods;
 
     public BillingDetailsWithRegistration(WebDriver driver) {
         super(driver);
-        this.driver = driver;
         initElements();
     }
 
@@ -25,20 +21,22 @@ public class BillingDetailsWithRegistration extends CheckOutOptions{
         methods = new AccountRegister(driver);
     }
 
-    public DeliveryDetails accountAndBillingDetailsFilling(IUser user){
-//        driver.navigate().refresh();
+    public DeliveryDetails accountAndBillingDetailsFillingWithRegistration(IUser user){
         methods.personalInfoAndAddressFilling(user);
-        methods.clickContinueCheckoutButton();
+        methods.clickContinueCheckoutAsRegistrationButton();
         return new DeliveryDetails(driver);
     }
 
+    public DeliveryDetails accountAndBillingDetailsFillingAsGuest(IUser user){
+        methods.personalInfoAndAddressFilling(user);
+        methods.clickContinueCheckoutAsGuestButton();
+        return new DeliveryDetails(driver);
+    }
     class AccountRegister extends PersonalDetailsForCheckoutRegistration {
-        private WebDriver driver;
         private WebElement element;
 
         AccountRegister(WebDriver driver) {
             super(driver);
-            this.driver = driver;
         }
 
         //Functional
@@ -53,7 +51,7 @@ public class BillingDetailsWithRegistration extends CheckOutOptions{
         private WebElement getWebNewsLetterCheckBox(){
             return driver.findElement(By.cssSelector("input#newsletter"));
         }
-        private WebElement getWebShippingAdressCheckBox(){
+        private WebElement getWebShippingAddressCheckBox(){
             return driver.findElement(By.cssSelector("input[name=\"shipping_address\"]"));
         }
         private WebElement getWebPrivacyPolicyCheckBox(){
@@ -73,7 +71,7 @@ public class BillingDetailsWithRegistration extends CheckOutOptions{
         }
 
         public void confirmShippingAddressCheckBox(){
-            getWebShippingAdressCheckBox().click();
+            getWebShippingAddressCheckBox().click();
         }
 
         public void clickPasswordField(){

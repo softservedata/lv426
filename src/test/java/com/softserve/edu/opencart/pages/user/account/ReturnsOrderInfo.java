@@ -4,7 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class ReturnsOrderInfo extends ReturnOrderPage{
+public class ReturnsOrderInfo {
+
+    private WebDriver driver;
 
     private WebElement firstname;
 
@@ -19,14 +21,14 @@ public class ReturnsOrderInfo extends ReturnOrderPage{
     private WebElement orderDate;
 
     public ReturnsOrderInfo(WebDriver driver) {
-        super(driver);
+        this.driver =  driver;
         initElements();
     }
 
     private void initElements() {
         this.firstname = driver.findElement(By.id("input-firstname"));
         this.lastname = driver.findElement(By.id("input-lastname"));
-        this.email = driver.findElement(By.id("/input-email"));
+        this.email = driver.findElement(By.id("input-email"));
         this.phone = driver.findElement(By.id("input-telephone"));
         this.orderId = driver.findElement(By.id("input-order-id"));
         this.orderDate =

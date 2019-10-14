@@ -12,6 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.softserve.edu.opencart.data.Currencies;
+import com.softserve.edu.opencart.data.Product;
 
 public class SearchSuccessPage extends SearchCriteriaPart {
 
@@ -42,6 +43,7 @@ public class SearchSuccessPage extends SearchCriteriaPart {
 	// Functional
 
 	// Business Logic
+	
     public SearchSuccessPage chooseCurrency(Currencies currency)
     {
         clickCurrencyByPartialName(currency);
@@ -61,7 +63,6 @@ public class SearchSuccessPage extends SearchCriteriaPart {
         productsCriteria.setInputLimit(text);
         return new SearchSuccessPage(driver);
     }
-
 
     public SearchSuccessAlertPage addToWishButtonByName(Product product) {
     	productsCriteria.addToWishButtonByName(product);
@@ -83,5 +84,15 @@ public class SearchSuccessPage extends SearchCriteriaPart {
     	return new ProductPage(driver);
     }
 
+//    public SearchSuccessAlertPage AddToWishButtonByName(Product product) {
+//    	productsCriteria.clickProductComponentAddToWishButtonByName(product.getName());
+//    	return SearchSuccessAlertPage(driver);
+//    }
 
+//    public ProductInfoPage gotoProductInfo(Product product) {
+//    	getProductsCriteria()
+//    	.getProductComponentByName(product)
+//    	.clickName();
+//    	return new ProductInfoPage(driver);
+//    }
 }

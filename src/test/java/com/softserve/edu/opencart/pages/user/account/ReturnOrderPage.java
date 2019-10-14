@@ -7,9 +7,14 @@ import org.testng.annotations.Test;
 
 public class ReturnOrderPage extends AccountSidebarLoggedPart {
 
+    private ReturnsProductInfo productInfo;
 
+    private ReturnsOrderInfo orderInfo;
 
-
+    /**
+     * This variable for button Submit on Return Order page
+     */
+    private WebElement submitButton;
 
     public ReturnOrderPage(WebDriver driver) {
         super(driver);
@@ -17,14 +22,20 @@ public class ReturnOrderPage extends AccountSidebarLoggedPart {
     }
 
     private void initElements() {
+        productInfo = new ReturnsProductInfo(driver);
+        orderInfo = new ReturnsOrderInfo(driver);
+        this.submitButton = driver.findElement(
+                By.xpath("//input[@class = 'btn btn-primary']"));
 
     }
 
-
-
-
-
-
+    /**
+     * This method for click on button Submit
+     */
+    public SuccessfulReturnPage clickSubmitButton() {
+        submitButton.click();
+        return new SuccessfulReturnPage(driver);
+    }
 
 
 }

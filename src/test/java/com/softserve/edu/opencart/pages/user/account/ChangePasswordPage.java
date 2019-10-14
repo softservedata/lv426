@@ -1,5 +1,6 @@
 package com.softserve.edu.opencart.pages.user.account;
 
+import com.softserve.edu.opencart.data.IUser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,7 +17,7 @@ public class ChangePasswordPage extends AccountSidebarLoggedPart {
 
 	private void initElements() {
 		passwordField = driver.findElement(By.id("input-password"));
-		confirmPasswordField = driver.findElement(By.id("input-password"));
+		confirmPasswordField = driver.findElement(By.id("input-confirm"));
 		continueButton = driver.findElement(By.cssSelector("input.btn.btn-primary"));
 	}
 
@@ -77,10 +78,16 @@ public class ChangePasswordPage extends AccountSidebarLoggedPart {
 	}
 
 	// Business Logic
-	public MyAccountPage changePassword(String password, String confirmPassword){
+	public SuccessfulMyAccountPage changePassword(IUser user){
+		fillPasswordField(user.getPassword());
+		fillConfirmPasswordField(user.getPassword());
+		clickContinueButton();
+		return new SuccessfulMyAccountPage(driver);
+	}
+	public UnsuccessfulPasswordPage changeInvalidPassword(String password, String confirmPassword){
 		fillPasswordField(password);
 		fillConfirmPasswordField(confirmPassword);
 		clickContinueButton();
-		return new MyAccountPage(driver);
+		return new UnsuccessfulPasswordPage(driver);
 	}
 }

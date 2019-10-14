@@ -1,6 +1,5 @@
 package com.softserve.edu.opencart.pages.user.account;
 
-import com.softserve.edu.opencart.data.IUser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,13 +19,9 @@ public class UnsuccessfulRegisterPage extends AccountSidebarGuestPart {
     public static final String EXPECTED_WRONG_PASSWORD = "Password must be between 4 and 20 characters!";
     public static final String EXPECTED_WRONG_CONFIRM_PASSWORD = "Password confirmation does not match password!";
 
-    public UnsuccessfulRegisterPage(WebDriver driver) {
+    UnsuccessfulRegisterPage(WebDriver driver) {
         super(driver);
     }
-
-    protected void defaultLogin(IUser user) {
-    }
-
     // Page Object
 
     // warningBox

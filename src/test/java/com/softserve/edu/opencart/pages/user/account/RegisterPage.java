@@ -53,36 +53,36 @@ public class RegisterPage extends AccountSidebarGuestPart {
     // Page Object
 
     //firstName
-    public WebElement getFirstName() {
+    private WebElement getFirstName() {
         return firstName;
     }
 
-    public void clickFirstNameField() {
+    private void clickFirstNameField() {
         getFirstName().click();
     }
 
-    public void clearFirstNameField() {
+    private void clearFirstNameField() {
         getFirstName().clear();
     }
 
-    public void setFirstName(String firstName) {
+    private void setFirstName(String firstName) {
         getFirstName().sendKeys(firstName);
     }
 
     //lastName
-    public WebElement getLastName() {
+    private WebElement getLastName() {
         return lastName;
     }
 
-    public void clickLastNameField() {
+    private void clickLastNameField() {
         getLastName().click();
     }
 
-    public void clearLastNameField() {
+    private void clearLastNameField() {
         getLastName().clear();
     }
 
-    public void setLastName(String lastName) {
+    private void setLastName(String lastName) {
         getLastName().sendKeys(lastName);
     }
 
@@ -91,11 +91,11 @@ public class RegisterPage extends AccountSidebarGuestPart {
         return email;
     }
 
-    public void clickEmailField() {
+    private void clickEmailField() {
         getEmail().click();
     }
 
-    public void clearEmailField() {
+    private void clearEmailField() {
         getEmail().clear();
     }
 
@@ -104,87 +104,87 @@ public class RegisterPage extends AccountSidebarGuestPart {
     }
 
     //telephone
-    public WebElement getTelephone() {
+    private WebElement getTelephone() {
         return telephone;
     }
 
-    public void clickTelephoneField() {
+    private void clickTelephoneField() {
         getTelephone().click();
     }
 
-    public void clearTelephoneField() {
+    private void clearTelephoneField() {
         getTelephone().clear();
     }
 
-    public void setTelephone(String telephone) {
+    private void setTelephone(String telephone) {
         getTelephone().sendKeys(telephone);
     }
 
     //fax
-    public WebElement getFax() {
+    private WebElement getFax() {
         return fax;
     }
 
-    public void clickFaxField() {
+    private void clickFaxField() {
         getFax().click();
     }
 
-    public void clearFaxField() {
+    private void clearFaxField() {
         getFax().clear();
     }
 
-    public void setFax(String fax) {
+    private void setFax(String fax) {
         getFax().sendKeys(fax);
     }
 
     //company
-    public WebElement getCompany() {
+    private WebElement getCompany() {
         return company;
     }
 
-    public void clickCompanyField() {
+    private void clickCompanyField() {
         getCompany().click();
     }
 
-    public void clearCompanyField() {
+    private void clearCompanyField() {
         getCompany().clear();
     }
 
-    public void setCompany(String company) {
+    private void setCompany(String company) {
         getCompany().sendKeys(company);
     }
 
     //address01
-    public WebElement getAddress01() {
+    private WebElement getAddress01() {
         return address01;
     }
 
-    public void clickAddress01Field() {
+    private void clickAddress01Field() {
         getAddress01().click();
     }
 
-    public void clearAddress01Field() {
+    private void clearAddress01Field() {
         getAddress01().clear();
     }
 
-    public void setAddress01(String address01) {
+    private void setAddress01(String address01) {
         getAddress01().sendKeys(address01);
     }
 
     //address02
-    public WebElement getAddress02() {
+    private WebElement getAddress02() {
         return address02;
     }
 
-    public void clickAddress02Field() {
+    private void clickAddress02Field() {
         getAddress02().click();
     }
 
-    public void clearAddress02Field() {
+    private void clearAddress02Field() {
         getAddress02().clear();
     }
 
-    public void setAddress02(String address02) {
+    private void setAddress02(String address02) {
         getAddress01().sendKeys(address02);
     }
 
@@ -193,11 +193,11 @@ public class RegisterPage extends AccountSidebarGuestPart {
         return city;
     }
 
-    public void clickCityField() {
+    private void clickCityField() {
         getCity().click();
     }
 
-    public void clearCityField() {
+    private void clearCityField() {
         getCity().clear();
     }
 
@@ -210,11 +210,11 @@ public class RegisterPage extends AccountSidebarGuestPart {
         return postcode;
     }
 
-    public void clickPostcodeField() {
+    private void clickPostcodeField() {
         getPostcode().click();
     }
 
-    public void clearPostcodeField() {
+    private void clearPostcodeField() {
         getPostcode().clear();
     }
 
@@ -227,7 +227,7 @@ public class RegisterPage extends AccountSidebarGuestPart {
         return country;
     }
 
-    public void clickCountryField() {
+    private void clickCountryField() {
         getCountry().click();
     }
 
@@ -236,15 +236,15 @@ public class RegisterPage extends AccountSidebarGuestPart {
     }
 
     //regionState
-    public WebElement getRegionState() {
+    private WebElement getRegionState() {
         return regionState;
     }
 
-    public void clickRegionStateField() {
+    private void clickRegionStateField() {
         getRegionState().click();
     }
 
-    public void setRegionState(String zone) {
+    private void setRegionState(String zone) {
         getRegionState().sendKeys(zone);
     }
 
@@ -253,11 +253,11 @@ public class RegisterPage extends AccountSidebarGuestPart {
         return password;
     }
 
-    public void clickPasswordField() {
+    private void clickPasswordField() {
         getPassword().click();
     }
 
-    public void clearPasswordField() {
+    private void clearPasswordField() {
         getPassword().clear();
     }
 
@@ -266,52 +266,49 @@ public class RegisterPage extends AccountSidebarGuestPart {
     }
 
     //confirmPassword
-    public WebElement getConfirmPassword() {
+    private WebElement getConfirmPassword() {
         return confirmPassword;
     }
 
-    public void clickConfirmPasswordField() {
+    private void clickConfirmPasswordField() {
         getConfirmPassword().click();
     }
 
-    public void clearConfirmPasswordField() {
+    private void clearConfirmPasswordField() {
         getConfirmPassword().clear();
     }
 
-    public void setConfirmPassword(String confirmPassword) {
+    private void setConfirmPassword(String confirmPassword) {
         getConfirmPassword().sendKeys(confirmPassword);
     }
 
     //continueButton
-    public WebElement getContinueButton() {
+    private WebElement getContinueButton() {
         return continueButton;
     }
 
-    public void clickContinueButton() {
+    private void clickContinueButton() {
         getContinueButton().click();
     }
 
     //agreePrivacyPolicyLink
-    public WebElement getAgreePrivacyPolicyLink() {
+    private WebElement getAgreePrivacyPolicyLink() {
         return agreePrivacyPolicyLink;
     }
 
-    public void clickAgreePrivacyPolicyLink() {
+    private void clickAgreePrivacyPolicyLink() {
         getAgreePrivacyPolicyLink().click();
     }
 
     //subscribe
-    public WebElement getSubscribeLink() {
+    private WebElement getSubscribeLink() {
         return subscribe;
     }
 
-    public void clickSubscribeLink(Boolean subscribe) {
+    private void clickSubscribeLink(Boolean subscribe) {
         if (subscribe) {
             getSubscribeLink().click();
         }
-    }
-
-    public void defaultLogin(IUser user) {
     }
 
     // Functional
@@ -398,7 +395,7 @@ public class RegisterPage extends AccountSidebarGuestPart {
         setConfirmPassword(confirmPassword);
     }
 
-    public void fillRegister(IUser user) {
+    private void fillRegister(IUser user) {
 
         enterFirstName(user.getFirstName());
         enterLastName(user.getLastName());
@@ -419,20 +416,20 @@ public class RegisterPage extends AccountSidebarGuestPart {
         clickSubscribeLink(user.isSubscribe());
     }
 
-    public void fillRegisterInvalidConfirmPassword(IUser user) {
+    private void fillRegisterInvalidConfirmPassword(IUser user) {
         fillRegister(user);
         enterConfirmPassword(user.getPassword() + "qwerty");
         clickAgreePrivacyPolicyLink();
         clickContinueButton();
     }
 
-    public void fillRegisterAgreePrivacyPolicy(IUser user) {
+    private void fillRegisterAgreePrivacyPolicy(IUser user) {
         fillRegister(user);
         clickAgreePrivacyPolicyLink();
         clickContinueButton();
     }
 
-    public void fillRegisterNotAgreePrivacyPolicy(IUser user) {
+    private void fillRegisterNotAgreePrivacyPolicy(IUser user) {
         fillRegister(user);
         clickContinueButton();
     }

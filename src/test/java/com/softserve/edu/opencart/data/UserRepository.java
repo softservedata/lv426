@@ -24,6 +24,22 @@ public final class UserRepository {
         return getValidUser();
     }
 
+    public IUser getMaksymUser(){
+        return User.get()
+                .setFirstName("Maksym")
+                .setLastName("Chapchai")
+                .seteMail("chapchaimax@gmail.com")
+                .setTelephone("456446465")
+                .setAddress1("Lviv")
+                .setCity("Lvivshchina")
+                .setPostCode("2")
+                .setCountry("Ukraine")
+                .setRegionState("L'vivs'ka Oblast'")
+                .setPassword("ocozliaes")
+                .setSubscribe(true)
+                .build();
+    }
+
     public IUser getValidUser() {
         return User.get()
                 .setFirstName("mary")
@@ -43,7 +59,7 @@ public final class UserRepository {
                 .build();
     }
 
-    public IUser getValidUserForCheckout() {
+    public IUser getValidUserForCheckoutWithRegistration() {
         return User.get()
                 .setFirstName("mary")
                 .setLastName("heras")
@@ -59,6 +75,22 @@ public final class UserRepository {
                 .setFax("12345")
                 .setCompany("company")
                 .setAddress2("address2")
+                .build();
+    }
+
+    public IUser getValidUserForCheckoutAsGuest() {
+        return User.get()
+                .setFirstName(RandomStringUtils.randomAlphabetic(3)+RandomStringUtils.randomNumeric(3))
+                .setLastName(RandomStringUtils.randomNumeric(3)+RandomStringUtils.randomAlphabetic(3))
+                .seteMail(RandomStringUtils.randomAlphabetic(5)+"@bk.com")
+                .setTelephone(RandomStringUtils.randomNumeric(9))
+                .setAddress1(RandomStringUtils.randomAlphabetic(7))
+                .setCity("Lviv")
+                .setPostCode("77777")
+                .setCountry("Ukraine")
+                .setRegionState("Ternopil's'ka Oblast'")
+                .setPassword("mary")
+                .setSubscribe(true)
                 .build();
     }
 
@@ -80,7 +112,7 @@ public final class UserRepository {
                 .setAddress2("7address2")
                 .build();
     }
-    public IUser getChangePasswordUser() {
+    public IUser getPasswordUser() {
         return User.get()
                 .setFirstName("Test1")
                 .setLastName("Test1")
@@ -95,6 +127,38 @@ public final class UserRepository {
                 .setSubscribe(true)
                 .build();
     }
+    public IUser getChangedPasswordUser() {
+        return User.get()
+                .setFirstName("Test1")
+                .setLastName("Test1")
+                .seteMail(System.getenv().get("EMAIL_ADDRESS"))
+                .setTelephone("123456")
+                .setAddress1("111")
+                .setCity("111")
+                .setPostCode("111")
+                .setCountry("Ukraine")
+                .setRegionState("Kyiv")
+                .setPassword(System.getenv().get("ANOTHER_OPENCART_PASSWORD"))
+                .setSubscribe(true)
+                .build();
+    }
+
+    public IUser getInvalidEmailUser() {
+        return User.get()
+                .setFirstName("Test1")
+                .setLastName("Test1")
+                .seteMail("vika@gmail.com")
+                .setTelephone("123456")
+                .setAddress1("111")
+                .setCity("111")
+                .setPostCode("111")
+                .setCountry("Ukraine")
+                .setRegionState("Kyiv")
+                .setPassword(System.getenv().get("OPENCART_PASSWORD"))
+                .setSubscribe(true)
+                .build();
+    }
+
 
     public IUser getWrongFirstNameUser() {
         return User.get()
@@ -148,6 +212,24 @@ public final class UserRepository {
                 .build();
     }
 
+    public IUser getInvalidUser() {
+        return User.get()
+                .setFirstName("Oleg")
+                .setLastName("Dmytriv")
+                .seteMail("oleg@gmail.com")
+                .setTelephone("1111111111")
+                .setAddress1("Upa 22")
+                .setCity("Lviv")
+                .setPostCode("88888")
+                .setCountry("Ukraine")
+                .setRegionState("L'vivs'ka Oblast'")
+                .setPassword("oleg")
+                .setSubscribe(true)
+                .setFax("12341")
+                .setCompany("SoftServe")
+                .build();
+    }
+
     public IUser getMartaUser() {
         return User.get()
                 .setFirstName("Olena")
@@ -170,20 +252,20 @@ public final class UserRepository {
         return User.get()
                 .setFirstName("Danylo")
                 .setLastName("Protz")
-                .seteMail("danylko@gmail.com")
+                .seteMail("dan@gmail.com")
                 .setTelephone("0987654321")
                 .setAddress1("Zalizniaka 12")
                 .setCity("Lviv")
                 .setPostCode("98675")
                 .setCountry("Ukraine")
                 .setRegionState("L'vivs'ka Oblast'")
-                .setPassword("danylko")
+                .setPassword("danylo")
                 .setSubscribe(false)
                 .setFax("12341")
                 .build();
     }
 
-//    public IUser getShopValidUser(){
+    //    public IUser getShopValidUser(){
 //        return User.get()
 //                .setFirstName()
 //    }
@@ -199,6 +281,25 @@ public final class UserRepository {
                 .setCountry("7country")
                 .setRegionState("")
                 .setPassword("qwerty12")
+                .setSubscribe(true)
+                .setFax("7fax")
+                .setCompany("7company")
+                .setAddress2("7address2")
+                .build();
+    }
+
+    public IUser getRomanUser() {
+        return User.get()
+                .setFirstName("Roman")
+                .setLastName("Karas")
+                .seteMail("roman@gmail.com")
+                .setTelephone("12345678")
+                .setAddress1("address")
+                .setCity("city")
+                .setPostCode("postcode")
+                .setCountry("7country")
+                .setRegionState("")
+                .setPassword("qwerty")
                 .setSubscribe(true)
                 .setFax("7fax")
                 .setCompany("7company")

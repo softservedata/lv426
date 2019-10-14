@@ -23,8 +23,7 @@ public class ReturnsContainerComponent extends ReturnsPage {
     private void initElements() {
         returnsElements = new ArrayList<>();
         for(WebElement productTable : driver.findElements(By.xpath(RETURNS_COMPONENTS_SELECTOR))){
-            returnsElements.add(new ReturnsTableInfo(RETURNS_COMPONENTS_SELECTOR, driver));
-
+            returnsElements.add(new ReturnsTableInfo(productTable, driver,RETURNS_COMPONENTS_SELECTOR));
         }
     }
 
@@ -37,5 +36,9 @@ public class ReturnsContainerComponent extends ReturnsPage {
             }
         }
         return returnsElements.get(ind);
+    }
+
+    public List<ReturnsTableInfo> getReturnsElements() {
+        return returnsElements;
     }
 }

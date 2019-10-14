@@ -15,25 +15,25 @@ public class ProductsContainerComponent {
     private final String PRODUCT_COMPONENT_CSSSELECTOR = ".product-layout";
     //
     protected WebDriver driver;
-	//
-	private List<ProductComponent> productComponents;
+    //
+    private List<ProductComponent> productComponents;
 
-	public ProductsContainerComponent(WebDriver driver) {
-		this.driver = driver;
-		initElements();
-	}
+    public ProductsContainerComponent(WebDriver driver) {
+        this.driver = driver;
+        initElements();
+    }
 
-	private void initElements() {
-		// init elements
+    private void initElements() {
+        // init elements
         productComponents = new ArrayList<>();
         for (WebElement current : driver.findElements(By.cssSelector(PRODUCT_COMPONENT_CSSSELECTOR)))
         {
             productComponents.add(new ProductComponent(current));
         }
-	}
+    }
 
-	// Page Object
-	
+    // Page Object
+
     // productComponents
     public List<ProductComponent> getProductComponents()
     {

@@ -10,7 +10,7 @@ public class SuccessfulAccountEditPage extends MyAccountPage {
     //
     private WebElement alertWarning;
 
-    public SuccessfulAccountEditPage(WebDriver driver) {
+    SuccessfulAccountEditPage(WebDriver driver) {
         super(driver);
         initElements();
     }
@@ -22,7 +22,7 @@ public class SuccessfulAccountEditPage extends MyAccountPage {
     // Page Object
 
     // alertWarning
-    public WebElement getAlertWarning() {
+    private WebElement getAlertWarning() {
         return alertWarning;
     }
 

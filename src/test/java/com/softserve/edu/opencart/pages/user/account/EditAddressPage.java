@@ -1,8 +1,13 @@
 package com.softserve.edu.opencart.pages.user.account;
 
+import com.softserve.edu.opencart.data.IAddress;
+import com.softserve.edu.opencart.pages.user.addressbook.AddressBookPage;
+import com.softserve.edu.opencart.test.AddressBookTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class EditAddressPage extends AccountSidebarLoggedPart {
 
@@ -76,9 +81,12 @@ public class EditAddressPage extends AccountSidebarLoggedPart {
      */
     private WebElement errorText;
 
+    private WebDriverWait webDriverWait;
+
     public EditAddressPage(WebDriver driver) {
         super(driver);
         initElements();
+        webDriverWait = new WebDriverWait(driver,20);
     }
 
     private void initElements() {
@@ -99,8 +107,6 @@ public class EditAddressPage extends AccountSidebarLoggedPart {
                 By.xpath("//input[@class='btn btn-primary']"));
         this.backButton = driver.findElement(
                 By.xpath("//a[@class='btn btn-default']"));
-        this.errorText = driver.findElement(
-                By.xpath("//div[contains(@class,'text-danger')]"));
     }
 
 
@@ -209,8 +215,9 @@ public class EditAddressPage extends AccountSidebarLoggedPart {
     /**
      * This method for click on button Back
      */
-    public void clickBackButton() {
+    public AddressBookPage clickBackButton() {
         backButton.click();
+        return new AddressBookPage(driver);
     }
 
     /**
@@ -254,6 +261,36 @@ public class EditAddressPage extends AccountSidebarLoggedPart {
 
     public WebElement getZone() {
         return zone;
+    }
+
+    public AddressBookPage fillEditAddress(IAddress address) {
+        inputFirstname(address.getFirstname());
+        inputLastname(address.getLastname());
+        inputAddress1(address.getAddress1());
+        inputCity(address.getCity());
+        inputPostcode(address.getPostcode());
+        selectCountry(address.getCountry());
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(zone));
+        selectZone(address.getZone());
+        clickNoDefault();
+        clickContinueButton();
+
+        return new AddressBookPage(driver);
+    }
+
+    public EditAddressMessages fillFailEditAddress(IAddress address) {
+        inputFirstname(address.getFirstname());
+        inputLastname(address.getLastname());
+        inputAddress1(address.getAddress1());
+        inputCity(address.getCity());
+        inputPostcode(address.getPostcode());
+        selectCountry(address.getCountry());
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(zone));
+        selectZone(address.getZone());
+        clickNoDefault();
+        clickContinueButton();
+
+        return new EditAddressMessages(driver);
     }
 }
 

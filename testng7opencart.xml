@@ -5,7 +5,8 @@
 
 	<test name="Test71">
 		<classes>
-			<class name="com.softserve.edu.opencart.test.SearchTest" />
+<!-- 			<class name="com.softserve.edu.opencart.test.SearchTest" /> -->
+			<class name="com.softserve.edu.opencart.test.LoginTest" />
 		</classes>
 	</test> <!-- Test -->
 

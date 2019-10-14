@@ -67,22 +67,22 @@ public class LoginPage {
     //Functional
     //LoginNameField
     private void fillLoginNameField(String text) {
-        clickLoginNameField();
-        clearLoginNameField();
+      /*  clickLoginNameField();
+        clearLoginNameField();*/
         setLoginNameField(text);
     }
 
     //PasswordField
     private void fillPasswordField(String text) {
-        clickPasswordField();
-        clearPasswordField();
+       /* clickPasswordField();
+        clearPasswordField();*/
         setPasswordField(text);
     }
 
     //Business Logic
-    public MailSidebarPart login(String loginName, String password) {
-        fillLoginNameField(loginName);
-        fillPasswordField(password);
+    public MailSidebarPart login(MailUser mailUser) {
+        fillLoginNameField(mailUser.getLoginName());
+        fillPasswordField(mailUser.getPassword());
         clickLoginButton();
         return new IncomingMailPage(driver);
     }
