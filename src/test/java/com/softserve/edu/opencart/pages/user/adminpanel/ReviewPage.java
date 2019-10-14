@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 public class ReviewPage extends LeftSidebarMenuComponent {
 
-    private WebDriver driver;
+
     private ReviewContainerComponent reviewContainerComponent;
     private ReviewComponent reviewComponent;
 
