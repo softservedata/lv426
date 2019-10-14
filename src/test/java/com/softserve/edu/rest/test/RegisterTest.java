@@ -3,6 +3,7 @@ package com.softserve.edu.rest.test;
 import com.softserve.edu.rest.data.User;
 import com.softserve.edu.rest.data.UserRepository;
 import com.softserve.edu.rest.services.GuestService;
+import com.softserve.edu.rest.services.UserService;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -20,7 +21,13 @@ public Object[][] correctUser() {
         GuestService guestService = new GuestService()
                 .successfulAdminLogin(user)
                 .createUser(newUser)
-                .logoutUser();
+                .logoutUser()
+                .successfulUserLogin(newUser)
+                .logoutUser()
+                .successfulAdminLogin(user)
+                .removeUser(newUser)
+                .logoutUser()
+                .unsuccessfulUserLogin(newUser);
 
 
         //Check

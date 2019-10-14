@@ -23,7 +23,7 @@ public final class UserRepository {
 
     public static User notExistingUser2() {
         return User.builder()
-                .name("Ivan")
+                .name("Ivan1")
                 .password("ksjddlfkjddqwerty")
                 .adminRights(false)
                 .build();
