@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 public class RegisterTest {@DataProvider
 public Object[][] correctUser() {
     return new Object[][]{
-            { UserRepository.getAdmin(), UserRepository.notExistingUser2() },
+            { UserRepository.getAdmin(), UserRepository.notExistingUser2()},
     };
 }
 

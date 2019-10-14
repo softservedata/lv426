@@ -29,6 +29,14 @@ public final class UserRepository {
                 .build();
     }
 
+    public static User existingUser(){
+        return User.builder()
+                .name("Vasya")
+                .password("qwerty")
+                .adminRights(false)
+                .build();
+    }
+
     public static User FakeAdmin() {
         return User.builder()
                 .name("FakeAdmin")

@@ -8,12 +8,13 @@ import com.softserve.edu.rest.entity.SimpleEntity;
 
 import com.softserve.edu.rest.resources.ItemResource;
 import com.softserve.edu.rest.resources.LogoutResource;
+import com.softserve.edu.rest.resources.UserResource;
 
 public class UserService extends GuestService {
 
     protected LogoutResource logoutResource;
     protected ItemResource itemResource;
-    //    protected UserResource userResource;
+    protected UserResource userResource;
     protected User user;
 
 //    protected UsersResourse usersResourse;
@@ -23,7 +24,7 @@ public class UserService extends GuestService {
         // super(); // by default
         logoutResource = new LogoutResource();
         itemResource = new ItemResource();
-//        userResource = new UserResource();
+        userResource = new UserResource();
 //        usersResourse = new UsersResourse();
         // TODO Is Logged
         this.user = user;
@@ -118,16 +119,20 @@ public class UserService extends GuestService {
 //        return simpleEntity.getContent();
 //    }
 
-//    public String changePassword(String newPassword) {
-//        RestParameters bodyParameters = new RestParameters()
-//                .addParameter("token", user.getToken())
-//                .addParameter("oldpassword", user.getPassword())
-//                .addParameter("newpassword", newPassword);
-//        SimpleEntity simpleEntity = userResource
-//                .httpPutAsEntity(null, null, bodyParameters);
-//        //checkEntity(simpleEntity, user.getPassword());
-//        return simpleEntity.getContent();
-//    }
-//
+
+    public UserService changePassword(String newPassword) {
+        RestParameters bodyParameters = new RestParameters()
+                .addParameter("token", user.getToken())
+                .addParameter("oldpassword", user.getPassword())
+                .addParameter("newpassword", newPassword);
+        SimpleEntity simpleEntity = userResource
+                .httpPutAsEntity(null, null, bodyParameters);
+        //checkEntity(simpleEntity, user.getPassword());
+        if ((simpleEntity.getContent() == null) || (simpleEntity.getContent().isEmpty())
+                || (simpleEntity.getContent().toLowerCase().equals("false"))) {
+            throw new RuntimeException();
+        }
+        return this;
+    }
 
 }
