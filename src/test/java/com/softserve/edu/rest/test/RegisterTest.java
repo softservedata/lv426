@@ -29,7 +29,6 @@ public Object[][] correctUser() {
                 .logoutUser()
                 .unsuccessfulUserLogin(newUser);
 
-
         //Check
         //Assert.assertTrue(userService.isUserLogged(user));
         //Step
