@@ -16,14 +16,16 @@ import org.testng.annotations.Test;
 import static org.testng.AssertJUnit.assertEquals;
 
 public class ChangeCoolDownTimeTest {
-
+private GuestService guestService;
+private AdminService adminService;
     @BeforeMethod
     public void checkIfCoolDownTimeWorks() {
-        GuestService guestService = new GuestService();
-        AdminService adminService = new AdminService(UserRepository.getAdmin());
-        assertEquals(guestService.getCoolDownTime().getTime(), "180000");
-        Assert.assertFalse(adminService.isAdminLogged(UserRepository.getAdmin()),
+        guestService = new GuestService();
+        adminService = guestService.successfulAdminLogin(UserRepository.getAdmin());
+        Assert.assertEquals(guestService.getCoolDownTime().getTime(), "180000",
                 "The cool down time does not equal to default before test");
+        Assert.assertTrue(adminService.isAdminLogged(UserRepository.getAdmin()),
+                "The admin does not logged");
     }
 
     @DataProvider
@@ -36,7 +38,6 @@ public class ChangeCoolDownTimeTest {
 
     @Test(dataProvider = "correctUser")
     public void coolDownTimeChangeTest(User user, Lifetime lifetime, Lifetime defaultTime) {
-        GuestService guestService = new GuestService();
         UserService userService = guestService
                 .successfulAdminLogin(user)
                 .changeCoolDown(lifetime);
@@ -46,11 +47,10 @@ public class ChangeCoolDownTimeTest {
 
     @AfterMethod
     public void setCoolDownTimeForDefault() {
-        GuestService guestService = new GuestService();
         UserService userService = guestService
                 .successfulAdminLogin(UserRepository.getAdmin())
                 .changeCoolDown(LifetimeRepository.getDefaultCoolTime());
-        assertEquals(guestService.getCoolDownTime().getTime(), LifetimeRepository.getDefaultCoolTime().getTime(),
+        Assert.assertEquals(guestService.getCoolDownTime().getTime(), LifetimeRepository.getDefaultCoolTime().getTime(),
                 "The cool down time does not equal to default after test");
     }
 }
