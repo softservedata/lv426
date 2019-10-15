@@ -6,11 +6,13 @@ import com.softserve.edu.rest.dto.RestParameters;
 import com.softserve.edu.rest.entity.SimpleEntity;
 import com.softserve.edu.rest.resources.CoolDownTimeResource;
 import com.softserve.edu.rest.resources.LoginAdminResource;
+import com.softserve.edu.rest.resources.LoginUserResource;
 import com.softserve.edu.rest.resources.TokenLifeTimeResource;
 
 public class GuestService extends BaseService {
-
+    protected String userNotFoundMessage = "ERROR, user not found";
     protected LoginAdminResource loginAdminResource;
+    protected LoginUserResource loginUserResource;
     protected TokenLifeTimeResource tokenResources;
     //	protected TokenlifetimeResource tokenlifetimeResource;
     protected CoolDownTimeResource cooldownResource;
@@ -20,6 +22,7 @@ public class GuestService extends BaseService {
 
     public GuestService() {
         loginAdminResource = new LoginAdminResource();
+        loginUserResource = new LoginUserResource();
         tokenResources = new TokenLifeTimeResource();
         cooldownResource = new CoolDownTimeResource();
     }
@@ -78,7 +81,7 @@ public class GuestService extends BaseService {
         RestParameters bodyParameters = new RestParameters()
                 .addParameter("name", user.getName())
                 .addParameter("password", user.getPassword());
-        SimpleEntity simpleEntity = loginAdminResource.httpPostAsEntity(null, null, bodyParameters);
+        SimpleEntity simpleEntity = loginUserResource.httpPostAsEntity(null, null, bodyParameters);
         checkEntity(simpleEntity, "Error Login");
         user.setToken(simpleEntity.getContent());
         return new UserService(user);
@@ -99,6 +102,16 @@ public class GuestService extends BaseService {
         checkEntity(simpleEntity, "Error Login");
         adminUser.setToken(simpleEntity.getContent());
         return new AdminService(adminUser);
+    }
+
+    public GuestService unsuccessfulUserLogin(User user) {
+        RestParameters bodyParameters = new RestParameters()
+                .addParameter("name", user.getName())
+                .addParameter("password", user.getPassword());
+        SimpleEntity simpleEntity = loginUserResource.httpPostAsEntity(null, null, bodyParameters);
+        if (simpleEntity.getContent() != userNotFoundMessage)
+            return new UserService(user);
+        return new GuestService();
     }
 
 //	public AdminService ChangeCurrentPassword(User adminUser) {

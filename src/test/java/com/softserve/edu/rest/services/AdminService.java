@@ -126,18 +126,17 @@ public class AdminService extends UserService {
         return simpleEntity.getContent();
     }
 //@Step("Delete user")
-//    public Boolean removeUser(String removedName) {
-//        RestParameters urlParameters = new RestParameters()
-//                .addParameter("token", user.getToken())
-//                .addParameter("name", removedName);
-//        SimpleEntity simpleEntity = userResource.httpDeleteAsEntity(null, urlParameters, null);
-//        if (simpleEntity.getContent().equals("true")) {
-//            return true;
-//        } else {
-//            return false;
-//        }
-//
-//    }
+    public AdminService removeUser(User removedUser) {
+        RestParameters urlParameters = new RestParameters()
+                .addParameter("token", user.getToken())
+                .addParameter("name", removedUser.getName());
+        SimpleEntity simpleEntity = userResource.httpDeleteAsEntity(null, urlParameters, null);
+        if ((simpleEntity.getContent() == null) || (simpleEntity.getContent().isEmpty())
+                || (simpleEntity.getContent().toLowerCase().equals("false"))) {
+            throw new RuntimeException();
+        }
+        return this;
+    }
 //
 
 //
