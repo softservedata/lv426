@@ -46,24 +46,14 @@ public class UserService extends GuestService {
         return new GuestService();
     }
 
-    public UserService tryToChangeTokenLifeTime(Lifetime time) {
-        RestParameters body = new RestParameters()
-                .addParameter("token", user.getToken())
-                .addParameter("time", time.getTime());
-        SimpleEntity entity = tokenResources.httpPutAsEntity(null, null, body);
-        return this;
-    }
-
-
-//    public AdminService changeCoolDown(String newTime) {
-//        RestParameters bodyParameters = new RestParameters()
+//    public UserService tryToChangeTokenLifeTime(Lifetime time) {
+//        RestParameters body = new RestParameters()
 //                .addParameter("token", user.getToken())
-//                .addParameter("time", newTime);
-//        SimpleEntity simpleEntity = cooldownResource
-//                .httpPutAsEntity(null, null, bodyParameters);
-//        //checkEntity(simpleEntity, user.getPassword());
+//                .addParameter("time", time.getTime());
+//        SimpleEntity entity = tokenResources.httpPutAsEntity(null, null, body);
 //        return this;
 //    }
+
 
     public UserService addItem(Item item) {
         RestParameters pathParameters = new RestParameters()

@@ -37,7 +37,6 @@ public class GuestService extends BaseService {
 //	}
 
     protected void checkEntity(SimpleEntity simpleEntity, String message) {
-        // if (!simpleEntity.getContent().toLowerCase().equals("true"))
         if ((simpleEntity.getContent() == null) || (simpleEntity.getContent().isEmpty())
                 || (simpleEntity.getContent().toLowerCase().equals("false"))) {
             // TODO Develop Custom Exception
@@ -65,17 +64,6 @@ public class GuestService extends BaseService {
         return new Lifetime(simpleEntity.getContent());
     }
 
-//    public String getCoolDownTime() {
-//        SimpleEntity simpleEntity = cooldownResource
-//                .httpGetAsEntity(null, null);
-//        return simpleEntity.getContent();
-//    }
-
-    // TODO
-//    public void UnsuccessfulUserLogin(IUser user)
-//    {
-//    }
-//
 
     public UserService successfulUserLogin(User user) {
         RestParameters bodyParameters = new RestParameters()
@@ -84,6 +72,7 @@ public class GuestService extends BaseService {
         SimpleEntity simpleEntity = loginUserResource.httpPostAsEntity(null, null, bodyParameters);
         checkEntity(simpleEntity, "Error Login");
         user.setToken(simpleEntity.getContent());
+        checkEntity(simpleEntity, "The user has not been logged");
         return new UserService(user);
     }
 

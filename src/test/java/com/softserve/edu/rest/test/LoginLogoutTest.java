@@ -15,7 +15,7 @@ public class LoginLogoutTest {
 	@DataProvider
     public Object[][] correctUser() {
         return new Object[][]{
-                { UserRepository.getAdmin() },
+                { UserRepository.notExistingUser2() },
         };
     }
 
