@@ -4,10 +4,7 @@ import com.softserve.edu.rest.data.Lifetime;
 import com.softserve.edu.rest.data.User;
 import com.softserve.edu.rest.dto.RestParameters;
 import com.softserve.edu.rest.entity.SimpleEntity;
-import com.softserve.edu.rest.resources.AdminResource;
-import com.softserve.edu.rest.resources.LoginAdminResource;
-import com.softserve.edu.rest.resources.LoginUserResource;
-import com.softserve.edu.rest.resources.UserResource;
+import com.softserve.edu.rest.resources.*;
 
 public class AdminService extends UserService {
 
@@ -18,6 +15,7 @@ public class AdminService extends UserService {
     private LoginAdminResource adminLoginResource;
     private LoginUserResource userLoginResource;
     private UserResource userResource;
+    private UsersResource usersResource;
     private AdminResource adminResource;
 //    private LockedUsersResource lockedUsersResource;
 //    private UnlockAllUsersResource unlockAllUsersResource;
@@ -115,7 +113,7 @@ public class AdminService extends UserService {
     public String getAllUsers() {
         RestParameters urlParameters = new RestParameters()
                 .addParameter("token", user.getToken());
-        SimpleEntity simpleEntity = userResource.httpGetAsEntity(null, urlParameters);
+        SimpleEntity simpleEntity = usersResource.httpGetAsEntity(null, urlParameters);
         return simpleEntity.getContent();
     }
 
