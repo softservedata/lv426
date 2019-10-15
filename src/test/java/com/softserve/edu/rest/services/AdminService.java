@@ -112,12 +112,13 @@ public class AdminService extends UserService {
         return this;
     }
 
-    public AdminService getAllLockedUsers(){
+    public String getAllLockedUsers(){
         RestParameters bodyParameters = new RestParameters()
                 .addParameter("token", user.getToken());
         SimpleEntity simpleEntity = lockUsersResource
                 .httpGetAsEntity(null, bodyParameters);
-        return this;
+
+        return simpleEntity.getContent();
     }
 
     public AdminService unlockAllUsers(){
