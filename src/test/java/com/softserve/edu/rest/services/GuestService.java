@@ -37,7 +37,6 @@ public class GuestService extends BaseService {
 //	}
 
     protected void checkEntity(SimpleEntity simpleEntity, String message) {
-        // if (!simpleEntity.getContent().toLowerCase().equals("true"))
         if ((simpleEntity.getContent() == null) || (simpleEntity.getContent().isEmpty())
                 || (simpleEntity.getContent().toLowerCase().equals("false"))) {
             // TODO Develop Custom Exception
@@ -84,6 +83,7 @@ public class GuestService extends BaseService {
         SimpleEntity simpleEntity = loginUserResource.httpPostAsEntity(null, null, bodyParameters);
         checkEntity(simpleEntity, "Error Login");
         user.setToken(simpleEntity.getContent());
+//        checkEntity(simpleEntity, "The user")
         return new UserService(user);
     }
 
