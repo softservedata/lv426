@@ -6,19 +6,26 @@ import com.softserve.edu.rest.data.User;
 import com.softserve.edu.rest.data.UserRepository;
 import com.softserve.edu.rest.services.AdminService;
 import com.softserve.edu.rest.services.GuestService;
+import com.softserve.edu.rest.services.UserService;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class RealTokenLifetime {
     private GuestService guestService;
+    private AdminService adminService;
 
 
     @DataProvider
     public Object[][] adminUser() {
         return new Object[][]{
-                {UserRepository.getAdmin()},
+                {UserRepository.getAdmin(),LifetimeRepository.getShortLifeTime()},
+        };
+    }
+
+    @DataProvider
+    public Object[][] user() {
+        return new Object[][]{
+                {UserRepository.getAdmin(), LifetimeRepository.getShortLifeTime()},
         };
     }
 
@@ -27,14 +34,50 @@ public class RealTokenLifetime {
         guestService = new GuestService();
     }
 
+    @BeforeMethod
+    public void login() {
+        adminService = guestService.successfulAdminLogin(UserRepository.getAdmin());
+        adminService.createUser(UserRepository.getMaxUser());
+    }
+
+
+    @AfterMethod
+    public void tearDown() {
+        if ((adminService != null) && (guestService != null)){
+            adminService.updateTokenLifetime(LifetimeRepository.getDefault())
+                    .removeUser(UserRepository.getMaxUser());
+            System.out.println(adminService.isUserRemoved(UserRepository.getMaxUser()));
+                    adminService.logoutUser();
+            adminService = null;
+        }
+    }
+
+    @AfterClass
+    public void endWork() {
+        guestService = null;
+    }
+
+
+
     @Test(dataProvider = "adminUser")
-    public void checkRealTime(User user) {
-        Lifetime testTime = LifetimeRepository.getShortLifeTime();
+    public void checkRealTime(User user, Lifetime testTime) {
         AdminService adminService = guestService.successfulAdminLogin(user);
         adminService.updateTokenLifetime(testTime);
         wait(testTime);
         Assert.assertFalse(adminService.isAdminLogged(user));
     }
+
+
+    @Test(dataProvider = "user")
+    public void checkRealLifetimeForUser(User user, Lifetime testTime) {
+        UserService userService = guestService.successfulUserLogin(user);
+        adminService.updateTokenLifetime(testTime);
+        wait(testTime);
+        guestService.successfulAdminLogin(UserRepository.getAdmin());
+        Assert.assertFalse(adminService.isUserLogged(user));
+
+    }
+
 
     private void wait(Lifetime time) {
         try {

@@ -11,6 +11,12 @@ public class LifetimeRepository {
                 .build();
     }
 
+    public static Lifetime getDefaultCoolTime(){
+        return Lifetime.builder()
+                .time("180000")
+                .build();
+    }
+
     public static Lifetime getZeroLifetime() {
         return Lifetime.builder()
                 .time("0")

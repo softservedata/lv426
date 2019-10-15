@@ -125,4 +125,33 @@ public final class RestUrlRepository {
                 .addPutUrl("/user")
                 .addDeleteUrl("/user");
     }
+
+    public static RestUrl getLockedUser(){
+        return new RestUrl()
+                .addBaseUrl(server)
+                .addGetUrl("")
+                .addPostUrl("/locked/user/")
+                .addPutUrl("/locked/user/")
+                .addDeleteUrl("");
+    }
+
+    public static RestUrl getLockedUsers(){
+        return new RestUrl()
+                .addBaseUrl(server)
+                .addGetUrl("/locked/users")
+                .addPostUrl("")
+                .addPutUrl("/locked/reset")
+                .addDeleteUrl("");
+    }
+
+    public static RestUrl getResetUrl(){
+        return new RestUrl()
+                .addBaseUrl(server)
+                .addGetUrl("/reset")
+                .addPostUrl("")
+                .addPutUrl("")
+                .addDeleteUrl("");
+    }
+
+
 }

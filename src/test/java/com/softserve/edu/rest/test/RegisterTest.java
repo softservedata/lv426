@@ -2,33 +2,36 @@ package com.softserve.edu.rest.test;
 
 import com.softserve.edu.rest.data.User;
 import com.softserve.edu.rest.data.UserRepository;
-import com.softserve.edu.rest.services.GuestService;
-import com.softserve.edu.rest.services.UserService;
+import com.softserve.edu.rest.services.AdminService;
+import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class RegisterTest {@DataProvider
 public Object[][] correctUser() {
     return new Object[][]{
-            { UserRepository.getAdmin(), UserRepository.notExistingUser2() },
+            { UserRepository.getAdmin(), UserRepository.notExistingUser2()},
     };
 }
 
     @Test(dataProvider = "correctUser")
-    public void registerPositiveTest(User user, User newUser) {
+    public void registerPositiveTest(User adminUser, User newUser) {
         //log.debug("loginPositiveTest started!");
         //Steps
-        GuestService guestService = new GuestService()
-                .successfulAdminLogin(user)
-                .createUser(newUser)
+        AdminService adminService = new AdminService(adminUser)
+                .successfulAdminLogin(adminUser)
+                .createUser(newUser);
+        Assert.assertEquals(adminService.isUserCreated(newUser),true);
+        adminService
                 .logoutUser()
                 .successfulUserLogin(newUser)
                 .logoutUser()
-                .successfulAdminLogin(user)
-                .removeUser(newUser)
+                .successfulAdminLogin(adminUser)
+                .removeUser(newUser);
+        Assert.assertEquals(adminService.isUserRemoved(newUser),true);
+        adminService
                 .logoutUser()
                 .unsuccessfulUserLogin(newUser);
-
 
         //Check
         //Assert.assertTrue(userService.isUserLogged(user));

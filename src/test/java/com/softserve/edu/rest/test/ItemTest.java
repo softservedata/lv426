@@ -15,14 +15,14 @@ public class ItemTest {
     @DataProvider
     public Object[][] createItem() {
         return new Object[][]{
-                {UserRepository.getAdmin(), ItemRepository.getValidItem()}
+                {UserRepository.forItemUser(), ItemRepository.getValidItem()}
         };
     }
 
     @DataProvider
     public Object[][] updateItem() {
         return new Object[][]{
-                {UserRepository.getAdmin(), ItemRepository.getValidItem(), ItemRepository.getUpdateValidItem()}
+                {UserRepository.forItemUser(), ItemRepository.getValidItem(), ItemRepository.getUpdateValidItem()}
         };
     }
 
@@ -50,7 +50,7 @@ public class ItemTest {
         Assert.assertEquals(userService.getItem(newItem), newItem.getItem());
 
         userService.deleteItem(newItem);
-        //Assert.assertEquals(userService.getItem(item), newItem.getItem());
+        Assert.assertEquals(userService.getItem(item), null);
         userService.logoutUser();
     }
 }
