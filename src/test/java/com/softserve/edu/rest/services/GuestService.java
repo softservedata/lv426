@@ -70,12 +70,6 @@ public class GuestService extends BaseService {
 //        return simpleEntity.getContent();
 //    }
 
-    // TODO
-//    public void UnsuccessfulUserLogin(IUser user)
-//    {
-//    }
-//
-
     public UserService successfulUserLogin(User user) {
         RestParameters bodyParameters = new RestParameters()
                 .addParameter("name", user.getName())
