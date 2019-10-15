@@ -1,5 +1,6 @@
 package com.softserve.edu.rest.data;
-public final class  UserRepository {
+
+public final class UserRepository {
 
     private UserRepository() {
     }
@@ -12,7 +13,7 @@ public final class  UserRepository {
                 .build();
     }
 
-    public static User notExistingUser(){
+    public static User notExistingUser() {
         return User.builder()
                 .name("Anna")
                 .password("ksjddlfkjddqwerty")
@@ -20,14 +21,20 @@ public final class  UserRepository {
                 .build();
     }
 
-    public static User FakeAdmin()
-    {
+    public static User notExistingUser2() {
+        return User.builder()
+                .name("Ivan")
+                .password("ksjddlfkjddqwerty")
+                .adminRights(false)
+                .build();
+    }
+
+    public static User FakeAdmin() {
         return User.builder()
                 .name("FakeAdmin")
                 .password("1234")
                 .token("DT2ES1AHRY5Y09MMC6A5XSQ500W74E3E")
                 .build();
     }
-
 
 }

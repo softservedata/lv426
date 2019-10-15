@@ -6,6 +6,9 @@ import com.softserve.edu.rest.dto.RestUrl;
 
 import java.lang.reflect.ParameterizedType;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.ParameterizedType;
+
 public class RestQueries<TGET, TPOST, TPUT, TDELETE> extends RestCrud {
 
     private final String CONVERT_OBJECT_ERROR = "ConvertToObject Error. %s%s";

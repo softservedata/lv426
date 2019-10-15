@@ -1,16 +1,18 @@
 package com.softserve.edu.rest.services;
 
+import com.softserve.edu.rest.data.Item;
 import com.softserve.edu.rest.data.Lifetime;
 import com.softserve.edu.rest.data.User;
 import com.softserve.edu.rest.dto.RestParameters;
 import com.softserve.edu.rest.entity.SimpleEntity;
 
+import com.softserve.edu.rest.resources.ItemResource;
 import com.softserve.edu.rest.resources.LogoutResource;
 
 public class UserService extends GuestService {
 
     protected LogoutResource logoutResource;
-
+    protected ItemResource itemResource;
     //    protected UserResource userResource;
     protected User user;
 
@@ -19,6 +21,7 @@ public class UserService extends GuestService {
     public UserService(User user) {
         // super(); // by default
         logoutResource = new LogoutResource();
+        itemResource = new ItemResource();
 //        userResource = new UserResource();
 //        usersResourse = new UsersResourse();
         // TODO Is Logged
@@ -60,6 +63,48 @@ public class UserService extends GuestService {
 //        //checkEntity(simpleEntity, user.getPassword());
 //        return this;
 //    }
+
+    public UserService addItem(Item item) {
+        RestParameters pathParameters = new RestParameters()
+                .addParameter("index", item.getIndex());
+        RestParameters bodyParameters = new RestParameters()
+                .addParameter("token", user.getToken())
+                .addParameter("item", item.getItem());
+        SimpleEntity simpleEntity = itemResource.httpPostAsEntity(pathParameters, null, bodyParameters);
+        checkEntity(simpleEntity, item.getItem());
+        return new UserService(user);
+    }
+
+    public String getItem(Item item) {
+        RestParameters urlParameters = new RestParameters()
+                .addParameter("token", user.getToken());
+        RestParameters pathParameters = new RestParameters()
+                .addParameter("index", item.getIndex());
+        SimpleEntity simpleEntity = itemResource.httpGetAsEntity(pathParameters, urlParameters);
+        checkEntity(simpleEntity, item.getItem());
+        return simpleEntity.getContent();
+    }
+
+    public UserService deleteItem(Item item) {
+        RestParameters pathParameters = new RestParameters()
+                .addParameter("index", item.getIndex());
+        RestParameters urlParameters = new RestParameters()
+                .addParameter("token", user.getToken());
+        SimpleEntity simpleEntity = itemResource.httpDeleteAsEntity(pathParameters, urlParameters, null);
+        checkEntity(simpleEntity, item.getItem());
+        return new UserService(user);
+    }
+
+    public UserService updateItem(Item item) {
+        RestParameters pathParameters = new RestParameters()
+                .addParameter("index", item.getIndex());
+        RestParameters bodyParameters = new RestParameters()
+                .addParameter("item", item.getItem())
+                .addParameter("token", user.getToken());
+        SimpleEntity simpleEntity = itemResource.httpPutAsEntity(pathParameters, null, bodyParameters);
+        checkEntity(simpleEntity, item.getItem());
+        return new UserService(user);
+    }
 
 
 //    public String getUserName() {

@@ -4,7 +4,10 @@ import com.softserve.edu.rest.data.Lifetime;
 import com.softserve.edu.rest.data.User;
 import com.softserve.edu.rest.dto.RestParameters;
 import com.softserve.edu.rest.entity.SimpleEntity;
-import com.softserve.edu.rest.resources.LoginResource;
+import com.softserve.edu.rest.resources.AdminResource;
+import com.softserve.edu.rest.resources.LoginAdminResource;
+import com.softserve.edu.rest.resources.LoginUserResource;
+import com.softserve.edu.rest.resources.UserResource;
 
 public class AdminService extends UserService {
 
@@ -12,7 +15,10 @@ public class AdminService extends UserService {
     // private LoggedAdminsResource loggedAdminsResource;
 //    // Locked
 //    private LockedAdminsResource lockedAdminsResource;
-    private LoginResource loggedAdminResource;
+    private LoginAdminResource adminLoginResource;
+    private LoginUserResource userLoginResource;
+    private UserResource userResource;
+    private AdminResource adminResource;
 //    private LockedUsersResource lockedUsersResource;
 //    private UnlockAllUsersResource unlockAllUsersResource;
 //    private LockUnlockUserResource lockUnlockUserResource;
@@ -21,8 +27,10 @@ public class AdminService extends UserService {
 
     public AdminService(User user) {
         super(user);
-//        adminsResource = new AdminsResource();
-        loggedAdminResource = new LoginResource();
+        adminResource = new AdminResource();
+        userResource = new UserResource();
+        adminLoginResource = new LoginAdminResource();
+        userLoginResource = new LoginUserResource();
 //        loggedUsersResource = new LoggedUsersResource();
 //        lockedAdminsResource = new LockedAdminsResource();
 //        lockedUsersResource = new LockedUsersResource();
@@ -55,23 +63,21 @@ public class AdminService extends UserService {
 ////        checkEntity(simpleEntity, user.getName());
 ////        return simpleEntity.getContent();
 ////    }
-//    @Step("Create user")
-//    public Boolean createUser(User newUser) {
-//        RestParameters bodyParameters = new RestParameters()
-//                .addParameter("token", user.getToken())
-//                .addParameter("name", newUser.getName())
-//                .addParameter("password", newUser.getPassword())
-//                .addParameter("rights", newUser.isAdminRights() + "");
-//
-//        SimpleEntity simpleEntity = userResource.
-//                httpPostAsEntity(null, null, bodyParameters);
-//        if (simpleEntity.getContent().equals("true")) {
-//            return true;
-//        } else {
-//            return false;
-//        }
-//
-//    }
+    public AdminService createUser(User newUser) {
+        RestParameters bodyParameters = new RestParameters()
+                .addParameter("token", user.getToken())
+                .addParameter("name", newUser.getName())
+                .addParameter("password", newUser.getPassword())
+                .addParameter("rights", newUser.isAdminRights() + "");
+
+        SimpleEntity simpleEntity = userResource.
+                httpPostAsEntity(null, null, bodyParameters);
+        if ((simpleEntity.getContent() == null) || (simpleEntity.getContent().isEmpty())
+                || (simpleEntity.getContent().toLowerCase().equals("false"))) {
+            throw new RuntimeException();
+        }
+        return this;
+    }
 //
 //    public Boolean setCooldownTime(User adminUser) {
 //        RestParameters bodyParameters = new RestParameters()
@@ -106,12 +112,19 @@ public class AdminService extends UserService {
 //    }
 //
 //
-//    public String getAllUsers() {
-//        RestParameters urlParameters = new RestParameters()
-//                .addParameter("token", user.getToken());
-//        SimpleEntity simpleEntity = usersResourse.httpGetAsEntity(null, urlParameters);
-//        return simpleEntity.getContent();
-//    }
+    public String getAllUsers() {
+        RestParameters urlParameters = new RestParameters()
+                .addParameter("token", user.getToken());
+        SimpleEntity simpleEntity = userResource.httpGetAsEntity(null, urlParameters);
+        return simpleEntity.getContent();
+    }
+
+    public String getAllAdmins() {
+        RestParameters urlParameters = new RestParameters()
+                .addParameter("token", user.getToken());
+        SimpleEntity simpleEntity = adminResource.httpGetAsEntity(null, urlParameters);
+        return simpleEntity.getContent();
+    }
 //@Step("Delete user")
 //    public Boolean removeUser(String removedName) {
 //        RestParameters urlParameters = new RestParameters()
@@ -126,19 +139,14 @@ public class AdminService extends UserService {
 //
 //    }
 //
-//    public String getAllAdmins() {
-//        RestParameters urlParameters = new RestParameters()
-//                .addParameter("token", user.getToken());
-//        SimpleEntity simpleEntity = adminsResource.httpGetAsEntity(null, urlParameters);
-//        return simpleEntity.getContent();
-//    }
+
 //
-//    public String getAllLoggedAdmins() {
-//        RestParameters urlParameters = new RestParameters()
-//                .addParameter("token", user.getToken());
-//        SimpleEntity simpleEntity = loggedAdminsResource.httpGetAsEntity(null, urlParameters);
-//        return simpleEntity.getContent();
-//    }
+    public String getAllLoggedAdmins() {
+        RestParameters urlParameters = new RestParameters()
+                .addParameter("token", user.getToken());
+        SimpleEntity simpleEntity = loginAdminResource.httpGetAsEntity(null, urlParameters);
+        return simpleEntity.getContent();
+    }
 //
 //    public String getAllLoggedUsers() {
 //        RestParameters urlParameters = new RestParameters()
@@ -190,14 +198,14 @@ public class AdminService extends UserService {
 //        return simpleEntity.getContent();
 //    }
 //
-//    public boolean isUserLogged(User user) {
-//
-//        if (getAllLoggedUsers().contains(user.getName())) {
-//            return true;
-//        } else {
-//            return false;
-//        }
-//    }
+    public boolean isAdminLogged(User user) {
+
+        if (getAllLoggedAdmins().contains(user.getName())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 //
 //    public void unlockAllUsers() {
 //        RestParameters bodyParameters = new RestParameters()

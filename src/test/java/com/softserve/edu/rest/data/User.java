@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.util.List;
+
 @Getter
 @Builder
 @AllArgsConstructor
@@ -14,7 +16,7 @@ public class User {
     private String password;
     private String token;
     private String time;
-//    private List<Item> items;
+    private List<Item> items;
     private boolean adminRights;
     private final String ERROR_USER_LOCKED = "ERROR, user locked";
     private final String ERROR_USER_NOT_FOUND = "ERROR, user not found";
@@ -23,7 +25,7 @@ public class User {
     public User(String name, String password) {
         this.name = name;
         this.password = password;
- //       items = new ArrayList<>();
+        //       items = new ArrayList<>();
         adminRights = false;
     }
 
@@ -45,10 +47,10 @@ public class User {
         return this;
     }
 
-//    public User addItem(Item item) {
-//        items.add(item);
-//        return this;
-//    }
+    public User addItem(Item item) {
+        items.add(item);
+        return this;
+    }
 
     public User setPassword(String password) {
         this.password = password;

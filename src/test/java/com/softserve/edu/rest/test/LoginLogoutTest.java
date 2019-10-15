@@ -18,7 +18,7 @@ public class LoginLogoutTest {
                 { UserRepository.getAdmin() },
         };
     }
-	
+
 	@Test(dataProvider = "correctUser")
 	public void loginPositiveTest(User user) {
         //log.debug("loginPositiveTest started!");
