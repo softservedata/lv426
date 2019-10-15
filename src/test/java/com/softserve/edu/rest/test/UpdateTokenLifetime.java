@@ -49,9 +49,9 @@ public class UpdateTokenLifetime {
 
     @Test
     public void tryToUpdateTokenLifetimeWithInvalidAdminToken() {
-        UserService userService = new UserService(UserRepository.FakeAdmin());
-        userService.tryToChangeTokenLifeTime(LifetimeRepository.getDefault());
-        Assert.assertEquals(LifetimeRepository.getDefault().getTime(), userService.getTokenLifetime().getTime());
+        AdminService adminService = new AdminService(UserRepository.FakeAdmin());
+        adminService.updateTokenLifetime(LifetimeRepository.getDefault());
+        Assert.assertEquals(LifetimeRepository.getDefault().getTime(), adminService.getTokenLifetime().getTime());
     }
 
     @Test

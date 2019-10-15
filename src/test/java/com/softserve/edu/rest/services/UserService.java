@@ -46,13 +46,13 @@ public class UserService extends GuestService {
         return new GuestService();
     }
 
-    public UserService tryToChangeTokenLifeTime(Lifetime time) {
-        RestParameters body = new RestParameters()
-                .addParameter("token", user.getToken())
-                .addParameter("time", time.getTime());
-        SimpleEntity entity = tokenResources.httpPutAsEntity(null, null, body);
-        return this;
-    }
+//    public UserService tryToChangeTokenLifeTime(Lifetime time) {
+//        RestParameters body = new RestParameters()
+//                .addParameter("token", user.getToken())
+//                .addParameter("time", time.getTime());
+//        SimpleEntity entity = tokenResources.httpPutAsEntity(null, null, body);
+//        return this;
+//    }
 
 
     public UserService addItem(Item item) {

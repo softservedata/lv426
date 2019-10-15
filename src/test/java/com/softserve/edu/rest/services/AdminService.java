@@ -181,6 +181,13 @@ public class AdminService extends UserService {
         return simpleEntity.getContent();
     }
 
+    public String getAllLoggedUsers() {
+        RestParameters urlParameters = new RestParameters()
+                .addParameter("token", user.getToken());
+        SimpleEntity simpleEntity = loginUserResource.httpGetAsEntity(null, urlParameters);
+        return simpleEntity.getContent();
+    }
+
 //    private String getLockedAdmins() {
 //        RestParameters urlParameters = new RestParameters()
 //                .addParameter("token", user.getToken());
@@ -196,6 +203,15 @@ public class AdminService extends UserService {
             return false;
         }
     }
+    public boolean isUserLogged(User user) {
+
+        if (getAllLoggedUsers().contains(user.getName())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 //
 //    public void unlockAllUsers() {
 //        RestParameters bodyParameters = new RestParameters()
