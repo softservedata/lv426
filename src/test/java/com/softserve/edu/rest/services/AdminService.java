@@ -228,6 +228,14 @@ public class AdminService extends UserService {
         }
 
     }
+    public boolean isUserRemoved(User user) {
+        if (!getAllUsers().contains(user.getName())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 //
 //    public String changeCooldown(String newTime){
 //        RestParameters bodyParameters = new RestParameters()
