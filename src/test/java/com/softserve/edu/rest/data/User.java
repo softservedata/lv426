@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -25,7 +26,7 @@ public class User {
     public User(String name, String password) {
         this.name = name;
         this.password = password;
-        //       items = new ArrayList<>();
+        items = new ArrayList<>();
         adminRights = false;
     }
 
