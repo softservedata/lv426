@@ -3,8 +3,6 @@ package com.softserve.edu.rest.test;
 import com.softserve.edu.rest.data.User;
 import com.softserve.edu.rest.data.UserRepository;
 import com.softserve.edu.rest.services.AdminService;
-import com.softserve.edu.rest.services.GuestService;
-import com.softserve.edu.rest.services.UserService;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -29,7 +27,9 @@ public Object[][] correctUser() {
                 .successfulUserLogin(newUser)
                 .logoutUser()
                 .successfulAdminLogin(adminUser)
-                .removeUser(newUser)
+                .removeUser(newUser);
+        Assert.assertEquals(adminService.isUserRemoved(newUser),true);
+        adminService
                 .logoutUser()
                 .unsuccessfulUserLogin(newUser);
 

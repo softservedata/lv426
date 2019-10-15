@@ -15,6 +15,7 @@ public class AdminService extends UserService {
     private LoginAdminResource adminLoginResource;
     private LoginUserResource userLoginResource;
     private UserResource userResource;
+    private UsersResource usersResource;
     private AdminResource adminResource;
     private LockUserResource lockUserResource;
     private LockUsersResource lockUsersResource;
@@ -28,6 +29,7 @@ public class AdminService extends UserService {
         super(user);
         adminResource = new AdminResource();
         userResource = new UserResource();
+        usersResource = new UsersResource();
         adminLoginResource = new LoginAdminResource();
         userLoginResource = new LoginUserResource();
         lockUserResource = new LockUserResource();
@@ -146,7 +148,7 @@ public class AdminService extends UserService {
     public String getAllUsers() {
         RestParameters urlParameters = new RestParameters()
                 .addParameter("token", user.getToken());
-        SimpleEntity simpleEntity = userResource.httpGetAsEntity(null, urlParameters);
+        SimpleEntity simpleEntity = usersResource.httpGetAsEntity(null, urlParameters);
         return simpleEntity.getContent();
     }
 
@@ -216,6 +218,14 @@ public class AdminService extends UserService {
         }
 
     }
+    public boolean isUserRemoved(User user) {
+        if (!getAllUsers().contains(user.getName())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 //
 //
 //    public boolean isUserAdmin(User user) {

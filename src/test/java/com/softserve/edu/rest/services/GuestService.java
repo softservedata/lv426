@@ -65,8 +65,6 @@ public class GuestService extends BaseService {
     }
 
 
-
-
     public UserService successfulUserLogin(User user) {
         RestParameters bodyParameters = new RestParameters()
                 .addParameter("name", user.getName())
