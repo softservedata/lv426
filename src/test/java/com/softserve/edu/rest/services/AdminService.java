@@ -220,14 +220,14 @@ public class AdminService extends UserService {
 //        return getLockedAdmins().contains(user.getName());
 //    }
 //
-//    public boolean isUserCreated(User user) {
-//        if (getAllUsers().contains(user.getName())) {
-//            return true;
-//        } else {
-//            return false;
-//        }
-//
-//    }
+    public boolean isUserCreated(User user) {
+        if (getAllUsers().contains(user.getName())) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
 //
 //    public String changeCooldown(String newTime){
 //        RestParameters bodyParameters = new RestParameters()
