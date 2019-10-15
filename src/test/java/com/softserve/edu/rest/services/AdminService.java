@@ -27,6 +27,7 @@ public class AdminService extends UserService {
         super(user);
         adminResource = new AdminResource();
         userResource = new UserResource();
+        usersResource = new UsersResource();
         adminLoginResource = new LoginAdminResource();
         userLoginResource = new LoginUserResource();
 //        loggedUsersResource = new LoggedUsersResource();
