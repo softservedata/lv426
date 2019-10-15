@@ -12,7 +12,6 @@ import org.testng.annotations.Test;
 
 public class TokenLifeTime {
     private GuestService guestService;
-    private User notExistUser;
     private  Lifetime lifetime;
 
     @DataProvider
@@ -31,7 +30,6 @@ public class TokenLifeTime {
     @Test
     public void getTokenLifeTime() {
         lifetime = guestService.getTokenLifetime();
-
         Assert.assertEquals(lifetime.getTime(), LifetimeRepository.getDefault().getTime());
     }
 
