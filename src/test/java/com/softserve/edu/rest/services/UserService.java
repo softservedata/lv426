@@ -55,16 +55,6 @@ public class UserService extends GuestService {
     }
 
 
-//    public AdminService changeCoolDown(String newTime) {
-//        RestParameters bodyParameters = new RestParameters()
-//                .addParameter("token", user.getToken())
-//                .addParameter("time", newTime);
-//        SimpleEntity simpleEntity = cooldownResource
-//                .httpPutAsEntity(null, null, bodyParameters);
-//        //checkEntity(simpleEntity, user.getPassword());
-//        return this;
-//    }
-
     public UserService addItem(Item item) {
         RestParameters pathParameters = new RestParameters()
                 .addParameter("index", item.getIndex());

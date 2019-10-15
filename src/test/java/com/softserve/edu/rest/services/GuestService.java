@@ -64,17 +64,8 @@ public class GuestService extends BaseService {
         return new Lifetime(simpleEntity.getContent());
     }
 
-//    public String getCoolDownTime() {
-//        SimpleEntity simpleEntity = cooldownResource
-//                .httpGetAsEntity(null, null);
-//        return simpleEntity.getContent();
-//    }
 
-    // TODO
-//    public void UnsuccessfulUserLogin(IUser user)
-//    {
-//    }
-//
+
 
     public UserService successfulUserLogin(User user) {
         RestParameters bodyParameters = new RestParameters()
@@ -83,7 +74,7 @@ public class GuestService extends BaseService {
         SimpleEntity simpleEntity = loginUserResource.httpPostAsEntity(null, null, bodyParameters);
         checkEntity(simpleEntity, "Error Login");
         user.setToken(simpleEntity.getContent());
-//        checkEntity(simpleEntity, "The user")
+        checkEntity(simpleEntity, "The user has not been logged");
         return new UserService(user);
     }
 

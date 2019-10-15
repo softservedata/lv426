@@ -22,12 +22,18 @@ public class LockUserChangeCoolTimeCheckIfUnlocked {
 public void lockUserByLogin(){
     GuestService guestService = new GuestService();
     for (int i =0; i<3; i++)
-    guestService.successfulUserLogin(UserRepository.getMaxUserWithMistake());
+    guestService.unsuccessfulUserLogin(UserRepository.getMaxUserWithMistake());
     }
 
 @Test(dataProvider = "dataDistributor", expectedExceptions = RuntimeException.class)
     public void testName(User simpleUser){
     GuestService guestService = new GuestService();
+    guestService.successfulUserLogin(simpleUser);
+    try {
+        Thread.sleep(Long.parseLong(guestService.getCoolDownTime().getTime()));
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
     guestService.successfulUserLogin(simpleUser);
 }
 }

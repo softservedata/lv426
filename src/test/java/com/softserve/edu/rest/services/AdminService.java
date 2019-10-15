@@ -79,13 +79,7 @@ public class AdminService extends UserService {
         }
         return this;
     }
-//
-//    public Boolean setCooldownTime(User adminUser) {
-//        RestParameters bodyParameters = new RestParameters()
-//                .addParameter("token", user.getToken())
-////                .addParameter("time", adminUser.getTime())
-//                .addParameter("time", "3333" )
-//                ;
+
     public AdminService changeCoolDown(Lifetime lifetime) {
         RestParameters bodyParameters = new RestParameters()
                 .addParameter("token", user.getToken())
@@ -183,50 +177,7 @@ public class AdminService extends UserService {
         SimpleEntity simpleEntity = loginAdminResource.httpGetAsEntity(null, urlParameters);
         return simpleEntity.getContent();
     }
-//
-//    public String getAllLoggedUsers() {
-//        RestParameters urlParameters = new RestParameters()
-//                .addParameter("token", user.getToken());
-//        SimpleEntity simpleEntity = loggedUsersResource.httpGetAsEntity(null, urlParameters);
-//        return simpleEntity.getContent();
-//    }
 
-    //
-//    public boolean unlockUser(User unlockingUser) {
-//        RestParameters bodyParameters = new RestParameters()
-//                .addParameter("token", user.getToken())
-//                .addParameter("name", unlockingUser.getName());
-//        RestParameters pathVariable = new RestParameters()
-//                .addParameter("lockName", unlockingUser.getName());
-//
-//        SimpleEntity simpleEntity = lockUnlockUserResource.
-//                httpPutAsEntity(pathVariable, null, bodyParameters);
-//
-//        checkEntity(simpleEntity, "true");
-//        return simpleEntity.getContent().equals("true");
-//    }
-//
-//    public boolean lockUser(User lockingUser) {
-//        RestParameters bodyParameters = new RestParameters()
-//                .addParameter("token", user.getToken())
-//                .addParameter("name", lockingUser.getName());
-//        RestParameters pathVariable = new RestParameters()
-//                .addParameter("lockName", lockingUser.getName());
-//
-//        SimpleEntity simpleEntity = lockUnlockUserResource.
-//                httpPostAsEntity(pathVariable, null, bodyParameters);
-//
-//        checkEntity(simpleEntity, "true");
-//        return simpleEntity.getContent().equals("true");
-//    }
-//
-//    private String getLockedUsers() {
-//        RestParameters urlParameters = new RestParameters()
-//                .addParameter("token", user.getToken());
-//        SimpleEntity simpleEntity = lockedUsersResource.httpGetAsEntity(null, urlParameters);
-//        return simpleEntity.getContent();
-//    }
-//
 //    private String getLockedAdmins() {
 //        RestParameters urlParameters = new RestParameters()
 //                .addParameter("token", user.getToken());
