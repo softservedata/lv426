@@ -72,7 +72,7 @@ public class UserService extends GuestService {
         RestParameters pathParameters = new RestParameters()
                 .addParameter("index", item.getIndex());
         SimpleEntity simpleEntity = itemResource.httpGetAsEntity(pathParameters, urlParameters);
-        checkEntity(simpleEntity, item.getItem());
+        //checkEntity(simpleEntity, item.getItem());
         return simpleEntity.getContent();
     }
 

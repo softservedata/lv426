@@ -18,7 +18,14 @@ public class RealTokenLifetime {
     @DataProvider
     public Object[][] adminUser() {
         return new Object[][]{
-                {UserRepository.getAdmin()},
+                {UserRepository.getAdmin(),LifetimeRepository.getShortLifeTime()},
+        };
+    }
+
+    @DataProvider
+    public Object[][] user() {
+        return new Object[][]{
+                {UserRepository.getAdmin(), LifetimeRepository.getShortLifeTime()},
         };
     }
 
@@ -30,6 +37,7 @@ public class RealTokenLifetime {
     @BeforeMethod
     public void login() {
         adminService = guestService.successfulAdminLogin(UserRepository.getAdmin());
+        adminService.createUser(UserRepository.getMaxUser());
     }
 
 
@@ -41,7 +49,6 @@ public class RealTokenLifetime {
             System.out.println(adminService.isUserRemoved(UserRepository.getMaxUser()));
                     adminService.logoutUser();
             adminService = null;
-            guestService = null;
         }
     }
 
@@ -53,8 +60,7 @@ public class RealTokenLifetime {
 
 
     @Test(dataProvider = "adminUser")
-    public void checkRealTime(User user) {
-        Lifetime testTime = LifetimeRepository.getShortLifeTime();
+    public void checkRealTime(User user, Lifetime testTime) {
         AdminService adminService = guestService.successfulAdminLogin(user);
         adminService.updateTokenLifetime(testTime);
         wait(testTime);

@@ -64,6 +64,14 @@ public final class UserRepository {
                 .build();
     }
 
+    public static User forItemUser(){
+        return User.builder()
+                .name("khalaktc")
+                .password("qwerty")
+                .adminRights(false)
+                .build();
+    }
+
     public static User FakeAdmin() {
         return User.builder()
                 .name("FakeAdmin")
