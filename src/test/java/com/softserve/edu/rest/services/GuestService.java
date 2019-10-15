@@ -25,8 +25,6 @@ public class GuestService extends BaseService {
         loginUserResource = new LoginUserResource();
         tokenResources = new TokenLifeTimeResource();
         cooldownResource = new CoolDownTimeResource();
-
-
     }
 
 //	public GuestService(LoginResource loginResource, TokenlifetimeResource tokenlifetimeResource) {
@@ -55,11 +53,23 @@ public class GuestService extends BaseService {
 //		return simpleEntity.getContent().equals("ERROR, user locked");
 //	}
 
-    public String getCoolDownTime() {
+//	public Lifetime getCurrentLifetime() {
+//		SimpleEntity simpleEntity = tokenlifetimeResource.httpGetAsEntity(null, null);
+//		return new Lifetime(simpleEntity.getContent());
+//	}
+
+    public Lifetime getCoolDownTime() {
         SimpleEntity simpleEntity = cooldownResource
                 .httpGetAsEntity(null, null);
-        return simpleEntity.getContent();
+        checkEntity(simpleEntity, "Something gets wrong");
+        return new Lifetime(simpleEntity.getContent());
     }
+
+//    public String getCoolDownTime() {
+//        SimpleEntity simpleEntity = cooldownResource
+//                .httpGetAsEntity(null, null);
+//        return simpleEntity.getContent();
+//    }
 
     // TODO
 //    public void UnsuccessfulUserLogin(IUser user)

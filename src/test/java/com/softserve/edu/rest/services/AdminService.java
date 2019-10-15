@@ -85,6 +85,19 @@ public class AdminService extends UserService {
 ////                .addParameter("time", adminUser.getTime())
 //                .addParameter("time", "3333" )
 //                ;
+    public AdminService changeCoolDown(Lifetime lifetime) {
+        RestParameters bodyParameters = new RestParameters()
+                .addParameter("token", user.getToken())
+                .addParameter("time", lifetime.getTime());
+        SimpleEntity simpleEntity = cooldownResource
+                .httpPutAsEntity(null, null, bodyParameters);
+        //checkEntity(simpleEntity, user.getPassword());
+        return this;
+    }
+
+    public GuestService gotoGuestFunctional(){
+        return this;
+    }
 //
 //        SimpleEntity simpleEntity = userResource.
 //                httpPutAsEntity(null, bodyParameters, null);
