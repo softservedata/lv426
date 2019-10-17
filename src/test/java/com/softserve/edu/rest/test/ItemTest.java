@@ -10,12 +10,21 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import static com.softserve.edu.rest.data.ItemRepository.EXPECTED_EMPTY_ITEM_NAME;
+
 public class ItemTest {
 
     @DataProvider
     public Object[][] createItem() {
         return new Object[][]{
                 {UserRepository.forItemUser(), ItemRepository.getValidItem()}
+        };
+    }
+
+    @DataProvider
+    public Object[][] createInvalidItem() {
+        return new Object[][]{
+                {UserRepository.forItemUser(), ItemRepository.getInvalidItem()}
         };
     }
 
@@ -33,6 +42,18 @@ public class ItemTest {
                 .addItem(item);
 
         Assert.assertEquals(userService.getItem(item), item.getItem());
+        userService.deleteItem(item);
+        userService.logoutUser();
+    }
+
+    @Test(dataProvider = "createInvalidItem")
+    public void emptyItemCreateTest(User user, Item item) {
+        UserService userService = new GuestService()
+                .successfulUserLogin(user)
+                .addItem(item);
+
+        Assert.assertEquals(userService.getItem(item), EXPECTED_EMPTY_ITEM_NAME);
+
         userService.deleteItem(item);
         userService.logoutUser();
     }
