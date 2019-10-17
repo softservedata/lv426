@@ -5,7 +5,6 @@ import com.softserve.edu.rest.data.LifetimeRepository;
 import com.softserve.edu.rest.data.UserRepository;
 import com.softserve.edu.rest.services.AdminService;
 import com.softserve.edu.rest.services.GuestService;
-import com.softserve.edu.rest.services.UserService;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
@@ -13,8 +12,6 @@ import org.testng.asserts.SoftAssert;
 public class UpdateTokenLifetime {
     private GuestService guestService;
     private AdminService adminService;
-
-
 
     @DataProvider
     public Object[][] inCorrectLifetime() {
@@ -28,30 +25,32 @@ public class UpdateTokenLifetime {
 
     @BeforeClass
     public void setUp() {
-
+        guestService = new GuestService();
     }
 
     @BeforeMethod
     public void loginAsAdmin() {
-        guestService = new GuestService();
         adminService = guestService.successfulAdminLogin(UserRepository.getAdmin());
     }
 
     @AfterMethod
     public void logoutAdmin() {
-        if ((adminService != null) && (guestService != null)){
-            adminService.updateTokenLifetime(LifetimeRepository.getDefault());
-            adminService.logoutUser();
+        if ((adminService != null) && (guestService != null)) {
+            adminService.reset();
             adminService = null;
-            guestService = null;
         }
+    }
+
+    @AfterClass
+    public void tearDown() {
+        guestService = null;
     }
 
     @Test
     public void tryToUpdateTokenLifetimeWithInvalidAdminToken() {
-        UserService userService = new UserService(UserRepository.FakeAdmin());
-        userService.tryToChangeTokenLifeTime(LifetimeRepository.getDefault());
-        Assert.assertEquals(LifetimeRepository.getDefault().getTime(), userService.getTokenLifetime().getTime());
+        AdminService adminService = new AdminService(UserRepository.FakeAdmin());
+        adminService.updateTokenLifetime(LifetimeRepository.getDefault());
+        Assert.assertEquals(adminService.getTokenLifetime().getTime(), LifetimeRepository.getDefault().getTime());
     }
 
     @Test
@@ -68,6 +67,4 @@ public class UpdateTokenLifetime {
         softAssert.assertNotEquals(adminService.getTokenLifetime().getTime(), lifetime.getTime());
         softAssert.assertAll();
     }
-
-
 }

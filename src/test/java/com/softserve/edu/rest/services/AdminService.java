@@ -4,10 +4,7 @@ import com.softserve.edu.rest.data.Lifetime;
 import com.softserve.edu.rest.data.User;
 import com.softserve.edu.rest.dto.RestParameters;
 import com.softserve.edu.rest.entity.SimpleEntity;
-import com.softserve.edu.rest.resources.AdminResource;
-import com.softserve.edu.rest.resources.LoginAdminResource;
-import com.softserve.edu.rest.resources.LoginUserResource;
-import com.softserve.edu.rest.resources.UserResource;
+import com.softserve.edu.rest.resources.*;
 
 public class AdminService extends UserService {
 
@@ -18,7 +15,10 @@ public class AdminService extends UserService {
     private LoginAdminResource adminLoginResource;
     private LoginUserResource userLoginResource;
     private UserResource userResource;
+    private UsersResource usersResource;
     private AdminResource adminResource;
+    private LockUserResource lockUserResource;
+    private LockUsersResource lockUsersResource;
 //    private LockedUsersResource lockedUsersResource;
 //    private UnlockAllUsersResource unlockAllUsersResource;
 //    private LockUnlockUserResource lockUnlockUserResource;
@@ -29,8 +29,11 @@ public class AdminService extends UserService {
         super(user);
         adminResource = new AdminResource();
         userResource = new UserResource();
+        usersResource = new UsersResource();
         adminLoginResource = new LoginAdminResource();
         userLoginResource = new LoginUserResource();
+        lockUserResource = new LockUserResource();
+        lockUsersResource = new LockUsersResource();
 //        loggedUsersResource = new LoggedUsersResource();
 //        lockedAdminsResource = new LockedAdminsResource();
 //        lockedUsersResource = new LockedUsersResource();
@@ -78,13 +81,58 @@ public class AdminService extends UserService {
         }
         return this;
     }
-//
-//    public Boolean setCooldownTime(User adminUser) {
-//        RestParameters bodyParameters = new RestParameters()
-//                .addParameter("token", user.getToken())
-////                .addParameter("time", adminUser.getTime())
-//                .addParameter("time", "3333" )
-//                ;
+
+    public AdminService changeCoolDown(Lifetime lifetime) {
+        RestParameters bodyParameters = new RestParameters()
+                .addParameter("token", user.getToken())
+                .addParameter("time", lifetime.getTime());
+        SimpleEntity simpleEntity = cooldownResource
+                .httpPutAsEntity(null, null, bodyParameters);
+        checkEntity(simpleEntity, "Admin does not logged");
+        return this;
+    }
+
+    public AdminService lockUser(User userForLock){
+        RestParameters bodyParameters = new RestParameters()
+                .addParameter("token", user.getToken());
+        RestParameters pathParameters = new RestParameters()
+                .addParameter(userForLock.getName(), "");
+        SimpleEntity simpleEntity = lockUserResource
+                .httpPostAsEntity(pathParameters,null, bodyParameters);
+        checkEntity(simpleEntity, "User was not locked");
+        return this;
+    }
+
+    public AdminService unlockUser(User user){
+        RestParameters bodyParameters = new RestParameters()
+                .addParameter("token", user.getToken());
+        RestParameters pathParameters = new RestParameters()
+                .addParameter("", user.getName());
+        SimpleEntity simpleEntity = lockUserResource
+                .httpPutAsEntity(pathParameters,null,bodyParameters);
+        return this;
+    }
+
+    public String getAllLockedUsers(){
+        RestParameters bodyParameters = new RestParameters()
+                .addParameter("token", user.getToken());
+        SimpleEntity simpleEntity = lockUsersResource
+                .httpGetAsEntity(null, bodyParameters);
+
+        return simpleEntity.getContent();
+    }
+
+    public AdminService unlockAllUsers(){
+        RestParameters bodyParameters = new RestParameters()
+                .addParameter("token", user.getToken());
+        SimpleEntity simpleEntity = lockUsersResource
+                .httpPutAsEntity(null,null, bodyParameters);
+        return this;
+    }
+
+    public GuestService gotoGuestFunctional(){
+        return this;
+    }
 //
 //        SimpleEntity simpleEntity = userResource.
 //                httpPutAsEntity(null, bodyParameters, null);
@@ -102,7 +150,7 @@ public class AdminService extends UserService {
     public String getAllUsers() {
         RestParameters urlParameters = new RestParameters()
                 .addParameter("token", user.getToken());
-        SimpleEntity simpleEntity = userResource.httpGetAsEntity(null, urlParameters);
+        SimpleEntity simpleEntity = usersResource.httpGetAsEntity(null, urlParameters);
         return simpleEntity.getContent();
     }
 
@@ -118,10 +166,10 @@ public class AdminService extends UserService {
                 .addParameter("token", user.getToken())
                 .addParameter("name", removedUser.getName());
         SimpleEntity simpleEntity = userResource.httpDeleteAsEntity(null, urlParameters, null);
-        if ((simpleEntity.getContent() == null) || (simpleEntity.getContent().isEmpty())
-                || (simpleEntity.getContent().toLowerCase().equals("false"))) {
-            throw new RuntimeException();
-        }
+//        if ((simpleEntity.getContent() == null) || (simpleEntity.getContent().isEmpty())
+//                || (simpleEntity.getContent().toLowerCase().equals("false"))) {
+//            throw new RuntimeException();
+//        }
         return this;
     }
 //
@@ -133,50 +181,14 @@ public class AdminService extends UserService {
         SimpleEntity simpleEntity = loginAdminResource.httpGetAsEntity(null, urlParameters);
         return simpleEntity.getContent();
     }
-//
-//    public String getAllLoggedUsers() {
-//        RestParameters urlParameters = new RestParameters()
-//                .addParameter("token", user.getToken());
-//        SimpleEntity simpleEntity = loggedUsersResource.httpGetAsEntity(null, urlParameters);
-//        return simpleEntity.getContent();
-//    }
 
-    //
-//    public boolean unlockUser(User unlockingUser) {
-//        RestParameters bodyParameters = new RestParameters()
-//                .addParameter("token", user.getToken())
-//                .addParameter("name", unlockingUser.getName());
-//        RestParameters pathVariable = new RestParameters()
-//                .addParameter("lockName", unlockingUser.getName());
-//
-//        SimpleEntity simpleEntity = lockUnlockUserResource.
-//                httpPutAsEntity(pathVariable, null, bodyParameters);
-//
-//        checkEntity(simpleEntity, "true");
-//        return simpleEntity.getContent().equals("true");
-//    }
-//
-//    public boolean lockUser(User lockingUser) {
-//        RestParameters bodyParameters = new RestParameters()
-//                .addParameter("token", user.getToken())
-//                .addParameter("name", lockingUser.getName());
-//        RestParameters pathVariable = new RestParameters()
-//                .addParameter("lockName", lockingUser.getName());
-//
-//        SimpleEntity simpleEntity = lockUnlockUserResource.
-//                httpPostAsEntity(pathVariable, null, bodyParameters);
-//
-//        checkEntity(simpleEntity, "true");
-//        return simpleEntity.getContent().equals("true");
-//    }
-//
-//    private String getLockedUsers() {
-//        RestParameters urlParameters = new RestParameters()
-//                .addParameter("token", user.getToken());
-//        SimpleEntity simpleEntity = lockedUsersResource.httpGetAsEntity(null, urlParameters);
-//        return simpleEntity.getContent();
-//    }
-//
+    public String getAllLoggedUsers() {
+        RestParameters urlParameters = new RestParameters()
+                .addParameter("token", user.getToken());
+        SimpleEntity simpleEntity = loginUserResource.httpGetAsEntity(null, urlParameters);
+        return simpleEntity.getContent();
+    }
+
 //    private String getLockedAdmins() {
 //        RestParameters urlParameters = new RestParameters()
 //                .addParameter("token", user.getToken());
@@ -192,6 +204,15 @@ public class AdminService extends UserService {
             return false;
         }
     }
+    public boolean isUserLogged(User user) {
+
+        if (getAllLoggedUsers().contains(user.getName())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 //
 //    public void unlockAllUsers() {
 //        RestParameters bodyParameters = new RestParameters()
@@ -207,24 +228,23 @@ public class AdminService extends UserService {
 //        return getLockedAdmins().contains(user.getName());
 //    }
 //
-//    public boolean isUserCreated(User user) {
-//        if (getAllUsers().contains(user.getName())) {
-//            return true;
-//        } else {
-//            return false;
-//        }
+    public boolean isUserCreated(User user) {
+        if (getAllUsers().contains(user.getName())) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+    public boolean isUserRemoved(User user) {
+        if (!getAllUsers().contains(user.getName())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 //
-//    }
-//
-//    public String changeCooldown(String newTime){
-//        RestParameters bodyParameters = new RestParameters()
-//                .addParameter("token", user.getToken())
-//                .addParameter("time", newTime);
-//        SimpleEntity simpleEntity = cooldownResource
-//                .httpPutAsEntity(null, null, bodyParameters);
-//        //checkEntity(simpleEntity, user.getPassword());
-//        return simpleEntity.getContent();
-//    }
 //
 //    public boolean isUserAdmin(User user) {
 //        if (getAllAdmins().contains(user.getName())) {

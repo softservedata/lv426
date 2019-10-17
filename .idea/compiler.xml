@@ -9,8 +9,8 @@
         <module name="work426" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="work426" target="1.8" />
+    <bytecodeTargetLevel target="11">
+      <module name="work426" target="12" />
     </bytecodeTargetLevel>
   </component>
 </project>
