@@ -13,9 +13,7 @@ import org.testng.asserts.SoftAssert;
 public class UpdateTokenLifetime {
     private GuestService guestService;
     private AdminService adminService;
-
-
-
+    
     @DataProvider
     public Object[][] inCorrectLifetime() {
         return new Object[][]{
@@ -28,30 +26,32 @@ public class UpdateTokenLifetime {
 
     @BeforeClass
     public void setUp() {
-
+        guestService = new GuestService();
     }
 
     @BeforeMethod
     public void loginAsAdmin() {
-        guestService = new GuestService();
         adminService = guestService.successfulAdminLogin(UserRepository.getAdmin());
     }
 
     @AfterMethod
     public void logoutAdmin() {
-        if ((adminService != null) && (guestService != null)){
-            adminService.updateTokenLifetime(LifetimeRepository.getDefault());
-            adminService.logoutUser();
+        if ((adminService != null) && (guestService != null)) {
+            adminService.reset();
             adminService = null;
-            guestService = null;
         }
+    }
+
+    @AfterClass
+    public void tearDown() {
+        guestService = null;
     }
 
     @Test
     public void tryToUpdateTokenLifetimeWithInvalidAdminToken() {
         AdminService adminService = new AdminService(UserRepository.FakeAdmin());
         adminService.updateTokenLifetime(LifetimeRepository.getDefault());
-        Assert.assertEquals(LifetimeRepository.getDefault().getTime(), adminService.getTokenLifetime().getTime());
+        Assert.assertEquals(adminService.getTokenLifetime().getTime(), LifetimeRepository.getDefault().getTime());
     }
 
     @Test

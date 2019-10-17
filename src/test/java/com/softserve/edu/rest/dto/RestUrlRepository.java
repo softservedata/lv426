@@ -143,4 +143,15 @@ public final class RestUrlRepository {
                 .addPutUrl("/locked/reset")
                 .addDeleteUrl("");
     }
+
+    public static RestUrl getResetUrl(){
+        return new RestUrl()
+                .addBaseUrl(server)
+                .addGetUrl("/reset")
+                .addPostUrl("")
+                .addPutUrl("")
+                .addDeleteUrl("");
+    }
+
+
 }
