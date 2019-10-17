@@ -103,6 +103,16 @@ public class GuestService extends BaseService {
         return new GuestService();
     }
 
+    public GuestService unsuccessfulAdminLogin(User adminUser) {
+        RestParameters bodyParameters = new RestParameters()
+                .addParameter("name", adminUser.getName())
+                .addParameter("password", adminUser.getPassword());
+        SimpleEntity simpleEntity = loginAdminResource.httpPostAsEntity(null, null, bodyParameters);
+        if (simpleEntity.getContent() != userNotFoundMessage)
+            return new UserService(adminUser);
+        return new GuestService();
+    }
+
 //	public AdminService ChangeCurrentPassword(User adminUser) {
 //		String pass = "1111";
 //		RestParameters bodyParameters = new RestParameters().addParameter("token", adminUser.getToken())

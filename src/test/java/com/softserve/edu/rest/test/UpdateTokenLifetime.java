@@ -5,7 +5,6 @@ import com.softserve.edu.rest.data.LifetimeRepository;
 import com.softserve.edu.rest.data.UserRepository;
 import com.softserve.edu.rest.services.AdminService;
 import com.softserve.edu.rest.services.GuestService;
-import com.softserve.edu.rest.services.UserService;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
@@ -13,7 +12,7 @@ import org.testng.asserts.SoftAssert;
 public class UpdateTokenLifetime {
     private GuestService guestService;
     private AdminService adminService;
-    
+
     @DataProvider
     public Object[][] inCorrectLifetime() {
         return new Object[][]{
@@ -68,6 +67,4 @@ public class UpdateTokenLifetime {
         softAssert.assertNotEquals(adminService.getTokenLifetime().getTime(), lifetime.getTime());
         softAssert.assertAll();
     }
-
-
 }
