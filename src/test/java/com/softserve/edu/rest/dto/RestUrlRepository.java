@@ -105,7 +105,6 @@ public final class RestUrlRepository {
                 .addPostUrl("")
                 .addPutUrl("")
                 .addDeleteUrl("");
-
     }
 
     public static RestUrl getAllUsers() {
@@ -115,8 +114,8 @@ public final class RestUrlRepository {
                 .addPostUrl("")
                 .addPutUrl("")
                 .addDeleteUrl("");
-
     }
+
     public static RestUrl getUserActions() {
         return new RestUrl()
                 .addBaseUrl(server)
@@ -126,7 +125,7 @@ public final class RestUrlRepository {
                 .addDeleteUrl("/user");
     }
 
-    public static RestUrl getLockedUser(){
+    public static RestUrl getLockedUser() {
         return new RestUrl()
                 .addBaseUrl(server)
                 .addGetUrl("")
@@ -135,7 +134,7 @@ public final class RestUrlRepository {
                 .addDeleteUrl("");
     }
 
-    public static RestUrl getLockedUsers(){
+    public static RestUrl getLockedUsers() {
         return new RestUrl()
                 .addBaseUrl(server)
                 .addGetUrl("/locked/users")
@@ -144,7 +143,7 @@ public final class RestUrlRepository {
                 .addDeleteUrl("");
     }
 
-    public static RestUrl getResetUrl(){
+    public static RestUrl getResetUrl() {
         return new RestUrl()
                 .addBaseUrl(server)
                 .addGetUrl("/reset")
@@ -152,6 +151,4 @@ public final class RestUrlRepository {
                 .addPutUrl("")
                 .addDeleteUrl("");
     }
-
-
 }
