@@ -5,13 +5,11 @@ import com.softserve.edu.rest.data.User;
 import com.softserve.edu.rest.data.UserRepository;
 import com.softserve.edu.rest.services.AdminService;
 import com.softserve.edu.rest.services.GuestService;
-import com.softserve.edu.rest.services.UserService;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
 public class LockUserAndUnlockAll {
-    private UserService userService;
     private GuestService guestService;
     private AdminService adminService;
 
