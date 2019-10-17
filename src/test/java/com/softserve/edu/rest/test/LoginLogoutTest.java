@@ -10,6 +10,13 @@ import com.softserve.edu.rest.services.UserService;
 
 public class LoginLogoutTest {
 
+	@Test
+	public void checkVariables() {
+		System.out.println("JENKINS_LV426_PASSWORD = "
+				+ System.getenv().get("JENKINS_LV426_PASSWORD"));
+		System.out.println("password.variable = " + System.getProperty("password.variable"));
+	}
+
 	@DataProvider
     public Object[][] correctUser() {
         return new Object[][]{
