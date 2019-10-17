@@ -47,6 +47,14 @@ public final class UserRepository {
                 .build();
     }
 
+    public static User getAdminWithEmptyData() {
+        return User.builder()
+                .name(" ")
+                .password(" ")
+                .adminRights(true)
+                .build();
+    }
+
     public static User notExistingUser() {
         return User.builder()
                 .name("Anna")
