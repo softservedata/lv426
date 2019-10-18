@@ -39,9 +39,7 @@ public class TokenLifeTime {
         Assert.assertTrue(Integer.parseInt(lifetime.getTime()) > 0);
     }
 
-    private int parseInt(String lifetime) {
-        return Integer.parseInt(lifetime);
-    }
+
 
 
 }
