@@ -24,6 +24,7 @@
 		<org.junit.version>4.12</org.junit.version>
 		<org.testng.version>7.0.0</org.testng.version>
 		<maven.surefire.plugin.version>2.22.2</maven.surefire.plugin.version>
+		<testng.xml.name>testng8rest</testng.xml.name>
 		<temp>null</temp>
 		<pswd>null_1</pswd>
 		<!-- - - - - - Automation - - - - - -->
@@ -212,7 +213,8 @@
 					<suiteXmlFiles>
 						<!-- <suiteXmlFile>testng.xml</suiteXmlFile> -->
 						<!-- <suiteXmlFile>testng2.xml</suiteXmlFile> -->
-						<suiteXmlFile>testng8rest.xml</suiteXmlFile>
+<!-- 						<suiteXmlFile>testng8rest.xml</suiteXmlFile> -->
+						<suiteXmlFile>${testng.xml.name}</suiteXmlFile>
 					</suiteXmlFiles>
 					<reportsDirectory>${testng.reports.directory}</reportsDirectory>
 				</configuration>

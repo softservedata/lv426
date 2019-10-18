@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Suite9">
+
+	<test name="Test91">
+		<classes>
+			<class name="com.softserve.edu.FirstBefore" />
+		</classes>
+	</test> <!-- Test -->
+
+</suite> <!-- Suite -->
