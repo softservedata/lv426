@@ -43,6 +43,4 @@ public class ChangeCoolDownTimeWithoutRightTest {
         Assert.assertEquals(defaultLifetime.getTime(), userService.getCoolDownTime().getTime(),
                 "Cool down time has been changed with with not existing user");
     }
-
-
 }
