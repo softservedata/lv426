@@ -6,7 +6,6 @@ import com.softserve.edu.rest.data.UserRepository;
 import com.softserve.edu.rest.services.AdminService;
 import com.softserve.edu.rest.services.GuestService;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.commons.lang3.builder.ToStringExclude;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
