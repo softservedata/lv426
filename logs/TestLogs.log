@@ -1,0 +1,249 @@
+[INFO] time: 2019-09-26 13:30:16,564 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 50 - Test suite start
+[INFO] time: 2019-09-26 13:30:16,997 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 65 - ChromeDriver quite
+[INFO] time: 2019-09-26 13:36:19,783 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 50 - Test suite start
+[INFO] time: 2019-09-26 13:36:19,926 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 65 - ChromeDriver quite
+[INFO] time: 2019-09-26 13:41:25,603 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 50 - Test suite start
+[INFO] time: 2019-09-26 13:41:38,083 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 56 - ChromeDriver loaded
+[INFO] time: 2019-09-26 13:41:41,149 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 66 - ChromeDriver quite
+[INFO] time: 2019-09-26 13:56:28,703 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 50 - Test suite start
+[INFO] time: 2019-09-26 13:56:33,366 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 56 - ChromeDriver loaded
+[INFO] time: 2019-09-26 13:56:35,762 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 66 - ChromeDriver quite
+[INFO] time: 2019-09-26 13:58:04,725 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 50 - Test suite start
+[INFO] time: 2019-09-26 13:58:10,206 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 56 - ChromeDriver loaded
+[DEBUG] time: 2019-09-26 13:58:12,812 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 100 - loadApplication start
+[ERROR] time: 2019-09-26 13:58:15,318 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterMethod line: 78 - Test failed
+[INFO] time: 2019-09-26 13:58:15,928 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: takeScreenShot line: 142 - Screenshot was taken
+[INFO] time: 2019-09-26 13:58:17,080 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 66 - ChromeDriver quite
+[INFO] time: 2019-09-26 14:01:20,639 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 50 - Test suite start
+[INFO] time: 2019-09-26 14:01:25,072 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 56 - ChromeDriver loaded
+[DEBUG] time: 2019-09-26 14:01:28,138 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 100 - loadApplication start
+[ERROR] time: 2019-09-26 14:01:30,302 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterMethod line: 78 - Test failed
+[INFO] time: 2019-09-26 14:01:30,740 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: takeScreenShot line: 142 - Screenshot was taken
+[INFO] time: 2019-09-26 14:01:31,549 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 66 - ChromeDriver quite
+[INFO] time: 2019-09-26 14:03:27,013 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 50 - Test suite start
+[INFO] time: 2019-09-26 14:03:31,132 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 56 - ChromeDriver loaded
+[DEBUG] time: 2019-09-26 14:03:33,631 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 100 - loadApplication start
+[ERROR] time: 2019-09-26 14:03:46,959 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterMethod line: 78 - Test failed
+[INFO] time: 2019-09-26 14:03:47,511 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: takeScreenShot line: 142 - Screenshot was taken
+[INFO] time: 2019-09-26 14:03:48,962 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 66 - ChromeDriver quite
+[INFO] time: 2019-09-26 14:06:28,109 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 50 - Test suite start
+[INFO] time: 2019-09-26 14:06:32,590 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 56 - ChromeDriver loaded
+[DEBUG] time: 2019-09-26 14:06:35,370 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 100 - loadApplication start
+[ERROR] time: 2019-09-26 14:06:45,162 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterMethod line: 78 - Test failed
+[INFO] time: 2019-09-26 14:06:45,696 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: takeScreenShot line: 142 - Screenshot was taken
+[INFO] time: 2019-09-26 14:06:47,276 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 66 - ChromeDriver quite
+[INFO] time: 2019-09-26 14:14:12,749 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 50 - Test suite start
+[INFO] time: 2019-09-26 14:14:17,203 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 56 - ChromeDriver loaded
+[DEBUG] time: 2019-09-26 14:14:19,486 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 100 - loadApplication start
+[ERROR] time: 2019-09-26 14:14:26,144 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterMethod line: 78 - Test failed
+[INFO] time: 2019-09-26 14:14:26,692 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: takeScreenShot line: 142 - Screenshot was taken
+[INFO] time: 2019-09-26 14:14:27,729 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 66 - ChromeDriver quite
+[INFO] time: 2019-09-26 14:18:18,172 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 50 - Test suite start
+[INFO] time: 2019-09-26 14:18:22,178 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 56 - ChromeDriver loaded
+[DEBUG] time: 2019-09-26 14:18:24,931 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 100 - loadApplication start
+[ERROR] time: 2019-09-26 14:18:34,036 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterMethod line: 78 - Test failed
+[INFO] time: 2019-09-26 14:18:34,560 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: takeScreenShot line: 142 - Screenshot was taken
+[INFO] time: 2019-09-26 14:18:35,532 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 66 - ChromeDriver quite
+[INFO] time: 2019-09-26 14:22:33,979 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 50 - Test suite start
+[INFO] time: 2019-09-26 14:22:38,009 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 56 - ChromeDriver loaded
+[DEBUG] time: 2019-09-26 14:22:41,064 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 100 - loadApplication start
+[ERROR] time: 2019-09-26 14:22:52,570 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterMethod line: 78 - Test failed
+[INFO] time: 2019-09-26 14:22:53,125 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: takeScreenShot line: 142 - Screenshot was taken
+[INFO] time: 2019-09-26 14:22:54,599 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 66 - ChromeDriver quite
+[INFO] time: 2019-09-26 14:26:26,658 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 50 - Test suite start
+[INFO] time: 2019-09-26 14:26:31,203 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 56 - ChromeDriver loaded
+[DEBUG] time: 2019-09-26 14:26:34,664 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 100 - loadApplication start
+[ERROR] time: 2019-09-26 14:26:42,055 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterMethod line: 78 - Test failed
+[INFO] time: 2019-09-26 14:26:42,542 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: takeScreenShot line: 142 - Screenshot was taken
+[INFO] time: 2019-09-26 14:26:43,713 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 66 - ChromeDriver quite
+[INFO] time: 2019-09-26 14:28:05,559 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 50 - Test suite start
+[INFO] time: 2019-09-26 14:28:09,419 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 56 - ChromeDriver loaded
+[DEBUG] time: 2019-09-26 14:28:12,387 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 100 - loadApplication start
+[ERROR] time: 2019-09-26 14:28:21,122 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterMethod line: 78 - Test failed
+[INFO] time: 2019-09-26 14:28:21,652 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: takeScreenShot line: 142 - Screenshot was taken
+[INFO] time: 2019-09-26 14:28:23,614 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 66 - ChromeDriver quite
+[INFO] time: 2019-09-26 14:40:52,191 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 50 - Test suite start
+[INFO] time: 2019-09-26 14:40:55,908 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 56 - ChromeDriver loaded
+[DEBUG] time: 2019-09-26 14:40:59,757 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 100 - loadApplication start
+[DEBUG] time: 2019-09-26 14:41:11,112 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaAdminLoginPage line: 118 - loadAdminPanel start
+[ERROR] time: 2019-09-26 14:41:22,729 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterMethod line: 78 - Test failed
+[INFO] time: 2019-09-26 14:41:23,146 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: takeScreenShot line: 142 - Screenshot was taken
+[INFO] time: 2019-09-26 14:41:24,103 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 66 - ChromeDriver quite
+[INFO] time: 2019-09-26 14:43:56,956 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 50 - Test suite start
+[INFO] time: 2019-09-26 14:44:03,027 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 56 - ChromeDriver loaded
+[DEBUG] time: 2019-09-26 14:44:06,839 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 100 - loadApplication start
+[DEBUG] time: 2019-09-26 14:44:17,455 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaAdminLoginPage line: 118 - loadAdminPanel start
+[ERROR] time: 2019-09-26 14:44:29,564 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterMethod line: 78 - Test failed
+[INFO] time: 2019-09-26 14:44:30,167 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: takeScreenShot line: 142 - Screenshot was taken
+[INFO] time: 2019-09-26 14:44:31,076 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 66 - ChromeDriver quite
+[INFO] time: 2019-09-26 14:54:28,558 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 50 - Test suite start
+[INFO] time: 2019-09-26 14:54:32,789 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 56 - ChromeDriver loaded
+[DEBUG] time: 2019-09-26 14:54:35,761 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 100 - loadApplication start
+[DEBUG] time: 2019-09-26 14:54:47,809 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaAdminLoginPage line: 118 - loadAdminPanel start
+[ERROR] time: 2019-09-26 14:55:00,196 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterMethod line: 78 - Test failed
+[INFO] time: 2019-09-26 14:55:00,625 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: takeScreenShot line: 142 - Screenshot was taken
+[INFO] time: 2019-09-26 14:55:01,521 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 66 - ChromeDriver quite
+[INFO] time: 2019-09-26 14:57:06,393 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 50 - Test suite start
+[INFO] time: 2019-09-26 14:57:10,626 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 56 - ChromeDriver loaded
+[DEBUG] time: 2019-09-26 14:57:13,731 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 100 - loadApplication start
+[DEBUG] time: 2019-09-26 14:57:24,135 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaAdminLoginPage line: 118 - loadAdminPanel start
+[ERROR] time: 2019-09-26 14:57:36,146 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterMethod line: 78 - Test failed
+[INFO] time: 2019-09-26 14:57:36,580 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: takeScreenShot line: 142 - Screenshot was taken
+[INFO] time: 2019-09-26 14:57:37,513 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 66 - ChromeDriver quite
+[INFO] time: 2019-09-26 14:59:14,829 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 50 - Test suite start
+[INFO] time: 2019-09-26 14:59:19,252 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 56 - ChromeDriver loaded
+[DEBUG] time: 2019-09-26 14:59:21,681 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 100 - loadApplication start
+[DEBUG] time: 2019-09-26 14:59:32,038 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaAdminLoginPage line: 118 - loadAdminPanel start
+[INFO] time: 2019-09-26 14:59:36,917 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 66 - ChromeDriver quite
+[INFO] time: 2019-09-26 15:39:32,096 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 50 - Test suite start
+[INFO] time: 2019-09-26 15:39:36,996 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 56 - ChromeDriver loaded
+[DEBUG] time: 2019-09-26 15:39:40,965 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 100 - loadApplication start
+[ERROR] time: 2019-09-26 15:39:50,794 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterMethod line: 78 - Test failed
+[INFO] time: 2019-09-26 15:39:51,251 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: takeScreenShot line: 142 - Screenshot was taken
+[INFO] time: 2019-09-26 15:39:53,074 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 66 - ChromeDriver quite
+[INFO] time: 2019-09-26 15:41:24,468 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 50 - Test suite start
+[INFO] time: 2019-09-26 15:41:28,386 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 56 - ChromeDriver loaded
+[DEBUG] time: 2019-09-26 15:41:33,312 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 100 - loadApplication start
+[ERROR] time: 2019-09-26 15:41:43,015 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterMethod line: 78 - Test failed
+[INFO] time: 2019-09-26 15:41:43,501 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: takeScreenShot line: 142 - Screenshot was taken
+[INFO] time: 2019-09-26 15:41:44,895 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 66 - ChromeDriver quite
+[INFO] time: 2019-09-26 15:42:07,687 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 50 - Test suite start
+[INFO] time: 2019-09-26 15:42:11,675 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 56 - ChromeDriver loaded
+[DEBUG] time: 2019-09-26 15:42:14,359 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 100 - loadApplication start
+[ERROR] time: 2019-09-26 15:42:23,785 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterMethod line: 78 - Test failed
+[INFO] time: 2019-09-26 15:42:24,201 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: takeScreenShot line: 142 - Screenshot was taken
+[INFO] time: 2019-09-26 15:42:25,146 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 66 - ChromeDriver quite
+[INFO] time: 2019-09-26 15:43:34,770 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 50 - Test suite start
+[INFO] time: 2019-09-26 15:43:38,885 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 56 - ChromeDriver loaded
+[DEBUG] time: 2019-09-26 15:43:41,736 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 100 - loadApplication start
+[ERROR] time: 2019-09-26 15:43:51,735 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterMethod line: 78 - Test failed
+[INFO] time: 2019-09-26 15:43:52,196 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: takeScreenShot line: 142 - Screenshot was taken
+[INFO] time: 2019-09-26 15:43:53,527 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 66 - ChromeDriver quite
+[INFO] time: 2019-09-26 15:44:23,038 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 50 - Test suite start
+[INFO] time: 2019-09-26 15:44:26,957 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 56 - ChromeDriver loaded
+[DEBUG] time: 2019-09-26 15:44:30,457 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 100 - loadApplication start
+[ERROR] time: 2019-09-26 15:44:39,225 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterMethod line: 78 - Test failed
+[INFO] time: 2019-09-26 15:44:39,789 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: takeScreenShot line: 142 - Screenshot was taken
+[INFO] time: 2019-09-26 15:44:41,344 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 66 - ChromeDriver quite
+[INFO] time: 2019-09-26 15:45:32,000 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 50 - Test suite start
+[INFO] time: 2019-09-26 15:45:36,747 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 56 - ChromeDriver loaded
+[DEBUG] time: 2019-09-26 15:45:39,379 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 100 - loadApplication start
+[DEBUG] time: 2019-09-26 15:45:51,745 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaAdminLoginPage line: 118 - loadAdminPanel start
+[INFO] time: 2019-09-26 15:45:57,295 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 66 - ChromeDriver quite
+[INFO] time: 2019-09-26 15:49:01,039 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 50 - Test suite start
+[INFO] time: 2019-09-26 15:49:05,719 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 56 - ChromeDriver loaded
+[DEBUG] time: 2019-09-26 15:49:08,444 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 100 - loadApplication start
+[ERROR] time: 2019-09-26 15:49:27,758 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterMethod line: 78 - Test failed
+[INFO] time: 2019-09-26 15:49:28,138 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: takeScreenShot line: 142 - Screenshot was taken
+[INFO] time: 2019-09-26 15:49:29,153 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 66 - ChromeDriver quite
+[INFO] time: 2019-09-26 15:50:11,783 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 50 - Test suite start
+[INFO] time: 2019-09-26 15:50:16,373 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 56 - ChromeDriver loaded
+[DEBUG] time: 2019-09-26 15:50:18,380 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 100 - loadApplication start
+[ERROR] time: 2019-09-26 15:50:27,892 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterMethod line: 78 - Test failed
+[INFO] time: 2019-09-26 15:50:28,327 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: takeScreenShot line: 142 - Screenshot was taken
+[INFO] time: 2019-09-26 15:50:29,289 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 66 - ChromeDriver quite
+[INFO] time: 2019-09-26 15:52:26,331 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 50 - Test suite start
+[INFO] time: 2019-09-26 15:52:30,779 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 56 - ChromeDriver loaded
+[DEBUG] time: 2019-09-26 15:52:32,863 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 100 - loadApplication start
+[ERROR] time: 2019-09-26 15:52:42,477 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterMethod line: 78 - Test failed
+[INFO] time: 2019-09-26 15:52:42,896 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: takeScreenShot line: 142 - Screenshot was taken
+[INFO] time: 2019-09-26 15:52:43,869 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 66 - ChromeDriver quite
+[INFO] time: 2019-09-26 15:53:38,513 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 50 - Test suite start
+[INFO] time: 2019-09-26 15:53:42,464 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 56 - ChromeDriver loaded
+[DEBUG] time: 2019-09-26 15:53:44,761 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 100 - loadApplication start
+[INFO] time: 2019-09-26 15:53:54,448 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 66 - ChromeDriver quite
+[INFO] time: 2019-09-26 15:54:21,980 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 50 - Test suite start
+[INFO] time: 2019-09-26 15:54:25,879 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 56 - ChromeDriver loaded
+[DEBUG] time: 2019-09-26 15:54:28,039 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 100 - loadApplication start
+[ERROR] time: 2019-09-26 15:54:37,064 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterMethod line: 78 - Test failed
+[INFO] time: 2019-09-26 15:54:37,468 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: takeScreenShot line: 142 - Screenshot was taken
+[INFO] time: 2019-09-26 15:54:38,499 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 66 - ChromeDriver quite
+[INFO] time: 2019-09-26 15:56:58,152 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 50 - Test suite start
+[INFO] time: 2019-09-26 15:57:02,526 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 56 - ChromeDriver loaded
+[DEBUG] time: 2019-09-26 15:57:05,898 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 100 - loadApplication start
+[INFO] time: 2019-09-26 15:57:27,614 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 66 - ChromeDriver quite
+[INFO] time: 2019-09-27 12:04:09,872 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 55 - Test suite start
+[INFO] time: 2019-09-27 12:04:18,083 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 61 - ChromeDriver loaded
+[DEBUG] time: 2019-09-27 12:04:22,610 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 105 - loadApplication start
+[INFO] time: 2019-09-27 12:04:35,551 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 71 - ChromeDriver quite
+[INFO] time: 2019-09-27 12:08:44,439 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 55 - Test suite start
+[INFO] time: 2019-09-27 12:08:48,640 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 61 - ChromeDriver loaded
+[DEBUG] time: 2019-09-27 12:08:50,712 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 105 - loadApplication start
+[DEBUG] time: 2019-09-27 12:08:59,349 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaAdminLoginPage line: 123 - loadAdminPanel start
+[INFO] time: 2019-09-27 12:09:04,642 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 71 - ChromeDriver quite
+[INFO] time: 2019-09-29 15:13:33,736 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 65 - Test suite start
+[INFO] time: 2019-09-29 15:13:34,079 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 82 - ChromeDriver quite
+[INFO] time: 2019-09-29 15:14:40,255 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 65 - Test suite start
+[INFO] time: 2019-09-29 15:14:50,076 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 71 - ChromeDriver loaded
+[DEBUG] time: 2019-09-29 15:14:52,787 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 124 - loadMartaApplication start
+[INFO] time: 2019-09-29 15:15:04,905 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 82 - ChromeDriver quite
+[INFO] time: 2019-09-29 17:40:23,688 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 65 - Test suite start
+[INFO] time: 2019-09-29 17:40:27,768 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 71 - ChromeDriver loaded
+[DEBUG] time: 2019-09-29 17:40:32,885 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 124 - loadMartaApplication start
+[DEBUG] time: 2019-09-29 17:40:45,633 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaAdminLoginPage line: 155 - loadAdminPanel start
+[INFO] time: 2019-09-29 17:40:53,582 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 82 - ChromeDriver quite
+[INFO] time: 2019-09-29 17:53:03,239 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 65 - Test suite start
+[INFO] time: 2019-09-29 17:53:07,841 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 71 - ChromeDriver loaded
+[DEBUG] time: 2019-09-29 17:53:10,484 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 124 - loadMartaApplication start
+[DEBUG] time: 2019-09-29 17:53:23,443 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaAdminLoginPage line: 155 - loadAdminPanel start
+[INFO] time: 2019-09-29 17:53:28,352 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 82 - ChromeDriver quite
+[INFO] time: 2019-09-29 18:16:39,565 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 65 - Test suite start
+[INFO] time: 2019-09-29 18:16:43,794 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 71 - ChromeDriver loaded
+[DEBUG] time: 2019-09-29 18:16:46,744 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 124 - loadMartaApplication start
+[DEBUG] time: 2019-09-29 18:17:05,289 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaAdminLoginPage line: 155 - loadAdminPanel start
+[DEBUG] time: 2019-09-29 18:17:09,836 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 124 - loadMartaApplication start
+[INFO] time: 2019-09-29 18:17:16,083 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 82 - ChromeDriver quite
+[INFO] time: 2019-09-30 09:48:42,556 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 65 - Test suite start
+[INFO] time: 2019-09-30 09:48:58,279 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 71 - ChromeDriver loaded
+[DEBUG] time: 2019-09-30 09:49:01,591 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 124 - loadMartaApplication start
+[DEBUG] time: 2019-09-30 09:49:13,021 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaAdminLoginPage line: 155 - loadAdminPanel start
+[DEBUG] time: 2019-09-30 09:49:17,950 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 124 - loadMartaApplication start
+[INFO] time: 2019-09-30 09:49:24,501 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 82 - ChromeDriver quite
+[INFO] time: 2019-09-30 09:49:42,193 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 65 - Test suite start
+[INFO] time: 2019-09-30 09:49:46,339 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 71 - ChromeDriver loaded
+[DEBUG] time: 2019-09-30 09:49:48,582 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 124 - loadMartaApplication start
+[INFO] time: 2019-09-30 09:50:03,163 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 82 - ChromeDriver quite
+[INFO] time: 2019-09-30 09:50:33,261 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 65 - Test suite start
+[INFO] time: 2019-09-30 09:50:38,571 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 71 - ChromeDriver loaded
+[DEBUG] time: 2019-09-30 09:50:41,892 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 124 - loadMartaApplication start
+[INFO] time: 2019-09-30 09:50:57,319 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 82 - ChromeDriver quite
+[INFO] time: 2019-09-30 09:51:19,400 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 65 - Test suite start
+[INFO] time: 2019-09-30 09:51:27,989 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 71 - ChromeDriver loaded
+[DEBUG] time: 2019-09-30 09:51:31,595 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 124 - loadMartaApplication start
+[INFO] time: 2019-09-30 09:51:45,134 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 82 - ChromeDriver quite
+[INFO] time: 2019-09-30 22:02:43,692 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 65 - Test suite start
+[INFO] time: 2019-09-30 22:02:55,064 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 71 - ChromeDriver loaded
+[DEBUG] time: 2019-09-30 22:03:01,276 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 124 - loadMartaApplication start
+[DEBUG] time: 2019-09-30 22:03:15,003 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 124 - loadMartaApplication start
+[DEBUG] time: 2019-09-30 22:03:25,216 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 124 - loadMartaApplication start
+[DEBUG] time: 2019-09-30 22:03:33,156 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 124 - loadMartaApplication start
+[DEBUG] time: 2019-09-30 22:03:40,279 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaAdminLoginPage line: 155 - loadAdminPanel start
+[DEBUG] time: 2019-09-30 22:03:43,231 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 124 - loadMartaApplication start
+[INFO] time: 2019-09-30 22:03:48,709 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 82 - ChromeDriver quite
+[INFO] time: 2019-09-30 22:11:49,905 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 65 - Test suite start
+[INFO] time: 2019-09-30 22:11:54,398 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 71 - ChromeDriver loaded
+[DEBUG] time: 2019-09-30 22:11:57,041 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 124 - loadMartaApplication start
+[DEBUG] time: 2019-09-30 22:12:09,804 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 124 - loadMartaApplication start
+[DEBUG] time: 2019-09-30 22:12:18,803 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 124 - loadMartaApplication start
+[DEBUG] time: 2019-09-30 22:12:26,839 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 124 - loadMartaApplication start
+[DEBUG] time: 2019-09-30 22:12:33,743 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaAdminLoginPage line: 155 - loadAdminPanel start
+[DEBUG] time: 2019-09-30 22:12:37,125 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 124 - loadMartaApplication start
+[INFO] time: 2019-09-30 22:12:42,171 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 82 - ChromeDriver quite
+[INFO] time: 2019-10-01 09:43:05,279 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 65 - Test suite start
+[INFO] time: 2019-10-01 09:43:19,638 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 71 - ChromeDriver loaded
+[DEBUG] time: 2019-10-01 09:43:23,232 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 124 - loadMartaApplication start
+[DEBUG] time: 2019-10-01 09:43:37,949 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 124 - loadMartaApplication start
+[DEBUG] time: 2019-10-01 09:43:48,926 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 124 - loadMartaApplication start
+[DEBUG] time: 2019-10-01 09:43:59,007 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 124 - loadMartaApplication start
+[DEBUG] time: 2019-10-01 09:44:08,320 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaAdminLoginPage line: 155 - loadAdminPanel start
+[DEBUG] time: 2019-10-01 09:44:14,581 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 124 - loadMartaApplication start
+[INFO] time: 2019-10-01 09:44:22,914 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 82 - ChromeDriver quite
+[INFO] time: 2019-10-01 10:28:03,762 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 65 - Test suite start
+[INFO] time: 2019-10-01 10:28:09,350 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: beforeClass line: 71 - ChromeDriver loaded
+[DEBUG] time: 2019-10-01 10:28:13,746 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 124 - loadMartaApplication start
+[DEBUG] time: 2019-10-01 10:28:28,136 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 124 - loadMartaApplication start
+[DEBUG] time: 2019-10-01 10:28:39,058 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 124 - loadMartaApplication start
+[DEBUG] time: 2019-10-01 10:28:47,882 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 124 - loadMartaApplication start
+[DEBUG] time: 2019-10-01 10:28:56,817 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaAdminLoginPage line: 155 - loadAdminPanel start
+[DEBUG] time: 2019-10-01 10:29:00,553 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: loadMartaApplication line: 124 - loadMartaApplication start
+[INFO] time: 2019-10-01 10:29:06,496 file: UserTestRunner.java class: com.softserve.edu.opencart.test.ReviewTest method: afterClass line: 82 - ChromeDriver quite
