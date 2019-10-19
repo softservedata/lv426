@@ -1,10 +1,6 @@
 package com.softserve.edu.rest.test;
 
-import com.softserve.edu.rest.data.Items;
-import com.softserve.edu.rest.data.Item;
-import com.softserve.edu.rest.data.ItemsRepository;
-import com.softserve.edu.rest.data.User;
-import com.softserve.edu.rest.data.UserRepository;
+import com.softserve.edu.rest.data.*;
 import com.softserve.edu.rest.services.GuestService;
 import com.softserve.edu.rest.services.UserService;
 import org.testng.Assert;
@@ -13,55 +9,75 @@ import org.testng.annotations.Test;
 
 public class ItemsTest {
 
-  /*  @DataProvider
+    @DataProvider
     public Object[][] itemget() {
         return new Object[][]{
-                {UserRepository.getAdmin(), ItemsRepository.getValidItem()}
+                {UserRepository.forItemUser(),ItemRepository.getValidItem(), UserRepository.getAdmin(),
+                        ItemRepository.getSecond()}
         };
     }
 
     @Test(dataProvider = "itemget")
-    public void getAllItemsTest(User user, Items item) {
-        String userService = new GuestService()
+    public void getAllItemsTest(User user, Item firstItem, User admin, Item secondItem) {
+        UserService adminService = new GuestService()
+                .successfulUserLogin(admin)
+                //.addItem(firstItem)
+                .addItem(secondItem);
+        UserService userService = new GuestService()
                 .successfulUserLogin(user)
-                .getAllItems(item);
+                .addItem (firstItem);
 
-        Assert.assertEquals(userService.getAllItems(item), item.getAllItems());
+        Assert.assertTrue(adminService.getAllItems().contains(secondItem.getItem()));
+        Assert.assertTrue(adminService.getAllItems().contains(firstItem.getItem()));
+
         userService.logoutUser();
+    }
+
+
+     @Test (dataProvider = "itemget")
+    public void  getAllItemsIndexesTest(User user, Item firstItem, User admin, Item secondItem){
+         UserService adminService = new GuestService()
+                 .successfulUserLogin(admin)
+                 //.addItem(firstItem)
+                 .addItem(secondItem);
+         UserService userService = new GuestService()
+                 .successfulUserLogin(user)
+                 .addItem (firstItem);
+
+         Assert.assertTrue(adminService.getAllItemsIndexes().contains(secondItem.getIndex()));
+         Assert.assertTrue(adminService.getAllItemsIndexes().contains(firstItem.getIndex()));
+
+         userService.logoutUser();
     }
 
 
     @Test (dataProvider = "itemget")
-    public void  getAllItemsIndexesTest(User user, Items item){
-        String userService = new GuestService()
+    public void getUserItemsTest (User user,Item firstItem, User admin,Item secondItem){
+        UserService userService = new GuestService()
                 .successfulUserLogin(user)
-                .getAllItemsIndexes(item);
+                .addItem(firstItem)
+                .successfulUserLogin(admin)
+                .addItem(secondItem);
+                //.getUserItems(user);
 
-        Assert.assertEquals(userService.getAllItemsIndexes(item), item.getAllItemsIndexes());
-        userService.logoutUser();
-    }
-
-    @Test (dataProvider = "itemget")
-    public void getUserItemsTest (User user, Items item){
-        String userService = new GuestService()
-                .successfulUserLogin(user)
-                .getUserItems(item);
-
-        Assert.assertEquals(userService.getUserItems(item), item.getUserItems());
+        Assert.assertTrue(userService.getUserItems(user).contains(firstItem.getItem()));
         userService.logoutUser();
 
     }
 
     @Test (dataProvider = "itemget")
-    public void getUserItemTest(User user, Items item){
-        String userService = new GuestService()
+    public void getUserItemTest(User user,Item firstItem, User admin,Item secondItem, Items item){
+        UserService userService = new GuestService()
                 .successfulUserLogin(user)
-                .getUserItem(item);
+                .addItem(firstItem)
+                .successfulUserLogin(admin)
+                .addItem(secondItem);
+        //.getUserItems(user);
 
-        Assert.assertEquals(userService.getUserItem(item), item.getUserItem());
+        Assert.assertTrue(userService.getUserItem(item).contains(firstItem.getItem()));
         userService.logoutUser();
     }
 
 
-   */
+
 }
