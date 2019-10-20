@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="JenkinsExample">
+
+    <!-- 	<test thread-count="5" name="Test61"> -->
+    <test  name="JenkinsTest">
+        <classes>
+            <class name="com.softserve.edu.rest.test.UpdateTokenLifetime" />
+        </classes>
+    </test> <!-- Test -->
+
+</suite> <!-- Suite -->
