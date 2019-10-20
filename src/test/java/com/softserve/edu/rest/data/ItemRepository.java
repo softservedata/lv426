@@ -2,6 +2,7 @@ package com.softserve.edu.rest.data;
 
 public class ItemRepository {
 
+    public static final String EXPECTED_EMPTY_ITEM_NAME = "empty";
     private ItemRepository() {
     }
 
@@ -19,9 +20,9 @@ public class ItemRepository {
                 .build();
     }
 
-    public static Item getSecond() {
+    public static Item getInvalidItem() {
         return Item.builder()
-                .item("information")
+                .item("")
                 .index("9876")
                 .build();
     }

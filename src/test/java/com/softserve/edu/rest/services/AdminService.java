@@ -96,7 +96,7 @@ public class AdminService extends UserService {
         RestParameters bodyParameters = new RestParameters()
                 .addParameter("token", user.getToken());
         RestParameters pathParameters = new RestParameters()
-                .addParameter(userForLock.getName(), "");
+                .addParameter("name", userForLock.getName());
         SimpleEntity simpleEntity = lockUserResource
                 .httpPostAsEntity(pathParameters,null, bodyParameters);
         checkEntity(simpleEntity, "User was not locked");

@@ -25,7 +25,7 @@ public class RealTokenLifetime {
     @DataProvider
     public Object[][] user() {
         return new Object[][]{
-                {UserRepository.getAdmin(), LifetimeRepository.getShortLifeTime()},
+                {UserRepository.getMaxUser(), LifetimeRepository.getShortLifeTime()},
         };
     }
 
@@ -38,6 +38,8 @@ public class RealTokenLifetime {
     public void login() {
         adminService = guestService.successfulAdminLogin(UserRepository.getAdmin());
         adminService.createUser(UserRepository.getMaxUser());
+
+
     }
 
 
@@ -46,7 +48,7 @@ public class RealTokenLifetime {
         if ((adminService != null) && (guestService != null)){
             adminService.updateTokenLifetime(LifetimeRepository.getDefault())
                     .removeUser(UserRepository.getMaxUser());
-            System.out.println(adminService.isUserRemoved(UserRepository.getMaxUser()));
+            Assert.assertTrue(adminService.isUserRemoved(UserRepository.getMaxUser()));
                     adminService.logoutUser();
             adminService = null;
         }
@@ -58,7 +60,6 @@ public class RealTokenLifetime {
     }
 
 
-
     @Test(dataProvider = "adminUser")
     public void checkRealTime(User user, Lifetime testTime) {
         AdminService adminService = guestService.successfulAdminLogin(user);
@@ -67,17 +68,15 @@ public class RealTokenLifetime {
         Assert.assertFalse(adminService.isAdminLogged(user));
     }
 
-
     @Test(dataProvider = "user")
     public void checkRealLifetimeForUser(User user, Lifetime testTime) {
         UserService userService = guestService.successfulUserLogin(user);
         adminService.updateTokenLifetime(testTime);
         wait(testTime);
-        guestService.successfulAdminLogin(UserRepository.getAdmin());
+        adminService =  guestService.successfulAdminLogin(UserRepository.getAdmin());
         Assert.assertFalse(adminService.isUserLogged(user));
 
     }
-
 
     private void wait(Lifetime time) {
         try {
