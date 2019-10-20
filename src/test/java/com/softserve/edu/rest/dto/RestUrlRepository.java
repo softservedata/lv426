@@ -130,8 +130,8 @@ public final class RestUrlRepository {
         return new RestUrl()
                 .addBaseUrl(server)
                 .addGetUrl("")
-                .addPostUrl("/locked/user/")
-                .addPutUrl("/locked/user/")
+                .addPostUrl("/locked/user/{name}")
+                .addPutUrl("/locked/user/{name}")
                 .addDeleteUrl("");
     }
 
