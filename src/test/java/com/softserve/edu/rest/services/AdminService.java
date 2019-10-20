@@ -92,13 +92,14 @@ public class AdminService extends UserService {
         return this;
     }
 
-    public AdminService lockUser(User user){
+    public AdminService lockUser(User userForLock){
         RestParameters bodyParameters = new RestParameters()
                 .addParameter("token", user.getToken());
         RestParameters pathParameters = new RestParameters()
-                .addParameter("", user.getName());
+                .addParameter("name", userForLock.getName());
         SimpleEntity simpleEntity = lockUserResource
-                .httpPostAsEntity(pathParameters,null,bodyParameters);
+                .httpPostAsEntity(pathParameters,null, bodyParameters);
+        checkEntity(simpleEntity, "User was not locked");
         return this;
     }
 

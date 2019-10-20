@@ -23,6 +23,13 @@ public final class UserRepository {
                 .adminRights(false)
                 .build();
     }
+    public static User getMaxAdmin(){
+        return User.builder()
+                .name("testAdmin")
+                .password("qwerty")
+                .adminRights(true)
+                .build();
+    }
 
     public static User getMaxUserWithMistake(){
         return User.builder()
