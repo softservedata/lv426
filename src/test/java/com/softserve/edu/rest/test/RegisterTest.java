@@ -11,22 +11,23 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class RegisterTest {
-    private GuestService guestService;
-    private AdminService adminService;
     @DataProvider
     public Object[][] correctUser() {
         return new Object[][]{
                 {UserRepository.getAdmin(), UserRepository.notExistingUser2()},
         };
     }
-@BeforeTest
-public void setup(){
 
-}
-@AfterTest
-public void afterRegister() {
+    @BeforeTest
+    public void setup() {
 
-}
+    }
+
+    @AfterTest
+    public void afterRegister() {
+
+    }
+
     @Test(dataProvider = "correctUser")
     public void registerPositiveTest(User adminUser, User newUser) {
         //log.debug("loginPositiveTest started!");
@@ -34,14 +35,14 @@ public void afterRegister() {
         AdminService adminService = new AdminService(adminUser)
                 .successfulAdminLogin(adminUser)
                 .createUser(newUser);
-        Assert.assertEquals(adminService.isUserCreated(newUser), true);
+        Assert.assertTrue(adminService.isUserCreated(newUser));
         adminService
                 .logoutUser()
                 .successfulUserLogin(newUser)
                 .logoutUser()
                 .successfulAdminLogin(adminUser)
                 .removeUser(newUser);
-        Assert.assertEquals(adminService.isUserRemoved(newUser), true);
+        Assert.assertTrue(adminService.isUserRemoved(newUser));
         adminService
                 .logoutUser()
                 .unsuccessfulUserLogin(newUser);

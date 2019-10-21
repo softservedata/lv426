@@ -78,6 +78,21 @@ public final class UserRepository {
                 .adminRights(false)
                 .build();
     }
+    public static User chngedExistingUser(){
+        return User.builder()
+                .name("Vasya")
+                .password("qwerty123")
+                .adminRights(false)
+                .build();
+    }
+
+    public static User existingUser2(){
+        return User.builder()
+                .name("Vika")
+                .password("qwerty")
+                .adminRights(false)
+                .build();
+    }
 
     public static User forItemUser(){
         return User.builder()
@@ -94,5 +109,14 @@ public final class UserRepository {
                 .token("DT2ES1AHRY5Y09MMC6A5XSQ500W74E3E")
                 .build();
     }
+
+    public static User emptyUser(){
+        return User.builder()
+                .name("")
+                .password("")
+                .adminRights(false)
+                .build();
+    }
+
 
 }
