@@ -1,10 +1,6 @@
 package com.softserve.edu.rest.test;
 
-import com.softserve.edu.rest.data.Items;
-import com.softserve.edu.rest.data.Item;
-import com.softserve.edu.rest.data.ItemsRepository;
-import com.softserve.edu.rest.data.User;
-import com.softserve.edu.rest.data.UserRepository;
+import com.softserve.edu.rest.data.*;
 import com.softserve.edu.rest.services.GuestService;
 import com.softserve.edu.rest.services.UserService;
 import org.testng.Assert;
@@ -13,55 +9,47 @@ import org.testng.annotations.Test;
 
 public class ItemsTest {
 
-  /*  @DataProvider
+    @DataProvider
     public Object[][] itemget() {
         return new Object[][]{
-                {UserRepository.getAdmin(), ItemsRepository.getValidItem()}
+                {UserRepository.forItemUser(),ItemRepository.getValidItem(), UserRepository.getAdmin(),
+                        ItemRepository.getSecond()}
         };
     }
 
+
+
     @Test(dataProvider = "itemget")
-    public void getAllItemsTest(User user, Items item) {
-        String userService = new GuestService()
+    public void getUserItemsTest(User user, Item firstItem, User admin, Item secondItem) {
+        UserService userService = new GuestService()
                 .successfulUserLogin(user)
-                .getAllItems(item);
-
-        Assert.assertEquals(userService.getAllItems(item), item.getAllItems());
+                .addItem(firstItem)
+                .addItem(secondItem);
         userService.logoutUser();
-    }
+        UserService adminService = new GuestService()
+                .successfulUserLogin(admin);
+        //.getUserItems(user);
 
-
-    @Test (dataProvider = "itemget")
-    public void  getAllItemsIndexesTest(User user, Items item){
-        String userService = new GuestService()
-                .successfulUserLogin(user)
-                .getAllItemsIndexes(item);
-
-        Assert.assertEquals(userService.getAllItemsIndexes(item), item.getAllItemsIndexes());
-        userService.logoutUser();
-    }
-
-    @Test (dataProvider = "itemget")
-    public void getUserItemsTest (User user, Items item){
-        String userService = new GuestService()
-                .successfulUserLogin(user)
-                .getUserItems(item);
-
-        Assert.assertEquals(userService.getUserItems(item), item.getUserItems());
-        userService.logoutUser();
+        Assert.assertTrue(adminService.getUserItems(user).contains(firstItem.getItem()));
+        adminService.logoutUser();
 
     }
 
-    @Test (dataProvider = "itemget")
-    public void getUserItemTest(User user, Items item){
-        String userService = new GuestService()
+    @Test(dataProvider = "itemget")
+    public void getUserItemTest(User user, Item firstItem, User admin, Item secondItem) {
+        UserService userService = new GuestService()
                 .successfulUserLogin(user)
-                .getUserItem(item);
-
-        Assert.assertEquals(userService.getUserItem(item), item.getUserItem());
+                .addItem(firstItem)
+                .addItem(secondItem);
         userService.logoutUser();
+        UserService adminService = new GuestService()
+                .successfulUserLogin(admin);
+        //.getUserItems(user);
+
+        Assert.assertTrue(adminService.getUserItem(firstItem, user).contains(firstItem.getItem()));
+        adminService.logoutUser();
     }
 
 
-   */
+
 }

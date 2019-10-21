@@ -143,6 +143,15 @@ public final class RestUrlRepository {
                 .addDeleteUrl("");
     }
 
+    public static RestUrl getLockedAdmins() {
+        return new RestUrl()
+                .addBaseUrl(server)
+                .addGetUrl("/locked/admins")
+                .addPostUrl("")
+                .addPutUrl("/locked/reset")
+                .addDeleteUrl("");
+    }
+
     public static RestUrl getResetUrl() {
         return new RestUrl()
                 .addBaseUrl(server)
