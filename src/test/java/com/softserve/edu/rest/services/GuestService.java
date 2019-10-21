@@ -1,11 +1,16 @@
 package com.softserve.edu.rest.services;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.softserve.edu.rest.data.User;
 import com.softserve.edu.rest.dto.RestParameters;
 import com.softserve.edu.rest.entity.SimpleEntity;
 import com.softserve.edu.rest.resources.LoginResource;
+import com.softserve.edu.rest.test.LoginLogoutTest;
 
 public class GuestService {
+	public static final Logger logger = LoggerFactory.getLogger(LoginLogoutTest.class); // org.slf4j.LoggerFactory
 
 	protected LoginResource loginResource;
 //	protected TokenlifetimeResource tokenlifetimeResource;
@@ -62,12 +67,15 @@ public class GuestService {
 //
 
 	public UserService successfulUserLogin(User user) {
+		logger.debug("successfulUserLogin START, user = " + user);
 		RestParameters bodyParameters = new RestParameters()
 				.addParameter("name", user.getName())
 				.addParameter("password", user.getPassword());
 		SimpleEntity simpleEntity = loginResource.httpPostAsEntity(null, null, bodyParameters);
+		logger.trace("successfulUserLogin TRACE, simpleEntity = " + simpleEntity);
 //		checkEntity(simpleEntity, "Error Login");
 		user.setToken(simpleEntity.getContent());
+		logger.debug("successfulUserLogin DONE, user = " + user);
 		return new UserService(user);
 	}
 
