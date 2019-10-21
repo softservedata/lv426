@@ -167,6 +167,16 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${maven.compiler.plugin.version}</version>
 				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-install-plugin</artifactId>
+				<version>2.5.2</version>
+				<configuration>
 					<source>${jdk.source.version}</source>
 					<target>${jdk.compiler.version}</target>
 					<encoding>${project.build.sourceEncoding}</encoding>
@@ -191,12 +201,10 @@
 				</executions>
 				<configuration>
 					<installationDirectory>${project.build.directory}/test-classes</installationDirectory>
-					<!-- <installationDirectory>${project.basedir}/src/test/resources</installationDirectory> -->
 					<keepDownloadedWebdrivers>true</keepDownloadedWebdrivers>
 					<drivers>
 						<driver>
 							<name>chromedriver</name>
-							<!--suppress UnresolvedMavenProperty -->
 							<platform>${os.detected.name}</platform>
 							<!-- <platform>windows</platform> -->
 							<bit>32</bit>
@@ -230,8 +238,8 @@
 						<!-- <suiteXmlFile>testng.xml</suiteXmlFile> -->
 						<!-- <suiteXmlFile>testng2.xml</suiteXmlFile> -->
 <!--						<suiteXmlFile>testng7opencart.xml</suiteXmlFile>-->
-						<!--<suiteXmlFile>${testng.parallel.xml.name}</suiteXmlFile>-->
-                        <suiteXmlFile>${testng.jenkins.xml.name}</suiteXmlFile>
+						<suiteXmlFile>${testng.parallel.xml.name}</suiteXmlFile>
+<!--                        <suiteXmlFile>${testng.jenkins.xml.name}</suiteXmlFile>-->
 					</suiteXmlFiles>
 					<reportsDirectory>${testng.reports.directory}</reportsDirectory>
 				</configuration>
