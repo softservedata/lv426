@@ -88,7 +88,7 @@ public class AdminService extends UserService {
                 .addParameter("time", lifetime.getTime());
         SimpleEntity simpleEntity = cooldownResource
                 .httpPutAsEntity(null, null, bodyParameters);
-        checkEntity(simpleEntity, "Admin does not logged");
+        checkEntity(simpleEntity, "The cool down time has not been changed");
         return this;
     }
 
