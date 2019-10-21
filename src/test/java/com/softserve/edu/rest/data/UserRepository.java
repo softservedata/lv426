@@ -46,6 +46,14 @@ public final class UserRepository {
                 .adminRights(true)
                 .build();
     }
+    public static User getAdmin2() {
+        return User.builder()
+                .name("admin2")
+                .password("qwerty")
+                .adminRights(true)
+                .build();
+    }
+
 
     public static User getAdminWithEmptyData() {
         return User.builder()

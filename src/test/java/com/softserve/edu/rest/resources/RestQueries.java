@@ -5,9 +5,9 @@ import com.softserve.edu.rest.dto.RestParameters;
 import com.softserve.edu.rest.dto.RestUrl;
 
 import java.lang.reflect.ParameterizedType;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RestQueries<TGET, TPOST, TPUT, TDELETE> extends RestCrud {
 
@@ -21,16 +21,34 @@ public class RestQueries<TGET, TPOST, TPUT, TDELETE> extends RestCrud {
     private Class<TPOST> classTPOST;
     private Class<TPUT> classTPUT;
     private Class<TDELETE> classTDELETE;
+    private Type classType;
+    private Map<String, Integer> mapOfType;
+
 
     private Gson gson;
 
     protected RestQueries(RestUrl restUrl) {
         super(restUrl);
-        this.classTGET = getClassInstance(classTGET, 0);
-        this.classTPOST = getClassInstance(classTPOST, 1);
-        this.classTPUT = getClassInstance(classTPUT, 2);
-        this.classTDELETE = getClassInstance(classTDELETE, 3);
+        classType = getClass().getGenericSuperclass();
+        initClasses();
         gson = new Gson();
+    }
+
+    private void initClasses() {
+        mapOfType = getMapOfIndex();
+        this.classTGET = getClassInstance(classTGET, mapOfType.get("TGET"));
+        this.classTPOST = getClassInstance(classTPOST, mapOfType.get("TPOST"));
+        this.classTPUT = getClassInstance(classTPUT,  mapOfType.get("TPUT"));
+        this.classTDELETE = getClassInstance(classTDELETE,  mapOfType.get("TDELETE"));
+
+    }
+
+    private Map<String, Integer> getMapOfIndex() {
+        Map<String, Integer> result = new HashMap<>();
+        for (int i = 0; i < RestQueries.class.getTypeParameters().length; i++) {
+            result.put(RestQueries.class.getTypeParameters()[i].getName(), i);
+        }
+        return result;
     }
 
     private <Z> Z convertToEntity(String json, Class<Z> someClass) {
@@ -39,9 +57,9 @@ public class RestQueries<TGET, TPOST, TPUT, TDELETE> extends RestCrud {
 
     @SuppressWarnings("unchecked")
     private <X> Class<X> getClassInstance(Class<X> anyClass, int index) {
-        return anyClass = (Class<X>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[index];
-
+        return anyClass = (Class<X>) ((ParameterizedType) classType).getActualTypeArguments()[index];
     }
+
 
     // Entity - - - - - - - - - - - - - - - - - - - -
     public TGET httpGetAsEntity(RestParameters pathVariables, RestParameters urlParameters) {

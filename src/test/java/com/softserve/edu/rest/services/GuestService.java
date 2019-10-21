@@ -108,7 +108,7 @@ public class GuestService extends BaseService {
                 .addParameter("name", adminUser.getName())
                 .addParameter("password", adminUser.getPassword());
         SimpleEntity simpleEntity = loginAdminResource.httpPostAsEntity(null, null, bodyParameters);
-        if (simpleEntity.getContent() != userNotFoundMessage)
+        if (!simpleEntity.getContent().contains(userNotFoundMessage))
             return new UserService(adminUser);
         return new GuestService();
     }

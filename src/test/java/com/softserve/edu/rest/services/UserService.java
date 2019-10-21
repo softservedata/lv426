@@ -14,7 +14,6 @@ import com.softserve.edu.rest.resources.ItemResource;
 import com.softserve.edu.rest.resources.LogoutResource;
 import com.softserve.edu.rest.resources.UserResource;
 
-
 public class UserService extends GuestService {
 
     protected LogoutResource logoutResource;
@@ -24,8 +23,6 @@ public class UserService extends GuestService {
     protected AllItemsIndexesResource allItemsIndexesResource;
     protected UserItemsResource userItemsResource;
     protected UserItemResource userItemResource;
-    //    protected UserResource userResource;
-
     protected UserResource userResource;
 
     protected User user;
@@ -37,7 +34,10 @@ public class UserService extends GuestService {
         logoutResource = new LogoutResource();
         itemResource = new ItemResource();
         userResource = new UserResource();
-//        usersResourse = new UsersResourse();
+        userItemResource = new UserItemResource();
+        userItemsResource = new UserItemsResource();
+        allItemsIndexesResource = new AllItemsIndexesResource();
+        allItemsResource = new AllItemsResource();
         // TODO Is Logged
         this.user = user;
     }
@@ -110,48 +110,42 @@ public class UserService extends GuestService {
         return new UserService(user);
     }
 
-    public String getAllItems(Items item){
+    public String getAllItems() {
         RestParameters urlParameters = new RestParameters()
                 .addParameter("token", user.getToken());
-        SimpleEntity simpleEntity = allItemsResource.httpGetAsEntity( urlParameters, null);
+        SimpleEntity simpleEntity = allItemsResource.httpGetAsEntity(null, urlParameters);
         //checkEntity(simpleEntity, item.getName());
         return simpleEntity.getContent();
-
     }
 
-    public String getAllItemsIndexes(Items item){
+    public String getAllItemsIndexes() {
         RestParameters urlParameters = new RestParameters()
                 .addParameter("token", user.getToken());
-        SimpleEntity simpleEntity = allItemsIndexesResource.httpGetAsEntity( urlParameters, null);
+        SimpleEntity simpleEntity = allItemsIndexesResource.httpGetAsEntity(null, urlParameters);
         //checkEntity(simpleEntity, item.getName());
         return simpleEntity.getContent();
-
     }
 
-    public String getUserItems(Items item) {
+    public String getUserItems(User user) {
+        RestParameters pathParameters = new RestParameters()
+                .addParameter("name", user.getName());
         RestParameters urlParameters = new RestParameters()
-                .addParameter("name", item.getName())
                 .addParameter("token", user.getToken());
-        SimpleEntity simpleEntity = userItemsResource.httpGetAsEntity( urlParameters, null);
+        SimpleEntity simpleEntity = userItemsResource.httpGetAsEntity(pathParameters, urlParameters);
         //checkEntity(simpleEntity, item.getName());
         return simpleEntity.getContent();
-
-
     }
 
-    public String getUserItem(Items item) {
-        RestParameters urlParameters = new RestParameters()
-                .addParameter("name", item.getName())
-                .addParameter("token", user.getToken())
+    public String getUserItem(User user, Items item) {
+        RestParameters parhParameters = new RestParameters()
+                .addParameter("name", user.getName())
                 .addParameter("index", item.getIndex());
-        SimpleEntity simpleEntity = userItemResource.httpGetAsEntity( urlParameters, null);
+        RestParameters urlParameters = new RestParameters()
+                .addParameter("token", user.getToken());
+        SimpleEntity simpleEntity = userItemResource.httpGetAsEntity(parhParameters, urlParameters);
         //checkEntity(simpleEntity, item.getName());
         return simpleEntity.getContent();
-
-
     }
-
-
 
 
 //    public String getUserName() {
