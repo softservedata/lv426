@@ -26,4 +26,11 @@ public class ItemRepository {
                 .index("9876")
                 .build();
     }
+
+    public static  Item getSecond(){
+        return Item.builder()
+                .item("phone")
+                .index("9876")
+                .build();
+    }
 }
