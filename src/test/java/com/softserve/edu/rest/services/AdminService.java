@@ -19,6 +19,7 @@ public class AdminService extends UserService {
     private AdminResource adminResource;
     private LockUserResource lockUserResource;
     private LockUsersResource lockUsersResource;
+    private LockedAdminsResource lockAdminsResource;
 //    private LockedUsersResource lockedUsersResource;
 //    private UnlockAllUsersResource unlockAllUsersResource;
 //    private LockUnlockUserResource lockUnlockUserResource;
@@ -34,6 +35,7 @@ public class AdminService extends UserService {
         userLoginResource = new LoginUserResource();
         lockUserResource = new LockUserResource();
         lockUsersResource = new LockUsersResource();
+        lockAdminsResource = new LockedAdminsResource();
 //        loggedUsersResource = new LoggedUsersResource();
 //        lockedAdminsResource = new LockedAdminsResource();
 //        lockedUsersResource = new LockedUsersResource();
@@ -172,7 +174,12 @@ public class AdminService extends UserService {
 //        }
         return this;
     }
-//
+    public String getAllLockedAdmins() {
+        RestParameters urlParameters = new RestParameters()
+                .addParameter("token", user.getToken());
+        SimpleEntity simpleEntity = lockAdminsResource.httpGetAsEntity(null, urlParameters);
+        return simpleEntity.getContent();
+    }
 
 //
     public String getAllLoggedAdmins() {
@@ -212,6 +219,17 @@ public class AdminService extends UserService {
             return false;
         }
     }
+
+    public boolean isAdminLocked(User user) {
+
+        if (getAllLockedAdmins().contains(user.getName())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
 
 //
 //    public void unlockAllUsers() {
