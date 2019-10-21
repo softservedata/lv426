@@ -19,8 +19,6 @@
 		<!-- - - - - - Java - - - - - -->
 		<jdk.source.version>11.0.2</jdk.source.version>
 		<jdk.compiler.version>11.0.2</jdk.compiler.version>
-		<jdk.source.version>1.8</jdk.source.version>
-		<jdk.compiler.version>1.8</jdk.compiler.version>
 		<maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
 		<org.projectlombok.version>1.18.8</org.projectlombok.version>
 		<!-- - - - - - Test - - - - - -->
