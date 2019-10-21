@@ -10,14 +10,11 @@ import com.softserve.edu.rest.services.UserService;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-import static org.testng.AssertJUnit.assertEquals;
-
 public class InvalidCoolDownTimeTest {
     @BeforeMethod
     public void checkIfCoolDownTimeWorks() {
         GuestService guestService = new GuestService();
         AdminService adminService = new AdminService(UserRepository.getAdmin());
-        assertEquals(guestService.getCoolDownTime().getTime(), "180000");
         Assert.assertFalse(adminService.isAdminLogged(UserRepository.getAdmin()),
                 "The cool down time does not equal to default before test");
     }
