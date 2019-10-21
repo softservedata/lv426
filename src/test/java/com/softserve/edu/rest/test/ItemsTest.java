@@ -17,44 +17,6 @@ public class ItemsTest {
         };
     }
 
-    @Test(dataProvider = "itemget")
-    public void getAllItemsTest(User user, Item firstItem, User admin, Item secondItem) {
-        UserService userService = new GuestService()
-                .successfulUserLogin(user)
-                .addItem(firstItem);
-        userService.logoutUser();
-        UserService adminService = new GuestService()
-                .successfulUserLogin(admin)
-                //.addItem(firstItem)
-                .addItem(secondItem);
-        //.addItem(firstItem);
-
-
-        Assert.assertTrue(adminService.getAllItems().contains(secondItem.getItem()));
-        Assert.assertTrue(adminService.getAllItems().contains(firstItem.getItem()));
-
-        adminService.logoutUser();
-    }
-
-
-    @Test(dataProvider = "itemget")
-    public void getAllItemsIndexesTest(User user, Item firstItem, User admin, Item secondItem) {
-
-        UserService userService = new GuestService()
-                .successfulUserLogin(user)
-                .addItem(firstItem);
-        userService.logoutUser();
-        UserService adminService = new GuestService()
-                .successfulUserLogin(admin)
-                //.addItem(firstItem)
-                .addItem(secondItem);
-
-
-        Assert.assertTrue(adminService.getAllItemsIndexes().contains(secondItem.getIndex()));
-        Assert.assertTrue(adminService.getAllItemsIndexes().contains(firstItem.getIndex()));
-
-        adminService.logoutUser();
-    }
 
 
     @Test(dataProvider = "itemget")
