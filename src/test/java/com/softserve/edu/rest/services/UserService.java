@@ -136,6 +136,7 @@ public class UserService extends GuestService {
     }
 
 
+
     public String getUserItems(User userItem) {
         RestParameters pathParameters = new RestParameters()
                 .addParameter("name", userItem.getName());
