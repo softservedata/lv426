@@ -8,10 +8,7 @@ import com.softserve.edu.rest.services.AdminService;
 import com.softserve.edu.rest.services.GuestService;
 import com.softserve.edu.rest.services.UserService;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import static org.testng.AssertJUnit.assertEquals;
 
@@ -32,13 +29,13 @@ public class InvalidCoolDownTimeTest {
                 ,LifetimeRepository.getDefaultCoolTime()}
         };
     }
-    @Test(dataProvider = "inCorrectLifetime")
+    @Test(dataProvider = "inCorrectLifetime", expectedExceptions = RuntimeException.class)
     public void coolDownTimeWithSpecialSymbols(User user, Lifetime lifetime, Lifetime defaultTime){
         GuestService guestService = new GuestService();
         UserService userService = guestService
                 .successfulAdminLogin(user)
                 .changeCoolDown(lifetime);
-        Assert.assertEquals(userService.getCoolDownTime().getTime(), defaultTime.getTime(),
+        Assert.assertEquals(defaultTime.getTime(),userService.getCoolDownTime().getTime(),
                 "The cool down time have changed into symbols");
         userService.logoutUser();
     }
@@ -50,7 +47,7 @@ public class InvalidCoolDownTimeTest {
         };
     }
 
-    @Test(dataProvider = "textLifetime")
+    @Test(dataProvider = "textLifetime", expectedExceptions = RuntimeException.class)
     public void coolDownTimeWithText(User user, Lifetime lifetime, Lifetime defaultTime){
         GuestService guestService = new GuestService();
         UserService userService = guestService
@@ -75,7 +72,7 @@ public class InvalidCoolDownTimeTest {
                 .successfulAdminLogin(user)
                 .changeCoolDown(lifetime);
         Assert.assertNotEquals(userService.getCoolDownTime().getTime(), defaultTime.getTime(),
-                "The cool down time have not changed into new");
+                "The cool down time have not changed into zero");
         userService.logoutUser();
     }
     @DataProvider
@@ -93,14 +90,14 @@ public class InvalidCoolDownTimeTest {
                 .successfulAdminLogin(user)
                 .changeCoolDown(lifetime);
         Assert.assertNotEquals(userService.getCoolDownTime().getTime(), defaultTime.getTime(),
-                "The cool down time have not changed into new");
+                "The cool down time have not changed into negative number");
         userService.logoutUser();
     }
 
-    @AfterMethod
+    @AfterClass(alwaysRun = true)
     public void setCoolDownTimeForDefault() {
         GuestService guestService = new GuestService();
-        UserService userService = guestService
+        guestService
                 .successfulAdminLogin(UserRepository.getAdmin())
                 .changeCoolDown(LifetimeRepository.getDefaultCoolTime());
         Assert.assertEquals(LifetimeRepository.getDefaultCoolTime().getTime(),guestService.getCoolDownTime().getTime(),

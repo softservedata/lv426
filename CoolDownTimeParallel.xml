@@ -7,3 +7,4 @@
 		</classes>
 	</test> <!-- Test -->
 </suite>
+<!--		-Dtestng.parallel.xml.name name=CoolDownTimeParallel.xml-->
