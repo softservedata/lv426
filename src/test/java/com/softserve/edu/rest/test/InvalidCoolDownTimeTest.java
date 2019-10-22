@@ -7,21 +7,28 @@ import com.softserve.edu.rest.data.UserRepository;
 import com.softserve.edu.rest.services.AdminService;
 import com.softserve.edu.rest.services.GuestService;
 import com.softserve.edu.rest.services.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-public class InvalidCoolDownTimeTest {
+public class InvalidCoolDownTimeTest extends TestRunner{
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @BeforeClass
     public void adminRegistration() {
+        logger.info("Before class run");
         GuestService guestService = new GuestService();
+        logger.trace("Successful admin sign in");
         guestService.successfulAdminLogin(UserRepository.getAdmin())
                 .createUser(UserRepository.getMaxAdmin())
                 .createUser(UserRepository.getAdmin2())
                 .createUser(UserRepository.notExistingUser());
+        logger.trace("Creation of three users");
     }
 
     @BeforeMethod
     public void checkIfCoolDownTimeWorks() {
+        logger.info("Before method run");
         AdminService adminService = new AdminService(UserRepository.getAdmin());
         Assert.assertFalse(adminService.isAdminLogged(UserRepository.getAdmin()),
                 "The cool down time does not equal to default before test");
@@ -41,9 +48,11 @@ public class InvalidCoolDownTimeTest {
         UserService userService = guestService
                 .successfulAdminLogin(user)
                 .changeCoolDown(lifetime);
+        logger.trace("Unsuccessful change of cool down time into symbols");
         Assert.assertEquals(defaultTime.getTime(), userService.getCoolDownTime().getTime(),
                 "The cool down time have changed into symbols");
         userService.logoutUser();
+        logger.trace("Successful admin sign out");
     }
 
     @DataProvider
@@ -60,9 +69,11 @@ public class InvalidCoolDownTimeTest {
         UserService userService = guestService
                 .successfulAdminLogin(user)
                 .changeCoolDown(lifetime);
+        logger.trace("Unsuccessful change of cool down time into text");
         Assert.assertEquals(userService.getCoolDownTime().getTime(), defaultTime.getTime(),
                 "The cool down time have not changed into text");
         userService.logoutUser();
+        logger.trace("Successful admin sign out");
     }
 
     @DataProvider
@@ -79,6 +90,7 @@ public class InvalidCoolDownTimeTest {
         UserService userService = guestService
                 .successfulAdminLogin(user)
                 .changeCoolDown(lifetime);
+        logger.trace("Successful change of cool down time into zero");
         Assert.assertNotEquals(userService.getCoolDownTime().getTime(), defaultTime.getTime(),
                 "The cool down time have not changed into zero");
         userService.logoutUser();
@@ -98,22 +110,31 @@ public class InvalidCoolDownTimeTest {
         UserService userService = guestService
                 .successfulAdminLogin(user)
                 .changeCoolDown(lifetime);
+        logger.trace("Successful admin sign in");
+        logger.trace("Successful change of cool down time into negative number");
         Assert.assertNotEquals(userService.getCoolDownTime().getTime(), defaultTime.getTime(),
                 "The cool down time have not changed into negative number");
         userService.logoutUser();
+        logger.trace("Successful admin sign out");
     }
 
     @AfterClass(alwaysRun = true)
     public void setCoolDownTimeForDefault() {
+        logger.info("After class method setCoolDownTimeForDefault() run");
         GuestService guestService = new GuestService();
         guestService
                 .successfulAdminLogin(UserRepository.getAdmin())
                 .changeCoolDown(LifetimeRepository.getDefaultCoolTime())
                 .removeUser(UserRepository.getMaxAdmin())
                 .removeUser(UserRepository.getAdmin2())
-                .removeUser(UserRepository.notExistingUser());
+                .removeUser(UserRepository.notExistingUser())
+                .logoutUser();
+        logger.trace("Successful admin sign in");
+        logger.trace("Successful set up the cool down time into default");
+        logger.trace("Successful remove of 3 admins");
         Assert.assertEquals(LifetimeRepository.getDefaultCoolTime().getTime(), guestService.getCoolDownTime().getTime(),
                 "The cool down time does not equal to default after test");
+        logger.trace("Successful admin sign out");
     }
 
 }
