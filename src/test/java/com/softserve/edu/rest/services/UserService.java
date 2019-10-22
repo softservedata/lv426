@@ -27,8 +27,6 @@ public class UserService extends GuestService {
 
     protected User user;
 
-//    protected UsersResourse usersResourse;
-
     public UserService(User user) {
         // super(); // by default
         logoutResource = new LogoutResource();
@@ -146,17 +144,6 @@ public class UserService extends GuestService {
         //checkEntity(simpleEntity, item.getName());
         return simpleEntity.getContent();
     }
-
-
-//    public String getUserName() {
-//        RestParameters urlParameters = new RestParameters()
-//                .addParameter("token", user.getToken());
-//        SimpleEntity simpleEntity = userResource
-//                .httpGetAsEntity(null, urlParameters);
-//        checkEntity(simpleEntity, user.getName());
-//        return simpleEntity.getContent();
-//    }
-
 
     public UserService changePassword(String newPassword) {
         RestParameters bodyParameters = new RestParameters()
