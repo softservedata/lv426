@@ -23,17 +23,20 @@ public class ItemTest {
 
     @BeforeMethod
     public void userLogIn() {
+        logger.info("Before method userLogIn() START");
         userService = new GuestService()
                 .successfulUserLogin(UserRepository.forItemUser());
     }
 
     @AfterMethod
-    public void LogOut() {
+    public void userLogOut() {
+        logger.info("After method userLogOut() START");
         userService.logoutUser();
     }
 
     @DataProvider
-    public Object[][] createItem() {
+    public Object[][] createValidItem() {
+        logger.info("DataProvider createValidItem() START");
         return new Object[][]{
                 {ItemRepository.getValidItem()}
         };
@@ -41,6 +44,7 @@ public class ItemTest {
 
     @DataProvider
     public Object[][] createInvalidItem() {
+        logger.info("DataProvider createInvalidItem() START");
         return new Object[][]{
                 {ItemRepository.getInvalidItem()}
         };
@@ -48,21 +52,23 @@ public class ItemTest {
 
     @DataProvider
     public Object[][] updateItem() {
+        logger.info("DataProvider updateItem() START");
         return new Object[][]{
                 {ItemRepository.getValidItem(), ItemRepository.getUpdateValidItem()}
         };
     }
 
-    @Test(dataProvider = "createItem", description = "Valid Test Scenario, create valid Item")
+    @Test(dataProvider = "createValidItem", description = "Valid Test Scenario, create valid Item")
     public void itemCreateTest(Item item) {
+        logger.info("Test itemCreateTest() START");
         userService.addItem(item);
-
         Assert.assertEquals(userService.getItem(item), item.getItem());
         userService.deleteItem(item);
     }
 
     @Test(dataProvider = "createInvalidItem", description = "Invalid Test Scenario, create Item with empty index")
     public void emptyItemCreateTest(Item item) {
+        logger.info("Test emptyItemCreateTest() START");
         userService.addItem(item);
 
         Assert.assertEquals(userService.getItem(item), EXPECTED_EMPTY_ITEM_NAME);
@@ -71,6 +77,7 @@ public class ItemTest {
 
     @Test(dataProvider = "updateItem", description = "Valid Test Scenario, create valid Item and then modify it")
     public void itemUpdateTest(Item oldItem, Item newItem) {
+        logger.info("Test itemUpdateTest() START");
         userService.addItem(oldItem);
 
         Assert.assertEquals(userService.getItem(oldItem), oldItem.getItem());
