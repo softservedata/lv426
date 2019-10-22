@@ -6,6 +6,8 @@ import com.softserve.edu.rest.data.User;
 import com.softserve.edu.rest.data.UserRepository;
 import com.softserve.edu.rest.services.GuestService;
 import com.softserve.edu.rest.services.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -13,6 +15,8 @@ import org.testng.annotations.Test;
 import static com.softserve.edu.rest.data.ItemRepository.EXPECTED_EMPTY_ITEM_NAME;
 
 public class ItemTest {
+
+    public static final Logger logger = LoggerFactory.getLogger(ItemTest.class);
 
     @DataProvider
     public Object[][] createItem() {
@@ -63,7 +67,7 @@ public class ItemTest {
         UserService userService = new GuestService()
                 .successfulUserLogin(user)
                 .addItem(item);
-
+        logger.trace("log in user " + user.getName() + " and add item " + item.getItem());
         Assert.assertEquals(userService.getItem(item), item.getItem());
 
         userService.updateItem(newItem);
@@ -73,5 +77,6 @@ public class ItemTest {
         userService.deleteItem(newItem);
         Assert.assertEquals(userService.getItem(item), null);
         userService.logoutUser();
+        logger.trace("log in user " + user.getName() + " and add item " + item.getItem());
     }
 }
