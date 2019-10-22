@@ -6,6 +6,8 @@ import com.softserve.edu.rest.dto.RestParameters;
 import com.softserve.edu.rest.entity.SimpleEntity;
 import com.softserve.edu.rest.resources.*;
 import io.qameta.allure.Step;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class UserService extends GuestService {
 
@@ -18,6 +20,7 @@ public class UserService extends GuestService {
     protected UserResource userResource;
 
     protected User user;
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public UserService(User user) {
         // super(); // by default
@@ -68,6 +71,7 @@ public class UserService extends GuestService {
                 .addParameter("item", item.getItem());
         SimpleEntity simpleEntity = itemResource.httpPostAsEntity(pathParameters, null, bodyParameters);
         checkEntity(simpleEntity, item.getItem());
+        logger.trace("Successful add Item");
         return new UserService(user);
     }
 
@@ -79,6 +83,7 @@ public class UserService extends GuestService {
                 .addParameter("index", item.getIndex());
         SimpleEntity simpleEntity = itemResource.httpGetAsEntity(pathParameters, urlParameters);
         checkEntity(simpleEntity, item.getItem());
+        logger.trace("Successful get Item");
         return simpleEntity.getContent();
     }
 
@@ -90,6 +95,7 @@ public class UserService extends GuestService {
                 .addParameter("token", user.getToken());
         SimpleEntity simpleEntity = itemResource.httpDeleteAsEntity(pathParameters, urlParameters, null);
         checkEntity(simpleEntity, item.getItem());
+        logger.trace("Successful delete Item");
         return new UserService(user);
     }
 
@@ -102,6 +108,7 @@ public class UserService extends GuestService {
                 .addParameter("token", user.getToken());
         SimpleEntity simpleEntity = itemResource.httpPutAsEntity(pathParameters, null, bodyParameters);
         checkEntity(simpleEntity, item.getItem());
+        logger.trace("Successful update Item");
         return new UserService(user);
     }
 

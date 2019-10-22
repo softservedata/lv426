@@ -119,6 +119,7 @@ public class GuestService extends BaseService {
         SimpleEntity simpleEntity = loginUserResource.httpPostAsEntity(null, null, bodyParameters);
         if (simpleEntity.getContent() != userNotFoundMessage)
             return new UserService(user);
+        logger.trace("Successful user sign in");
         return new GuestService();
     }
 
