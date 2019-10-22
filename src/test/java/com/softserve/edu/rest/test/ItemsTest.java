@@ -19,6 +19,7 @@ public class ItemsTest {
 
     @DataProvider
     public Object[][] itemget() {
+        logger.info("@DataProvider itemget() DONE");
         return new Object[][]{
                 {UserRepository.forItemUser(),ItemRepository.getValidItem(), UserRepository.getAdmin(),
                         ItemRepository.getSecond()}
