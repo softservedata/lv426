@@ -9,7 +9,11 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
+<<<<<<< HEAD
+    <orderEntry type="jdk" jdkName="12" jdkType="JavaSDK" />
+=======
     <orderEntry type="inheritedJdk" />
+>>>>>>> 6cc295cb4fa8a11b1b42e3834f319ca62dc4687c
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="TEST" name="Maven: org.testng:testng:7.0.0" level="project" />
     <orderEntry type="library" name="Maven: com.beust:jcommander:1.72" level="project" />
