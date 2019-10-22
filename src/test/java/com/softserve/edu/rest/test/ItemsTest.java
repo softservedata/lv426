@@ -4,6 +4,10 @@ import com.softserve.edu.rest.data.*;
 import com.softserve.edu.rest.services.GuestService;
 import com.softserve.edu.rest.services.UserService;
 
+import io.qameta.allure.Attachment;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
@@ -26,6 +30,10 @@ public class ItemsTest {
         };
     }
 
+
+
+    @Description("checking all added items getting")
+    @Severity(SeverityLevel.NORMAL)
     @Test(dataProvider = "itemget")
     public void getAllItemsTest(User user, Item firstItem, User admin, Item secondItem) {
         logger.info("getAllItemsTest() START");
@@ -43,7 +51,8 @@ public class ItemsTest {
         logger.info("getAllItemsTest() FINISH");
     }
 
-
+    @Description("Checking all added item's indexes getting")
+    @Severity(SeverityLevel.TRIVIAL)
     @Test(dataProvider = "itemget")
     public void getAllItemsIndexesTest(User user, Item firstItem, User admin, Item secondItem) {
         logger.info("getAllItemsIndexesTest() START");
@@ -65,7 +74,8 @@ public class ItemsTest {
     }
 
 
-
+    @Description("checking all added user items getting")
+    @Severity(SeverityLevel.NORMAL)
     @Test(dataProvider = "itemget")
     public void getUserItemsTest(User user, Item firstItem, User admin, Item secondItem) {
         logger.info("getUserItemsTest() START");
@@ -84,7 +94,8 @@ public class ItemsTest {
         logger.info("getUserItemsTest() FINISH");
 
     }
-
+    @Description("Checking  added user item getting")
+    @Severity(SeverityLevel.NORMAL)
     @Test(dataProvider = "itemget")
     public void getUserItemTest(User user, Item firstItem, User admin, Item secondItem) {
         logger.info("getUserItemTest() START");

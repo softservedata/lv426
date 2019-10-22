@@ -13,6 +13,7 @@ import com.softserve.edu.rest.resources.*;
 import com.softserve.edu.rest.resources.ItemResource;
 import com.softserve.edu.rest.resources.LogoutResource;
 import com.softserve.edu.rest.resources.UserResource;
+import io.qameta.allure.Step;
 
 
 public class UserService extends GuestService {
@@ -116,16 +117,17 @@ public class UserService extends GuestService {
         return new UserService(user);
     }
 
+    @Step("Getting all users`s items by his token")
     public String getAllItems() {
 
         RestParameters urlParameters = new RestParameters()
                 .addParameter("token", user.getToken());
         SimpleEntity simpleEntity = allItemsResource.httpGetAsEntity(null, urlParameters);
         checkEntity(simpleEntity, "Not found");
-        System.out.println("getAll " + simpleEntity.getContent());
+        //System.out.println("getAll " + simpleEntity.getContent());
         return simpleEntity.getContent();
     }
-
+    @Step("Getting all users`s items's indesex by his token")
     public String getAllItemsIndexes() {
         RestParameters urlParameters = new RestParameters()
                 .addParameter("token", user.getToken());
@@ -136,7 +138,7 @@ public class UserService extends GuestService {
     }
 
 
-
+    @Step("Getting all user`s items by admin token and user name")
     public String getUserItems(User userItem) {
         RestParameters pathParameters = new RestParameters()
                 .addParameter("name", userItem.getName());
@@ -149,7 +151,7 @@ public class UserService extends GuestService {
         return simpleEntity.getContent();
     }
 
-
+    @Step("Getting  user`s item by admin token, item index and user name")
     public String getUserItem(Item item, User userItem) {
         RestParameters urlParameters = new RestParameters()
                 .addParameter("token", user.getToken());
