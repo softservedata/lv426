@@ -1,166 +1,166 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-	<modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.softserve.edu</groupId>
-	<artifactId>work426</artifactId>
-	<version>1.0</version>
+    <groupId>com.softserve.edu</groupId>
+    <artifactId>work426</artifactId>
+    <version>1.0</version>
 
-	<packaging>jar</packaging>
-	<name>${project.artifactId}</name>
-	<url>http://maven.apache.org</url>
+    <packaging>jar</packaging>
+    <name>${project.artifactId}</name>
+    <url>http://maven.apache.org</url>
 
-	<properties>
-		<!-- - - - - - Encoding - - - - - -->
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.resources.plugin.version>3.1.0</maven.resources.plugin.version>
-		<!-- - - - - - Java - - - - - -->
-		<jdk.source.version>12</jdk.source.version>
-		<jdk.compiler.version>12</jdk.compiler.version>
-		<maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
-		<org.projectlombok.version>1.18.8</org.projectlombok.version>
-		<!-- - - - - - Test - - - - - -->
-		<org.junit.version>4.12</org.junit.version>
-		<org.testng.version>7.0.0</org.testng.version>
-		<maven.surefire.plugin.version>2.22.2</maven.surefire.plugin.version>
-		<temp>null</temp>
-		<!-- - - - - - Automation - - - - - -->
-		<org.seleniumhq.selenium.version>3.141.59</org.seleniumhq.selenium.version>
-		<maven.os-maven-plugin.version>1.6.2</maven.os-maven-plugin.version>
-		<maven.webdriverextensions-maven-plugin.version>3.2.0</maven.webdriverextensions-maven-plugin.version>
-		<org.seleniumhq.selenium.htmlunit-driver>2.36.0</org.seleniumhq.selenium.htmlunit-driver>
-		<com.codeborne.phantomjsdriver.version>1.4.4</com.codeborne.phantomjsdriver.version>
+    <properties>
+        <!-- - - - - - Encoding - - - - - -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.resources.plugin.version>3.1.0</maven.resources.plugin.version>
+        <!-- - - - - - Java - - - - - -->
+        <jdk.source.version>1.8</jdk.source.version>
+        <jdk.compiler.version>1.8</jdk.compiler.version>
+        <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
+        <org.projectlombok.version>1.18.8</org.projectlombok.version>
+        <!-- - - - - - Test - - - - - -->
+        <org.junit.version>4.12</org.junit.version>
+        <org.testng.version>7.0.0</org.testng.version>
+        <maven.surefire.plugin.version>2.22.2</maven.surefire.plugin.version>
+        <temp>null</temp>
+        <!-- - - - - - Automation - - - - - -->
+        <org.seleniumhq.selenium.version>3.141.59</org.seleniumhq.selenium.version>
+        <maven.os-maven-plugin.version>1.6.2</maven.os-maven-plugin.version>
+        <maven.webdriverextensions-maven-plugin.version>3.2.0</maven.webdriverextensions-maven-plugin.version>
+        <org.seleniumhq.selenium.htmlunit-driver>2.36.0</org.seleniumhq.selenium.htmlunit-driver>
+        <com.codeborne.phantomjsdriver.version>1.4.4</com.codeborne.phantomjsdriver.version>
 
-		<!-- - - - - - Reports - - - - - -->
-		<testng.reports.directory>target/surefire-reports/test-output</testng.reports.directory>
-		<allure.version>2.13.0</allure.version>
-		<java.version>1.8</java.version>
-		<aspectj.version>1.9.4</aspectj.version>
-		<!-- - - - - - Mocks - - - - - -->
-		<org.mockito.version>1.10.19</org.mockito.version>
-		<org.powermock.version>1.7.4</org.powermock.version>
-		<!-- - - - - - Logging - - - - - -->
-		<org.slf4j.version>1.7.25</org.slf4j.version>
-		<!-- - - - - - DB - - - - - -->
-		<net.sourceforge.jtds.version>1.3.1</net.sourceforge.jtds.version>
-		<mysql.connector.version>5.1.47</mysql.connector.version>
-		<postgresql.connector.version>9.4-1206-jdbc41</postgresql.connector.version>
-		<!-- - - - - - Utils - - - - - -->
-		<org.apache.poi.version>4.1.0</org.apache.poi.version>
-		<!-- - - - - - JSON - - - - - -->
-		<jackson.core.version>2.10.0</jackson.core.version>
-		<google.gson.version>2.8.5</google.gson.version>
-		<!-- - - - - - Jenkins- - - - - -->
-<!--		<testng.parallel.xml.name>CoolDownTimeParallel.xml</testng.parallel.xml.name>-->
+        <!-- - - - - - Reports - - - - - -->
+        <testng.reports.directory>target/surefire-reports/test-output</testng.reports.directory>
+        <allure.version>2.10.0</allure.version>
+        <java.version>1.8</java.version>
+        <aspectj.version>1.9.4</aspectj.version>
+        <!-- - - - - - Mocks - - - - - -->
+        <org.mockito.version>1.10.19</org.mockito.version>
+        <org.powermock.version>1.7.4</org.powermock.version>
+        <!-- - - - - - Logging - - - - - -->
+        <org.slf4j.version>1.7.25</org.slf4j.version>
+        <!-- - - - - - DB - - - - - -->
+        <net.sourceforge.jtds.version>1.3.1</net.sourceforge.jtds.version>
+        <mysql.connector.version>5.1.47</mysql.connector.version>
+        <postgresql.connector.version>9.4-1206-jdbc41</postgresql.connector.version>
+        <!-- - - - - - Utils - - - - - -->
+        <org.apache.poi.version>4.1.0</org.apache.poi.version>
+        <!-- - - - - - JSON - - - - - -->
+        <jackson.core.version>2.10.0</jackson.core.version>
+        <google.gson.version>2.8.5</google.gson.version>
+        <!-- - - - - - Jenkins- - - - - -->
+        <!--		<testng.parallel.xml.name>CoolDownTimeParallel.xml</testng.parallel.xml.name>-->
         <testng.jenkins.xml.name>marta.xml</testng.jenkins.xml.name>
-		<com.fasterxml.jackson.core.version>2.9.8</com.fasterxml.jackson.core.version>
-	</properties>
+        <com.fasterxml.jackson.core.version>2.9.8</com.fasterxml.jackson.core.version>
+    </properties>
 
-	<dependencies>
-		<!-- - - - Test - - - -->
-		<!-- <dependency> -->
-		<!-- <groupId>junit</groupId> -->
-		<!-- <artifactId>junit</artifactId> -->
-		<!-- <version>${org.junit.version}</version> -->
-		<!-- <scope>test</scope> -->
-		<!-- </dependency> -->
-		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>${org.testng.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>${org.projectlombok.version}</version>
-			<scope>provided</scope>
-		</dependency>
+    <dependencies>
+        <!-- - - - Test - - - -->
+        <!-- <dependency> -->
+        <!-- <groupId>junit</groupId> -->
+        <!-- <artifactId>junit</artifactId> -->
+        <!-- <version>${org.junit.version}</version> -->
+        <!-- <scope>test</scope> -->
+        <!-- </dependency> -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${org.testng.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${org.projectlombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
 
-		<!-- - - - Automation Framework - - - -->
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-server</artifactId>
-			<version>${org.seleniumhq.selenium.version}</version>
-		</dependency>
+        <!-- - - - Automation Framework - - - -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-server</artifactId>
+            <version>${org.seleniumhq.selenium.version}</version>
+        </dependency>
 
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>htmlunit-driver</artifactId>
-			<version>${org.seleniumhq.selenium.htmlunit-driver}</version>
-		</dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>htmlunit-driver</artifactId>
+            <version>${org.seleniumhq.selenium.htmlunit-driver}</version>
+        </dependency>
 
-		<dependency>
-			<groupId>com.codeborne</groupId>
-			<artifactId>phantomjsdriver</artifactId>
-			<version>${com.codeborne.phantomjsdriver.version}</version>
-		</dependency>
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>phantomjsdriver</artifactId>
+            <version>${com.codeborne.phantomjsdriver.version}</version>
+        </dependency>
 
-		<!-- - - - Reports - - - -->
-		<dependency>
-			<groupId>io.qameta.allure</groupId>
-			<artifactId>allure-testng</artifactId>
-			<version>${allure.version}</version>
-			<scope>test</scope>
-		</dependency>
+        <!-- - - - Reports - - - -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure.version}</version>
+            <scope>test</scope>
+        </dependency>
 
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjweaver</artifactId>
-			<version>${aspectj.version}</version>
-			<!-- <scope>test</scope> -->
-		</dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+            <!-- <scope>test</scope> -->
+        </dependency>
 
-		<!-- <dependency> -->
-		<!-- <groupId>io.qameta.allure</groupId> -->
-		<!-- <artifactId>allure-attachments</artifactId> -->
-		<!-- <version>${allure-testng.version}</version> -->
-		<!-- </dependency> -->
+        <!-- <dependency> -->
+        <!-- <groupId>io.qameta.allure</groupId> -->
+        <!-- <artifactId>allure-attachments</artifactId> -->
+        <!-- <version>${allure-testng.version}</version> -->
+        <!-- </dependency> -->
 
-		<!-- - - - Logger - - - -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${org.slf4j.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>${org.slf4j.version}</version>
-			<scope>runtime</scope>
-		</dependency>
+        <!-- - - - Logger - - - -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${org.slf4j.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${org.slf4j.version}</version>
+            <scope>runtime</scope>
+        </dependency>
 
-		<!-- - - - Read from Excel formats, etc. - - - -->
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-ooxml</artifactId>
-			<version>${org.apache.poi.version}</version>
-		</dependency>
+        <!-- - - - Read from Excel formats, etc. - - - -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>${org.apache.poi.version}</version>
+        </dependency>
 
-		<!-- - - - - - JSON - - - - - -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>${jackson.core.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-annotations</artifactId>
-			<version>${jackson.core.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>${google.gson.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
-			<version>${jackson.core.version}</version>
-		</dependency>
+        <!-- - - - - - JSON - - - - - -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${google.gson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.core.version}</version>
+        </dependency>
 
 
 
@@ -194,82 +194,82 @@
 		</dependency>
     </dependencies>
 
-	<build>
+    <build>
 
-		<extensions>
-			<extension>
-				<groupId>kr.motd.maven</groupId>
-				<artifactId>os-maven-plugin</artifactId>
-				<version>${maven.os-maven-plugin.version}</version>
-			</extension>
-		</extensions>
+        <extensions>
+            <extension>
+                <groupId>kr.motd.maven</groupId>
+                <artifactId>os-maven-plugin</artifactId>
+                <version>${maven.os-maven-plugin.version}</version>
+            </extension>
+        </extensions>
 
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>${maven.resources.plugin.version}</version>
-				<configuration>
-					<encoding>${project.build.sourceEncoding}</encoding>
-				</configuration>
-			</plugin>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven.resources.plugin.version}</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven.compiler.plugin.version}</version>
-				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
-					<encoding>${project.build.sourceEncoding}</encoding>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-install-plugin</artifactId>
-				<version>2.5.2</version>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>2.5.2</version>
 
-			</plugin>
+            </plugin>
 
-			<plugin>
-				<groupId>com.github.webdriverextensions</groupId>
-				<artifactId>webdriverextensions-maven-plugin</artifactId>
-				<version>${maven.webdriverextensions-maven-plugin.version}</version>
-				<executions>
-					<execution>
-						<id>pre-test</id>
-						<goals>
-							<goal>install-drivers</goal>
-						</goals>
-						<!-- Uncomment for download automatically -->
-						<phase>test-compile</phase>
-						<!-- <phase>process-test-classes</phase> -->
-						<!-- <phase>test</phase> -->
-					</execution>
-				</executions>
-				<configuration>
-					<installationDirectory>${project.build.directory}/test-classes</installationDirectory>
-					<keepDownloadedWebdrivers>true</keepDownloadedWebdrivers>
-					<drivers>
-						<driver>
-							<name>chromedriver</name>
-							<!--suppress UnresolvedMavenProperty -->
-							<platform>${os.detected.name}</platform>
-							<!-- <platform>windows</platform> -->
-							<bit>32</bit>
-							<!-- <version>74.0.3729.6</version> -->
-							<!-- <url>https://chromedriver.storage.googleapis.com/74.0.3729.6/chromedriver_win32.zip</url> -->
-							<version>76.0.3809.126</version>
-							<!-- <url>https://chromedriver.storage.googleapis.com/76.0.3809.126/chromedriver_win32.zip</url> -->
-						</driver>
-					</drivers>
-				</configuration>
-			</plugin>
+            <plugin>
+                <groupId>com.github.webdriverextensions</groupId>
+                <artifactId>webdriverextensions-maven-plugin</artifactId>
+                <version>${maven.webdriverextensions-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>pre-test</id>
+                        <goals>
+                            <goal>install-drivers</goal>
+                        </goals>
+                        <!-- Uncomment for download automatically -->
+                        <phase>test-compile</phase>
+                        <!-- <phase>process-test-classes</phase> -->
+                        <!-- <phase>test</phase> -->
+                    </execution>
+                </executions>
+                <configuration>
+                    <installationDirectory>${project.build.directory}/test-classes</installationDirectory>
+                    <keepDownloadedWebdrivers>true</keepDownloadedWebdrivers>
+                    <drivers>
+                        <driver>
+                            <name>chromedriver</name>
+                            <!--suppress UnresolvedMavenProperty -->
+                            <platform>${os.detected.name}</platform>
+                            <!-- <platform>windows</platform> -->
+                            <bit>32</bit>
+                            <!-- <version>74.0.3729.6</version> -->
+                            <!-- <url>https://chromedriver.storage.googleapis.com/74.0.3729.6/chromedriver_win32.zip</url> -->
+                            <version>76.0.3809.126</version>
+                            <!-- <url>https://chromedriver.storage.googleapis.com/76.0.3809.126/chromedriver_win32.zip</url> -->
+                        </driver>
+                    </drivers>
+                </configuration>
+            </plugin>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>${maven.surefire.plugin.version}</version>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.plugin.version}</version>
                 <configuration>
                     <argLine>-Xms512m -Xmx1024m</argLine>
                     <systemPropertyVariables>
@@ -284,9 +284,6 @@
                         </temporary.variable>
                     </systemPropertyVariables>
                     <suiteXmlFiles>
-                        <!-- <suiteXmlFile>testng.xml</suiteXmlFile> -->
-                        <!-- <suiteXmlFile>testng2.xml</suiteXmlFile> -->
-                        <!-- <suiteXmlFile>testng8rest.xml</suiteXmlFile> -->
                         <suiteXmlFile>${testng.jenkins.xml.name}</suiteXmlFile>
                     </suiteXmlFiles>
                     <reportsDirectory>${testng.reports.directory}</reportsDirectory>
@@ -294,8 +291,8 @@
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
                 </configuration>
-			</plugin>
-		</plugins>
-	</build>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
