@@ -1,31 +1,20 @@
 package com.softserve.edu.rest.services;
 
 import com.softserve.edu.rest.data.Item;
-import com.softserve.edu.rest.data.Items;
-import com.softserve.edu.rest.data.Lifetime;
 import com.softserve.edu.rest.data.User;
 import com.softserve.edu.rest.dto.RestParameters;
 import com.softserve.edu.rest.entity.SimpleEntity;
-
-
 import com.softserve.edu.rest.resources.*;
-
-import com.softserve.edu.rest.resources.ItemResource;
-import com.softserve.edu.rest.resources.LogoutResource;
-import com.softserve.edu.rest.resources.UserResource;
-
+import io.qameta.allure.Step;
 
 public class UserService extends GuestService {
 
     protected LogoutResource logoutResource;
     protected ItemResource itemResource;
-
     protected AllItemsResource allItemsResource;
     protected AllItemsIndexesResource allItemsIndexesResource;
     protected UserItemsResource userItemsResource;
     protected UserItemResource userItemResource;
-    //    protected UserResource userResource;
-
     protected UserResource userResource;
 
     protected User user;
@@ -70,7 +59,7 @@ public class UserService extends GuestService {
 //        return this;
 //    }
 
-
+    @Step("Add new item to current user")
     public UserService addItem(Item item) {
         RestParameters pathParameters = new RestParameters()
                 .addParameter("index", item.getIndex());
@@ -79,20 +68,21 @@ public class UserService extends GuestService {
                 .addParameter("item", item.getItem());
         SimpleEntity simpleEntity = itemResource.httpPostAsEntity(pathParameters, null, bodyParameters);
         checkEntity(simpleEntity, item.getItem());
-        System.out.println("add "+ simpleEntity.getContent());
         return new UserService(user);
     }
 
+    @Step("Get current item")
     public String getItem(Item item) {
         RestParameters urlParameters = new RestParameters()
                 .addParameter("token", user.getToken());
         RestParameters pathParameters = new RestParameters()
                 .addParameter("index", item.getIndex());
         SimpleEntity simpleEntity = itemResource.httpGetAsEntity(pathParameters, urlParameters);
-        //checkEntity(simpleEntity, item.getItem());
+        checkEntity(simpleEntity, item.getItem());
         return simpleEntity.getContent();
     }
 
+    @Step("Delete current item")
     public UserService deleteItem(Item item) {
         RestParameters pathParameters = new RestParameters()
                 .addParameter("index", item.getIndex());
@@ -103,6 +93,7 @@ public class UserService extends GuestService {
         return new UserService(user);
     }
 
+    @Step("Update current item")
     public UserService updateItem(Item item) {
         RestParameters pathParameters = new RestParameters()
                 .addParameter("index", item.getIndex());
@@ -115,7 +106,6 @@ public class UserService extends GuestService {
     }
 
     public String getAllItems() {
-
         RestParameters urlParameters = new RestParameters()
                 .addParameter("token", user.getToken());
         SimpleEntity simpleEntity = allItemsResource.httpGetAsEntity(null, urlParameters);
@@ -134,14 +124,12 @@ public class UserService extends GuestService {
     }
 
 
-
     public String getUserItems(User userItem) {
         RestParameters pathParameters = new RestParameters()
                 .addParameter("name", userItem.getName());
         RestParameters urlParameters = new RestParameters()
                 .addParameter("token", user.getToken());
         SimpleEntity simpleEntity = userItemsResource.httpGetAsEntity(pathParameters, urlParameters);
-
         checkEntity(simpleEntity, "Not found");
         System.out.println("getUserItems " + simpleEntity.getContent());
         return simpleEntity.getContent();
