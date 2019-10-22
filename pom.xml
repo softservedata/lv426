@@ -24,7 +24,8 @@
 		<org.junit.version>4.12</org.junit.version>
 		<org.testng.version>7.0.0</org.testng.version>
 		<maven.surefire.plugin.version>2.22.2</maven.surefire.plugin.version>
-		<testng.xml.name>testng8rest.xml</testng.xml.name>
+<!-- 		<testng.xml.name>testng8rest.xml</testng.xml.name> -->
+		<testng.xml.name>testng91.xml</testng.xml.name>
 		<temp>null</temp>
 		<pswd>null_1</pswd>
 		<!-- - - - - - Automation - - - - - -->
@@ -35,9 +36,9 @@
 		<com.codeborne.phantomjsdriver.version>1.4.4</com.codeborne.phantomjsdriver.version>
 		<!-- - - - - - Reports - - - - - -->
 		<testng.reports.directory>target/surefire-reports/test-output</testng.reports.directory>
-		<allure.version>2.10.0</allure.version>
+		<allure.version>2.13.0</allure.version>
 		<java.version>1.8</java.version>
-		<aspectj.version>1.9.2</aspectj.version>
+		<aspectj.version>1.9.4</aspectj.version>
 		<!-- - - - - - Mocks - - - - - -->
 		<org.mockito.version>1.10.19</org.mockito.version>
 		<org.powermock.version>1.7.4</org.powermock.version>
@@ -87,6 +88,27 @@
 			<artifactId>phantomjsdriver</artifactId>
 			<version>${com.codeborne.phantomjsdriver.version}</version>
 		</dependency>
+
+		<!-- - - - Reports - - - -->
+		<dependency>
+			<groupId>io.qameta.allure</groupId>
+			<artifactId>allure-testng</artifactId>
+			<version>${allure.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${aspectj.version}</version>
+			<!-- <scope>test</scope> -->
+		</dependency>
+
+		<!-- <dependency> -->
+		<!-- <groupId>io.qameta.allure</groupId> -->
+		<!-- <artifactId>allure-attachments</artifactId> -->
+		<!-- <version>${allure-testng.version}</version> -->
+		<!-- </dependency> -->
 
 		<!-- - - - Logger - - - -->
 		<dependency>
@@ -213,10 +235,13 @@
 					<suiteXmlFiles>
 						<!-- <suiteXmlFile>testng.xml</suiteXmlFile> -->
 						<!-- <suiteXmlFile>testng2.xml</suiteXmlFile> -->
-<!-- 						<suiteXmlFile>testng8rest.xml</suiteXmlFile> -->
+						<!-- <suiteXmlFile>testng8rest.xml</suiteXmlFile> -->
 						<suiteXmlFile>${testng.xml.name}</suiteXmlFile>
 					</suiteXmlFiles>
 					<reportsDirectory>${testng.reports.directory}</reportsDirectory>
+					<argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
 				</configuration>
 			</plugin>
 		</plugins>
