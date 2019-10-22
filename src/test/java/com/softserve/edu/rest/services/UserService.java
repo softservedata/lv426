@@ -13,6 +13,8 @@ import com.softserve.edu.rest.resources.*;
 import com.softserve.edu.rest.resources.ItemResource;
 import com.softserve.edu.rest.resources.LogoutResource;
 import com.softserve.edu.rest.resources.UserResource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class UserService extends GuestService {
 
@@ -24,10 +26,9 @@ public class UserService extends GuestService {
     protected UserItemsResource userItemsResource;
     protected UserItemResource userItemResource;
     protected UserResource userResource;
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     protected User user;
-
-//    protected UsersResourse usersResourse;
 
     public UserService(User user) {
         // super(); // by default
@@ -38,7 +39,6 @@ public class UserService extends GuestService {
         userItemsResource = new UserItemsResource();
         allItemsIndexesResource = new AllItemsIndexesResource();
         allItemsResource = new AllItemsResource();
-        // TODO Is Logged
         this.user = user;
     }
 
@@ -56,6 +56,7 @@ public class UserService extends GuestService {
         SimpleEntity simpleEntity = logoutResource
                 .httpPostAsEntity(null, null, bodyParameters);
         user.setToken("");
+        logger.trace("Successful admin sign out");
         return new GuestService();
     }
 
