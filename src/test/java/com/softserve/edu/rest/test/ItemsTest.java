@@ -31,7 +31,7 @@ public class ItemsTest {
     }
 
 
-
+    @Attachment(value="{0}", type="text/plain")
     @Description("checking all added items getting")
     @Severity(SeverityLevel.NORMAL)
     @Test(dataProvider = "itemget")
@@ -51,6 +51,7 @@ public class ItemsTest {
         logger.info("getAllItemsTest() FINISH");
     }
 
+    @Attachment(value="{0}", type="text/plain")
     @Description("Checking all added item's indexes getting")
     @Severity(SeverityLevel.TRIVIAL)
     @Test(dataProvider = "itemget")
@@ -74,6 +75,7 @@ public class ItemsTest {
     }
 
 
+    @Attachment(value="{0}", type="text/plain")
     @Description("checking all added user items getting")
     @Severity(SeverityLevel.NORMAL)
     @Test(dataProvider = "itemget")
@@ -94,6 +96,8 @@ public class ItemsTest {
         logger.info("getUserItemsTest() FINISH");
 
     }
+
+    @Attachment(value="{0}", type="text/plain")
     @Description("Checking  added user item getting")
     @Severity(SeverityLevel.NORMAL)
     @Test(dataProvider = "itemget")
