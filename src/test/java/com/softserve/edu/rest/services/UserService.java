@@ -1,26 +1,37 @@
 package com.softserve.edu.rest.services;
 
 import com.softserve.edu.rest.data.Item;
+import com.softserve.edu.rest.data.Items;
+import com.softserve.edu.rest.data.Lifetime;
 import com.softserve.edu.rest.data.User;
 import com.softserve.edu.rest.dto.RestParameters;
 import com.softserve.edu.rest.entity.SimpleEntity;
+
+
 import com.softserve.edu.rest.resources.*;
+
+import com.softserve.edu.rest.resources.ItemResource;
+import com.softserve.edu.rest.resources.LogoutResource;
+import com.softserve.edu.rest.resources.UserResource;
 import io.qameta.allure.Step;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 public class UserService extends GuestService {
 
     protected LogoutResource logoutResource;
     protected ItemResource itemResource;
+
     protected AllItemsResource allItemsResource;
     protected AllItemsIndexesResource allItemsIndexesResource;
     protected UserItemsResource userItemsResource;
     protected UserItemResource userItemResource;
+    //    protected UserResource userResource;
+
     protected UserResource userResource;
 
     protected User user;
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+//    protected UsersResourse usersResourse;
 
     public UserService(User user) {
         // super(); // by default
@@ -62,7 +73,7 @@ public class UserService extends GuestService {
 //        return this;
 //    }
 
-    @Step("Add new item to current user")
+
     public UserService addItem(Item item) {
         RestParameters pathParameters = new RestParameters()
                 .addParameter("index", item.getIndex());
@@ -71,23 +82,20 @@ public class UserService extends GuestService {
                 .addParameter("item", item.getItem());
         SimpleEntity simpleEntity = itemResource.httpPostAsEntity(pathParameters, null, bodyParameters);
         checkEntity(simpleEntity, item.getItem());
-        logger.trace("Successful add Item");
+        System.out.println("add "+ simpleEntity.getContent());
         return new UserService(user);
     }
 
-    @Step("Get current item")
     public String getItem(Item item) {
         RestParameters urlParameters = new RestParameters()
                 .addParameter("token", user.getToken());
         RestParameters pathParameters = new RestParameters()
                 .addParameter("index", item.getIndex());
         SimpleEntity simpleEntity = itemResource.httpGetAsEntity(pathParameters, urlParameters);
-        checkEntity(simpleEntity, item.getItem());
-        logger.trace("Successful get Item");
+        //checkEntity(simpleEntity, item.getItem());
         return simpleEntity.getContent();
     }
 
-    @Step("Delete current item")
     public UserService deleteItem(Item item) {
         RestParameters pathParameters = new RestParameters()
                 .addParameter("index", item.getIndex());
@@ -95,11 +103,9 @@ public class UserService extends GuestService {
                 .addParameter("token", user.getToken());
         SimpleEntity simpleEntity = itemResource.httpDeleteAsEntity(pathParameters, urlParameters, null);
         checkEntity(simpleEntity, item.getItem());
-        logger.trace("Successful delete Item");
         return new UserService(user);
     }
 
-    @Step("Update current item")
     public UserService updateItem(Item item) {
         RestParameters pathParameters = new RestParameters()
                 .addParameter("index", item.getIndex());
@@ -108,19 +114,20 @@ public class UserService extends GuestService {
                 .addParameter("token", user.getToken());
         SimpleEntity simpleEntity = itemResource.httpPutAsEntity(pathParameters, null, bodyParameters);
         checkEntity(simpleEntity, item.getItem());
-        logger.trace("Successful update Item");
         return new UserService(user);
     }
 
+    @Step("Getting all users`s items by his token")
     public String getAllItems() {
+
         RestParameters urlParameters = new RestParameters()
                 .addParameter("token", user.getToken());
         SimpleEntity simpleEntity = allItemsResource.httpGetAsEntity(null, urlParameters);
         checkEntity(simpleEntity, "Not found");
-        System.out.println("getAll " + simpleEntity.getContent());
+        //System.out.println("getAll " + simpleEntity.getContent());
         return simpleEntity.getContent();
     }
-
+    @Step("Getting all users`s items's indesex by his token")
     public String getAllItemsIndexes() {
         RestParameters urlParameters = new RestParameters()
                 .addParameter("token", user.getToken());
@@ -131,18 +138,20 @@ public class UserService extends GuestService {
     }
 
 
+    @Step("Getting all user`s items by admin token and user name")
     public String getUserItems(User userItem) {
         RestParameters pathParameters = new RestParameters()
                 .addParameter("name", userItem.getName());
         RestParameters urlParameters = new RestParameters()
                 .addParameter("token", user.getToken());
         SimpleEntity simpleEntity = userItemsResource.httpGetAsEntity(pathParameters, urlParameters);
+
         checkEntity(simpleEntity, "Not found");
         System.out.println("getUserItems " + simpleEntity.getContent());
         return simpleEntity.getContent();
     }
 
-
+    @Step("Getting  user`s item by admin token, item index and user name")
     public String getUserItem(Item item, User userItem) {
         RestParameters urlParameters = new RestParameters()
                 .addParameter("token", user.getToken());
@@ -154,6 +163,17 @@ public class UserService extends GuestService {
         System.out.println("getUserItem " + simpleEntity.getContent());
         return simpleEntity.getContent();
     }
+
+
+//    public String getUserName() {
+//        RestParameters urlParameters = new RestParameters()
+//                .addParameter("token", user.getToken());
+//        SimpleEntity simpleEntity = userResource
+//                .httpGetAsEntity(null, urlParameters);
+//        checkEntity(simpleEntity, user.getName());
+//        return simpleEntity.getContent();
+//    }
+
 
     public UserService changePassword(String newPassword) {
         RestParameters bodyParameters = new RestParameters()
