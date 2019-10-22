@@ -13,30 +13,34 @@ import org.testng.annotations.Test;
 
 public class AdminCreateRemoveTest {
 
+    private static final Logger logger =
+            Logger.getLogger(AdminCreateRemoveTest.class);
     AdminService adminService;
 
     @DataProvider
     public Object[] user() {
         return new Object[]{
                 UserRepository.notExistingUser(),
-                //   UserRepository.getAdminWithEmptyData()
         };
     }
 
 
     @BeforeMethod
     public void login() {
+        logger.info("Before method login Admin");
         adminService = new AdminService(UserRepository.getAdmin())
                 .successfulAdminLogin(UserRepository.getAdmin());
     }
 
     @AfterMethod()
     public void logout() {
+        logger.info("After method reset system");
         BaseService service = new BaseService().reset();
     }
 
     @Test(dataProvider = "user")
     public void createTest(User newUser) {
+        logger.info("Test creating Admin");
         adminService.createUser(newUser);
         Assert.assertEquals(adminService.isUserCreated(newUser),
                 true);
@@ -44,19 +48,16 @@ public class AdminCreateRemoveTest {
 
     @Test(dataProvider = "user")
     public void removeTest(User newUser) {
-        adminService.createUser(newUser);
-
-        adminService
+        logger.info("Test removing Admin");
+        adminService.createUser(newUser)
                 .removeUser(newUser);
         Assert.assertEquals(adminService.isUserRemoved(newUser),
                 true);
-        adminService
-                .logoutUser()
-                .unsuccessfulUserLogin(newUser);
     }
 
     @Test
     public void removeLoginAdminTest() {
+        logger.info("Test removing login Admin");
         adminService.createUser(UserRepository.getAdmin2());
         AdminService adminServiceSecond =
                 new AdminService(UserRepository.getAdmin2())
@@ -64,15 +65,19 @@ public class AdminCreateRemoveTest {
                                 UserRepository.getAdmin2());
         Assert.assertTrue(adminService
                 .isAdminLogged(UserRepository.getAdmin2()));
+        logger.info("Second admin create and login");
         adminService.removeUser(UserRepository.getAdmin2());
         Assert.assertTrue(adminService
                 .isUserRemoved(UserRepository.getAdmin2()));
+        logger.info("Removing second admin");
         Assert.assertTrue(adminServiceSecond.getAllAdmins()
                 .contains(UserRepository.getAdmin2().getName()));
+        logger.info("Second admin alive in login session");
         adminServiceSecond.logoutUser()
                 .successfulAdminLogin(UserRepository.getAdmin2());
         Assert.assertFalse(adminServiceSecond
                 .isAdminLogged(UserRepository.getAdmin2()));
+        logger.info("After logout second admin is not found");
     }
 
 }
