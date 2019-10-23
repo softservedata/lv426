@@ -17,7 +17,12 @@ public class RegisterTest {
                 {UserRepository.getAdmin(), UserRepository.notExistingUser2()},
         };
     }
-
+    @DataProvider
+    public Object[][] emptyUser() {
+        return new Object[][]{
+                {UserRepository.getAdmin(), UserRepository.emptyUser()},
+        };
+    }
     @BeforeTest
     public void setup() {
 
@@ -46,10 +51,21 @@ public class RegisterTest {
         adminService
                 .logoutUser()
                 .unsuccessfulUserLogin(newUser);
+    }
 
-        //Check
-        //Assert.assertTrue(userService.isUserLogged(user));
-        //Step
-
+    @Test(dataProvider = "emptyUser")
+    public void registerEmptyTest(User adminUser, User emptyUser) {
+        AdminService adminService = new AdminService(adminUser)
+                .successfulAdminLogin(adminUser)
+                .createUser(emptyUser);
+        Assert.assertTrue(adminService.isUserCreated(emptyUser));
+        adminService
+                .logoutUser()
+                .unsuccessfulUserLogin(emptyUser)
+                .successfulAdminLogin(adminUser)
+                .removeUser(emptyUser);
+        Assert.assertFalse(adminService.isUserRemoved(emptyUser));
+        adminService
+                .logoutUser();
     }
 }
