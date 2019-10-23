@@ -17,13 +17,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.resources.plugin.version>3.1.0</maven.resources.plugin.version>
         <!-- - - - - - Java - - - - - -->
-        <jdk.source.version>12</jdk.source.version>
-        <jdk.compiler.version>12</jdk.compiler.version>
+        <jdk.source.version>1.8</jdk.source.version>
+        <jdk.compiler.version>1.8</jdk.compiler.version>
         <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
         <org.projectlombok.version>1.18.8</org.projectlombok.version>
         <!-- - - - - - Test - - - - - -->
         <org.junit.version>4.12</org.junit.version>
-        <org.testng.version>7.0.0</org.testng.version>
+        <org.testng.version>6.14.3</org.testng.version>
         <maven.surefire.plugin.version>2.22.2</maven.surefire.plugin.version>
         <temp>null</temp>
         <!-- - - - - - Automation - - - - - -->
@@ -56,6 +56,7 @@
         <!--		<testng.parallel.xml.name>CoolDownTimeParallel.xml</testng.parallel.xml.name>-->
         <testng.jenkins.xml.name>marta.xml</testng.jenkins.xml.name>
         <com.fasterxml.jackson.core.version>2.9.8</com.fasterxml.jackson.core.version>
+
     </properties>
 
     <dependencies>
@@ -166,28 +167,28 @@
 
 
 
-		<dependency>
-			<groupId>io.qameta.allure</groupId>
-			<artifactId>allure-attachments</artifactId>
-			<version>${allure.version}</version>
-		</dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-attachments</artifactId>
+            <version>${allure.version}</version>
+        </dependency>
 
-		<dependency>
-			<groupId>io.qameta.allure</groupId>
-			<artifactId>allure-httpclient</artifactId>
-			<version>${allure.version}</version>
-		</dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-httpclient</artifactId>
+            <version>${allure.version}</version>
+        </dependency>
 
-		<dependency>
-			<groupId>com.squareup.okhttp</groupId>
-			<artifactId>okhttp</artifactId>
-			<version>2.7.5</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.interceptor</groupId>
-			<artifactId>javax.interceptor-api</artifactId>
-			<version>1.2.2</version>
-		</dependency>
+        <dependency>
+            <groupId>com.squareup.okhttp</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>2.7.5</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.interceptor</groupId>
+            <artifactId>javax.interceptor-api</artifactId>
+            <version>1.2.2</version>
+        </dependency>
     </dependencies>
 
     <build>
