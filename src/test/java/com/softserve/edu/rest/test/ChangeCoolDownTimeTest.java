@@ -7,7 +7,6 @@ import com.softserve.edu.rest.data.UserRepository;
 import com.softserve.edu.rest.services.AdminService;
 import com.softserve.edu.rest.services.GuestService;
 import com.softserve.edu.rest.services.UserService;
-import com.softserve.edu.rest.tools.AllureOkHttp;
 import com.softserve.edu.rest.tools.Listener;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Story;
@@ -16,16 +15,11 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-import javax.interceptor.Interceptors;
 @Listeners(Listener.class)
 @Epic("Run all main functionality of Cool down part")
-<<<<<<< HEAD
 @Story("Admin change cool down time ")
-public class ChangeCoolDownTimeTest  {
-=======
-@Story("")
 public class ChangeCoolDownTimeTest {
->>>>>>> 5cf1b1de1f284e6917259b310de2eb22728841bc
+
     private GuestService guestService;
     private AdminService adminService;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -52,7 +46,7 @@ public class ChangeCoolDownTimeTest {
     }
 
     @Test(dataProvider = "correctUser")
-  //  @Interceptors(AllureOkHttp.class)
+    //  @Interceptors(AllureOkHttp.class)
     public void coolDownTimeChangeTest(User user, Lifetime lifetime, Lifetime defaultTime) {
         UserService userService = guestService
                 .successfulAdminLogin(user)
@@ -64,7 +58,7 @@ public class ChangeCoolDownTimeTest {
 
     @AfterMethod
     public void setCoolDownTimeForDefault() {
-       guestService
+        guestService
                 .successfulAdminLogin(UserRepository.getAdmin())
                 .changeCoolDown(LifetimeRepository.getDefaultCoolTime());
         Assert.assertEquals(guestService.getCoolDownTime().getTime(), LifetimeRepository.getDefaultCoolTime().getTime(),
@@ -72,7 +66,7 @@ public class ChangeCoolDownTimeTest {
         logger.warn("Check if the cool down time change is returns to default ");
     }
 
-//
+
 
 
 }

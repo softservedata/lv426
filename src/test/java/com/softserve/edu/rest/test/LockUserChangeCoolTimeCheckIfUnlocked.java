@@ -13,14 +13,11 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-<<<<<<< HEAD
 @Listeners(Listener.class)
 
 @Epic("Lock and Unlock user")
 @Story("Lock trying to login with invalid data 3 times(should be locked)." +
         "Admin unlock all locked users")
-=======
->>>>>>> 5cf1b1de1f284e6917259b310de2eb22728841bc
 public class LockUserChangeCoolTimeCheckIfUnlocked {
     private GuestService guestService;
     private AdminService adminService;
