@@ -35,15 +35,13 @@
 
         <!-- - - - - - Reports - - - - - -->
         <testng.reports.directory>target/surefire-reports/test-output</testng.reports.directory>
-<<<<<<< HEAD
         <allure.version>2.13.0</allure.version>
         <!--		<java.version>1.8</java.version>-->
         <aspectj.version>1.9.2</aspectj.version>
-=======
+
         <allure.version>2.10.0</allure.version>
         <java.version>1.8</java.version>
         <aspectj.version>1.9.4</aspectj.version>
->>>>>>> 5cf1b1de1f284e6917259b310de2eb22728841bc
         <!-- - - - - - Mocks - - - - - -->
         <org.mockito.version>1.10.19</org.mockito.version>
         <org.powermock.version>1.7.4</org.powermock.version>
