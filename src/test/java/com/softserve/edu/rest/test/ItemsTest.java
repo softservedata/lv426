@@ -4,7 +4,7 @@ import com.softserve.edu.rest.data.*;
 import com.softserve.edu.rest.services.GuestService;
 import com.softserve.edu.rest.services.UserService;
 
-import io.qameta.allure.Attachment;
+//import io.qameta.allure.Attachment;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -31,7 +31,7 @@ public class ItemsTest {
     }
 
 
-    @Attachment(value="{0}", type="text/plain")
+    //@Attachment(value="{0}", type="text/plain")
     @Description("checking all added items getting")
     @Severity(SeverityLevel.NORMAL)
     @Test(dataProvider = "itemget")
@@ -51,7 +51,7 @@ public class ItemsTest {
         logger.info("getAllItemsTest() FINISH");
     }
 
-    @Attachment(value="{0}", type="text/plain")
+    //@Attachment(value="{0}", type="text/plain")
     @Description("Checking all added item's indexes getting")
     @Severity(SeverityLevel.TRIVIAL)
     @Test(dataProvider = "itemget")
@@ -75,7 +75,7 @@ public class ItemsTest {
     }
 
 
-    @Attachment(value="{0}", type="text/plain")
+    //@Attachment(value="{0}", type="text/plain")
     @Description("checking all added user items getting")
     @Severity(SeverityLevel.NORMAL)
     @Test(dataProvider = "itemget")
@@ -97,7 +97,7 @@ public class ItemsTest {
 
     }
 
-    @Attachment(value="{0}", type="text/plain")
+    //@Attachment(value="{0}", type="text/plain")
     @Description("Checking  added user item getting")
     @Severity(SeverityLevel.NORMAL)
     @Test(dataProvider = "itemget")

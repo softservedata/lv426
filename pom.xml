@@ -57,6 +57,7 @@
 <!--        <testng.jenkins.xml.name>marta.xml</testng.jenkins.xml.name>-->
         <testng.jenkins.xml.name>Register.xml</testng.jenkins.xml.name>
         <com.fasterxml.jackson.core.version>2.9.8</com.fasterxml.jackson.core.version>
+
     </properties>
 
     <dependencies>
@@ -281,7 +282,7 @@
                         </temporary.variable>
                     </systemPropertyVariables>
                     <suiteXmlFiles>
-                        <suiteXmlFile>${testng.jenkins.xml.name}</suiteXmlFile>
+                       <suiteXmlFile>${testng.jenkins.xml.name}</suiteXmlFile>
                     </suiteXmlFiles>
                     <reportsDirectory>${testng.reports.directory}</reportsDirectory>
                     <argLine>
