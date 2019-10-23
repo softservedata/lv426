@@ -165,17 +165,17 @@ public class UserService extends GuestService {
         return simpleEntity.getContent();
     }
 
+    @Step("Getting username by admin token")
+    public String getUserName() {
+        RestParameters urlParameters = new RestParameters()
+                .addParameter("token", user.getToken());
+        SimpleEntity simpleEntity = userResource
+                .httpGetAsEntity(null, urlParameters);
+        checkEntity(simpleEntity, user.getName());
+        return simpleEntity.getContent();
+    }
 
-//    public String getUserName() {
-//        RestParameters urlParameters = new RestParameters()
-//                .addParameter("token", user.getToken());
-//        SimpleEntity simpleEntity = userResource
-//                .httpGetAsEntity(null, urlParameters);
-//        checkEntity(simpleEntity, user.getName());
-//        return simpleEntity.getContent();
-//    }
-
-
+    @Step("Change user's password")
     public UserService changePassword(String newPassword) {
         RestParameters bodyParameters = new RestParameters()
                 .addParameter("token", user.getToken())
@@ -183,7 +183,6 @@ public class UserService extends GuestService {
                 .addParameter("newpassword", newPassword);
         SimpleEntity simpleEntity = userResource
                 .httpPutAsEntity(null, null, bodyParameters);
-        //checkEntity(simpleEntity, user.getPassword());
         if ((simpleEntity.getContent() == null) || (simpleEntity.getContent().isEmpty())
                 || (simpleEntity.getContent().toLowerCase().equals("false"))) {
             throw new RuntimeException();

@@ -144,10 +144,6 @@ private final Logger logger = LoggerFactory.getLogger(AdminService.class);
                 .addParameter("token", user.getToken())
                 .addParameter("name", removedUser.getName());
         SimpleEntity simpleEntity = userResource.httpDeleteAsEntity(null, urlParameters, null);
-//        if ((simpleEntity.getContent() == null) || (simpleEntity.getContent().isEmpty())
-//                || (simpleEntity.getContent().toLowerCase().equals("false"))) {
-//            throw new RuntimeException();
-//        }
         return this;
     }
     public String getAllLockedAdmins() {
