@@ -19,7 +19,12 @@ public class UserService extends GuestService {
     protected AllItemsIndexesResource allItemsIndexesResource;
     protected UserItemsResource userItemsResource;
     protected UserItemResource userItemResource;
+<<<<<<< HEAD
+    protected UserResource userResource;
+    private final Logger logger = LoggerFactory.getLogger(UserService.class);
+=======
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+>>>>>>> 5cf1b1de1f284e6917259b310de2eb22728841bc
 
     protected UserResource userResource;
 

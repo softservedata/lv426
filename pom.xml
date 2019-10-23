@@ -17,8 +17,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.resources.plugin.version>3.1.0</maven.resources.plugin.version>
         <!-- - - - - - Java - - - - - -->
-        <jdk.source.version>12</jdk.source.version>
-        <jdk.compiler.version>12</jdk.compiler.version>
+        <jdk.source.version>1.8</jdk.source.version>
+        <jdk.compiler.version>1.8</jdk.compiler.version>
         <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
         <org.projectlombok.version>1.18.8</org.projectlombok.version>
         <!-- - - - - - Test - - - - - -->
@@ -35,9 +35,15 @@
 
         <!-- - - - - - Reports - - - - - -->
         <testng.reports.directory>target/surefire-reports/test-output</testng.reports.directory>
+<<<<<<< HEAD
+        <allure.version>2.13.0</allure.version>
+        <!--		<java.version>1.8</java.version>-->
+        <aspectj.version>1.9.2</aspectj.version>
+=======
         <allure.version>2.10.0</allure.version>
         <java.version>1.8</java.version>
         <aspectj.version>1.9.4</aspectj.version>
+>>>>>>> 5cf1b1de1f284e6917259b310de2eb22728841bc
         <!-- - - - - - Mocks - - - - - -->
         <org.mockito.version>1.10.19</org.mockito.version>
         <org.powermock.version>1.7.4</org.powermock.version>
@@ -168,28 +174,28 @@
 
 
 
-		<dependency>
-			<groupId>io.qameta.allure</groupId>
-			<artifactId>allure-attachments</artifactId>
-			<version>${allure.version}</version>
-		</dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-attachments</artifactId>
+            <version>${allure.version}</version>
+        </dependency>
 
-		<dependency>
-			<groupId>io.qameta.allure</groupId>
-			<artifactId>allure-httpclient</artifactId>
-			<version>${allure.version}</version>
-		</dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-httpclient</artifactId>
+            <version>${allure.version}</version>
+        </dependency>
 
-		<dependency>
-			<groupId>com.squareup.okhttp</groupId>
-			<artifactId>okhttp</artifactId>
-			<version>2.7.5</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.interceptor</groupId>
-			<artifactId>javax.interceptor-api</artifactId>
-			<version>1.2.2</version>
-		</dependency>
+        <dependency>
+            <groupId>com.squareup.okhttp</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>2.7.5</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.interceptor</groupId>
+            <artifactId>javax.interceptor-api</artifactId>
+            <version>1.2.2</version>
+        </dependency>
     </dependencies>
 
     <build>

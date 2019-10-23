@@ -7,11 +7,20 @@ import com.softserve.edu.rest.data.UserRepository;
 import com.softserve.edu.rest.services.AdminService;
 import com.softserve.edu.rest.services.GuestService;
 import com.softserve.edu.rest.services.UserService;
+import com.softserve.edu.rest.tools.Listener;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Story;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+<<<<<<< HEAD
+@Listeners(Listener.class)
+@Epic("Admin trying to change a cool down time with invalid data")
+@Story("Change cool down time with negative and hyge number, with text and different symbols")
+=======
+>>>>>>> 5cf1b1de1f284e6917259b310de2eb22728841bc
 public class InvalidCoolDownTimeTest {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @BeforeClass

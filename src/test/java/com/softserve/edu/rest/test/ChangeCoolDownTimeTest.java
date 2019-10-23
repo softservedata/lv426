@@ -8,28 +8,24 @@ import com.softserve.edu.rest.services.AdminService;
 import com.softserve.edu.rest.services.GuestService;
 import com.softserve.edu.rest.services.UserService;
 import com.softserve.edu.rest.tools.AllureOkHttp;
-import io.qameta.allure.Attachment;
-
+import com.softserve.edu.rest.tools.Listener;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Story;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import javax.interceptor.Interceptors;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Arrays;
-
+@Listeners(Listener.class)
 @Epic("Run all main functionality of Cool down part")
+<<<<<<< HEAD
+@Story("Admin change cool down time ")
+public class ChangeCoolDownTimeTest  {
+=======
 @Story("")
 public class ChangeCoolDownTimeTest {
+>>>>>>> 5cf1b1de1f284e6917259b310de2eb22728841bc
     private GuestService guestService;
     private AdminService adminService;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -56,7 +52,7 @@ public class ChangeCoolDownTimeTest {
     }
 
     @Test(dataProvider = "correctUser")
-    @Interceptors(AllureOkHttp.class)
+  //  @Interceptors(AllureOkHttp.class)
     public void coolDownTimeChangeTest(User user, Lifetime lifetime, Lifetime defaultTime) {
         UserService userService = guestService
                 .successfulAdminLogin(user)
@@ -71,13 +67,12 @@ public class ChangeCoolDownTimeTest {
        guestService
                 .successfulAdminLogin(UserRepository.getAdmin())
                 .changeCoolDown(LifetimeRepository.getDefaultCoolTime());
-//        logger.trace("Successful set up the cool down time into default");
         Assert.assertEquals(guestService.getCoolDownTime().getTime(), LifetimeRepository.getDefaultCoolTime().getTime(),
                 "The cool down time does not equal to default after test");
         logger.warn("Check if the cool down time change is returns to default ");
     }
 
-//  
+//
 
 
 }
