@@ -34,7 +34,7 @@
         <com.codeborne.phantomjsdriver.version>1.4.4</com.codeborne.phantomjsdriver.version>
         <!-- - - - - - Reports - - - - - -->
         <testng.reports.directory>target/surefire-reports/test-output</testng.reports.directory>
-        <allure.version>2.10.0</allure.version>
+        <allure.version>2.13.0</allure.version>
         <!--		<java.version>1.8</java.version>-->
         <aspectj.version>1.9.2</aspectj.version>
         <!-- - - - - - Mocks - - - - - -->

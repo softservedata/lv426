@@ -5,13 +5,19 @@ import com.softserve.edu.rest.data.User;
 import com.softserve.edu.rest.data.UserRepository;
 import com.softserve.edu.rest.services.AdminService;
 import com.softserve.edu.rest.services.GuestService;
+import com.softserve.edu.rest.tools.Listener;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Story;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-public class LockUserAndUnlockAll extends TestRunner {
+@Listeners(Listener.class)
+@Epic("Lock as admin and unlock all users")
+@Story("Admin trying to login with invalid password, wait until unlock and unlock other locked users")
+public class LockUserAndUnlockAll {
     private GuestService guestService;
     private AdminService adminService;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());

@@ -10,6 +10,7 @@ import com.softserve.edu.rest.resources.LoginUserResource;
 import com.softserve.edu.rest.resources.TokenLifeTimeResource;
 import com.softserve.edu.rest.tools.CoolDownTimeException;
 import com.softserve.edu.rest.tools.LockPersonException;
+import io.qameta.allure.Step;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,11 +19,9 @@ public class GuestService extends BaseService {
     protected LoginAdminResource loginAdminResource;
     protected LoginUserResource loginUserResource;
     protected TokenLifeTimeResource tokenResources;
-    //	protected TokenlifetimeResource tokenlifetimeResource;
     protected CoolDownTimeResource cooldownResource;
-    //	private ResetApiResource resetApiResource;
     protected User user;
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final Logger loggerGuest = LoggerFactory.getLogger(GuestService.class);
 
     public GuestService() {
         loginAdminResource = new LoginAdminResource();
@@ -31,54 +30,36 @@ public class GuestService extends BaseService {
         cooldownResource = new CoolDownTimeResource();
     }
 
-//	public GuestService(LoginResource loginResource, TokenlifetimeResource tokenlifetimeResource) {
-//		this.loginResource = loginResource;
-//		this.tokenlifetimeResource = tokenlifetimeResource;
-//	}
-
-//	public void resetServiceToInitialState() {
-//		resetApiResource.httpGetAsEntity(null, null);
-//	}
-
     protected void checkEntity(SimpleEntity simpleEntity, String message) {
         if ((simpleEntity.getContent() == null) || (simpleEntity.getContent().isEmpty())
                 || (simpleEntity.getContent().toLowerCase().equals("false"))) {
-            // TODO Develop Custom Exception
+            loggerGuest.error("Throw RuntimeException");
             throw new RuntimeException(message);
         }
     }
-
+    @Step("Check if cooldowntime request is success")
     protected void checkCoolDownTimeEntity(SimpleEntity simpleEntity, String message) {
         if ((simpleEntity.getContent() == null) || (simpleEntity.getContent().isEmpty())
                 || (simpleEntity.getContent().toLowerCase().equals("false"))) {
+            loggerGuest.error("Throw CoolDownTimeException");
             throw new CoolDownTimeException(message);
         }
     }
-
+    @Step("Check if lock request is success")
     protected void checkLockEntity(SimpleEntity simpleEntity, String message) {
         if ((simpleEntity.getContent() == null) || (simpleEntity.getContent().isEmpty())
                 || (simpleEntity.getContent().toLowerCase().equals("false"))) {
+            loggerGuest.error("Throw LockPersonException");
             throw new LockPersonException(message);
         }
     }
 
-//	public boolean isUserLockedAfterTryToLogin(User user) {
-//		RestParameters bodyParameters = new RestParameters().addParameter("name", user.getName())
-//				.addParameter("password", user.getPassword());
-//		SimpleEntity simpleEntity = loginResource.httpPostAsEntity(null, null, bodyParameters);
-//		checkEntity(simpleEntity, "Error Login");
-//		return simpleEntity.getContent().equals("ERROR, user locked");
-//	}
-
-//	public Lifetime getCurrentLifetime() {
-//		SimpleEntity simpleEntity = tokenlifetimeResource.httpGetAsEntity(null, null);
-//		return new Lifetime(simpleEntity.getContent());
-//	}
-
+    @Step("Get cooldwontime")
     public Lifetime getCoolDownTime() {
         SimpleEntity simpleEntity = cooldownResource
                 .httpGetAsEntity(null, null);
         checkCoolDownTimeEntity(simpleEntity, "Something gets wrong");
+        loggerGuest.info("Get cool down time");
         return new Lifetime(simpleEntity.getContent());
     }
 
@@ -108,7 +89,7 @@ public class GuestService extends BaseService {
         SimpleEntity simpleEntity = loginAdminResource.httpPostAsEntity(null, null, bodyParameters);
         checkEntity(simpleEntity, "Error Login");
         adminUser.setToken(simpleEntity.getContent());
-        logger.trace("Successful admin sign in");
+        loggerGuest.trace("Successful admin sign in");
         return new AdminService(adminUser);
     }
 
@@ -132,14 +113,6 @@ public class GuestService extends BaseService {
         return new GuestService();
     }
 
-//	public AdminService ChangeCurrentPassword(User adminUser) {
-//		String pass = "1111";
-//		RestParameters bodyParameters = new RestParameters().addParameter("token", adminUser.getToken())
-//				.addParameter("oldpassword", adminUser.getPassword()).addParameter("newpassword", pass);
-//		SimpleEntity simpleEntity = loginResource.httpPostAsEntity(null, null, bodyParameters);
-//		checkEntity(simpleEntity, "Error Login");
-//		adminUser.setToken(simpleEntity.getContent());
-//		return new AdminService(adminUser);
-//	}
+
 
 }

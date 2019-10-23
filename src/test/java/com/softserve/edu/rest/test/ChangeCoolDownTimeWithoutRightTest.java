@@ -6,13 +6,22 @@ import com.softserve.edu.rest.data.User;
 import com.softserve.edu.rest.data.UserRepository;
 import com.softserve.edu.rest.services.GuestService;
 import com.softserve.edu.rest.services.UserService;
+import com.softserve.edu.rest.tools.CoolDownTimeException;
+import com.softserve.edu.rest.tools.Listener;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Story;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-public class ChangeCoolDownTimeWithoutRightTest extends TestRunner {
+@Listeners(Listener.class)
+@Epic("Guest trying to change cooldowntime without rights")
+@Story("Trying to change time with random token")
+@Story("Trying to change time like a user")
+public class ChangeCoolDownTimeWithoutRightTest {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @DataProvider
@@ -22,7 +31,7 @@ public class ChangeCoolDownTimeWithoutRightTest extends TestRunner {
         };
     }
 
-    @Test(dataProvider = "dataDistributor")
+    @Test(dataProvider = "dataDistributor", expectedExceptions = CoolDownTimeException.class)
     public void changeCoolDownTimeAsUser(User existingUser, Lifetime newLifeTime) {
         GuestService guestService = new GuestService();
         UserService user = guestService
@@ -41,7 +50,7 @@ public class ChangeCoolDownTimeWithoutRightTest extends TestRunner {
         };
     }
 
-    @Test(dataProvider = "tokenDistributor")
+    @Test(dataProvider = "tokenDistributor", expectedExceptions = CoolDownTimeException.class)
     public void changeCoolDownTimeWithRandomToken(User randomUser, Lifetime newLifetime, Lifetime defaultLifetime) {
         GuestService guestService = new GuestService();
         UserService userService = guestService.successfulAdminLogin(randomUser)
@@ -51,3 +60,4 @@ public class ChangeCoolDownTimeWithoutRightTest extends TestRunner {
         logger.warn("Cool down time fail change");
     }
 }
+

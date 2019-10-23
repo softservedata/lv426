@@ -5,15 +5,12 @@ import com.softserve.edu.rest.data.User;
 import com.softserve.edu.rest.dto.RestParameters;
 import com.softserve.edu.rest.entity.SimpleEntity;
 import com.softserve.edu.rest.resources.*;
+import io.qameta.allure.Step;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class AdminService extends UserService {
 
-    //    private AdminsResource adminsResource;
-    // private LoggedAdminsResource loggedAdminsResource;
-//    // Locked
-//    private LockedAdminsResource lockedAdminsResource;
     private LoginAdminResource adminLoginResource;
     private LoginUserResource userLoginResource;
     private UserResource userResource;
@@ -22,11 +19,7 @@ public class AdminService extends UserService {
     private LockUserResource lockUserResource;
     private LockUsersResource lockUsersResource;
     private LockedAdminsResource lockAdminsResource;
-//    private LockedUsersResource lockedUsersResource;
-//    private UnlockAllUsersResource unlockAllUsersResource;
-//    private LockUnlockUserResource lockUnlockUserResource;
-//    //protected CooldownResource cooldownResource;
-private final Logger logger = LoggerFactory.getLogger(AdminService.class);
+    private final Logger logger = LoggerFactory.getLogger(AdminService.class);
 
 
     public AdminService(User user) {
@@ -48,6 +41,7 @@ private final Logger logger = LoggerFactory.getLogger(AdminService.class);
 //        super(loginResource, tokenlifetimeResource, user);
 //    }
 //
+    @Step("Update token life time")
     public AdminService updateTokenLifetime(Lifetime lifetime) {
         RestParameters bodyParameters = new RestParameters()
                 .addParameter("token", user.getToken())
@@ -58,6 +52,7 @@ private final Logger logger = LoggerFactory.getLogger(AdminService.class);
         return this;
     }
 
+    @Step("Create user")
     public AdminService createUser(User newUser) {
         RestParameters bodyParameters = new RestParameters()
                 .addParameter("token", user.getToken())
@@ -75,6 +70,7 @@ private final Logger logger = LoggerFactory.getLogger(AdminService.class);
         return this;
     }
 
+    @Step("Change cooldowntime")
     public AdminService changeCoolDown(Lifetime lifetime) {
         RestParameters bodyParameters = new RestParameters()
                 .addParameter("token", user.getToken())
@@ -86,29 +82,32 @@ private final Logger logger = LoggerFactory.getLogger(AdminService.class);
         return this;
     }
 
-    public AdminService lockUser(User userForLock){
+    @Step("Lock user")
+    public AdminService lockUser(User userForLock) {
         RestParameters bodyParameters = new RestParameters()
                 .addParameter("token", user.getToken());
         RestParameters pathParameters = new RestParameters()
                 .addParameter("name", userForLock.getName());
         SimpleEntity simpleEntity = lockUserResource
-                .httpPostAsEntity(pathParameters,null, bodyParameters);
+                .httpPostAsEntity(pathParameters, null, bodyParameters);
         checkLockEntity(simpleEntity, "User was not locked");
         return this;
     }
 
-    public AdminService unlockUser(User user){
+    @Step("Unlock user")
+    public AdminService unlockUser(User user) {
         RestParameters bodyParameters = new RestParameters()
                 .addParameter("token", user.getToken());
         RestParameters pathParameters = new RestParameters()
                 .addParameter("", user.getName());
         SimpleEntity simpleEntity = lockUserResource
-                .httpPutAsEntity(pathParameters,null,bodyParameters);
+                .httpPutAsEntity(pathParameters, null, bodyParameters);
         checkLockEntity(simpleEntity, "User was not unlocked");
         return this;
     }
 
-    public String getAllLockedUsers(){
+    @Step("Get all locked users")
+    public String getAllLockedUsers() {
         RestParameters bodyParameters = new RestParameters()
                 .addParameter("token", user.getToken());
         SimpleEntity simpleEntity = lockUsersResource
@@ -116,15 +115,16 @@ private final Logger logger = LoggerFactory.getLogger(AdminService.class);
         return simpleEntity.getContent();
     }
 
-    public AdminService unlockAllUsers(){
+    @Step("Unlock all users")
+    public AdminService unlockAllUsers() {
         RestParameters bodyParameters = new RestParameters()
                 .addParameter("token", user.getToken());
         SimpleEntity simpleEntity = lockUsersResource
-                .httpPutAsEntity(null,null, bodyParameters);
+                .httpPutAsEntity(null, null, bodyParameters);
         return this;
     }
 
-
+    @Step("Get all users")
     public String getAllUsers() {
         RestParameters urlParameters = new RestParameters()
                 .addParameter("token", user.getToken());
@@ -138,7 +138,8 @@ private final Logger logger = LoggerFactory.getLogger(AdminService.class);
         SimpleEntity simpleEntity = adminResource.httpGetAsEntity(null, urlParameters);
         return simpleEntity.getContent();
     }
-//@Step("Delete user")
+
+    //@Step("Delete user")
     public AdminService removeUser(User removedUser) {
         RestParameters urlParameters = new RestParameters()
                 .addParameter("token", user.getToken())
@@ -150,6 +151,8 @@ private final Logger logger = LoggerFactory.getLogger(AdminService.class);
 //        }
         return this;
     }
+
+    @Step("Get all locked admins")
     public String getAllLockedAdmins() {
         RestParameters urlParameters = new RestParameters()
                 .addParameter("token", user.getToken());
@@ -157,7 +160,7 @@ private final Logger logger = LoggerFactory.getLogger(AdminService.class);
         return simpleEntity.getContent();
     }
 
-//
+    //
     public String getAllLoggedAdmins() {
         RestParameters urlParameters = new RestParameters()
                 .addParameter("token", user.getToken());
@@ -172,7 +175,7 @@ private final Logger logger = LoggerFactory.getLogger(AdminService.class);
         return simpleEntity.getContent();
     }
 
-//    private String getLockedAdmins() {
+    //    private String getLockedAdmins() {
 //        RestParameters urlParameters = new RestParameters()
 //                .addParameter("token", user.getToken());
 //        SimpleEntity simpleEntity = lockedAdminsResource.httpGetAsEntity(null, urlParameters);
@@ -187,6 +190,7 @@ private final Logger logger = LoggerFactory.getLogger(AdminService.class);
             return false;
         }
     }
+
     public boolean isUserLogged(User user) {
 
         if (getAllLoggedUsers().contains(user.getName())) {
@@ -196,6 +200,7 @@ private final Logger logger = LoggerFactory.getLogger(AdminService.class);
         }
     }
 
+    @Step("Is admin locked")
     public boolean isAdminLocked(User user) {
 
         if (getAllLockedAdmins().contains(user.getName())) {
@@ -205,23 +210,6 @@ private final Logger logger = LoggerFactory.getLogger(AdminService.class);
         }
     }
 
-
-
-//
-//    public void unlockAllUsers() {
-//        RestParameters bodyParameters = new RestParameters()
-//                .addParameter("token", user.getToken());
-//        unlockAllUsersResource.httpPutAsEntity(null, null, bodyParameters);
-//    }
-//
-//    public boolean isUserPresentInLockedUsers(User user){
-//        return getLockedUsers().contains(user.getName());
-//    }
-//
-//    public boolean isAdminPresentInLockedAdmins(User user){
-//        return getLockedAdmins().contains(user.getName());
-//    }
-//
     public boolean isUserCreated(User user) {
         if (getAllUsers().contains(user.getName())) {
             return true;
@@ -230,6 +218,7 @@ private final Logger logger = LoggerFactory.getLogger(AdminService.class);
         }
 
     }
+
     public boolean isUserRemoved(User user) {
         if (!getAllUsers().contains(user.getName())) {
             return true;
