@@ -18,12 +18,14 @@ public class ChangePasswordTest {
                 {UserRepository.existingUser(), UserRepository.chngedExistingUser()},
         };
     }
+
     @DataProvider
     public Object[][] changeUser() {
         return new Object[][]{
                 {UserRepository.existingUser2(), UserRepository.emptyUser()},
         };
     }
+
     @BeforeClass
     public void createUser() {
         AdminService adminService = new AdminService(UserRepository.getAdmin())
@@ -33,7 +35,7 @@ public class ChangePasswordTest {
     }
 
     @AfterClass
-    public void restore(){
+    public void restore() {
         BaseService baseService = new BaseService()
                 .reset();
     }
@@ -58,18 +60,5 @@ public class ChangePasswordTest {
                 .logoutUser();
     }
 
-
-
-
-//    @AfterTest
-//    public void changeBackPassword() {
-//        User user = UserRepository.existingUser();
-//        UserService userService  = new UserService(user)
-//                .successfulUserLogin(user)
-//                .changePassword("qwerty");
-//        user.setPassword("qwerty");
-//        userService
-//                .logoutUser();
-//    }
 }
 

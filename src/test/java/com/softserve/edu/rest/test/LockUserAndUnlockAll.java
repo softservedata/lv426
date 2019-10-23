@@ -6,15 +6,20 @@ import com.softserve.edu.rest.data.UserRepository;
 import com.softserve.edu.rest.services.AdminService;
 import com.softserve.edu.rest.services.GuestService;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
 public class LockUserAndUnlockAll {
     private GuestService guestService;
     private AdminService adminService;
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
 
     @BeforeClass(alwaysRun = true)
     public void setUp() {
+        logger.info("Before class run");
         guestService = new GuestService();
         guestService
                 .successfulAdminLogin(UserRepository.getAdmin())
@@ -25,6 +30,7 @@ public class LockUserAndUnlockAll {
 
     @BeforeMethod(alwaysRun = true)
     public void registration() {
+        logger.info("Before method checkIfCoolDownTimeWorks() run");
         adminService = guestService.successfulAdminLogin(UserRepository.getAdmin())
                 .createUser(UserRepository.getMaxAdmin())
                 .createUser(UserRepository.getMaxUser())
@@ -50,7 +56,7 @@ public class LockUserAndUnlockAll {
     }
 
     @AfterClass(alwaysRun = true)
-    public void resetUp(){
+    public void resetUp() {
         adminService.successfulAdminLogin(UserRepository.getAdmin())
                 .changeCoolDown(LifetimeRepository.getDefaultCoolTime())
                 .updateTokenLifetime(LifetimeRepository.getDefault())
@@ -61,7 +67,7 @@ public class LockUserAndUnlockAll {
     public Object[][] dataProvider() {
         return new Object[][]{
                 {UserRepository.getMaxAdmin(), UserRepository.getAdmin(),
-                UserRepository.getMaxUser()}
+                        UserRepository.getMaxUser()}
         };
     }
 

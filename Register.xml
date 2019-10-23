@@ -6,6 +6,7 @@
     <test name="Test1">
         <classes>
             <class name="com.softserve.edu.rest.test.RegisterTest"/>
+            <class name="com.softserve.edu.rest.test.ChangePasswordTest"/>
         </classes>
     </test>
 

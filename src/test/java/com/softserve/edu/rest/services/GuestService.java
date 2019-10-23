@@ -8,6 +8,10 @@ import com.softserve.edu.rest.resources.CoolDownTimeResource;
 import com.softserve.edu.rest.resources.LoginAdminResource;
 import com.softserve.edu.rest.resources.LoginUserResource;
 import com.softserve.edu.rest.resources.TokenLifeTimeResource;
+import com.softserve.edu.rest.tools.CoolDownTimeException;
+import com.softserve.edu.rest.tools.LockPersonException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class GuestService extends BaseService {
     protected String userNotFoundMessage = "ERROR, user not found";
@@ -18,7 +22,7 @@ public class GuestService extends BaseService {
     protected CoolDownTimeResource cooldownResource;
     //	private ResetApiResource resetApiResource;
     protected User user;
-
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public GuestService() {
         loginAdminResource = new LoginAdminResource();
@@ -44,6 +48,20 @@ public class GuestService extends BaseService {
         }
     }
 
+    protected void checkCoolDownTimeEntity(SimpleEntity simpleEntity, String message) {
+        if ((simpleEntity.getContent() == null) || (simpleEntity.getContent().isEmpty())
+                || (simpleEntity.getContent().toLowerCase().equals("false"))) {
+            throw new CoolDownTimeException(message);
+        }
+    }
+
+    protected void checkLockEntity(SimpleEntity simpleEntity, String message) {
+        if ((simpleEntity.getContent() == null) || (simpleEntity.getContent().isEmpty())
+                || (simpleEntity.getContent().toLowerCase().equals("false"))) {
+            throw new LockPersonException(message);
+        }
+    }
+
 //	public boolean isUserLockedAfterTryToLogin(User user) {
 //		RestParameters bodyParameters = new RestParameters().addParameter("name", user.getName())
 //				.addParameter("password", user.getPassword());
@@ -60,7 +78,7 @@ public class GuestService extends BaseService {
     public Lifetime getCoolDownTime() {
         SimpleEntity simpleEntity = cooldownResource
                 .httpGetAsEntity(null, null);
-        checkEntity(simpleEntity, "Something gets wrong");
+        checkCoolDownTimeEntity(simpleEntity, "Something gets wrong");
         return new Lifetime(simpleEntity.getContent());
     }
 
@@ -90,6 +108,7 @@ public class GuestService extends BaseService {
         SimpleEntity simpleEntity = loginAdminResource.httpPostAsEntity(null, null, bodyParameters);
         checkEntity(simpleEntity, "Error Login");
         adminUser.setToken(simpleEntity.getContent());
+        logger.trace("Successful admin sign in");
         return new AdminService(adminUser);
     }
 
@@ -100,6 +119,7 @@ public class GuestService extends BaseService {
         SimpleEntity simpleEntity = loginUserResource.httpPostAsEntity(null, null, bodyParameters);
         if (simpleEntity.getContent() != userNotFoundMessage)
             return new UserService(user);
+        logger.trace("Successful user sign in");
         return new GuestService();
     }
 

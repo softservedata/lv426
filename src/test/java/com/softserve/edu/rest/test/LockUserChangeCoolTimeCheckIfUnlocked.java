@@ -5,12 +5,16 @@ import com.softserve.edu.rest.data.User;
 import com.softserve.edu.rest.data.UserRepository;
 import com.softserve.edu.rest.services.AdminService;
 import com.softserve.edu.rest.services.GuestService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
 public class LockUserChangeCoolTimeCheckIfUnlocked {
     private GuestService guestService;
     private AdminService adminService;
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
 
     @BeforeClass
     public void registerOfUser() {
@@ -22,22 +26,22 @@ public class LockUserChangeCoolTimeCheckIfUnlocked {
 
     @BeforeMethod
     public void lockUserByLogin() {
+        logger.info("Before method lockUserByLogin() run");
         adminService.changeCoolDown(LifetimeRepository.getShortLifeTime());
         for (int i = 0; i < 3; i++) {
             guestService.unsuccessfulUserLogin(UserRepository.getMaxUserWithMistake());
         }
+        logger.trace("Fail login 3 times with wrong password");
         Assert.assertTrue((guestService.successfulAdminLogin(UserRepository.getAdmin())
                 .getAllLockedUsers().contains("testUser")));
     }
 
-    //TODO
     @AfterMethod(alwaysRun = true)
     public void returnSystemIntoInitialState() {
         adminService.successfulAdminLogin(UserRepository.getAdmin())
                 .changeCoolDown(LifetimeRepository.getDefaultCoolTime());
     }
 
-    //TODO
     @AfterClass(alwaysRun = true)
     public void deleteCreatedUser() {
         adminService.successfulAdminLogin(UserRepository.getAdmin())

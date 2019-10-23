@@ -2,11 +2,14 @@ package com.softserve.edu.rest.test;
 
 import com.softserve.edu.rest.data.Item;
 import com.softserve.edu.rest.data.ItemRepository;
-import com.softserve.edu.rest.data.User;
 import com.softserve.edu.rest.data.UserRepository;
 import com.softserve.edu.rest.services.GuestService;
 import com.softserve.edu.rest.services.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -14,64 +17,75 @@ import static com.softserve.edu.rest.data.ItemRepository.EXPECTED_EMPTY_ITEM_NAM
 
 public class ItemTest {
 
+    public static final Logger logger = LoggerFactory.getLogger(ItemTest.class);
+
+    private UserService userService;
+
+    @BeforeMethod
+    public void userLogIn() {
+        logger.info("Before method userLogIn() START");
+        userService = new GuestService()
+                .successfulUserLogin(UserRepository.forItemUser());
+    }
+
+    @AfterMethod
+    public void userLogOut() {
+        logger.info("After method userLogOut() START");
+        userService.logoutUser();
+    }
+
     @DataProvider
-    public Object[][] createItem() {
+    public Object[][] createValidItem() {
+        logger.info("DataProvider createValidItem() START");
         return new Object[][]{
-                {UserRepository.forItemUser(), ItemRepository.getValidItem()}
+                {ItemRepository.getValidItem()}
         };
     }
 
     @DataProvider
     public Object[][] createInvalidItem() {
+        logger.info("DataProvider createInvalidItem() START");
         return new Object[][]{
-                {UserRepository.forItemUser(), ItemRepository.getInvalidItem()}
+                {ItemRepository.getInvalidItem()}
         };
     }
 
     @DataProvider
     public Object[][] updateItem() {
+        logger.info("DataProvider updateItem() START");
         return new Object[][]{
-                {UserRepository.forItemUser(), ItemRepository.getValidItem(), ItemRepository.getUpdateValidItem()}
+                {ItemRepository.getValidItem(), ItemRepository.getUpdateValidItem()}
         };
     }
 
-    @Test(dataProvider = "createItem")
-    public void itemCreateTest(User user, Item item) {
-        UserService userService = new GuestService()
-                .successfulUserLogin(user)
-                .addItem(item);
-
+    @Test(dataProvider = "createValidItem", description = "Valid Test Scenario, create valid Item")
+    public void itemCreateTest(Item item) {
+        logger.info("Test itemCreateTest() START");
+        userService.addItem(item);
         Assert.assertEquals(userService.getItem(item), item.getItem());
         userService.deleteItem(item);
-        userService.logoutUser();
     }
 
-    @Test(dataProvider = "createInvalidItem")
-    public void emptyItemCreateTest(User user, Item item) {
-        UserService userService = new GuestService()
-                .successfulUserLogin(user)
-                .addItem(item);
+    @Test(dataProvider = "createInvalidItem", description = "Invalid Test Scenario, create Item with empty index")
+    public void emptyItemCreateTest(Item item) {
+        logger.info("Test emptyItemCreateTest() START");
+        userService.addItem(item);
 
         Assert.assertEquals(userService.getItem(item), EXPECTED_EMPTY_ITEM_NAME);
-
         userService.deleteItem(item);
-        userService.logoutUser();
     }
 
-    @Test(dataProvider = "updateItem")
-    public void itemUpdateTest(User user, Item item, Item newItem) {
-        UserService userService = new GuestService()
-                .successfulUserLogin(user)
-                .addItem(item);
+    @Test(dataProvider = "updateItem", description = "Valid Test Scenario, create valid Item and then modify it")
+    public void itemUpdateTest(Item oldItem, Item newItem) {
+        logger.info("Test itemUpdateTest() START");
+        userService.addItem(oldItem);
 
-        Assert.assertEquals(userService.getItem(item), item.getItem());
+        Assert.assertEquals(userService.getItem(oldItem), oldItem.getItem());
 
         userService.updateItem(newItem);
 
         Assert.assertEquals(userService.getItem(newItem), newItem.getItem());
 
         userService.deleteItem(newItem);
-        Assert.assertEquals(userService.getItem(item), null);
-        userService.logoutUser();
     }
 }
