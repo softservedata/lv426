@@ -15,7 +15,6 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-
 @Listeners(Listener.class)
 @Epic("Admin trying to change a cool down time with invalid data")
 @Story("Change cool down time with negative and hyge number, with text and different symbols")

@@ -19,6 +19,7 @@ import org.testng.annotations.*;
 import javax.interceptor.Interceptors;
 @Listeners(Listener.class)
 @Epic("Run all main functionality of Cool down part")
+
 @Story("Admin change cool down time ")
 public class ChangeCoolDownTimeTest {
     private GuestService guestService;
