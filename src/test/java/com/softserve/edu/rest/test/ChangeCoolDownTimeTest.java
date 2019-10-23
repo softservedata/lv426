@@ -29,7 +29,7 @@ import java.util.Arrays;
 
 @Epic("Run all main functionality of Cool down part")
 @Story("")
-public class ChangeCoolDownTimeTest extends TestRunner {
+public class ChangeCoolDownTimeTest {
     private GuestService guestService;
     private AdminService adminService;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());

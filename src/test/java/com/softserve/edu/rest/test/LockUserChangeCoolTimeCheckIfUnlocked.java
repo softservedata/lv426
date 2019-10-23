@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-public class LockUserChangeCoolTimeCheckIfUnlocked extends TestRunner {
+public class LockUserChangeCoolTimeCheckIfUnlocked {
     private GuestService guestService;
     private AdminService adminService;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());

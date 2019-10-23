@@ -12,7 +12,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class ChangeCoolDownTimeWithoutRightTest extends TestRunner {
+public class ChangeCoolDownTimeWithoutRightTest {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @DataProvider
