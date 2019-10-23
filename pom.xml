@@ -56,7 +56,7 @@
         <!--		<testng.parallel.xml.name>CoolDownTimeParallel.xml</testng.parallel.xml.name>-->
         <testng.jenkins.xml.name>marta.xml</testng.jenkins.xml.name>
         <com.fasterxml.jackson.core.version>2.9.8</com.fasterxml.jackson.core.version>
-        <testSuiteXml/>
+
     </properties>
 
     <dependencies>
@@ -281,8 +281,7 @@
                         </temporary.variable>
                     </systemPropertyVariables>
                     <suiteXmlFiles>
-                        <suiteXmlFile>${testng.jenkins.xml.name}</suiteXmlFile>
-                        <suiteXmlFile>${testSuiteXml}</suiteXmlFile>
+                       <suiteXmlFile>${testng.jenkins.xml.name}</suiteXmlFile>
                     </suiteXmlFiles>
                     <reportsDirectory>${testng.reports.directory}</reportsDirectory>
                     <argLine>
