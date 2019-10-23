@@ -7,35 +7,52 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class RegisterTest {@DataProvider
-public Object[][] correctUser() {
-    return new Object[][]{
-            { UserRepository.getAdmin(), UserRepository.notExistingUser2()},
-    };
-}
+public class RegisterTest {
+    @DataProvider
+    public Object[][] correctUser() {
+        return new Object[][]{
+                {UserRepository.getAdmin(), UserRepository.notExistingUser2()},
+        };
+    }
+
+    @DataProvider
+    public Object[][] emptyUser() {
+        return new Object[][]{
+                {UserRepository.getAdmin(), UserRepository.emptyUser()},
+        };
+    }
 
     @Test(dataProvider = "correctUser")
     public void registerPositiveTest(User adminUser, User newUser) {
-        //log.debug("loginPositiveTest started!");
-        //Steps
         AdminService adminService = new AdminService(adminUser)
                 .successfulAdminLogin(adminUser)
                 .createUser(newUser);
-        Assert.assertEquals(adminService.isUserCreated(newUser),true);
+        Assert.assertTrue(adminService.isUserCreated(newUser));
         adminService
                 .logoutUser()
                 .successfulUserLogin(newUser)
                 .logoutUser()
                 .successfulAdminLogin(adminUser)
                 .removeUser(newUser);
-        Assert.assertEquals(adminService.isUserRemoved(newUser),true);
+        Assert.assertTrue(adminService.isUserRemoved(newUser));
         adminService
                 .logoutUser()
                 .unsuccessfulUserLogin(newUser);
+    }
 
-        //Check
-        //Assert.assertTrue(userService.isUserLogged(user));
-        //Step
-
+    @Test(dataProvider = "emptyUser")
+    public void registerEmptyTest(User adminUser, User emptyUser) {
+        AdminService adminService = new AdminService(adminUser)
+                .successfulAdminLogin(adminUser)
+                .createUser(emptyUser);
+        Assert.assertTrue(adminService.isUserCreated(emptyUser));
+        adminService
+                .logoutUser()
+                .unsuccessfulUserLogin(emptyUser)
+                .successfulAdminLogin(adminUser)
+                .removeUser(emptyUser);
+        Assert.assertFalse(adminService.isUserRemoved(emptyUser));
+        adminService
+                .logoutUser();
     }
 }

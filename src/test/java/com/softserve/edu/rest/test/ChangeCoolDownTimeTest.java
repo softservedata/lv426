@@ -19,8 +19,13 @@ import org.testng.annotations.*;
 import javax.interceptor.Interceptors;
 @Listeners(Listener.class)
 @Epic("Run all main functionality of Cool down part")
+<<<<<<< HEAD
 @Story("Admin change cool down time ")
 public class ChangeCoolDownTimeTest  {
+=======
+@Story("")
+public class ChangeCoolDownTimeTest {
+>>>>>>> 5cf1b1de1f284e6917259b310de2eb22728841bc
     private GuestService guestService;
     private AdminService adminService;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());

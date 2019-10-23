@@ -14,9 +14,12 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+<<<<<<< HEAD
 @Listeners(Listener.class)
 @Epic("Lock as admin and unlock all users")
 @Story("Admin trying to login with invalid password, wait until unlock and unlock other locked users")
+=======
+>>>>>>> 5cf1b1de1f284e6917259b310de2eb22728841bc
 public class LockUserAndUnlockAll {
     private GuestService guestService;
     private AdminService adminService;
