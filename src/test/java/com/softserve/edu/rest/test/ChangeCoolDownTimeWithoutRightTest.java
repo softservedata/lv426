@@ -17,13 +17,10 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-<<<<<<< HEAD
 @Listeners(Listener.class)
 @Epic("Guest trying to change cooldowntime without rights")
 @Story("Trying to change time with random token")
 @Story("Trying to change time like a user")
-=======
->>>>>>> 5cf1b1de1f284e6917259b310de2eb22728841bc
 public class ChangeCoolDownTimeWithoutRightTest {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
