@@ -4,14 +4,17 @@ import com.softserve.edu.rest.data.User;
 import com.softserve.edu.rest.data.UserRepository;
 import com.softserve.edu.rest.services.AdminService;
 import com.softserve.edu.rest.services.BaseService;
-import com.softserve.edu.rest.services.GuestService;
+import com.softserve.edu.rest.tools.Listener;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Story;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
+@Listeners(Listener.class)
+@Epic("Some cases of blocking of Admins")
+@Story("Yourself locking, locking admins each other, check lock" +
+        " new admin with same name as locked admin")
 public class LockAdminsTest {
 
     private static final Logger logger =
@@ -29,14 +32,14 @@ public class LockAdminsTest {
 
     @BeforeMethod
     public void login() {
-        logger.info("Before method login Admin");
+        logger.info("Before method: login Admin");
         adminService = new AdminService(UserRepository.getAdmin())
                 .successfulAdminLogin(UserRepository.getAdmin());
     }
 
     @AfterMethod()
     public void reset() {
-        logger.info("After method reset system");
+        logger.info("After method: reset system");
         BaseService service = new BaseService()
                 .reset();
     }
@@ -48,6 +51,9 @@ public class LockAdminsTest {
         adminService.lockUser(UserRepository.getAdmin());
         Assert.assertTrue(adminService
                 .isAdminLocked(UserRepository.getAdmin()));
+        logger.info(
+                "Test end: Admin in system until login, after" +
+                        " logout he can't do this because blocked");
     }
 
     @Test
@@ -65,7 +71,8 @@ public class LockAdminsTest {
                 .isAdminLocked(UserRepository.getAdmin()));
         Assert.assertTrue(adminService
                 .isAdminLocked(UserRepository.getAdmin2()));
-        logger.info("They had alive login session until they logout");
+        logger.info(
+                "Test end: They had alive login session until they logout");
 
     }
 
@@ -84,7 +91,10 @@ public class LockAdminsTest {
                 .isUserRemoved(UserRepository.getAdmin2()));
         Assert.assertFalse(adminService
                 .isAdminLocked(UserRepository.getAdmin2()));
-
+        logger.info(
+                "Test end: after removing Admins name disappeared " +
+                        "from list of blocked Admins and cant " +
+                        "influence on new admin");
 
     }
 
