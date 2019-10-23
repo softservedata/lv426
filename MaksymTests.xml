@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="CoolDownTimeParallel">
+    <test name="CoolDownTime and Lock parts tests">
+        <classes>
+            <class name="com.softserve.edu.rest.test.ChangeCoolDownTimeTest"/>
+            <class name="com.softserve.edu.rest.test.ChangeCoolDownTimeWithoutRightTest"/>
+            <class name="com.softserve.edu.rest.test.LockUserAndUnlockAll"/>
+            <class name="com.softserve.edu.rest.test.LockUserChangeCoolTimeCheckIfUnlocked"/>
+        </classes>
+    </test>
+</suite>

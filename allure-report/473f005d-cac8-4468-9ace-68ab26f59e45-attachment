@@ -1,0 +1,41 @@
+[INFO] time: 2019-10-22 22:14:01,235 file: InvalidCoolDownTimeTest.java class: com.softserve.edu.rest.test.InvalidCoolDownTimeTest method: checkIfCoolDownTimeWorks line: 31 - Before method run
+[INFO] time: 2019-10-22 22:14:01,235 file: InvalidCoolDownTimeTest.java class: com.softserve.edu.rest.test.InvalidCoolDownTimeTest method: checkIfCoolDownTimeWorks line: 31 - Before method run
+[TRACE] time: 2019-10-22 22:14:01,628 file: InvalidCoolDownTimeTest.java class: com.softserve.edu.rest.test.InvalidCoolDownTimeTest method: coolDownTimeWithNegativeDigits line: 113 - Successful admin sign in
+[TRACE] time: 2019-10-22 22:14:01,628 file: InvalidCoolDownTimeTest.java class: com.softserve.edu.rest.test.InvalidCoolDownTimeTest method: coolDownTimeWithNegativeDigits line: 114 - Successful change of cool down time into negative number
+[TRACE] time: 2019-10-22 22:14:01,659 file: InvalidCoolDownTimeTest.java class: com.softserve.edu.rest.test.InvalidCoolDownTimeTest method: coolDownTimeWithZero line: 93 - Successful change of cool down time into zero
+[TRACE] time: 2019-10-22 22:14:01,721 file: InvalidCoolDownTimeTest.java class: com.softserve.edu.rest.test.InvalidCoolDownTimeTest method: coolDownTimeWithNegativeDigits line: 118 - Successful admin sign out
+[INFO] time: 2019-10-22 22:14:01,770 file: InvalidCoolDownTimeTest.java class: com.softserve.edu.rest.test.InvalidCoolDownTimeTest method: setCoolDownTimeForDefault line: 123 - After class method setCoolDownTimeForDefault() run
+[TRACE] time: 2019-10-22 22:14:01,809 file: InvalidCoolDownTimeTest.java class: com.softserve.edu.rest.test.InvalidCoolDownTimeTest method: setCoolDownTimeForDefault line: 132 - Successful admin sign in
+[TRACE] time: 2019-10-22 22:14:01,809 file: InvalidCoolDownTimeTest.java class: com.softserve.edu.rest.test.InvalidCoolDownTimeTest method: setCoolDownTimeForDefault line: 133 - Successful set up the cool down time into default
+[TRACE] time: 2019-10-22 22:14:01,810 file: InvalidCoolDownTimeTest.java class: com.softserve.edu.rest.test.InvalidCoolDownTimeTest method: setCoolDownTimeForDefault line: 134 - Successful remove of 3 admins
+[TRACE] time: 2019-10-22 22:14:01,813 file: InvalidCoolDownTimeTest.java class: com.softserve.edu.rest.test.InvalidCoolDownTimeTest method: setCoolDownTimeForDefault line: 137 - Successful admin sign out
+[INFO] time: 2019-10-22 22:14:01,815 file: TestRunner.java class: com.softserve.edu.rest.test.TestRunner method: afterTestSetUp line: 27 - Test has startedUnexpected-params
+[INFO] time: 2019-10-23 12:57:55,660 file: InvalidCoolDownTimeTest.java class: com.softserve.edu.rest.test.InvalidCoolDownTimeTest method: adminRegistration line: 25 - Before class run
+[TRACE] time: 2019-10-23 12:57:56,057 file: InvalidCoolDownTimeTest.java class: com.softserve.edu.rest.test.InvalidCoolDownTimeTest method: adminRegistration line: 27 - Successful admin sign in
+[TRACE] time: 2019-10-23 12:57:56,172 file: GuestService.java class: com.softserve.edu.rest.services.GuestService method: successfulAdminLogin line: 92 - Successful admin sign in
+[INFO] time: 2019-10-23 12:57:56,239 file: AdminService.java class: com.softserve.edu.rest.services.AdminService method: createUser line: 69 - User has been created
+[INFO] time: 2019-10-23 12:57:56,246 file: AdminService.java class: com.softserve.edu.rest.services.AdminService method: createUser line: 69 - User has been created
+[INFO] time: 2019-10-23 12:57:56,250 file: AdminService.java class: com.softserve.edu.rest.services.AdminService method: createUser line: 69 - User has been created
+[TRACE] time: 2019-10-23 12:57:56,250 file: InvalidCoolDownTimeTest.java class: com.softserve.edu.rest.test.InvalidCoolDownTimeTest method: adminRegistration line: 32 - Creation of three users
+[INFO] time: 2019-10-23 12:57:56,289 file: InvalidCoolDownTimeTest.java class: com.softserve.edu.rest.test.InvalidCoolDownTimeTest method: checkIfCoolDownTimeWorks line: 37 - Before method run
+[INFO] time: 2019-10-23 12:57:56,295 file: InvalidCoolDownTimeTest.java class: com.softserve.edu.rest.test.InvalidCoolDownTimeTest method: checkIfCoolDownTimeWorks line: 37 - Before method run
+[INFO] time: 2019-10-23 12:57:56,289 file: InvalidCoolDownTimeTest.java class: com.softserve.edu.rest.test.InvalidCoolDownTimeTest method: checkIfCoolDownTimeWorks line: 37 - Before method run
+[INFO] time: 2019-10-23 12:57:56,290 file: InvalidCoolDownTimeTest.java class: com.softserve.edu.rest.test.InvalidCoolDownTimeTest method: checkIfCoolDownTimeWorks line: 37 - Before method run
+[TRACE] time: 2019-10-23 12:57:56,621 file: GuestService.java class: com.softserve.edu.rest.services.GuestService method: successfulAdminLogin line: 92 - Successful admin sign in
+[TRACE] time: 2019-10-23 12:57:56,705 file: GuestService.java class: com.softserve.edu.rest.services.GuestService method: successfulAdminLogin line: 92 - Successful admin sign in
+[TRACE] time: 2019-10-23 12:57:56,710 file: GuestService.java class: com.softserve.edu.rest.services.GuestService method: successfulAdminLogin line: 92 - Successful admin sign in
+[TRACE] time: 2019-10-23 12:57:56,724 file: GuestService.java class: com.softserve.edu.rest.services.GuestService method: successfulAdminLogin line: 92 - Successful admin sign in
+[TRACE] time: 2019-10-23 12:57:56,737 file: AdminService.java class: com.softserve.edu.rest.services.AdminService method: changeCoolDown line: 81 - Trying to change the cool down time 
+[TRACE] time: 2019-10-23 12:57:56,754 file: InvalidCoolDownTimeTest.java class: com.softserve.edu.rest.test.InvalidCoolDownTimeTest method: coolDownTimeWithZero line: 99 - Successful change of cool down time into zero
+[ERROR] time: 2019-10-23 12:57:56,756 file: GuestService.java class: com.softserve.edu.rest.services.GuestService method: checkCoolDownTimeEntity line: 44 - Throw CoolDownTimeException
+[INFO] time: 2019-10-23 12:57:56,759 file: GuestService.java class: com.softserve.edu.rest.services.GuestService method: getCoolDownTime line: 62 - Get cool down time
+[DEBUG] time: 2019-10-23 12:57:56,764 file: Listener.java class: com.softserve.edu.rest.tools.Listener method: onTestSuccess line: 31 - 
+[DEBUG] time: 2019-10-23 12:57:56,785 file: Listener.java class: com.softserve.edu.rest.tools.Listener method: onTestSuccess line: 31 - 
+[ERROR] time: 2019-10-23 12:57:56,790 file: GuestService.java class: com.softserve.edu.rest.services.GuestService method: checkCoolDownTimeEntity line: 44 - Throw CoolDownTimeException
+[DEBUG] time: 2019-10-23 12:57:56,791 file: Listener.java class: com.softserve.edu.rest.tools.Listener method: onTestSuccess line: 31 - 
+[TRACE] time: 2019-10-23 12:57:56,794 file: AdminService.java class: com.softserve.edu.rest.services.AdminService method: changeCoolDown line: 81 - Trying to change the cool down time 
+[TRACE] time: 2019-10-23 12:57:56,795 file: InvalidCoolDownTimeTest.java class: com.softserve.edu.rest.test.InvalidCoolDownTimeTest method: coolDownTimeWithNegativeDigits line: 119 - Successful admin sign in
+[TRACE] time: 2019-10-23 12:57:56,795 file: InvalidCoolDownTimeTest.java class: com.softserve.edu.rest.test.InvalidCoolDownTimeTest method: coolDownTimeWithNegativeDigits line: 120 - Successful change of cool down time into negative number
+[INFO] time: 2019-10-23 12:57:56,806 file: GuestService.java class: com.softserve.edu.rest.services.GuestService method: getCoolDownTime line: 62 - Get cool down time
+[TRACE] time: 2019-10-23 12:57:56,819 file: InvalidCoolDownTimeTest.java class: com.softserve.edu.rest.test.InvalidCoolDownTimeTest method: coolDownTimeWithNegativeDigits line: 124 - Successful admin sign out
+[DEBUG] time: 2019-10-23 12:57:56,819 file: Listener.java class: com.softserve.edu.rest.tools.Listener method: onTestSuccess line: 31 - 
