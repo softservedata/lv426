@@ -22,7 +22,7 @@
 		<maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
 		<!-- - - - - - Test - - - - - -->
 		<org.junit.version>4.12</org.junit.version>
-		<org.testng.version>7.0.0</org.testng.version>
+		<org.testng.version>7.7.0</org.testng.version>
 		<maven.surefire.plugin.version>2.22.2</maven.surefire.plugin.version>
 		<temp>null</temp>
 		<!-- - - - - - Automation - - - - - -->
